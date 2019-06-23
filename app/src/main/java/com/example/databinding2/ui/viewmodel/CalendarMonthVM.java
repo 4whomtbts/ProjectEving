@@ -38,7 +38,7 @@ public class CalendarMonthVM extends ViewModel {
     CalendarMonthVM(){
         generateDaysListByDate(repo.getGlobalCurrentCalendarYear(),repo.getGlobalCurrentCalendarMonth());
     }
-    private ArrayList<DayClass> getArrDaysRef(){
+    private ArrayList<TSLiveData<DayClass>> getArrDaysRef(){
         return repo.getCurrDaysArrayReference();
     }
     private void setTempStore(Pair<Integer,Integer> yearMonthPair, ArrayList<DayClass> dayListOfMonth){
@@ -48,17 +48,17 @@ public class CalendarMonthVM extends ViewModel {
         return repo.getStoredMonthData(month);
     }
 
-    private void setListOfDays(ArrayList<DayClass> list){
-        repo.setCurrDaysArrayOfMonthObj(list);
+    private void setListOfDays(ArrayList<TSLiveData<DayClass>> list){
+        repo.setCurrDaysArrayOfMonthObj(list) ;
     }
 
-    public LiveData<Integer> CalendarYear(){
+    public TSLiveData<Integer> CalendarYear(){
         return repo.liveGetGlobalCalendarYear();
     }
-    public LiveData<Integer> CalendarMonth(){
+    public TSLiveData<Integer> CalendarMonth(){
         return repo.liveGetGlobalCalendarMonth();
     }
-    public LiveData<ArrayList<DayClass>> CalendarDaysArray(){
+    public TSLiveData<ArrayList<TSLiveData<DayClass>>> CalendarDaysArray(){
         return repo.liveGetGlobalDaysArray();
     }
     public void gotoPrevMonth(){
@@ -81,7 +81,11 @@ public class CalendarMonthVM extends ViewModel {
 
         Pair<Integer,Integer> yearMonthPair = new Pair(repo.getGlobalCurrentCalendarYear(),
                 repo.getGlobalCurrentCalendarMonth());
-        repo.setDataToBackUp(yearMonthPair,repo.getCurrDaysArrayReference());
+        /*TODO
+            기조회 데이터 백업할 것인지 안 할 것인지 정하기
+            repo.setDataToBackUp(yearMonthPair,repo.getCurrDaysArrayReference());
+         */
+
     }
 
 
@@ -91,7 +95,7 @@ public class CalendarMonthVM extends ViewModel {
     }
 
     private void generateDaysListByDate(int year, int month){
-        ArrayList<DayClass> list = new ArrayList<>();
+        ArrayList<TSLiveData<DayClass>> list = new ArrayList<>();
 
         int firstWeek = getFirstWeek(year,month);
         int lastDayOfLastMonth = getLastDay(year,month-1);
@@ -112,19 +116,27 @@ public class CalendarMonthVM extends ViewModel {
 
         if(startDay == lastDayOfLastMonth){
             for(int i=1; i <= totalDaysInCalender; i++){
-                DayClass day = new DayClass(i);
+
+                //TSLiveData<DayClass> day = new DayClass(i);
+                TSLiveData<DayClass> day = new TSLiveData<>();
+                day.getValue().setDay(i);
+                day.setValue(new DayClass());
                 list.add(day);
             }
         }else {
             startDay++;
-            DayClass day;
+            TSLiveData<DayClass> day;
             for (int i = startDay; i <= lastDayOfLastMonth; i++) {
-                day = new DayClass(i);
+                day = new TSLiveData<>();
+                day.setValue(new DayClass());
+                day.getValue().setDay(i);
                 list.add(day);
             }
 
             for (int i = 1; i <= lastDayOfThisMonth; i++) {
-                day = new DayClass(i);
+                day = new TSLiveData<>();
+                day.setValue(new DayClass());
+                day.getValue().setDay(i);
                 list.add(day);
             }
         }

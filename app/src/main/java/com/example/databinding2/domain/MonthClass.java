@@ -1,6 +1,5 @@
 package com.example.databinding2.domain;
 
-import android.mtp.MtpConstants;
 
 public class MonthClass {
     int _year;

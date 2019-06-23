@@ -12,9 +12,10 @@ public class DayClass {
 
     @PrimaryKey
     public long rootId;
+    /*
     @Embedded
     public Plan plan;
-
+    */
     public String category;
     public float progress_percentage;
     public int year;
@@ -45,19 +46,23 @@ public class DayClass {
         this.year = year;
         this.month=  month;
         this.day = day;
-        this.plan = plan;
+        //this.plan = plan;
         this.setRootId(System.currentTimeMillis());
     }
+    /*
+
+    public DayClass setPlan(Plan plan) {
+        this.plan = plan;
+        return this;
+    }
+
     public Plan getPlan() {
         return plan;
     }
+    */
 
     public DayClass setRootId(long rootId) {
         this.rootId = rootId;
-        return this;
-    }
-    public DayClass setPlan(Plan plan) {
-        this.plan = plan;
         return this;
     }
 

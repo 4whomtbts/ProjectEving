@@ -14,10 +14,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.databinding2.R;
+import com.example.databinding2.TSLiveData;
 import com.example.databinding2.databinding.CalendarViewModelBinding;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.ui.presenter.DayDialogFragment;
@@ -29,19 +31,19 @@ import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 import java.util.ArrayList;
 
 public class CalendarAdapter extends RecyclerView.Adapter{
-    private ArrayList<DayClass> dayList;
+    private ArrayList<TSLiveData<DayClass>> dayList;
     private FragmentManager fm;
     private ConstraintLayout calendarItemWrapper;
     private TextView DayText;
     private int selectedDay;
     private boolean isOnSwip = false;
 
-    public CalendarAdapter(ArrayList<DayClass> list, FragmentManager fm){
+    public CalendarAdapter(ArrayList<TSLiveData<DayClass>> list, FragmentManager fm){
         this.dayList = list;
         this.fm = fm;
     }
 
-    public void setCalendarList(ArrayList<DayClass> dayClassList){
+    public void setCalendarList(ArrayList<TSLiveData<DayClass>> dayClassList){
 
         dayList = dayClassList;
         notifyDataSetChanged();
@@ -82,8 +84,8 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
         CalendarViewHolder viewHolder = (CalendarViewHolder)holder;
         CalendarDayVM model = new CalendarDayVM();
-        DayClass item = dayList.get(position);
-        model.setCalendar(item);
+        TSLiveData<DayClass> item = dayList.get(position);
+        model.setCalendar(item.getValue());
         viewHolder.setViewModel(model);
 
 
@@ -123,7 +125,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
                     if (action == MotionEvent.ACTION_UP) {
                         if (!isOnSwip) {
 
-                            DayDialogFragment dialog = new DayDialogFragment();
+                            DayDialogFragment dialog = new DayDialogFragment(fm);
                             FragmentTransaction ft = fm.beginTransaction();
                             model.setGlobalCurrentDay(model.getDay());
                             dialog.show(ft, "1234");

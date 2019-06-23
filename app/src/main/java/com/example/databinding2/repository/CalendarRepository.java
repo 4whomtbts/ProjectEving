@@ -9,22 +9,31 @@ import com.example.databinding2.custom.Pair;
 import com.example.databinding2.custom.YMD;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.MonthClass;
+import com.example.databinding2.domain.Plan;
+import com.example.databinding2.ui.adapter.DayPlanAdapter;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.lang.reflect.Array;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CalendarRepository {
 
     private static CalendarRepository Inst;
 
     private static TSLiveData<MonthClass> _currMonthObj;
-    private static TSLiveData<ArrayList<DayClass>> _currDaysArrayOfMonthObj;
+//    private static TSLiveData<ArrayList<TSLiveData<MonthClass>>
+
+    // global 에서 현재의 month 에 대한 각각의 일의 livedata
+
+    private static TSLiveData<ArrayList<TSLiveData<DayClass>>> _daysOfCurrMonth;
     private static TSLiveData<Integer> _globalCurrentCalendarYear;
     private static TSLiveData<Integer> _globalCurrentCalendarMonth;
     private static TSLiveData<Integer> _globalCurrentCalendarDay;
     private static TSLiveData<HashMap<Pair<Integer,Integer>,ArrayList<DayClass>>> _backup;
+    private static TSLiveData<ArrayList<TSLiveData<Plan>>> _currentPlanList;
 
     public static CalendarRepository get(){
         if(Inst == null){
@@ -36,10 +45,11 @@ public class CalendarRepository {
 
     private CalendarRepository(){
         HashMap<Pair<Integer,Integer>,ArrayList<DayClass>> backup = new  HashMap<>();
-        ArrayList<DayClass> list = new ArrayList<DayClass>();
+        ArrayList<TSLiveData<DayClass>> list = new ArrayList<TSLiveData<DayClass>>();
 
         _currMonthObj  = new TSLiveData<>();
-        _currDaysArrayOfMonthObj = new TSLiveData<>();
+        _currentPlanList = new TSLiveData<>();
+        _daysOfCurrMonth = new TSLiveData<>();
         _globalCurrentCalendarYear = new TSLiveData<>();
         _globalCurrentCalendarMonth = new TSLiveData<>();
         _globalCurrentCalendarDay = new TSLiveData<>();
@@ -87,9 +97,19 @@ public class CalendarRepository {
                 );
             return day;
         }
-
-
     }
+
+
+    public static int getGlobalCurrentCalendarYear(){
+        return _globalCurrentCalendarYear.getValue();
+    }
+    public static int getGlobalCurrentCalendarMonth(){
+        return _globalCurrentCalendarMonth.getValue();
+    }
+    public static int getGlobalCurrentCalendarDay(){
+        return _globalCurrentCalendarDay.getValue();
+    }
+
 
 
 
@@ -108,26 +128,26 @@ public class CalendarRepository {
     public void setCurrMonthObj(){
 
     }
-    public void setCurrDaysArrayOfMonthObj(ArrayList<DayClass> list){
-        this._currDaysArrayOfMonthObj.setValue(list);
+    public void setCurrDaysArrayOfMonthObj(ArrayList<TSLiveData<DayClass>> list){
+        this._daysOfCurrMonth.setValue(list);
     }
-    public LiveData<Integer> liveGetGlobalCalendarYear(){
+    public static TSLiveData<Integer> liveGetGlobalCalendarYear(){
         return _globalCurrentCalendarYear;
     }
-    public LiveData<Integer> liveGetGlobalCalendarMonth(){
+    public static TSLiveData<Integer> liveGetGlobalCalendarMonth(){
         return _globalCurrentCalendarMonth;
     }
-    public LiveData<ArrayList<DayClass>> liveGetGlobalDaysArray(){
-        return _currDaysArrayOfMonthObj;
+    public static TSLiveData<ArrayList<TSLiveData<DayClass>>> liveGetGlobalDaysArray(){
+        return _daysOfCurrMonth;
     }
-    public static int getGlobalCurrentCalendarYear(){
-        return _globalCurrentCalendarYear.getValue();
+    public TSLiveData<DayClass> liveGetDayAt(int position){
+        return _daysOfCurrMonth.getValue().get(position);
     }
-    public static int getGlobalCurrentCalendarMonth(){
-        return _globalCurrentCalendarMonth.getValue();
+    public static TSLiveData<ArrayList<TSLiveData<Plan>>> getLiveCurrentDayPlanList(){
+        return _currentPlanList;
     }
-    public static int getGlobalCurrentCalendarDay(){
-        return _globalCurrentCalendarDay.getValue();
+    public static void setLiveCurrentDayPlanList(TSLiveData<ArrayList<TSLiveData<Plan>>> plan){
+        _currentPlanList = plan;
     }
 
     /*TODO
@@ -139,9 +159,14 @@ public class CalendarRepository {
                 getGlobalCurrentCalendarMonth(),
                 getGlobalCurrentCalendarDay());
     }
-    public ArrayList<DayClass> getCurrDaysArrayReference(){
-        return _currDaysArrayOfMonthObj.getValue();
+    public ArrayList<TSLiveData<DayClass>> getCurrDaysArrayReference(){
+        return _daysOfCurrMonth.getValue();
     }
+    /*
+    public ArrayList<DayClass>> getCurrDaysArrayCopy(){
+        return _daysOfCurrMonth.getValue()
+    }
+    */
     public ArrayList<DayClass> getStoredMonthData(int month){
         return _backup.getValue().get(month);
     }

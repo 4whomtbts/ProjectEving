@@ -9,7 +9,10 @@ import static java.util.Calendar.YEAR;
 
 public class CalendarUtil {
 
+    public static int DAY_IN_MONTH = 42;
     public static GregorianCalendar calendar=  new GregorianCalendar();
+
+
     public static int getFirstWeek(int year, int month) {
         Calendar cal = Calendar.getInstance();
         cal.set(year,month-1,1);

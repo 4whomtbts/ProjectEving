@@ -1,10 +1,8 @@
 package com.example.databinding2.ui.presenter;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,28 +12,21 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.databinding2.R;
+import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.CRecyclerView;
 import com.example.databinding2.databinding.CalendarFragmentBinding;
 import com.example.databinding2.domain.DayClass;
-import com.example.databinding2.domain.MonthClass;
 import com.example.databinding2.ui.adapter.CalendarAdapter;
-import com.example.databinding2.ui.viewmodel.CalendarListViewModel;
 import com.example.databinding2.ui.viewmodel.CalendarMonthVM;
 
-import java.security.cert.CRLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -184,10 +175,10 @@ public class CalendarFragment extends Fragment {
     }
     private void observe(){
 
-        vmodel.CalendarDaysArray().observe(this, new Observer<ArrayList<DayClass>>() {
+        vmodel.CalendarDaysArray().observe(this, new Observer<ArrayList<TSLiveData<DayClass>>>() {
 
             @Override
-            public void onChanged(ArrayList<DayClass> dayClasses) {
+            public void onChanged(ArrayList<TSLiveData<DayClass>> dayClasses) {
                 RecyclerView view= binding.pagerCalendar;
                 CalendarAdapter adapter = (CalendarAdapter) view.getAdapter();
                 if(adapter!=null){
