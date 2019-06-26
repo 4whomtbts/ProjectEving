@@ -6,8 +6,11 @@ import com.example.databinding2.TSLiveData;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.repository.CalendarRepository;
 
-public class CalendarDayVM extends ViewModel {
+public class CalendarDayVM extends CalendarViewModel {
 
+    public CalendarDayVM(){
+        super();
+    }
     public TSLiveData<DayClass> mCalendar = new TSLiveData<>();
     public void setCalendar(DayClass dayClass) {
         this.mCalendar.setValue(dayClass);

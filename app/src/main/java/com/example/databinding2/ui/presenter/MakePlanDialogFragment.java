@@ -73,8 +73,8 @@ public class MakePlanDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                    String input = binding.makePlanTextInput.getEditText().toString();
-                    vmodel.makeNewPlan("가나다라마바사");
+                    String input = binding.makePlanTextInput.getEditText().getText().toString();
+                    vmodel.makeNewPlan(input);
 
             }
         });

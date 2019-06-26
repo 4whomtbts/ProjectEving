@@ -10,7 +10,8 @@ public class TSLiveData<T> extends MutableLiveData<T> {
         setValue(value);
     }
 
-    public void g(){
+    public void set(T value){
+        super.setValue(value);
 
     }
     /*

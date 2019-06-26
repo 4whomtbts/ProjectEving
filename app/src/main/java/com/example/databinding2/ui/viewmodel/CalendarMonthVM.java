@@ -24,7 +24,7 @@ import java.util.HashMap;
 import static com.example.databinding2.util.CalendarUtil.getFirstWeek;
 import static com.example.databinding2.util.CalendarUtil.getLastDay;
 
-public class CalendarMonthVM extends ViewModel {
+public class CalendarMonthVM extends CalendarViewModel {
     private CalendarRepository repo = CalendarRepository.get();
     public TSLiveData<MonthClass> mMonthClass;
     public TSLiveData<ArrayList<DayClass>> mArrDays;
@@ -46,21 +46,13 @@ public class CalendarMonthVM extends ViewModel {
     }
     private ArrayList<DayClass> getTempStoreAtMonth(int month){
         return repo.getStoredMonthData(month);
-    }
+}
 
     private void setListOfDays(ArrayList<TSLiveData<DayClass>> list){
         repo.setCurrDaysArrayOfMonthObj(list) ;
     }
 
-    public TSLiveData<Integer> CalendarYear(){
-        return repo.liveGetGlobalCalendarYear();
-    }
-    public TSLiveData<Integer> CalendarMonth(){
-        return repo.liveGetGlobalCalendarMonth();
-    }
-    public TSLiveData<ArrayList<TSLiveData<DayClass>>> CalendarDaysArray(){
-        return repo.liveGetGlobalDaysArray();
-    }
+
     public void gotoPrevMonth(){
         int month = repo.getGlobalCurrentCalendarMonth();
         if(month==1){

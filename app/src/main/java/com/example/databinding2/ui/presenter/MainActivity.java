@@ -15,23 +15,25 @@ import com.example.databinding2.ui.viewmodel.CalendarListViewModel;
 import com.example.databinding2.R;
 import com.example.databinding2.databinding.CalendarListBinding;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 public class MainActivity extends AppCompatActivity {
     CalendarPageAdapter cAdapter = new CalendarPageAdapter(getSupportFragmentManager());
      private CalendarListBinding binding;
-     private int previousState, currentState;
      private CalendarListViewModel model;
      private LockableViewPager vPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        RootRepository.get(getApplicationContext());
+
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
+        JodaTimeAndroid.init(this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         model = ViewModelProviders.of(this).get(CalendarListViewModel.class);
         binding.setModel(model);
         binding.setLifecycleOwner(this);
 
-        RootRepository.get(getApplicationContext());
         vPager = binding.calendarViewPager;
         vPager.setSwipeable(false);
 
@@ -48,6 +50,4 @@ public class MainActivity extends AppCompatActivity {
         vp.setAdapter(cAdapter);
     }
 
-/*
-    */
 }

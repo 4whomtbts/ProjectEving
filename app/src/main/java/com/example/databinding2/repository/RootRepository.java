@@ -1,15 +1,15 @@
 package com.example.databinding2.repository;
 
 import android.content.Context;
-import android.provider.DocumentsContract;
 
 import androidx.room.Room;
 
-import com.example.databinding2.R;
 import com.example.databinding2.model.CalendarContentDatabase;
 import com.example.databinding2.model.CalendarDayDAO;
 import com.example.databinding2.model.CalendarPlanDAO;
 import com.example.databinding2.model.PlanDatabase;
+
+import static com.example.databinding2.util.Constants.TIMEZONE_SEOUL;
 
 public class RootRepository {
 
@@ -18,13 +18,21 @@ public class RootRepository {
     private static PlanRepository RepoPlan;
     private static CalendarContentDatabase appDB;
     private static PlanDatabase planDB;
-    public static Context context;
+    public static Context context; // TODO  static 접근 위험
+    private static String timeZone;
 
     public RootRepository(Context context){
         this.context  = context;
+        timeZone = TIMEZONE_SEOUL;
+
         getCalendarContentDB();
         getCalendarRepository();
         getCalendarDayDAO();
+    }
+    public RootRepository(Context context,String zone){
+        this(context);
+        timeZone = zone;
+
     }
 
 

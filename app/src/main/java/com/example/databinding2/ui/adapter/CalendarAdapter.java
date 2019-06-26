@@ -2,6 +2,7 @@ package com.example.databinding2.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,7 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,11 +23,9 @@ import com.example.databinding2.R;
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.databinding.CalendarViewModelBinding;
 import com.example.databinding2.domain.DayClass;
+import com.example.databinding2.domain.Plan;
 import com.example.databinding2.ui.presenter.DayDialogFragment;
-import com.example.databinding2.ui.viewmodel.CalendarDayDetailVM;
 import com.example.databinding2.ui.viewmodel.CalendarDayVM;
-import com.example.databinding2.ui.viewmodel.CalendarMonthVM;
-import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 
 import java.util.ArrayList;
 
@@ -59,19 +58,17 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         this.calendarItemWrapper = binding.calendarItemWrapper;
         this.DayText = binding.textDay;
 
-
-
         int newHeight = parent.getRootView().getMeasuredHeight();
         Display display = parent.getDisplay();
         Point size = new Point();
         display.getSize(size);
 
-        //Log.e("길이",Integer.toString(size.y));
-
         GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams)
                 binding.getRoot().getLayoutParams();
         params.height = size.y/6;
         binding.getRoot().setLayoutParams(params);
+
+        CalendarViewHolder viewHolder = new CalendarViewHolder(binding);
         return new CalendarViewHolder(binding);
     }
 
@@ -86,9 +83,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         CalendarDayVM model = new CalendarDayVM();
         TSLiveData<DayClass> item = dayList.get(position);
         model.setCalendar(item.getValue());
-        viewHolder.setViewModel(model);
-
-
+        viewHolder.setViewModel(model,position);
     }
 
 
@@ -141,12 +136,54 @@ public class CalendarAdapter extends RecyclerView.Adapter{
             });
         }
 
-        private void setViewModel(CalendarDayVM model) {
+        private void setViewModel(CalendarDayVM model,int position) {
             this.model = model;
             binding.textDay.setText(model.getDay());
             binding.setModel(model);
             binding.executePendingBindings();
+            this.observe(position);
+        }
 
+        /*TODO
+            ObserveForever 사용 후 해체 루틴 작성
+         */
+        public void observe(final int position){
+
+            this.model.getLiveCurrentMonthPlanListAt(position).observeForever(new Observer<ArrayList<Plan>>() {
+                boolean isFirst=  true;
+
+                @Override
+                public void onChanged(ArrayList<Plan> plans) {
+
+                    if(!isFirst){
+                        Log.e("GetDay",model.getDay());
+                        binding.textDay.setText(plans.get(0).getTextPlan());
+                    }else{
+                        isFirst=false;
+                    }
+
+                }
+            });
+
+            this.model.getLiveCurrentMonthPlanList().observeForever(new Observer<ArrayList<TSLiveData<ArrayList<Plan>>>>() {
+                boolean isFirst=true;
+
+                @Override
+                public void onChanged(ArrayList<TSLiveData<ArrayList<Plan>>> tsLiveData) {
+                    if(!isFirst){
+                    }else{
+                        isFirst=false;
+                    }
+
+                }
+            });
+
+            this.model.getDaysArrayList().observeForever(   new Observer<ArrayList<TSLiveData<DayClass>>>() {
+                @Override
+                public void onChanged(ArrayList<TSLiveData<DayClass>> tsLiveData) {
+
+                }
+            });
 
         }
     }

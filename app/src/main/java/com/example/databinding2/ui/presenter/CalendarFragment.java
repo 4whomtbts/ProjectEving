@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,6 +27,7 @@ import com.example.databinding2.databinding.CalendarFragmentBinding;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.ui.adapter.CalendarAdapter;
 import com.example.databinding2.ui.viewmodel.CalendarMonthVM;
+
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -175,7 +177,8 @@ public class CalendarFragment extends Fragment {
     }
     private void observe(){
 
-        vmodel.CalendarDaysArray().observe(this, new Observer<ArrayList<TSLiveData<DayClass>>>() {
+
+        vmodel.getDaysArrayList().observe(this, new Observer<ArrayList<TSLiveData<DayClass>>>() {
 
             @Override
             public void onChanged(ArrayList<TSLiveData<DayClass>> dayClasses) {
@@ -190,20 +193,27 @@ public class CalendarFragment extends Fragment {
                     view.setLayoutManager(manager);
                     view.setAdapter(adapter);
 
+
                 }
 
             }
         });
-        vmodel.CalendarMonth().observe(this, new Observer<Integer>() {
+        vmodel.getLiveGlobalYear().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
 
             }
         });
-        vmodel.CalendarYear().observe(this, new Observer<Integer>() {
+        vmodel.getLiveGlobalMonth().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 binding.textMonth.setText(Integer.toString(integer));
+            }
+        });
+        vmodel.getDaysArrayList().observe(this, new Observer<ArrayList<TSLiveData<DayClass>>>(){
+
+            @Override
+            public void onChanged(ArrayList<TSLiveData<DayClass>> tsLiveData) {
             }
         });
 
