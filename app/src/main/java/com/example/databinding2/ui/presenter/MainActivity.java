@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.databinding2.custom.LockableViewPager;
+import com.example.databinding2.domain.PlanCreator;
+import com.example.databinding2.repository.EnvRepository;
 import com.example.databinding2.repository.RootRepository;
 import com.example.databinding2.ui.adapter.CalendarPageAdapter;
 import com.example.databinding2.ui.viewmodel.CalendarListViewModel;
@@ -39,15 +41,18 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(vPager);
 
-        if(model != null){
-            model.initCalendar();
-        }
+        globalInit();
 
     }
 
     public void setupViewPager(ViewPager vp){
         cAdapter.addFragment(new CalendarFragment(),"이전");
         vp.setAdapter(cAdapter);
+    }
+
+    private void globalInit(){
+        EnvRepository.setTimeZone();
+
     }
 
 }

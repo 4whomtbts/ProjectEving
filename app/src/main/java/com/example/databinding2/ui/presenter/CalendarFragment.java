@@ -143,7 +143,7 @@ public class CalendarFragment extends Fragment {
                         Log.e("이동", "MIN_DIST : "+diffX+",  MAXY_DIST : "+diffY );
 
                         if(diffX > MIN_DIST && diffY < MAXY_DIST && slope < 5
-                        && timeDiff > 150){
+                        && timeDiff > 200){
 
                             Log.e("이동완료", "MIN_DIST : "+diffX+",  MAXY_DIST : "+diffY );
                             Animation outThroughleft = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_out_left),
@@ -161,6 +161,7 @@ public class CalendarFragment extends Fragment {
                                 view.startAnimation(inFromRight);
                             }
                             vmodel.initCalendar();
+
                             prevTime=currTime;
 
                         }

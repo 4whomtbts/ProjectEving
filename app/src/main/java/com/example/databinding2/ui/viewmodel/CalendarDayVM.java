@@ -17,14 +17,20 @@ public class CalendarDayVM extends CalendarViewModel {
     }
 
     public void setGlobalCurrentDay(int day){
-        CalendarRepository.get().setGlobalCurrentCalendarDay(day);
+        CalendarRepository.setGlobalCurrentCalendarDay(day);
     }
     public void setGlobalCurrentDay(String day){
-        CalendarRepository.get().setGlobalCurrentCalendarDay(
+        CalendarRepository.setGlobalCurrentCalendarDay(
                 Integer.parseInt(day));
+    }
+    public void setGlobalCurrentMonth(int month){
+
     }
     public String getDay(){
         return this.mCalendar.getValue().getDay();
+    }
+    public int getMonth(){
+        return this.mCalendar.getValue().getMonth();
     }
 
 

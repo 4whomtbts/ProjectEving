@@ -1,14 +1,6 @@
 package com.example.databinding2.ui.viewmodel;
 
-import android.app.admin.DelegatedAdminReceiver;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-
-import androidx.databinding.ObservableArrayList;
-import androidx.databinding.ObservableList;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.Pair;
@@ -18,7 +10,6 @@ import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 import static com.example.databinding2.util.CalendarUtil.getFirstWeek;
@@ -36,10 +27,7 @@ public class CalendarMonthVM extends CalendarViewModel {
 
     private TSLiveData<HashMap<Pair<Integer,Integer>,ArrayList<DayClass>>> TempStore;
     CalendarMonthVM(){
-        generateDaysListByDate(repo.getGlobalCurrentCalendarYear(),repo.getGlobalCurrentCalendarMonth());
-    }
-    private ArrayList<TSLiveData<DayClass>> getArrDaysRef(){
-        return repo.getCurrDaysArrayReference();
+        generateDaysListByDate(getGlobalCurrentCalendarYear(),getGlobalCurrentCalendarMonth());
     }
     private void setTempStore(Pair<Integer,Integer> yearMonthPair, ArrayList<DayClass> dayListOfMonth){
         repo.setDataToBackUp(yearMonthPair,dayListOfMonth);
@@ -54,25 +42,27 @@ public class CalendarMonthVM extends CalendarViewModel {
 
 
     public void gotoPrevMonth(){
-        int month = repo.getGlobalCurrentCalendarMonth();
+        int month = getGlobalCurrentCalendarMonth();
+        int year = getGlobalCurrentCalendarYear();
         if(month==1){
-
+            setGlobalCurrentYear(year-1);
+            setGlobalCurrentMonth(12);
         }else{
-            repo.setGlobalCurrentCalendarMonth(month-1);
+            setGlobalCurrentMonth(month-1);
         }
     }
 
     public void gotoNextMonth(){
-        int month = repo.getGlobalCurrentCalendarMonth();
-        int year = repo.getGlobalCurrentCalendarYear();
+        int year = getGlobalCurrentCalendarYear();
+        int month = getGlobalCurrentCalendarMonth();
         if(month==12){
-            repo.setGlobalCurrentCalendarYear(year+1);
+            setGlobalCurrentYear(year+1);
         }else{
-            repo.setGlobalCurrentCalendarMonth(month+1);
+            setGlobalCurrentMonth(month+1);
         }
 
-        Pair<Integer,Integer> yearMonthPair = new Pair(repo.getGlobalCurrentCalendarYear(),
-                repo.getGlobalCurrentCalendarMonth());
+        Pair<Integer,Integer> yearMonthPair = new Pair(getGlobalCurrentCalendarYear(),
+                getGlobalCurrentCalendarMonth());
         /*TODO
             기조회 데이터 백업할 것인지 안 할 것인지 정하기
             repo.setDataToBackUp(yearMonthPair,repo.getCurrDaysArrayReference());
@@ -109,11 +99,12 @@ public class CalendarMonthVM extends CalendarViewModel {
         if(startDay == lastDayOfLastMonth){
             for(int i=1; i <= totalDaysInCalender; i++){
 
-                //TSLiveData<DayClass> day = new DayClass(i);
-                TSLiveData<DayClass> day = new TSLiveData<>();
-                day.getValue().setDay(i);
-                day.setValue(new DayClass());
-                list.add(day);
+
+                TSLiveData<DayClass> liveDay = new TSLiveData<>();
+                liveDay.setValue(new DayClass());
+                liveDay.getValue().setDay(i);
+                liveDay.getValue().setMonth(month);
+                list.add(liveDay);
             }
         }else {
             startDay++;
@@ -121,23 +112,39 @@ public class CalendarMonthVM extends CalendarViewModel {
             for (int i = startDay; i <= lastDayOfLastMonth; i++) {
                 day = new TSLiveData<>();
                 day.setValue(new DayClass());
+
                 day.getValue().setDay(i);
+
+                day.getValue().setMonth(month-1); // TODO 연도 바뀜 처리
                 list.add(day);
             }
 
             for (int i = 1; i <= lastDayOfThisMonth; i++) {
                 day = new TSLiveData<>();
                 day.setValue(new DayClass());
+                day.getValue().setMonth(month);
                 day.getValue().setDay(i);
                 list.add(day);
             }
         }
+
+        for(int i=1; i <= CalendarUtil.getLastVisibleDayOfNextMonth(year,month);i++){
+            TSLiveData<DayClass> day = new TSLiveData<>();
+            day.setValue(new DayClass());
+            day.getValue().setMonth(month+1);
+            day.getValue().setDay(i);
+            list.add(day);
+        }
+
         setListOfDays(list);
     }
     public void initCalendar(){
-        generateDaysListByDate(repo.getGlobalCurrentCalendarYear(),
-                repo.getGlobalCurrentCalendarMonth());
+        generateDaysListByDate(getGlobalCurrentCalendarYear(),
+                getGlobalCurrentCalendarMonth());
     }
+
+
+
 
 
 

@@ -15,7 +15,8 @@
         <com.example.databinding2.custom.LockableViewPager
             android:id="@+id/calendar_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
     </LinearLayout>
 
 </layout>

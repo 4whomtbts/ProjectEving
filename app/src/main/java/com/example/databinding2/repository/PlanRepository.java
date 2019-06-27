@@ -34,6 +34,8 @@ public class PlanRepository {
     }
 
 
+
+
     public static class InsertPlan extends AsyncTask<Plan,Void, Plan> {
 
         @Override
@@ -58,6 +60,8 @@ public class PlanRepository {
             return result;
         }
     }
+
+
 /*
     public static  class GetLivePlanByDay extends AsyncTask<YMD,Void,ArrayList<TSLiveData<Plan>>> {
 

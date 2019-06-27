@@ -4,43 +4,48 @@ package com.example.databinding2.domain;
 import android.util.Log;
 
 import com.example.databinding2.custom.YMD;
-
-import net.danlew.android.joda.JodaTimeAndroid;
+import com.example.databinding2.repository.EnvRepository;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Instant;
-
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class PlanCreator {
 
+    private static int[] TYPICAL_MODE = {2,5,8,15,31,91,121};
+    private static int[] DENSE_MODE = {2,5,8,15,22,29,41,61,91,121};
 
-    private static String timeZone;
-    public static YMD[] getTypicalMode(YMD date,String timeZone){
-// 1 4 7 14 30 90 120
+    private static int[][] modes = {
+            TYPICAL_MODE,DENSE_MODE
+    };
+
+    public static YMD[] genericMakePlanByMode(YMD date, int[] mode){
         DateTime requestedDate = new DateTime(date.getYear(),date.getMonth(),date.getDay(),9,0).withZone(
-                DateTimeZone.forID(timeZone));
+                DateTimeZone.forID(EnvRepository.getTimeZone()));
+
         DateTime baseDate = requestedDate;
-        int[] op = {2,4,7,14,30,90,120};
-        YMD[] result = new YMD[7];
-        for(int i=0; i < 7; i++){
-            DateTime newDate = baseDate.plusDays(op[i]-1);
+
+        YMD[] result = new YMD[mode.length];
+
+        for(int i=0; i < mode.length; i++){
+            DateTime newDate = baseDate.plusDays(mode[i]-1);
             baseDate=requestedDate;
 
             YMD newYMD = new YMD(newDate.getYear(),newDate.getMonthOfYear(),newDate.getDayOfMonth());
-            String test= newDate.getYear()+","+newDate.getMonthOfYear()+","+newDate.getDayOfMonth();
-            Log.e("더해진 날짜",test);
+            Log.e("","계획될 날짜 : "+newDate.getYear()+", "+newDate.getMonthOfYear()+", "+newDate.getDayOfMonth());
             result[i] = newYMD;
         }
-        for(int i=0; i < 7; i++){
 
-        }
         return result;
+    }
+
+    public static YMD[] getTypicalMode(YMD date){
+    // 1 4 7 14 30 90 120
+        return genericMakePlanByMode(date,TYPICAL_MODE);
+    }
+
+    // 1 4 7 14 21 28 40 60 90 120
+    public static YMD[] getDenseMode(YMD date){
+        return genericMakePlanByMode(date,DENSE_MODE);
     }
 
 

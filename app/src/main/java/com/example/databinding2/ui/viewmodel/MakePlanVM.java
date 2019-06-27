@@ -35,44 +35,62 @@ public class MakePlanVM extends CalendarViewModel {
         //TODO 유틸 만들기
         ArrayList<TSLiveData<Plan>> org = CalendarRepository.getLiveCurrentDayPlanList().getValue();
         org.add(livePlan);
+
         CalendarRepository.getLiveCurrentDayPlanList().setValue(org);
+
 
         for(int i=0; i < CalendarRepository.getLiveCurrentDayPlanList().getValue().size();i++){
             Log.e(""+i,CalendarRepository.getLiveCurrentDayPlanList().getValue().get(i).toString());
         }
-        YMD[] shouldPlannedDay = PlanCreator.getTypicalMode(getGlobalCurrentYMD(),TIMEZONE_SEOUL);
+        YMD[] shouldPlannedDay = PlanCreator.getDenseMode(getGlobalSelectedYMD());
      //
-           registerPlanByYMD(getGlobalCurrentYMD(),shouldPlannedDay,plan);
+           registerPlanByYMD(getGlobalSelectedYMD(),shouldPlannedDay,plan);
 
 
     }
+
 
     private void registerPlanByYMD(YMD parentPlannedDay, YMD[] shouldPlannedDay,Plan newPlan){
         boolean isBeyondCurrentCalendar = false;
         int index = 0;
 
 
+
+
         ArrayList<TSLiveData<ArrayList<Plan>>> refreshedPlanList = CalendarRepository.getLiveCurrentMonthPlanList().getValue();
 
         for(index=0; index < shouldPlannedDay.length;index++){
-            YMD date = shouldPlannedDay[index];
-            if(CalendarUtil.isInRangeOfMonthInCalendar(date.getYear(),
-                getGlobalCurrentCalendarMonth(),date.getMonth(),date.getDay())){
 
-            int indexOnCalendar = CalendarUtil.convertDateToIndex(date.getYear(),getGlobalCurrentCalendarMonth(),
-                    date.getMonth(),date.getDay());
+            YMD date = shouldPlannedDay[index];
+            Plan copied = newPlan.makeChild(date);
+
+            if(CalendarUtil.isInRangeOfMonthInCalendar(date.getYear(),
+                getGlobalCurrentCalendarMonth(),date.getMonth(),date.getDay())) {
+
+                int indexOnCalendar = CalendarUtil.convertDateToIndex(date.getYear(), getGlobalCurrentCalendarMonth(),
+                        date.getMonth(), date.getDay());
 
                 ArrayList<Plan> currSingleDayPlanList = refreshedPlanList.get(indexOnCalendar).getValue();
-                currSingleDayPlanList.add(newPlan);
+                currSingleDayPlanList.add(copied);
                 refreshedPlanList.get(indexOnCalendar).set(currSingleDayPlanList);
-                Log.e("갱신인덱스"+index,date.getMonth()+","+date.getDay());
 
-            }else{
-                isBeyondCurrentCalendar=true;
+
             }
 
+            new PlanRepository.InsertPlan().execute(copied);
+
+            ArrayList<Plan> result = null;
+            try {
+                result = new PlanRepository.GetPlanByDay().execute(date).get();
+                Log.e("테스트",result.get(0).month+","+result.get(0).day);
+            } catch (Exception e) {
+
+            }
+
+
+
         }
-       // CalendarRepository.setLiveCurrentMonthPlanList(refreshedPlanList);
+    //    CalendarRepository.setLiveCurrentMonthPlanList(refreshedPlanList);
 
     }
 

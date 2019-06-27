@@ -127,6 +127,7 @@ public class CalendarUtil {
         }
     }
 
+
     public static int getCurrYear(){
         return CalendarUtil.calendar.get(Calendar.YEAR);
     }

@@ -24,6 +24,7 @@ import com.example.databinding2.domain.Plan;
 import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.ui.adapter.DayPlanAdapter;
 import com.example.databinding2.ui.viewmodel.CalendarDayDetailVM;
+import com.example.databinding2.util.CalendarUtil;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -93,13 +94,10 @@ public class DayDialogFragment extends DialogFragment {
 
         }
 
-        CalendarRepository repo = CalendarRepository.get();
-        String year = Integer.toString(repo.getGlobalCurrentCalendarMonth());
-
 
         this.DayText = binding.dayText;
 
-        String result = "현재 일 : "+String.valueOf(vmodel.getGlobalCurrentCalendarDay());
+        String result = "현재 일 : "+vmodel.getGlobalSelectedDay();
         this.DayText.setText(result);
         observe();
 
@@ -108,35 +106,36 @@ public class DayDialogFragment extends DialogFragment {
 
     }
 
-
-    public void setDay(String day){
-    }
-
-
     public void observe(){
         this.vmodel.getLivePlanList().observe(this, new Observer<ArrayList<TSLiveData<Plan>>>() {
             @Override
             public void onChanged(ArrayList<TSLiveData<Plan>> tsLiveData) {
 
-                RecyclerView view = binding.planRecyclerView;
-                DayPlanAdapter adapter = (DayPlanAdapter)view.getAdapter();
-                ArrayList<Plan> instList = new ArrayList<>();
+            }
 
-                for(int i=0; i < tsLiveData.size(); i++){
-                    instList.add(tsLiveData.get(i).getValue());
-                }
+        });
+        vmodel.getLiveCurrentMonthPlanListAt(vmodel.getListIndexDayAt()).observe(this, new Observer<ArrayList<Plan>>() {
+            @Override
+            public void onChanged(ArrayList<Plan> plans) {
+                    RecyclerView view = binding.planRecyclerView;
+                    DayPlanAdapter adapter = (DayPlanAdapter)view.getAdapter();
+                    ArrayList<Plan> instList = new ArrayList<>();
 
-                if(adapter!=null){
-                    adapter.setPlanList(instList);
-                }else{
-                    LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+                    for(int i=0; i < plans.size(); i++){
+                        instList.add(plans.get(i));
+                    }
 
-                    adapter = new DayPlanAdapter(instList,getFragmentManager());
-                    adapter.setPlanList(instList);
-                    view.setLayoutManager(manager);
-                    view.setAdapter(adapter);
+                    if(adapter!=null){
+                        adapter.setPlanList(instList);
+                    }else{
+                        LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
 
-                }
+                        adapter = new DayPlanAdapter(instList,getFragmentManager());
+                        adapter.setPlanList(instList);
+                        view.setLayoutManager(manager);
+                        view.setAdapter(adapter);
+
+                    }
             }
         });
     }

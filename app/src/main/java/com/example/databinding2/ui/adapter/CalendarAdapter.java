@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -58,7 +59,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         this.calendarItemWrapper = binding.calendarItemWrapper;
         this.DayText = binding.textDay;
 
-        int newHeight = parent.getRootView().getMeasuredHeight();
+
         Display display = parent.getDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -68,13 +69,9 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         params.height = size.y/6;
         binding.getRoot().setLayoutParams(params);
 
-        CalendarViewHolder viewHolder = new CalendarViewHolder(binding);
         return new CalendarViewHolder(binding);
     }
 
-    public ConstraintLayout getDayItemWrapper(){
-        return this.calendarItemWrapper;
-    }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -100,12 +97,15 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         private CalendarDayVM model;
         private ConstraintLayout calendarItemWrapper;
         private TextView DayText;
+        private boolean isFirst;
+        private int currentVisiblePlans;
 
         public CalendarViewHolder(@NonNull CalendarViewModelBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
             setListeners();
-
+            currentVisiblePlans=0;
+            isFirst=true;
         }
 
         @SuppressLint("ClickableViewAccessibility")
@@ -122,7 +122,10 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
                             DayDialogFragment dialog = new DayDialogFragment(fm);
                             FragmentTransaction ft = fm.beginTransaction();
-                            model.setGlobalCurrentDay(model.getDay());
+                            // TODO 축약
+                            model.setGlobalSelectedMonth(model.getMonth());
+                            model.setGlobalSelectedDay(
+                                    Integer.parseInt(model.getDay()));
                             dialog.show(ft, "1234");
                         }
                         return true;
@@ -138,52 +141,58 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
         private void setViewModel(CalendarDayVM model,int position) {
             this.model = model;
-            binding.textDay.setText(model.getDay());
+            String text = model.getMonth()+"월"+model.getDay()+"일";
+            binding.textDay.setText(text);
             binding.setModel(model);
             binding.executePendingBindings();
             this.observe(position);
+
         }
 
         /*TODO
             ObserveForever 사용 후 해체 루틴 작성
          */
-        public void observe(final int position){
 
+        private TextView makeNewTextView(){
+            TextView newPlanTextView = new TextView(binding.getRoot().getContext());
+            newPlanTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            return newPlanTextView;
+        }
+        private void registerPlanPreviews(ArrayList<Plan> plans){
+
+                TextView newPlanTextView = makeNewTextView();
+                newPlanTextView.setText(plans.get(currentVisiblePlans).getTextPlan());
+                binding.planPreview.addView(newPlanTextView,currentVisiblePlans);
+        }
+
+
+        public void observe(final int position){
             this.model.getLiveCurrentMonthPlanListAt(position).observeForever(new Observer<ArrayList<Plan>>() {
-                boolean isFirst=  true;
+
 
                 @Override
                 public void onChanged(ArrayList<Plan> plans) {
 
+                    if(plans.size() == 0){
+                        return;
+                    }
                     if(!isFirst){
-                        Log.e("GetDay",model.getDay());
-                        binding.textDay.setText(plans.get(0).getTextPlan());
+                        if(plans.size() < currentVisiblePlans){
+                            // plan 삭제 시
+                        }else{
+                            registerPlanPreviews(plans);
+                            currentVisiblePlans++;
+                        }
+
                     }else{
                         isFirst=false;
                     }
-
                 }
             });
 
-            this.model.getLiveCurrentMonthPlanList().observeForever(new Observer<ArrayList<TSLiveData<ArrayList<Plan>>>>() {
-                boolean isFirst=true;
 
-                @Override
-                public void onChanged(ArrayList<TSLiveData<ArrayList<Plan>>> tsLiveData) {
-                    if(!isFirst){
-                    }else{
-                        isFirst=false;
-                    }
-
-                }
-            });
-
-            this.model.getDaysArrayList().observeForever(   new Observer<ArrayList<TSLiveData<DayClass>>>() {
-                @Override
-                public void onChanged(ArrayList<TSLiveData<DayClass>> tsLiveData) {
-
-                }
-            });
 
         }
     }

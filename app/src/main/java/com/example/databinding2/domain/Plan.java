@@ -51,6 +51,7 @@ public class Plan {
     public String textPlan;
 
 
+
     public Plan(int year,int month, int day, long parentUId ,String textPlan) {
         this();
         this.parentUID=parentUId;
@@ -66,6 +67,8 @@ public class Plan {
         this.textPlan  = textPlan;
     }
 
+    public void setNewUID(){
+    }
 
     public long getUid() {
         return uid;
@@ -90,7 +93,18 @@ public class Plan {
     public Plan setTextPlan(String textPlan) {
         this.textPlan = textPlan;
         return this;
-}
+    }
+
+    public Plan makeChild(YMD date){
+        Plan child = new Plan();
+        child.setParentUID(this.getUid());
+        child.setYear(date.getYear());
+        child.setMonth(date.getMonth());
+        child.setDay(date.getDay());
+        child.setTextPlan(this.textPlan);
+        return child;
+    }
+
 
     public String getTextPlan() {
         return textPlan;

@@ -1,10 +1,14 @@
 package com.example.databinding2.ui.presenter;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import androidx.databinding.DataBindingUtil;
@@ -41,6 +45,7 @@ public class MakePlanDialogFragment extends DialogFragment {
 
         this.binding.setModel(vmodel);
         this.binding.setLifecycleOwner(this);
+        this.setCancelable(true);
 
         attachListeners();
         View view = this.binding.getRoot();
@@ -52,8 +57,8 @@ public class MakePlanDialogFragment extends DialogFragment {
         super.onStart();
         Dialog dialog = getDialog();
         if(dialog != null){
-            int width = ViewGroup.LayoutParams.WRAP_CONTENT;
-            int height=  ViewGroup.LayoutParams.WRAP_CONTENT;
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height=  ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width,height);
         }
 
@@ -75,6 +80,15 @@ public class MakePlanDialogFragment extends DialogFragment {
 
                     String input = binding.makePlanTextInput.getEditText().getText().toString();
                     vmodel.makeNewPlan(input);
+
+
+                    dismiss();
+                    View v = getActivity().getCurrentFocus();
+                    if(v != null){
+                    InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(v.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+
+                }
 
             }
         });
