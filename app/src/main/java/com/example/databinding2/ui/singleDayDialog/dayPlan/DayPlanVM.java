@@ -1,8 +1,9 @@
-package com.example.databinding2.ui.viewmodel;
+package com.example.databinding2.ui.singleDayDialog.dayPlan;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.databinding2.domain.Plan;
+import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 
 public class DayPlanVM extends CalendarViewModel {
     /* TODO

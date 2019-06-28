@@ -1,22 +1,17 @@
 package com.example.databinding2.ui.viewmodel;
 
-import android.widget.CalendarView;
-
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.Plan;
 import com.example.databinding2.repository.CalendarRepository;
+import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.concurrent.CancellationException;
 
 public class CalendarViewModel extends ViewModel {
 
@@ -25,10 +20,10 @@ public class CalendarViewModel extends ViewModel {
     private  CalendarRepository calendarRepo;
 
 
-    int getGlobalCurrentCalendarYear(){
+    public int getGlobalCurrentCalendarYear(){
         return CalendarRepository.getGlobalCurrentCalendarYear();
     }
-    int getGlobalCurrentCalendarMonth(){
+    public int getGlobalCurrentCalendarMonth(){
         return CalendarRepository.getGlobalCurrentCalendarMonth();
     }
     public   int getGlobalCurrentCalendarDay(){
@@ -60,21 +55,17 @@ public class CalendarViewModel extends ViewModel {
     public   TSLiveData<ArrayList<TSLiveData<DayClass>>> getDaysArrayList(){
         return CalendarRepository.getLiveGlobalDaysList();
     }
-    public   TSLiveData<Integer> getLiveGlobalYear(){
+    public   TSLiveData<Integer> getLiveGlsobalYear(){
         return CalendarRepository.getLiveGlobalYear();
     }
     public   TSLiveData<Integer> getLiveGlobalMonth(){
         return CalendarRepository.getLiveGlobalMonth();
     }
-    public TSLiveData<ArrayList<Plan>> getLiveGlobalCurrentPlanList()
-    {
-        return CalendarRepository.getGlobalCurrentPlanList();
-    }
     public TSLiveData<ArrayList<TSLiveData<ArrayList<Plan>>>> getLiveCurrentMonthPlanList(){
-        return CalendarRepository.getLiveCurrentMonthPlanList();
+        return PlanRepository.getLiveCurrentMonthPlanList();
     }
     public  TSLiveData<ArrayList<Plan>> getLiveCurrentMonthPlanListAt(int day){
-        return CalendarRepository.getLiveCurrentMonthPlanListAt(day);
+        return PlanRepository.getLiveCurrentMonthPlanListAt(day);
     }
 
     public void setGlobalCurrentYear(int year){
@@ -95,7 +86,7 @@ public class CalendarViewModel extends ViewModel {
     }
 
     public void initMonthPlanList(){
-        CalendarRepository.initMonthPlanList();
+        PlanRepository.initMonthPlanList();
     }
 
 }

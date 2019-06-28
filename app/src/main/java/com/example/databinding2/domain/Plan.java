@@ -5,9 +5,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.databinding2.custom.YMD;
-import com.example.databinding2.util.Constants;
-
-import static com.example.databinding2.util.Constants.PLAN_TABLE;
 
 @Entity(tableName = "table_plans")
 public class Plan {

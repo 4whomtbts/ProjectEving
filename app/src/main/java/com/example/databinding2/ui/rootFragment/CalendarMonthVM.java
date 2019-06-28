@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.viewmodel;
+package com.example.databinding2.ui.rootFragment;
 
 import android.util.Log;
 
@@ -6,7 +6,10 @@ import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.Pair;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.MonthClass;
+import com.example.databinding2.domain.Plan;
 import com.example.databinding2.repository.CalendarRepository;
+import com.example.databinding2.repository.PlanRepository;
+import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
@@ -22,25 +25,28 @@ public class CalendarMonthVM extends CalendarViewModel {
     public TSLiveData<Integer> mYearData;
     public TSLiveData<Integer> mMonth;
 
-    public class TempBackUp extends HashMap<Pair<Integer,Integer>,ArrayList<DayClass>>{}
 
 
     private TSLiveData<HashMap<Pair<Integer,Integer>,ArrayList<DayClass>>> TempStore;
     CalendarMonthVM(){
         generateDaysListByDate(getGlobalCurrentCalendarYear(),getGlobalCurrentCalendarMonth());
     }
-    private void setTempStore(Pair<Integer,Integer> yearMonthPair, ArrayList<DayClass> dayListOfMonth){
-        repo.setDataToBackUp(yearMonthPair,dayListOfMonth);
-    }
-    private ArrayList<DayClass> getTempStoreAtMonth(int month){
-        return repo.getStoredMonthData(month);
-}
+
 
     private void setListOfDays(ArrayList<TSLiveData<DayClass>> list){
         repo.setCurrDaysArrayOfMonthObj(list) ;
     }
 
+    public void refreshPlanListWhenMonthChanged(int year, int month){
 
+        ArrayList<TSLiveData<ArrayList<Plan>>> currPlanList =
+                PlanRepository.getCurrentMonthPlanList();
+
+
+
+
+
+    }
     public void gotoPrevMonth(){
         int month = getGlobalCurrentCalendarMonth();
         int year = getGlobalCurrentCalendarYear();

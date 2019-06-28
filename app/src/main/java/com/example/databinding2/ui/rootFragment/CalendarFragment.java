@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.presenter;
+package com.example.databinding2.ui.rootFragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,9 +24,7 @@ import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.CRecyclerView;
 import com.example.databinding2.databinding.CalendarFragmentBinding;
 import com.example.databinding2.domain.DayClass;
-import com.example.databinding2.ui.adapter.CalendarAdapter;
-import com.example.databinding2.ui.viewmodel.CalendarMonthVM;
-
+import com.example.databinding2.ui.mainCalendar.CalendarAdapter;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -196,12 +193,6 @@ public class CalendarFragment extends Fragment {
 
 
                 }
-
-            }
-        });
-        vmodel.getLiveGlobalYear().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
 
             }
         });

@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="model"
-            type="com.example.databinding2.ui.viewmodel.CalendarMonthVM"/>
+            type="com.example.databinding2.ui.rootFragment.CalendarMonthVM"/>
 
     </data>
 

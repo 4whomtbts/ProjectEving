@@ -1,6 +1,4 @@
-package com.example.databinding2.ui.viewmodel;
-
-import androidx.lifecycle.LiveData;
+package com.example.databinding2.ui.singleDayDialog;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
@@ -10,12 +8,9 @@ import com.example.databinding2.model.CalendarDayDAO;
 import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
-import com.example.databinding2.ui.adapter.CalendarPageAdapter;
-import com.example.databinding2.util.CalendarUtil;
+import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CalendarDayDetailVM extends CalendarViewModel {
 
@@ -29,13 +24,13 @@ public class CalendarDayDetailVM extends CalendarViewModel {
         Repo = RootRepository.getCalendarRepository();
         livePlanList = new TSLiveData<>();
         initLivePlanList();
-        CalendarRepository.
+        PlanRepository.
                 setLiveCurrentDayPlanList(livePlanList);
 
     }
 
     public TSLiveData<ArrayList<TSLiveData<Plan>>> getLivePlanList(){
-        return CalendarRepository.getLiveCurrentDayPlanList();
+        return PlanRepository.getLiveCurrentDayPlanList();
     }
 
 

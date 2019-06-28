@@ -1,34 +1,28 @@
-package com.example.databinding2.ui.presenter;
+package com.example.databinding2.ui.planCreateDialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.databinding2.R;
 import com.example.databinding2.databinding.MakePlanBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.viewmodel.MakePlanVM;
-import com.google.android.material.textfield.TextInputEditText;
 
 public class MakePlanDialogFragment extends DialogFragment {
 
     private MakePlanVM vmodel;
     private MakePlanBinding binding;
     private FragmentManager fragmentManager;
-    MakePlanDialogFragment(FragmentManager fragmentManager){
+    public MakePlanDialogFragment(FragmentManager fragmentManager){
             this.fragmentManager = fragmentManager;
     }
 

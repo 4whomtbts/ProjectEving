@@ -1,6 +1,5 @@
 package com.example.databinding2;
 
-import androidx.databinding.Observable;
 import androidx.lifecycle.MutableLiveData;
 
 public class TSLiveData<T> extends MutableLiveData<T> {

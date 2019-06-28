@@ -1,21 +1,16 @@
-package com.example.databinding2.ui.adapter;
-
-import android.os.Bundle;
+package com.example.databinding2.ui.main;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import com.example.databinding2.ui.presenter.CalendarFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalendarPageAdapter extends FragmentPagerAdapter   {
+public class rootViewPagerAdapter extends FragmentPagerAdapter   {
 
     private final List<Fragment> mFragmentList=  new ArrayList<>();
-    public CalendarPageAdapter(FragmentManager fm) {
+    public rootViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

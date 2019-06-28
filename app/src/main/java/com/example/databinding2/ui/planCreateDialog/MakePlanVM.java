@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.viewmodel;
+package com.example.databinding2.ui.planCreateDialog;
 
 import android.util.Log;
 
@@ -6,13 +6,11 @@ import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
 import com.example.databinding2.domain.Plan;
 import com.example.databinding2.domain.PlanCreator;
-import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
+import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
-
-import static com.example.databinding2.util.Constants.TIMEZONE_SEOUL;
 
 public class MakePlanVM extends CalendarViewModel {
 
@@ -33,14 +31,14 @@ public class MakePlanVM extends CalendarViewModel {
 
         new PlanRepository.InsertPlan().execute(plan);
         //TODO 유틸 만들기
-        ArrayList<TSLiveData<Plan>> org = CalendarRepository.getLiveCurrentDayPlanList().getValue();
+        ArrayList<TSLiveData<Plan>> org = PlanRepository.getLiveCurrentDayPlanList().getValue();
         org.add(livePlan);
 
-        CalendarRepository.getLiveCurrentDayPlanList().setValue(org);
+        PlanRepository.getLiveCurrentDayPlanList().setValue(org);
 
 
-        for(int i=0; i < CalendarRepository.getLiveCurrentDayPlanList().getValue().size();i++){
-            Log.e(""+i,CalendarRepository.getLiveCurrentDayPlanList().getValue().get(i).toString());
+        for(int i=0; i < PlanRepository.getLiveCurrentDayPlanList().getValue().size();i++){
+            Log.e(""+i,PlanRepository.getLiveCurrentDayPlanList().getValue().get(i).toString());
         }
         YMD[] shouldPlannedDay = PlanCreator.getDenseMode(getGlobalSelectedYMD());
      //
@@ -57,7 +55,7 @@ public class MakePlanVM extends CalendarViewModel {
 
 
 
-        ArrayList<TSLiveData<ArrayList<Plan>>> refreshedPlanList = CalendarRepository.getLiveCurrentMonthPlanList().getValue();
+        ArrayList<TSLiveData<ArrayList<Plan>>> refreshedPlanList = PlanRepository.getLiveCurrentMonthPlanList().getValue();
 
         for(index=0; index < shouldPlannedDay.length;index++){
 

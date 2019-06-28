@@ -1,8 +1,7 @@
-package com.example.databinding2.ui.adapter;
+package com.example.databinding2.ui.mainCalendar;
 
 import android.annotation.SuppressLint;
 import android.graphics.Point;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,8 +23,7 @@ import com.example.databinding2.TSLiveData;
 import com.example.databinding2.databinding.CalendarViewModelBinding;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.presenter.DayDialogFragment;
-import com.example.databinding2.ui.viewmodel.CalendarDayVM;
+import com.example.databinding2.ui.singleDayDialog.DayDialogFragment;
 
 import java.util.ArrayList;
 

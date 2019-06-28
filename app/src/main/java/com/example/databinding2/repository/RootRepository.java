@@ -28,6 +28,7 @@ public class RootRepository {
         getCalendarContentDB();
         getCalendarRepository();
         getCalendarDayDAO();
+        getPlanRepostiory();
     }
     public RootRepository(Context context,String zone){
         this(context);

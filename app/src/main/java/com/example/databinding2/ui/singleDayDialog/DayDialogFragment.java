@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.presenter;
+package com.example.databinding2.ui.singleDayDialog;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -21,10 +21,8 @@ import com.example.databinding2.R;
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.databinding.DayDialogBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.repository.CalendarRepository;
-import com.example.databinding2.ui.adapter.DayPlanAdapter;
-import com.example.databinding2.ui.viewmodel.CalendarDayDetailVM;
-import com.example.databinding2.util.CalendarUtil;
+import com.example.databinding2.ui.planCreateDialog.MakePlanDialogFragment;
+import com.example.databinding2.ui.singleDayDialog.dayPlan.DayPlanAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.adapter;
+package com.example.databinding2.ui.singleDayDialog.dayPlan;
 
 import android.graphics.Point;
 import android.view.Display;
@@ -11,10 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.databinding2.R;
-import com.example.databinding2.TSLiveData;
 import com.example.databinding2.databinding.DayPlanItemBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.viewmodel.DayPlanVM;
 
 import java.util.ArrayList;
 

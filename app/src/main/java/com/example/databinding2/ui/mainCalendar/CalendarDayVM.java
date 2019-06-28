@@ -1,10 +1,9 @@
-package com.example.databinding2.ui.viewmodel;
-
-import androidx.lifecycle.ViewModel;
+package com.example.databinding2.ui.mainCalendar;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.repository.CalendarRepository;
+import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 
 public class CalendarDayVM extends CalendarViewModel {
 

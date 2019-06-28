@@ -1,17 +1,26 @@
 package com.example.databinding2.repository;
 
 import android.os.AsyncTask;
+import android.util.Pair;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
 import com.example.databinding2.domain.Plan;
+import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PlanRepository {
 
     private static PlanRepository Inst;
-    TSLiveData<ArrayList<Plan>> _planList;
+
+    private static TSLiveData<ArrayList<TSLiveData<Plan>>> _currentPlanList;
+    private static TSLiveData<ArrayList<TSLiveData<ArrayList<Plan>>>> _currentMonthPlanList;
+    private static HashMap<Pair<Integer,Integer>,ArrayList<ArrayList<Plan>>> _planStore;
+
+
+
 
     public static PlanRepository get(){
         if(Inst == null){
@@ -21,19 +30,62 @@ public class PlanRepository {
     }
 
     private PlanRepository(){
-        _planList = new TSLiveData<>();
+        _currentPlanList = new TSLiveData<>();
+
+        _currentMonthPlanList = new TSLiveData<>();
+
+        _planStore = new HashMap<>();
+
+        initMonthPlanList();
 
     }
 
-    public TSLiveData<ArrayList<Plan>> getLivePlanList(){
-        return this._planList;
+    public void addPlanStore(int year, int month, ArrayList<ArrayList<Plan>> list){
+        _planStore.put(new Pair<>(year,month),list);
+    }
+    public ArrayList<ArrayList<Plan>> getPlanFromStore(int year, int month) {
+        return _planStore.get(new Pair<>(year,month));
+    }
+    public void deleteFromPlanStore(int year, int month){
+        _planStore.remove(new Pair<>(year,month));
     }
 
-    private static void generatePlan(){
-        //ArrayList<Plan> result = new GetPlanByDay().execute()
+
+    /* currentMonthPlanList 관련 methods */
+    public static void initMonthPlanList(){
+        ArrayList<TSLiveData<ArrayList<Plan>>> rawList = new ArrayList<>();
+        _currentMonthPlanList.setValue(rawList);
+
+        for(int i = 0; i < CalendarUtil.DAY_IN_MONTH; i++){
+            ArrayList<Plan> innerRawList = new ArrayList<>();
+            TSLiveData<ArrayList<Plan>> planList = new TSLiveData<>(innerRawList);
+            _currentMonthPlanList.getValue().add(planList);
+        }
     }
 
 
+    public static TSLiveData<ArrayList<Plan>> getLiveCurrentMonthPlanListAt(int day){
+        return getLiveCurrentMonthPlanList().getValue().get(day);
+    }
+
+    public static TSLiveData<ArrayList<TSLiveData<ArrayList<Plan>>>> getLiveCurrentMonthPlanList(){
+        return _currentMonthPlanList;
+    }
+    public static ArrayList<TSLiveData<ArrayList<Plan>>> getCurrentMonthPlanList(){
+        return _currentMonthPlanList.getValue();
+    }
+    public static void setLiveCurrentMonthPlanList(ArrayList<TSLiveData<ArrayList<Plan>>> newList){
+        _currentMonthPlanList.set(newList);
+    }
+
+    public static TSLiveData<ArrayList<TSLiveData<Plan>>> getLiveCurrentDayPlanList(){
+        return _currentPlanList;
+    }
+    public static void setLiveCurrentDayPlanList(TSLiveData<ArrayList<TSLiveData<Plan>>> plan){
+        _currentPlanList = plan;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
 
 
     public static class InsertPlan extends AsyncTask<Plan,Void, Plan> {

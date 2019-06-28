@@ -1,11 +1,9 @@
 package com.example.databinding2.domain;
 
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.databinding2.custom.YMD;
-import com.example.databinding2.databinding.CalendarListBinding;
 
 @Entity(tableName = "table_days")
 public class DayClass {

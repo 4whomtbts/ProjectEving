@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.viewmodel;
+package com.example.databinding2.ui.main;
 
 import androidx.lifecycle.ViewModel;
 
@@ -7,7 +7,7 @@ import com.example.databinding2.domain.DayClass;
 
 import java.util.ArrayList;
 
-public class CalendarListViewModel extends ViewModel {
+public class mainVM extends ViewModel {
 
     public TSLiveData<String> mTitle = new TSLiveData<>();
     public TSLiveData<Integer> mMonth = new TSLiveData<>();
