@@ -1,11 +1,13 @@
-package com.example.databinding2.ui.planCreateDialog;
+package com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog;
 
 import android.util.Log;
 
-import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
+import com.example.databinding2.custom.types.MonthPlanList;
 import com.example.databinding2.domain.Plan;
 import com.example.databinding2.domain.PlanCreator;
+import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 import com.example.databinding2.util.CalendarUtil;
@@ -26,23 +28,17 @@ public class MakePlanVM extends CalendarViewModel {
                 .setMonth(getGlobalCurrentCalendarMonth())
                 .setDay(getGlobalCurrentCalendarDay());
 
-        TSLiveData<Plan> livePlan = new TSLiveData<>();
-        livePlan.setValue(plan);
 
-        new PlanRepository.InsertPlan().execute(plan);
+
         //TODO 유틸 만들기
-        ArrayList<TSLiveData<Plan>> org = PlanRepository.getLiveCurrentDayPlanList().getValue();
-        org.add(livePlan);
+        DayPlanList org = PlanRepository.getCurrentDayPlanList();
+        org.add(plan);
 
-        PlanRepository.getLiveCurrentDayPlanList().setValue(org);
+        PlanRepository.setLiveCurrentDayPlanList(org);
 
 
-        for(int i=0; i < PlanRepository.getLiveCurrentDayPlanList().getValue().size();i++){
-            Log.e(""+i,PlanRepository.getLiveCurrentDayPlanList().getValue().get(i).toString());
-        }
         YMD[] shouldPlannedDay = PlanCreator.getDenseMode(getGlobalSelectedYMD());
-     //
-           registerPlanByYMD(getGlobalSelectedYMD(),shouldPlannedDay,plan);
+        registerPlanByYMD(getGlobalSelectedYMD(),shouldPlannedDay,plan);
 
 
     }
@@ -53,9 +49,7 @@ public class MakePlanVM extends CalendarViewModel {
         int index = 0;
 
 
-
-
-        ArrayList<TSLiveData<ArrayList<Plan>>> refreshedPlanList = PlanRepository.getLiveCurrentMonthPlanList().getValue();
+        MonthPlanList refreshedPlanList = PlanRepository.getCurrentMonthPlanList();
 
         for(index=0; index < shouldPlannedDay.length;index++){
 
@@ -68,27 +62,16 @@ public class MakePlanVM extends CalendarViewModel {
                 int indexOnCalendar = CalendarUtil.convertDateToIndex(date.getYear(), getGlobalCurrentCalendarMonth(),
                         date.getMonth(), date.getDay());
 
-                ArrayList<Plan> currSingleDayPlanList = refreshedPlanList.get(indexOnCalendar).getValue();
+                DayPlanList currSingleDayPlanList = refreshedPlanList.get(indexOnCalendar).getValue();
                 currSingleDayPlanList.add(copied);
                 refreshedPlanList.get(indexOnCalendar).set(currSingleDayPlanList);
-
-
             }
 
             new PlanRepository.InsertPlan().execute(copied);
 
-            ArrayList<Plan> result = null;
-            try {
-                result = new PlanRepository.GetPlanByDay().execute(date).get();
-                Log.e("테스트",result.get(0).month+","+result.get(0).day);
-            } catch (Exception e) {
-
-            }
-
-
-
         }
-    //    CalendarRepository.setLiveCurrentMonthPlanList(refreshedPlanList);
+
+        PlanRepository.setCurrentMonthPlanList(refreshedPlanList);
 
     }
 

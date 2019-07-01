@@ -7,7 +7,7 @@ import com.example.databinding2.domain.DayClass;
 
 import java.util.ArrayList;
 
-public class mainVM extends ViewModel {
+public class MainVM extends ViewModel {
 
     public TSLiveData<String> mTitle = new TSLiveData<>();
     public TSLiveData<Integer> mMonth = new TSLiveData<>();

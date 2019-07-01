@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.example.databinding2.ui.mainCalendar.CalendarDayVM" />
+            type="com.example.databinding2.ui.mainCalendarItem.CalendarDayVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

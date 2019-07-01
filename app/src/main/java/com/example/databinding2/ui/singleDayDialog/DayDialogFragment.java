@@ -19,9 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.databinding2.R;
 import com.example.databinding2.TSLiveData;
+import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.databinding.DayDialogBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.planCreateDialog.MakePlanDialogFragment;
+import com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.MakePlanDialogFragment;
 import com.example.databinding2.ui.singleDayDialog.dayPlan.DayPlanAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -36,8 +38,14 @@ public class DayDialogFragment extends DialogFragment {
     private TextInputEditText DayContentInput;
     private Button DayContentConfirm;
     private FragmentManager fragmentManager;
-    public DayDialogFragment(FragmentManager fragmentManager){
+
+    private int _year;
+    private int _month;
+    private int _day;
+    private YMD _date;
+    public DayDialogFragment(FragmentManager fragmentManager, YMD date){
         this.fragmentManager = fragmentManager;
+        this._date = date;
     }
 
     @Override
@@ -53,6 +61,7 @@ public class DayDialogFragment extends DialogFragment {
         this.binding = DataBindingUtil.inflate(inflater,R.layout.day_dialog,container,false);
 
         vmodel = ViewModelProviders.of(this).get(CalendarDayDetailVM.class);
+
         this.binding.setModel(vmodel);
         this.binding.setLifecycleOwner(this);
 
@@ -77,7 +86,6 @@ public class DayDialogFragment extends DialogFragment {
 
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 makePlanDialog.show(ft,"1234");
-
             }
         });
     }
@@ -105,14 +113,7 @@ public class DayDialogFragment extends DialogFragment {
     }
 
     public void observe(){
-        this.vmodel.getLivePlanList().observe(this, new Observer<ArrayList<TSLiveData<Plan>>>() {
-            @Override
-            public void onChanged(ArrayList<TSLiveData<Plan>> tsLiveData) {
-
-            }
-
-        });
-        vmodel.getLiveCurrentMonthPlanListAt(vmodel.getListIndexDayAt()).observe(this, new Observer<ArrayList<Plan>>() {
+        this.vmodel.getLiveCurrentDayPlanList().observe(this, new Observer<ArrayList<Plan>>() {
             @Override
             public void onChanged(ArrayList<Plan> plans) {
                     RecyclerView view = binding.planRecyclerView;

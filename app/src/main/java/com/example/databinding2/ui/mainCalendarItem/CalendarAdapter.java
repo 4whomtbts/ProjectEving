@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.mainCalendar;
+package com.example.databinding2.ui.mainCalendarItem;
 
 import android.annotation.SuppressLint;
 import android.graphics.Point;
@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.databinding2.R;
 import com.example.databinding2.TSLiveData;
+import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.databinding.CalendarViewModelBinding;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.Plan;
@@ -74,7 +75,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         CalendarViewHolder viewHolder = (CalendarViewHolder)holder;
-        CalendarDayVM model = new CalendarDayVM();
+        CalendarDayVM model = new CalendarDayVM(position);
         TSLiveData<DayClass> item = dayList.get(position);
         model.setCalendar(item.getValue());
         viewHolder.setViewModel(model,position);
@@ -117,7 +118,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
                     if (action == MotionEvent.ACTION_UP) {
                         if (!isOnSwip) {
 
-                            DayDialogFragment dialog = new DayDialogFragment(fm);
+                            DayDialogFragment dialog = new DayDialogFragment(fm,model.getGlobalCurrentYMD());
                             FragmentTransaction ft = fm.beginTransaction();
                             // TODO 축약
                             model.setGlobalSelectedMonth(model.getMonth());
@@ -159,38 +160,34 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         }
         private void registerPlanPreviews(ArrayList<Plan> plans){
 
+            int childCount = binding.planPreview.getChildCount();
+
+            if(childCount==0){
+                for(Plan plan : plans){
+                    TextView newPlanTextView = makeNewTextView();
+                    newPlanTextView.setText(plan.getTextPlan());
+                    binding.planPreview.addView(newPlanTextView,currentVisiblePlans);
+                }
+            }else if(childCount!=plans.size()) {
                 TextView newPlanTextView = makeNewTextView();
-                newPlanTextView.setText(plans.get(currentVisiblePlans).getTextPlan());
-                binding.planPreview.addView(newPlanTextView,currentVisiblePlans);
+                newPlanTextView.setText(plans.get(plans.size() - 1).getTextPlan());
+                binding.planPreview.addView(newPlanTextView, currentVisiblePlans);
+            }
         }
 
 
         public void observe(final int position){
-            this.model.getLiveCurrentMonthPlanListAt(position).observeForever(new Observer<ArrayList<Plan>>() {
-
+            this.model.getLivePlanListAt(position).observeForever(new Observer<DayPlanList>() {
 
                 @Override
-                public void onChanged(ArrayList<Plan> plans) {
+                public void onChanged(DayPlanList plans) {
 
-                    if(plans.size() == 0){
-                        return;
-                    }
-                    if(!isFirst){
-                        if(plans.size() < currentVisiblePlans){
-                            // plan 삭제 시
-                        }else{
-                            registerPlanPreviews(plans);
-                            currentVisiblePlans++;
-                        }
-
-                    }else{
-                        isFirst=false;
-                    }
+                            if(plans.size()!=0){
+                                registerPlanPreviews(plans);
+                                currentVisiblePlans++;
+                            }
                 }
             });
-
-
-
         }
     }
 }

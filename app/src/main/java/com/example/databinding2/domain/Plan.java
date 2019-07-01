@@ -2,12 +2,16 @@ package com.example.databinding2.domain;
 
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.databinding2.custom.YMD;
 
 @Entity(tableName = "table_plans")
 public class Plan {
+
+    @Ignore
+    private YMD ymd;
 
     @PrimaryKey
     public long uid;
@@ -48,6 +52,12 @@ public class Plan {
     public String textPlan;
 
 
+    public YMD getYMD(){
+        if(this.ymd != null){
+            return this.ymd;
+        }
+        return new YMD(this.year,this.month,this.day);
+    }
 
     public Plan(int year,int month, int day, long parentUId ,String textPlan) {
         this();
@@ -56,6 +66,7 @@ public class Plan {
         this.month = month;
         this.day = day;
         this.textPlan = textPlan;
+        this.ymd = new YMD(year,month,day);
     }
     public Plan(){
         this.uid = System.nanoTime();
@@ -105,6 +116,13 @@ public class Plan {
 
     public String getTextPlan() {
         return textPlan;
+    }
+
+    @Override
+    public String toString(){
+        return this.getYear()+"년"+this.getMonth()+"월"+this.getDay()+"일"+
+                "  / "+this.getTextPlan()+"\n";
+
     }
 
 }

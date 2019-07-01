@@ -22,9 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.databinding2.R;
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.CRecyclerView;
+import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.databinding.CalendarFragmentBinding;
 import com.example.databinding2.domain.DayClass;
-import com.example.databinding2.ui.mainCalendar.CalendarAdapter;
+import com.example.databinding2.ui.mainCalendarItem.CalendarAdapter;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -157,7 +158,8 @@ public class CalendarFragment extends Fragment {
                                 vmodel.gotoNextMonth();
                                 view.startAnimation(inFromRight);
                             }
-                            vmodel.initCalendar();
+                            vmodel.refreshCalendar();
+
 
                             prevTime=currTime;
 
@@ -202,13 +204,6 @@ public class CalendarFragment extends Fragment {
                 binding.textMonth.setText(Integer.toString(integer));
             }
         });
-        vmodel.getDaysArrayList().observe(this, new Observer<ArrayList<TSLiveData<DayClass>>>(){
-
-            @Override
-            public void onChanged(ArrayList<TSLiveData<DayClass>> tsLiveData) {
-            }
-        });
-
 
     }
 

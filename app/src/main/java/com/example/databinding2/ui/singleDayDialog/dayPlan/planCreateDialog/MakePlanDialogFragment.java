@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.planCreateDialog;
+package com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog;
 
 import android.app.Dialog;
 import android.content.Context;

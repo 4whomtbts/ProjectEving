@@ -1,7 +1,11 @@
 package com.example.databinding2.ui.singleDayDialog;
 
+import android.util.Log;
+
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
+import com.example.databinding2.custom.types.LiveDayPlanList;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.Plan;
 import com.example.databinding2.model.CalendarDayDAO;
@@ -9,6 +13,7 @@ import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
+import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
 
@@ -16,29 +21,36 @@ public class CalendarDayDetailVM extends CalendarViewModel {
 
     private CalendarDayDAO DayDAO;
     private CalendarRepository Repo;
-    public TSLiveData<ArrayList<TSLiveData<Plan>>> livePlanList;
+    public TSLiveData<DayPlanList> currentDayPlanList;
+    private YMD _date;
+
 
     public CalendarDayDetailVM(){
 
         DayDAO = RootRepository.getCalendarDayDAO();
         Repo = RootRepository.getCalendarRepository();
-        livePlanList = new TSLiveData<>();
-        initLivePlanList();
-        PlanRepository.
-                setLiveCurrentDayPlanList(livePlanList);
+
+        DayPlanList newPlanList = new DayPlanList();
+        PlanRepository.setLiveCurrentDayPlanList(newPlanList);
+        currentDayPlanList = PlanRepository.getLiveCurrentDayPlanList();
 
     }
 
-    public TSLiveData<ArrayList<TSLiveData<Plan>>> getLivePlanList(){
-        return PlanRepository.getLiveCurrentDayPlanList();
+    public int getListIndexDayAt(){
+        int index = CalendarUtil.convertDateToIndex(getGlobalCurrentCalendarYear()
+                ,getGlobalCurrentCalendarMonth(),getGlobalSelectedMonth(),getGlobalSelectedDay());
+        return index;
     }
 
+    public LiveDayPlanList getLiveCurrentDayPlanList(){
+        return (LiveDayPlanList)super.getLivePlanListAt(getListIndexDayAt());
+    }
 
     public void initLivePlanList(){
 
-        ArrayList<TSLiveData<Plan>> list = new ArrayList<>();
+        DayPlanList list = new DayPlanList();
         try {
-            ArrayList<Plan> result = new PlanRepository.GetPlanByDay().execute(getGlobalCurrentYMD()).get();
+            ArrayList<Plan> result = new PlanRepository.GetPlanByDay().execute(this._date).get();
             for(int i=0; i < result.size(); i++){
                 TSLiveData<Plan> livePlan = new TSLiveData<>();
                 livePlan.setValue(result.get(i));
@@ -48,7 +60,7 @@ public class CalendarDayDetailVM extends CalendarViewModel {
         }
 
 
-        this.livePlanList.setValue(list);
+        this.currentDayPlanList.setValue(list);
     }
 
     public void insertDays(DayClass...days){
@@ -68,22 +80,5 @@ public class CalendarDayDetailVM extends CalendarViewModel {
     }
 
 
-    public ArrayList<Plan> getAllPlansDayAt(int year, int month, int day){
-        YMD ymd = new YMD(year,month,day);
-        ArrayList<Plan> result = new ArrayList<>();
-        try{
-            result =  new PlanRepository.GetPlanByDay().execute(ymd).get();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
 
-        return result;
-    }
-
-    public ArrayList<Plan> getAllPlansOfNow() {
-        return getAllPlansDayAt(
-                getGlobalCurrentCalendarYear(),
-        getGlobalCurrentCalendarMonth(),
-                getGlobalCurrentCalendarDay());
-    }
 }

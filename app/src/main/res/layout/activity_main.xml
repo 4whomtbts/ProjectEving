@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.example.databinding2.ui.main.mainVM" />
+            type="com.example.databinding2.ui.main.MainVM" />
     </data>
     <LinearLayout
         android:layout_width="fill_parent"

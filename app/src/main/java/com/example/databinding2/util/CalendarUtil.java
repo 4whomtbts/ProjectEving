@@ -1,5 +1,7 @@
 package com.example.databinding2.util;
 
+import com.example.databinding2.custom.YMD;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -15,6 +17,9 @@ public class CalendarUtil {
         }
         return getLastDay(year,month-1);
     }
+    public static int getLastDayOfLastMonth(YMD ymd){
+        return getLastDayOfLastMonth(ymd.getYear(),ymd.getMonth());
+    }
 
     public static int getFirstWeek(int year, int month) {
         Calendar cal = Calendar.getInstance();
@@ -24,14 +29,23 @@ public class CalendarUtil {
             cal.set(year-1,12,1);
         }
         return cal.get(Calendar.DAY_OF_WEEK);
-
     }
+
+    public static int getFirstWeek(YMD ymd) {
+        return getFirstWeek(ymd.getYear(),ymd.getMonth());
+    }
+
+
 
     public static int getLastDay(int year, int month){
 
         Calendar cal = Calendar.getInstance();
         cal.set(year,month,0);
         return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
+    public static int getLastDay(YMD ymd){
+        return getLastDay(ymd.getYear(),ymd.getMonth());
     }
 
     public static int getWeek(int year, int month,int day) {
@@ -54,6 +68,10 @@ public class CalendarUtil {
         return DAY_IN_MONTH-(getFirstWeek(year,month)-1 + getLastDayOfMonth(year,month));
     }
 
+    public static int getLastVisibleDayOfNextMonth(YMD ymd){
+        return getLastVisibleDayOfNextMonth(ymd.getYear(),ymd.getMonth());
+    }
+
     // 논리적인 달력에서 포함되는 날인가?
     public static boolean isInRangeOfMonth(int year, int month,int day){
         //  LocalDate endOfMonth = new LocalDate(year,month,0).dayOfMonth().withMaximumValue();
@@ -71,12 +89,19 @@ public class CalendarUtil {
         }
     }
 
+    public static int getFirstDayOfLastMonth(YMD ymd){
+        return getFirstDayOfLastMonth(ymd.getYear(),ymd.getMonth());
+    }
+
     public static int getTotalVisibleDayOfLastMonth(int year, int month){
         if(getFirstWeek(year,month)==1){
             return 7;
         }else{
             return DAY_IN_MONTH - (getLastVisibleDayOfNextMonth(year,month)+getLastDay(year,month));
         }
+    }
+    public static int getTotalVisibleDayOfLastMonth(YMD ymd){
+        return getTotalVisibleDayOfLastMonth(ymd.getYear(),ymd.getMonth());
     }
     // 캘린더 view 내에 포함되는 날인가?
     public static boolean isInRangeOfMonthInCalendar(int year,

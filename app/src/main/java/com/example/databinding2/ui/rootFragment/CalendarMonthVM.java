@@ -4,17 +4,24 @@ import android.util.Log;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.Pair;
+import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
+import com.example.databinding2.custom.types.LiveDayPlanList;
+import com.example.databinding2.custom.types.MonthPlanList;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.MonthClass;
 import com.example.databinding2.domain.Plan;
 import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
+import com.example.databinding2.repository.RootRepository;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.databinding2.util.CalendarUtil.DAY_IN_MONTH;
+import static com.example.databinding2.util.CalendarUtil.convertDateToIndex;
 import static com.example.databinding2.util.CalendarUtil.getFirstWeek;
 import static com.example.databinding2.util.CalendarUtil.getLastDay;
 
@@ -39,15 +46,9 @@ public class CalendarMonthVM extends CalendarViewModel {
 
     public void refreshPlanListWhenMonthChanged(int year, int month){
 
-        ArrayList<TSLiveData<ArrayList<Plan>>> currPlanList =
-                PlanRepository.getCurrentMonthPlanList();
-
-
-
-
 
     }
-    public void gotoPrevMonth(){
+    void gotoPrevMonth(){
         int month = getGlobalCurrentCalendarMonth();
         int year = getGlobalCurrentCalendarYear();
         if(month==1){
@@ -149,13 +150,36 @@ public class CalendarMonthVM extends CalendarViewModel {
                 getGlobalCurrentCalendarMonth());
     }
 
+    public void refreshCalendar(){
+        generateDaysListByDate(getGlobalCurrentCalendarYear(),
+                getGlobalCurrentCalendarMonth());
+        ArrayList<Plan> result=null;
+        ArrayList<Plan> fullResult = null;
+
+        try {
+            result = new PlanRepository.GetVisiblePlanMonthAt().execute(new YMD(getGlobalCurrentCalendarYear(),
+                    getGlobalCurrentCalendarMonth())).get();
+            fullResult =  new PlanRepository.SelectAllPlan().execute().get();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        MonthPlanList list = new MonthPlanList();
+
+        for(Plan plan : result){
+
+            int absIndex = convertDateToIndex(
+                    getGlobalCurrentCalendarYear(),getGlobalCurrentCalendarMonth(),
+                    plan.getMonth(),plan.getDay());
+            list.get(absIndex).getValue().add(plan);
+        }
+
+        System.out.println(fullResult);
 
 
 
 
+        setCurrentMonthPlanList(list);
 
-
-
-
-
+    }
 }
