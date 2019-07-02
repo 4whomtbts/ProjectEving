@@ -3,12 +3,15 @@ package com.example.databinding2.custom;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.databinding2.ui.main.rootViewPagerAdapter;
+
 public class LockableViewPager extends ViewPager {
     private boolean swipeable;
-
+    private rootViewPagerAdapter adapter;
     public LockableViewPager(Context context) {
         super(context);
     }
@@ -35,8 +38,6 @@ public class LockableViewPager extends ViewPager {
         }
         return false;
     }
-
-
 
     public void setSwipeable(boolean swipeable) {
         this.swipeable = swipeable;

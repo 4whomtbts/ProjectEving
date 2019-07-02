@@ -66,7 +66,6 @@ public class DayDialogFragment extends DialogFragment {
         this.binding.setLifecycleOwner(this);
 
         this.DayText = this.binding.dayText;
-        this.DayContentInput = this.binding.dayContentInput;
         this.DayContentConfirm = this.binding.dayContentConfirm;
         DayText.setText(
                 String.valueOf(vmodel.getGlobalCurrentCalendarDay()));
@@ -82,10 +81,10 @@ public class DayDialogFragment extends DialogFragment {
         this.DayContentConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment makePlanDialog = new MakePlanDialogFragment(fragmentManager);
-
+                DialogFragment makePlanDialog = new MakePlanDialogFragment(fragmentManager,false);
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 makePlanDialog.show(ft,"1234");
+                dismiss();
             }
         });
     }
@@ -124,13 +123,14 @@ public class DayDialogFragment extends DialogFragment {
                         instList.add(plans.get(i));
                     }
 
+
                     if(adapter!=null){
                         adapter.setPlanList(instList);
                     }else{
                         LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
-
                         adapter = new DayPlanAdapter(instList,getFragmentManager());
                         adapter.setPlanList(instList);
+
                         view.setLayoutManager(manager);
                         view.setAdapter(adapter);
 

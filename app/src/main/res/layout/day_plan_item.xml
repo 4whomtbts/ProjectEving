@@ -12,16 +12,103 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/text_plan_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/plan_wrapper"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <CheckBox
+
+                android:id="@+id/is_done_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/width_05"
+                />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/width_05"
+                app:layout_constraintGuide_percent="0.05"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
+
+
+            <TextView
+                android:id="@+id/group_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/width_05"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/group_cycle_divider"
+                app:layout_constraintRight_toLeftOf="@id/width_25"
+
+                android:text="전공과목" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/group_cycle_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.25"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/cycle_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/width_05"
+                app:layout_constraintTop_toBottomOf="@id/group_cycle_divider"
+                app:layout_constraintRight_toLeftOf="@id/width_25"
+                android:text="4/7" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/width_25"
+                app:layout_constraintGuide_percent="0.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+
+            <TextView
+                android:id="@+id/plan_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/width_25"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="선형대수 기저와 차원" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/width_95"
+                app:layout_constraintGuide_percent="0.95"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
+
+            <ImageButton
+                android:id="@+id/detail_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/width_95"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

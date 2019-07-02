@@ -17,6 +17,53 @@ public class Plan {
     public long uid;
     public long parentUID;
 
+
+
+    public int year;
+    public int month;
+    public int day;
+    public boolean isDone;
+    public int totalCycle;
+    public int thisCycle;
+    public String title;
+    public String textPlan;
+    public String group;
+
+
+
+    public YMD getYMD(){
+        if(this.ymd != null){
+            return this.ymd;
+        }
+        return new YMD(this.year,this.month,this.day);
+    }
+
+    public Plan(int year,int month, int day, long parentUId ,int totalCycle, int thisCycle, String group,String textPlan) {
+        this();
+        this.parentUID=parentUId;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.textPlan = textPlan;
+        this.ymd = new YMD(year,month,day);
+        this.totalCycle = totalCycle;
+        this.thisCycle = thisCycle;
+        this.group =  group;
+    }
+
+    public Plan(){
+
+        this.uid = System.nanoTime();
+        this.parentUID = this.uid;
+        this.group = "분류없음";
+    }
+    public Plan(String textPlan){
+        this.textPlan  = textPlan;
+    }
+
+    public void setNewUID(){
+    }
+
     public long getParentUID() {
         return parentUID;
     }
@@ -37,45 +84,28 @@ public class Plan {
         return day;
     }
 
+    public String getGroup(){
+        return this.group;
+    }
+
+    public String getTitle(){
+        return this.title;
+    }
+
+    public int getTotalCycle(){
+        return this.totalCycle;
+    }
+
+    public int getThisCycle(){
+        return this.thisCycle;
+    }
+
     public boolean isDone() {
         return isDone;
     }
 
     public void setDone(boolean done) {
         isDone = done;
-    }
-
-    public int year;
-    public int month;
-    public int day;
-    public boolean isDone;
-    public String textPlan;
-
-
-    public YMD getYMD(){
-        if(this.ymd != null){
-            return this.ymd;
-        }
-        return new YMD(this.year,this.month,this.day);
-    }
-
-    public Plan(int year,int month, int day, long parentUId ,String textPlan) {
-        this();
-        this.parentUID=parentUId;
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.textPlan = textPlan;
-        this.ymd = new YMD(year,month,day);
-    }
-    public Plan(){
-        this.uid = System.nanoTime();
-    }
-    public Plan(String textPlan){
-        this.textPlan  = textPlan;
-    }
-
-    public void setNewUID(){
     }
 
     public long getUid() {
@@ -103,13 +133,34 @@ public class Plan {
         return this;
     }
 
-    public Plan makeChild(YMD date){
+    public Plan setTotalCycle(int totalCycle){
+        this.totalCycle = totalCycle;
+        return this;
+    }
+    public Plan setThisCycle(int thisCycle){
+        this.thisCycle = thisCycle;
+        return this;
+    }
+
+    public Plan setGroup(String group){
+        this.group  = group;
+        return this;
+    }
+    public Plan setTitle(String title){
+        this.title = title;
+        return this;
+    }
+
+    public Plan makeChild(YMD date) {
         Plan child = new Plan();
         child.setParentUID(this.getUid());
         child.setYear(date.getYear());
         child.setMonth(date.getMonth());
         child.setDay(date.getDay());
-        child.setTextPlan(this.textPlan);
+        child.setTextPlan(this.getTextPlan());
+        child.setTitle(this.getTitle());
+        child.setTotalCycle(this.totalCycle);
+        child.setThisCycle(this.getThisCycle());
         return child;
     }
 

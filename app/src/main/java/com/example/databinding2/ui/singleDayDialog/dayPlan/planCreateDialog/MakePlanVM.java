@@ -23,10 +23,13 @@ public class MakePlanVM extends CalendarViewModel {
     public void makeNewPlan(String textPlan){
 
         Plan plan = new Plan();
-        plan.setTextPlan(textPlan)
+        plan.setTitle(textPlan)
+                .setTextPlan(textPlan)
                 .setYear(getGlobalCurrentCalendarYear())
                 .setMonth(getGlobalCurrentCalendarMonth())
-                .setDay(getGlobalCurrentCalendarDay());
+                .setDay(getGlobalCurrentCalendarDay())
+                .setTotalCycle(0)
+                .setThisCycle(0);
 
 
 
@@ -50,13 +53,14 @@ public class MakePlanVM extends CalendarViewModel {
 
 
         MonthPlanList refreshedPlanList = PlanRepository.getCurrentMonthPlanList();
-
+        newPlan.setTotalCycle(shouldPlannedDay.length);
         for(index=0; index < shouldPlannedDay.length;index++){
 
             YMD date = shouldPlannedDay[index];
             Plan copied = newPlan.makeChild(date);
+            copied.setThisCycle(index+1);
 
-            if(CalendarUtil.isInRangeOfMonthInCalendar(date.getYear(),
+             if(CalendarUtil.isInRangeOfMonthInCalendar(date.getYear(),
                 getGlobalCurrentCalendarMonth(),date.getMonth(),date.getDay())) {
 
                 int indexOnCalendar = CalendarUtil.convertDateToIndex(date.getYear(), getGlobalCurrentCalendarMonth(),

@@ -65,6 +65,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams)
                 binding.getRoot().getLayoutParams();
         params.height = size.y/6;
+
         binding.getRoot().setLayoutParams(params);
 
         return new CalendarViewHolder(binding);
