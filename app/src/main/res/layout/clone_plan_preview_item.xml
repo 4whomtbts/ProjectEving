@@ -3,12 +3,11 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data class="DayPlanItemBinding">
+    <data class="ClonePlanPreViewBinding">
         <import type="android.view.View"/>
-
         <variable
             name="model"
-            type="com.example.databinding2.ui.singleDayDialog.dayPlan.DayPlanVM"/>
+            type="com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.clonePreview.ClonePreViewVM"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +26,7 @@
 
             <CheckBox
 
-                android:id="@+id/is_done_check_box"
+                android:id="@+id/check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -44,70 +43,45 @@
                 android:orientation="vertical" />
 
 
-            <TextView
-                android:id="@+id/group_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/width_05"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/group_cycle_divider"
-                app:layout_constraintRight_toLeftOf="@id/width_25"
-
-                android:text="전공과목" />
-
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/group_cycle_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.5"
-                android:orientation="horizontal" />
-
-            <TextView
-                android:id="@+id/cycle_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/width_05"
-                app:layout_constraintTop_toBottomOf="@id/group_cycle_divider"
-                app:layout_constraintRight_toLeftOf="@id/width_25"
-                android:text="4/7" />
-
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/width_25"
-                app:layout_constraintGuide_percent="0.25"
+                android:id="@+id/width_10"
+                app:layout_constraintGuide_percent="0.10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
 
 
             <TextView
-                android:id="@+id/plan_title"
+                android:id="@+id/cycle_info_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                app:layout_constraintLeft_toRightOf="@id/width_25"
-                app:layout_constraintRight_toLeftOf="@id/width_90"
+                android:gravity="center"
+                android:textSize="12sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="선형대수 기저와 차원" />
+                app:layout_constraintLeft_toRightOf="@id/width_10"
+                app:layout_constraintRight_toLeftOf="@id/width_50"
+                android:text="TextView" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/width_90"
-                app:layout_constraintGuide_percent="0.90"
-                android:layout_width="1px"
-                android:layout_height="match_parent"
+                android:id="@+id/width_50"
+                app:layout_constraintGuide_percent="0.50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical" />
 
-            <ImageButton
-                android:id="@+id/detail_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:layout_constraintWidth_percent="0.05"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="@id/width_90"
-                style="?android:attr/actionOverflowButtonStyle"
-                />
 
+            <TextView
+                android:id="@+id/clone_date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toRightOf="@id/width_50"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="YYYY-MM-DD" />
 
 
 

@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -20,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.databinding2.R;
 import com.example.databinding2.databinding.DayPlanItemBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.MakePlanDialogFragment;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.EditPlanDialogFragment;
+import com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.clonePlan.EditClonePlanDialogFragment;
+import com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.originalPlan.EditOrgPlanDialogFragment;
 
 import java.util.ArrayList;
 
@@ -54,7 +52,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
         ViewGroup.LayoutParams params = binding.getRoot().getLayoutParams();
 
-
+        params.width=size.x;
         params.height =size.y/10;
         binding.getRoot().setLayoutParams(params);
         return new DayItemViewHolder(binding,  params.height);
@@ -97,7 +95,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             binding.executePendingBindings();
             this.binding.groupTextView.setText(model.getGroup());
             this.binding.cycleTextView.setText(model.getCycleInfo());
-            this.binding.planTitle.setText(model.getTextPlan());
+            this.binding.planTitle.setText(model.getTitle());
             //this.binding.detailButton.setMaxHeight(height);
         }
 
@@ -109,16 +107,23 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                    DialogFragment editPlanDialog = new EditPlanDialogFragment(fragmentManager,false);
 
-                    FragmentTransaction ft = fragmentManager.beginTransaction();
-                    editPlanDialog.show(ft,"1234");
+                    if(model.isParent()){
+                        DialogFragment editPlanDialog = new EditOrgPlanDialogFragment(fragmentManager,model.getPlan());
 
+                        FragmentTransaction ft = fragmentManager.beginTransaction();
+                        editPlanDialog.show(ft,"1234");
+                    }else{
+                        DialogFragment editPlanDialog = new EditClonePlanDialogFragment(fragmentManager,model.getPlan());
 
+                        FragmentTransaction ft = fragmentManager.beginTransaction();
+                        editPlanDialog.show(ft,"1234");
+                    }
 
                     return false;
                 }
             });
+
 
         }
 

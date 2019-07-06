@@ -26,8 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         RootRepository.get(getApplicationContext());
         new PlanRepository.DeleteAllPlan().execute();
+
+        RootRepository.initGlobalSetting();
+
         super.onCreate(savedInstanceState);
         JodaTimeAndroid.init(this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);

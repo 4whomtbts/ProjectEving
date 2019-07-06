@@ -1,11 +1,16 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog;
+package com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.clonePlan;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.databinding.DataBindingUtil;
@@ -14,19 +19,21 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.databinding2.R;
-import com.example.databinding2.databinding.EditPlanBinding;
+import com.example.databinding2.databinding.EditPlanCloneBinding;
 import com.example.databinding2.domain.Plan;
+import com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.EditPlanVM;
 
-public class EditPlanDialogFragment extends DialogFragment {
+public class EditClonePlanDialogFragment extends DialogFragment {
 
 
     private EditPlanVM vmodel;
-    private EditPlanBinding binding;
+    private EditPlanCloneBinding binding;
     private FragmentManager fragmentManager;
+    private Plan thisPlan;
     private boolean isEdit;
-    public EditPlanDialogFragment(FragmentManager fragmentManager,boolean isEdit){
+    public EditClonePlanDialogFragment(FragmentManager fragmentManager, Plan plan){
         this.fragmentManager = fragmentManager;
-        this.isEdit = isEdit;
+        this.thisPlan = plan;
     }
 
 
@@ -38,7 +45,7 @@ public class EditPlanDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater,container,savedInstanceState);
-        this.binding = DataBindingUtil.inflate(inflater, R.layout.edit_plan_dialog,container,false);
+        this.binding = DataBindingUtil.inflate(inflater, R.layout.edit_plan_dialog_clone,container,false);
         vmodel = ViewModelProviders.of(this).get(EditPlanVM.class);
 
         this.binding.setModel(vmodel);
@@ -47,6 +54,9 @@ public class EditPlanDialogFragment extends DialogFragment {
 
         attachListeners();
         View view = this.binding.getRoot();
+        this.binding.planTitleInputText.setHint("원래 타이틀");
+        this.binding.planContentInputText.setHint("세부 내용");
+        this.binding.planStudySuggestionText.setMovementMethod(new ScrollingMovementMethod());
         return view;
     }
 
@@ -54,18 +64,28 @@ public class EditPlanDialogFragment extends DialogFragment {
     public void onStart(){
         super.onStart();
         Dialog dialog = getDialog();
+
+        Window window = getDialog().getWindow();
+        Point size =new Point();
+
+        Display display = window.getWindowManager().getDefaultDisplay();
+        display.getSize(size);
+
+
+
         if(dialog != null){
-            int width = ViewGroup.LayoutParams.MATCH_PARENT;
-            int height=  ViewGroup.LayoutParams.MATCH_PARENT;
+            int width = (int)(size.x * 0.95);
+            int height = (int)(size.y * 0.95);
             dialog.getWindow().setLayout(width,height);
+            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
+            .SOFT_INPUT_ADJUST_RESIZE);
         }
 
     }
 
     private Plan ConstructPlan(){
         Plan plan = new Plan();
-        plan.setTextPlan(
-                this.binding.makePlanTextInput.getEditText().toString()
+        plan.setTextPlan("helllo"
         );
         return plan;
     }
@@ -76,7 +96,6 @@ public class EditPlanDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                String input = binding.makePlanTextInput.getEditText().getText().toString();
 
 
                 dismiss();

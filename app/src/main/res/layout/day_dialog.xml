@@ -11,47 +11,115 @@
 
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/day_dialog_abstract_wrapper"
+        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/dialog_shape"
         >
 
-
-        <TextView
-            android:id="@+id/day_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="T000"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/day_content_confirm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:layout_editor_absoluteY="75dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/day_dialog_real_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dialog_shape"
+            >
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintHeight_percent="0.30" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="35dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/plan_recycler_View"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/day_content_confirm"
-            />
 
+            <!-- 1 구역 시작 -->
+
+            <TextView
+                android:id="@+id/day_text"
+                android:layout_width="wrap_content"
+                android:layout_height="0px"
+                android:textSize="20sp"
+                android:text="날짜"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHeight_percent="0.05"
+
+                />
+
+            <!-- 1 구역 끝 -->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_second_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintHeight_percent="0.10"
+                 />
+
+            <!-- 2 구역 시작 -->
+
+            <Button
+                android:id="@+id/day_content_confirm"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Button"
+                app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintWidth_percent="0.10"
+                app:layout_constraintHeight_percent="0.05"
+                 />
+
+
+            <!-- 2 구역 끝 -->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_second_end_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15"
+                 />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_third_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.18"
+                />
+
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hor_second_end_guide"
+
+                />
+
+            <!-- 3 구역 시작 -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/plan_recycler_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hor_third_start_guide"
+                />
+
+            <!-- 3 구역 끝 -->
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -16,6 +16,8 @@ public class DayPlanVM extends CalendarViewModel {
         this.position = position;
     }
 
+    public boolean isParent() { return this.plan.isParentPlan();}
+    public Plan getPlan(){ return this.plan; }
     public String getGroup(){
         return this.plan.getGroup();
     }

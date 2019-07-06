@@ -34,7 +34,7 @@ import java.util.GregorianCalendar;
 public class CalendarFragment extends Fragment {
     private int check;
     private CRecyclerView recyclerView;
-    private TextView textMonth;
+    private TextView yearMonth;
     private Button dayButton;
     private Fragment self = this;
 
@@ -68,7 +68,7 @@ public class CalendarFragment extends Fragment {
         vmodel = ViewModelProviders.of(this).get(CalendarMonthVM.class);
         binding.setModel(vmodel);
         binding.setLifecycleOwner(this);
-        textMonth = binding.textMonth;
+        yearMonth = binding.yearMonthText;
         recyclerView = binding.pagerCalendar;
 
 
@@ -88,7 +88,7 @@ public class CalendarFragment extends Fragment {
 
 
 
-        textMonth.setOnTouchListener(new View.OnTouchListener() {
+        yearMonth.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
@@ -159,7 +159,7 @@ public class CalendarFragment extends Fragment {
                                 view.startAnimation(inFromRight);
                             }
                             vmodel.refreshCalendar();
-
+                            binding.pagerCalendar.setVerticalScrollbarPosition(0);// 달력이 넘어가면 첫 날로 고정된다
 
                             prevTime=currTime;
 
@@ -201,7 +201,10 @@ public class CalendarFragment extends Fragment {
         vmodel.getLiveGlobalMonth().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                binding.textMonth.setText(Integer.toString(integer));
+
+                String currentDate =  vmodel.getGlobalCurrentCalendarYear()
+                +"년 "+vmodel.getGlobalCurrentCalendarMonth()+"월 ";
+                binding.yearMonthText.setText(currentDate);
             }
         });
 

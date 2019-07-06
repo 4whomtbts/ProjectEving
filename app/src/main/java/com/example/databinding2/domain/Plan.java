@@ -28,6 +28,7 @@ public class Plan {
     public String title;
     public String textPlan;
     public String group;
+    public String type;
 
 
 
@@ -37,6 +38,7 @@ public class Plan {
         }
         return new YMD(this.year,this.month,this.day);
     }
+
 
     public Plan(int year,int month, int day, long parentUId ,int totalCycle, int thisCycle, String group,String textPlan) {
         this();
@@ -64,6 +66,12 @@ public class Plan {
     public void setNewUID(){
     }
 
+    public void setYMD(YMD ymd){
+        this.ymd = ymd;
+    }
+    public boolean isParentPlan(){
+        return getParentUID()==getUID();
+    }
     public long getParentUID() {
         return parentUID;
     }
@@ -108,11 +116,11 @@ public class Plan {
         isDone = done;
     }
 
-    public long getUid() {
+    public long getUID() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUID(long uid) {
         this.uid = uid;
     }
 
@@ -151,9 +159,18 @@ public class Plan {
         return this;
     }
 
+    public String getCycleState(){
+        return "현재 현황 : "+this.getThisCycle()+ " / " + this.getTotalCycle();
+    }
+
     public Plan makeChild(YMD date) {
         Plan child = new Plan();
-        child.setParentUID(this.getUid());
+        child.setParentUID(this.getUID());
+        if(this.getYMD().equals(date)){
+            child.setUID(this.getUID());
+        }else{
+            child.setUID(System.nanoTime());
+        }
         child.setYear(date.getYear());
         child.setMonth(date.getMonth());
         child.setDay(date.getDay());

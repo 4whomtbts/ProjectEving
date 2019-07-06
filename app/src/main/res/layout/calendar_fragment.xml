@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    >
     <data class="CalendarFragmentBinding">
         <import type="android.view.View"/>
         <variable
@@ -12,24 +15,212 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="715dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_height="match_parent"
+        android:paddingTop="3dp"
+        >
 
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ver_year_month_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04142857142857145"
+            />
 
         <TextView
-            android:id="@+id/text_month"
+            android:id="@+id/year_month_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="@id/ver_year_month_guide"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hor_first_end_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/hor_second_end_guide"
+
             />
+
+
+        <TextView
+            android:id="@+id/sunday_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="일"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/sunday_guide"
+            app:layout_constraintTop_toBottomOf="@id/hor_first_end_guide"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/sunday_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+        <TextView
+            android:id="@+id/monday_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="월"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintRight_toLeftOf="@id/tuesday_text"
+            app:layout_constraintTop_toBottomOf="@id/hor_first_end_guide"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/monday_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2857142857142858" />
+
+        <TextView
+            android:id="@+id/tuesday_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="화"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintRight_toLeftOf="@id/wednesday_text"
+            app:layout_constraintTop_toBottomOf="@id/hor_first_end_guide"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tuesday_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4285714285714287" />
+
+        <TextView
+            android:id="@+id/wednesday_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="수"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintRight_toLeftOf="@id/thursday_text"
+            app:layout_constraintTop_toBottomOf="@id/hor_first_end_guide"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/wednesday_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintWidth_percent="0.5714285714285716" />
+
+        <TextView
+            android:id="@+id/thursday_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="목"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintRight_toLeftOf="@id/friday_text"
+            app:layout_constraintTop_toBottomOf="@id/hor_first_end_guide"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/thursday_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5714285714285716" />
+
+        <TextView
+            android:id="@+id/friday_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="금"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintRight_toLeftOf="@id/saturday_text"
+            app:layout_constraintTop_toBottomOf="@id/hor_first_end_guide"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/friday_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7142857142857145" />
+
+        <TextView
+            android:id="@+id/saturday_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="토"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hor_first_end_guide"
+            app:layout_constraintWidth_percent="0.1428571428571429" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/saturday_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8571428571428574" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hor_second_end_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08"  />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hor_calendar_start_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.09"
+            />
+
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/text_month"
-            app:layout_constraintLeft_toLeftOf="parent">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hor_calendar_start_guide">
 
             <com.example.databinding2.custom.CRecyclerView
                 android:id="@+id/pager_calendar"
@@ -41,5 +232,6 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

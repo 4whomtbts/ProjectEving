@@ -2,7 +2,9 @@ package com.example.databinding2.ui.mainCalendarItem;
 
 import android.annotation.SuppressLint;
 import android.graphics.Point;
+import android.util.TypedValue;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +47,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
         dayList = dayClassList;
         notifyDataSetChanged();
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -140,7 +143,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
         private void setViewModel(CalendarDayVM model,int position) {
             this.model = model;
-            String text = model.getMonth()+"월"+model.getDay()+"일";
+            String text = model.getDay();
             binding.textDay.setText(text);
             binding.setModel(model);
             binding.executePendingBindings();
@@ -154,11 +157,15 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
         private TextView makeNewTextView(){
             TextView newPlanTextView = new TextView(binding.getRoot().getContext());
+            newPlanTextView.setGravity(Gravity.CENTER);
+            newPlanTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,11);
+            newPlanTextView.setMaxLines(1);
             newPlanTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
 
             return newPlanTextView;
         }
+
         private void registerPlanPreviews(ArrayList<Plan> plans){
 
             int childCount = binding.planPreview.getChildCount();
@@ -166,12 +173,12 @@ public class CalendarAdapter extends RecyclerView.Adapter{
             if(childCount==0){
                 for(Plan plan : plans){
                     TextView newPlanTextView = makeNewTextView();
-                    newPlanTextView.setText(plan.getTextPlan());
+                    newPlanTextView.setText(plan.getTitle());
                     binding.planPreview.addView(newPlanTextView,currentVisiblePlans);
                 }
             }else if(childCount!=plans.size()) {
                 TextView newPlanTextView = makeNewTextView();
-                newPlanTextView.setText(plans.get(plans.size() - 1).getTextPlan());
+                newPlanTextView.setText(plans.get(plans.size() - 1).getTitle());
                 binding.planPreview.addView(newPlanTextView, currentVisiblePlans);
             }
         }
