@@ -12,8 +12,6 @@ import com.example.databinding2.model.CalendarPlanTypeDAO;
 import com.example.databinding2.model.PlanDatabase;
 import com.example.databinding2.model.PlanTypeDatabase;
 
-import org.joda.time.base.BaseSingleFieldPeriod;
-
 import java.util.ArrayList;
 
 import static com.example.databinding2.util.Constants.TIMEZONE_SEOUL;
@@ -157,5 +155,6 @@ public class RootRepository {
     public static CalendarPlanTypeDAO getCalendarPlanTypeDAO(){
         return RootRepository.getPlanTypeDatabase().getPlanTypeDAO();
     }
+
 
 }

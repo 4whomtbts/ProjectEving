@@ -1,7 +1,5 @@
 package com.example.databinding2.custom;
 
-import java.util.Observer;
-
 public class YMD {
     private int year;
     private int month;
@@ -103,5 +101,10 @@ public class YMD {
         return (cmp.getYear()==this.getYear())
                 &&(cmp.getMonth()==this.getMonth())
                 &&(cmp.getDay()==this.getDay());
+    }
+
+    public boolean isSimilar(YMD candidate){
+        return (this.getYear()==candidate.getYear())&&(this.getMonth()==candidate.getMonth())
+                &&(this.getDay()==candidate.getDay());
     }
 }

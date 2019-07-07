@@ -7,11 +7,9 @@ import com.example.databinding2.custom.YMD;
 import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.custom.types.MonthPlanList;
 import com.example.databinding2.domain.DayClass;
-import com.example.databinding2.domain.Plan;
 import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
-import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
 

@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.databinding2.R;
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.CRecyclerView;
-import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.databinding.CalendarFragmentBinding;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.ui.mainCalendarItem.CalendarAdapter;

@@ -20,6 +20,7 @@ public interface CalendarPlanDAO {
     @Query("DELETE FROM table_plans")
     public void deleteAll();
 
+
     @Query("SELECT * FROM table_plans")
     public List<Plan> selectAll();
 
@@ -30,6 +31,8 @@ public interface CalendarPlanDAO {
     @Query("SELECT * FROM table_plans WHERE year = :year AND month = :month")
     public List<Plan> getPlanByMonthDefault(int year, int month);
 
+    @Query("SELECT * FROM table_plans WHERE parentUID = :parentUID")
+    public List<Plan> getPlanByParentUID(long parentUID);
 
     @Query("SELECT * FROM table_plans WHERE year = :year AND month = :month ORDER BY day ASC")
     public List<Plan> getPlanByMonth(int year, int month);
@@ -37,4 +40,9 @@ public interface CalendarPlanDAO {
     @Query("SELECT * FROM table_plans WHERE year = :year AND month = :month AND day  BETWEEN :left AND :right")
     public List<Plan> getPlanByRangeOfDay(int year, int month, int left, int right);
 
+    @Query("DELETE FROM table_plans WHERE parentUID = :parentUID")
+    public void deletePlanByOneParentUID(Long parentUID);
+
+    @Query("UPDATE table_plans SET isDone = :isDone WHERE uid = :uid ")
+    public void updateOnePlanCheckState(Long uid , boolean isDone);
 }

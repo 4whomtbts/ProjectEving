@@ -2,9 +2,38 @@ package com.example.databinding2.model;
 
 import androidx.room.TypeConverter;
 
+import com.example.databinding2.custom.YMD;
+
 import java.util.ArrayList;
 
-class PlanTypeConverters {
+public class PlanTypeConverters {
+
+
+    @TypeConverter
+    public static String fromYMDToString(YMD ymd){
+        StringBuilder sb = new StringBuilder();
+        sb.append(ymd.getYear());
+        sb.append('-');
+        sb.append(ymd.getMonth());
+        sb.append('-');
+        sb.append(ymd.getDay());
+        return sb.toString();
+    }
+
+    @TypeConverter
+    public static YMD fromYMDToString(String value){
+        String[] arr= null;
+        arr  = value.split("-");
+
+
+        YMD newYMD = new YMD(
+                Integer.parseInt(arr[0]),
+                Integer.parseInt(arr[1]),
+                Integer.parseInt(arr[2])
+        );
+        return newYMD;
+    }
+
 
     @TypeConverter
     public static String fromArrayList(ArrayList<Integer> list){

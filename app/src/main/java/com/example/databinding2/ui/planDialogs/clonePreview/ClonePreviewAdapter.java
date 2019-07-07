@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.clonePreview;
+package com.example.databinding2.ui.planDialogs.clonePreview;
 
 import android.graphics.Point;
 import android.view.Display;
@@ -10,27 +10,21 @@ import android.widget.CheckBox;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.databinding2.R;
-import com.example.databinding2.TSLiveData;
-import com.example.databinding2.custom.YMD;
 import com.example.databinding2.custom.types.YMDList;
 import com.example.databinding2.databinding.ClonePlanPreViewBinding;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.MakePlanVM;
+import com.example.databinding2.ui.planDialogs.planCreateDialog.MakePlanVM;
+import com.example.databinding2.ui.viewmodel.PlanMakeViewModel;
 
 public class ClonePreviewAdapter extends RecyclerView.Adapter {
 
     private YMDList dateList;
     private DialogFragment fragment;
-    private MakePlanVM parentVM;
-    //private ClonePlanPreViewBinding binding;
-    public ClonePreviewAdapter(YMDList list, DialogFragment fm, MakePlanVM vm) {
+    public ClonePreviewAdapter(YMDList list, DialogFragment fm) {
         this.dateList = list;
         this.fragment= fm;
-        this.parentVM = vm ;
     }
 
     public void refreshPreViewAdapter(YMDList dateList){

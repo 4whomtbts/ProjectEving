@@ -1,13 +1,10 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.clonePreview;
-
-import android.view.animation.RotateAnimation;
+package com.example.databinding2.ui.planDialogs.clonePreview;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
 import com.example.databinding2.custom.types.YMDList;
 import com.example.databinding2.repository.RootRepository;
 import com.example.databinding2.repository.SingleDayDialogRepository;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.MakePlanVM;
 
 public class ClonePreViewVM {
 

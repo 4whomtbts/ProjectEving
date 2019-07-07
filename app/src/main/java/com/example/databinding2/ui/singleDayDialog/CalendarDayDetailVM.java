@@ -1,7 +1,5 @@
 package com.example.databinding2.ui.singleDayDialog;
 
-import android.util.Log;
-
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
 import com.example.databinding2.custom.types.DayPlanList;

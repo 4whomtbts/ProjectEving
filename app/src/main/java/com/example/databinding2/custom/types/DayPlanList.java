@@ -1,6 +1,5 @@
 package com.example.databinding2.custom.types;
 
-import com.example.databinding2.TSLiveData;
 import com.example.databinding2.domain.Plan;
 
 import java.util.ArrayList;
@@ -8,6 +7,12 @@ import java.util.ArrayList;
 public class DayPlanList extends ArrayList<Plan> {
 
 
+    public DayPlanList(){
+
+    }
+    public DayPlanList(ArrayList<Plan> list){
+            this.addAll(list);
+    }
     @Override
     public String toString() {
         StringBuffer _sb = new StringBuffer();

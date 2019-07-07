@@ -7,7 +7,7 @@
     <data class="MakePlanBinding">
         <import type="android.view.View"/>
 
-        <variable name="model" type="com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.MakePlanVM">
+        <variable name="model" type="com.example.databinding2.ui.planDialogs.planCreateDialog.MakePlanVM">
 
 
         </variable>

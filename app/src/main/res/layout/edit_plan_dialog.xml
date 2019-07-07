@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="model"
-            type="com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.EditPlanVM" />
+            type="com.example.databinding2.ui.planDialogs.planEditDialog.clonePlan.EditClonePlanVM" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout

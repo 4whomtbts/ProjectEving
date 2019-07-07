@@ -1,8 +1,6 @@
 package com.example.databinding2.ui.viewmodel;
 
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.databinding2.TSLiveData;
 

@@ -8,7 +8,7 @@
 
         <variable
             name="model"
-            type="com.example.databinding2.ui.singleDayDialog.dayPlan.DayPlanVM"/>
+            type="com.example.databinding2.ui.singleDayDialog.DayPlanVM"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

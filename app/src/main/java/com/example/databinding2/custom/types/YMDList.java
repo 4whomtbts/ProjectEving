@@ -1,7 +1,6 @@
 package com.example.databinding2.custom.types;
 
 import com.example.databinding2.custom.YMD;
-import com.example.databinding2.repository.SingleDayDialogRepository;
 
 import java.util.ArrayList;
 
@@ -75,6 +74,23 @@ public class YMDList extends ArrayList<YMD> {
         this.checkedList.add(false);
         return super.add(ymd);
     }
+
+    public boolean isSimilar(YMDList candidate){
+
+        if(this.size() != candidate.size()){
+            return false;
+        }
+        for(int i=0; i < this.size(); i++){
+            if(!this.get(i).isSimilar(candidate.get(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
 
 
 

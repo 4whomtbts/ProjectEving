@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan.generalSpinner;
+package com.example.databinding2.custom.components.generalSpinner;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

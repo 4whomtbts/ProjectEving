@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog;
+package com.example.databinding2.ui.planDialogs.planCreateDialog;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -36,8 +36,7 @@ import com.example.databinding2.custom.planTypeSpinnerAdapter;
 import com.example.databinding2.custom.types.YMDList;
 import com.example.databinding2.databinding.MakePlanBinding;
 import com.example.databinding2.domain.planTypes.PlanType;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.clonePreview.ClonePreViewVM;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.clonePreview.ClonePreviewAdapter;
+import com.example.databinding2.ui.planDialogs.clonePreview.ClonePreviewAdapter;
 
 import java.util.ArrayList;
 
@@ -157,7 +156,7 @@ public class MakePlanDialogFragment extends DialogFragment {
                     this.adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
                 }else{
                     LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false);
-                    this.adapter = new ClonePreviewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan(),dialogFragment,vmodel);
+                    this.adapter = new ClonePreviewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan(),dialogFragment);
                     view.setLayoutManager(manager);
                     view.setAdapter(this.adapter);
                 }

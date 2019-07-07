@@ -3,7 +3,6 @@ package com.example.databinding2.domain;
 import android.util.Pair;
 
 import com.example.databinding2.custom.types.MonthPlanList;
-import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.custom.types.PlanStorage;
 import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;

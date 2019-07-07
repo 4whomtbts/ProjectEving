@@ -2,7 +2,6 @@ package com.example.databinding2.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Spinner;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 

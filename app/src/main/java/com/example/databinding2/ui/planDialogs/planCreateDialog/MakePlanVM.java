@@ -1,8 +1,4 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog;
-
-import android.util.Log;
-
-import androidx.lifecycle.ViewModel;
+package com.example.databinding2.ui.planDialogs.planCreateDialog;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
@@ -10,32 +6,30 @@ import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.custom.types.MonthPlanList;
 import com.example.databinding2.custom.types.YMDList;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.domain.PlanCreator;
 import com.example.databinding2.domain.planTypes.PlanType;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
 import com.example.databinding2.repository.SingleDayDialogRepository;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
+import com.example.databinding2.ui.viewmodel.PlanMakeViewModel;
 import com.example.databinding2.util.CalendarUtil;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MakePlanVM extends CalendarViewModel {
 
     private PlanType currentSelectedPlanType;
     private boolean[] listChecked;
     public TSLiveData<YMDList> willBeClonedDateList;
-
     private SingleDayDialogRepository repository;
+
     public MakePlanVM() {
 
         this.currentSelectedPlanType = null;
         this.listChecked = null;
         this.willBeClonedDateList = new TSLiveData<>();
         this.repository = RootRepository.getSingleDayDialogRepository();
+
     }
+
 
     public TSLiveData<YMDList> getWillBeClonedDateList(){
         return repository.getClonePreViewList();
@@ -45,44 +39,15 @@ public class MakePlanVM extends CalendarViewModel {
         this.currentSelectedPlanType = ptype;
 
         if( ptype.isStudyPlan() ) {
-            this.repository.setClonePreViewList(ptype.getPlanDatesFromNowArray(getGlobalSelectedYMD()));
-            //this.listChecked = new boolean[willBeClonedDateList.getValue().size()];
-            //Arrays.fill(this.listChecked,false);
+
+                 this.repository.setClonePreViewList(ptype.getPlanDatesFromNowArray(getGlobalSelectedYMD()));
         }else{
-            this.repository.setClonePreViewList(new YMDList());
-        }
-    }
-    public int getTotalCycle(){
-        return this.currentSelectedPlanType.getCycles().length;
+                this.repository.setClonePreViewList(new YMDList());
+            }
     }
 
     public YMDList getWillBePlannedDatesArrWithCurrentPlan(){
-            return this.repository.getClonePreViewList().getValue();
-    }
-
-    public void deleteAllClonedPlanInPreView(){
-        this.repository.setClonePreViewList(new YMDList());
-    }
-
-    public void makeNewPlan(YMDList confirmedPlannedDay , String title, String content){
-
-        Plan plan = new Plan();
-        plan.setTitle(title)
-                .setTextPlan(content)
-                .setYear(getGlobalCurrentCalendarYear())
-                .setMonth(getGlobalCurrentCalendarMonth())
-                .setDay(getGlobalCurrentCalendarDay())
-                .setTotalCycle(0)
-                .setThisCycle(0);
-
-
-
-        //TODO 유틸 만들기
-        DayPlanList org = PlanRepository.getCurrentDayPlanList();
-        org.add(plan);
-
-        PlanRepository.setLiveCurrentDayPlanList(org);
-        registerPlanByYMD(getGlobalSelectedYMD(),confirmedPlannedDay,plan);
+        return this.repository.getClonePreViewList().getValue();
     }
 
     public void checkAll(){
@@ -105,7 +70,34 @@ public class MakePlanVM extends CalendarViewModel {
     }
 
 
-    private void registerPlanByYMD(YMD parentPlannedDay, YMDList shouldPlannedDay,Plan newPlan){
+    public void makeNewPlan(YMDList confirmedPlannedDay , String title, String content){
+
+        Plan plan = new Plan();
+        plan.setTitle(title)
+                .setYMD(getGlobalSelectedYMD())
+                .setTextPlan(content)
+                .setYear(getGlobalCurrentCalendarYear())
+                .setMonth(getGlobalCurrentCalendarMonth())
+                .setDay(getGlobalCurrentCalendarDay())
+                .setTotalCycle(confirmedPlannedDay.size())
+                .setThisCycle(0);
+
+
+
+        //TODO 유틸 만들기
+        DayPlanList org = PlanRepository.getCurrentDayPlanList();
+        org.add(plan);
+
+        PlanRepository.setLiveCurrentDayPlanList(org);
+        registerPlanByYMD(getGlobalSelectedYMD(),confirmedPlannedDay,plan);
+    }
+
+    protected DayPlanList getConfirmedPlanList(YMD parentPlannedDay, YMDList shouldPlannedDay, Plan newPlan){
+        return null;
+    }
+
+
+    private void registerPlanByYMD(YMD parentPlannedDay, YMDList shouldPlannedDay, Plan newPlan){
         int index = 0;
         newPlan.setYMD(parentPlannedDay);
         MonthPlanList refreshedPlanList = PlanRepository.getCurrentMonthPlanList();
@@ -116,8 +108,8 @@ public class MakePlanVM extends CalendarViewModel {
             Plan copied = newPlan.makeChild(date);
             copied.setThisCycle(index+1);
 
-             if(CalendarUtil.isInRangeOfMonthInCalendar(date.getYear(),
-                getGlobalCurrentCalendarMonth(),date.getMonth(),date.getDay())) {
+            if(CalendarUtil.isInRangeOfMonthInCalendar(date.getYear(),
+                    getGlobalCurrentCalendarMonth(),date.getMonth(),date.getDay())) {
 
                 int indexOnCalendar = CalendarUtil.convertDateToIndex(date.getYear(), getGlobalCurrentCalendarMonth(),
                         date.getMonth(), date.getDay());
@@ -134,6 +126,7 @@ public class MakePlanVM extends CalendarViewModel {
         PlanRepository.setCurrentMonthPlanList(refreshedPlanList);
 
     }
+
 
 
 

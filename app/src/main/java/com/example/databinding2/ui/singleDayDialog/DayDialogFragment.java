@@ -18,13 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.databinding2.R;
-import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
-import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.databinding.DayDialogBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planCreateDialog.MakePlanDialogFragment;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.DayPlanAdapter;
+import com.example.databinding2.ui.planDialogs.planCreateDialog.MakePlanDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;

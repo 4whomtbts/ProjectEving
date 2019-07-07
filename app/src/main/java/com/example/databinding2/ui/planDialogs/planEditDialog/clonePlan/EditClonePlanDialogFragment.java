@@ -1,4 +1,4 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.clonePlan;
+package com.example.databinding2.ui.planDialogs.planEditDialog.clonePlan;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
@@ -21,12 +22,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.databinding2.R;
 import com.example.databinding2.databinding.EditPlanCloneBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.EditPlanVM;
 
 public class EditClonePlanDialogFragment extends DialogFragment {
 
 
-    private EditPlanVM vmodel;
+    private EditClonePlanVM vmodel;
     private EditPlanCloneBinding binding;
     private FragmentManager fragmentManager;
     private Plan thisPlan;
@@ -46,19 +46,21 @@ public class EditClonePlanDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater,container,savedInstanceState);
         this.binding = DataBindingUtil.inflate(inflater, R.layout.edit_plan_dialog_clone,container,false);
-        vmodel = ViewModelProviders.of(this).get(EditPlanVM.class);
+        vmodel = ViewModelProviders.of(this).get(EditClonePlanVM.class);
 
         this.binding.setModel(vmodel);
         this.binding.setLifecycleOwner(this);
         this.setCancelable(true);
+        vmodel.setCurrentPlan(thisPlan);
 
         attachListeners();
         View view = this.binding.getRoot();
-        this.binding.planTitleInputText.setHint("원래 타이틀");
-        this.binding.planContentInputText.setHint("세부 내용");
-        this.binding.planStudySuggestionText.setMovementMethod(new ScrollingMovementMethod());
+
+        initViewDatas();
         return view;
     }
+
+
 
     @Override
     public void onStart(){
@@ -83,11 +85,12 @@ public class EditClonePlanDialogFragment extends DialogFragment {
 
     }
 
-    private Plan ConstructPlan(){
-        Plan plan = new Plan();
-        plan.setTextPlan("helllo"
-        );
-        return plan;
+    private void initViewDatas(){
+        this.binding.originalPlanText.setText(thisPlan.getParentYMD().toString());
+        this.binding.planTitleInputText.setText(thisPlan.getTitle());
+        this.binding.planContentInputText.setText(thisPlan.getTextPlan());
+        this.binding.currentCycleStateText.setText(thisPlan.getCycleState());
+        this.binding.planStudySuggestionText.setMovementMethod(new ScrollingMovementMethod());
     }
     private void attachListeners(){
 

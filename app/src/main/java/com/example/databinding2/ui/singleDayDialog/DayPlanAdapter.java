@@ -1,6 +1,7 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan;
+package com.example.databinding2.ui.singleDayDialog;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -18,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.databinding2.R;
 import com.example.databinding2.databinding.DayPlanItemBinding;
 import com.example.databinding2.domain.Plan;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.clonePlan.EditClonePlanDialogFragment;
-import com.example.databinding2.ui.singleDayDialog.dayPlan.planEditDialog.originalPlan.EditOrgPlanDialogFragment;
+import com.example.databinding2.ui.planDialogs.planEditDialog.clonePlan.EditClonePlanDialogFragment;
+import com.example.databinding2.ui.planDialogs.planEditDialog.originalPlan.EditOrgPlanDialogFragment;
 
 import java.util.ArrayList;
 
@@ -93,6 +94,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             this.model  = model;
             binding.setModel(model);
             binding.executePendingBindings();
+            this.binding.isDoneCheckBox.setChecked(model.isDone());
             this.binding.groupTextView.setText(model.getGroup());
             this.binding.cycleTextView.setText(model.getCycleInfo());
             this.binding.planTitle.setText(model.getTitle());
@@ -106,19 +108,30 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
+                    DialogFragment editPlanDialog = null;
 
 
                     if(model.isParent()){
-                        DialogFragment editPlanDialog = new EditOrgPlanDialogFragment(fragmentManager,model.getPlan());
+                        editPlanDialog = new EditOrgPlanDialogFragment(fragmentManager,model.getPlan());
 
                         FragmentTransaction ft = fragmentManager.beginTransaction();
                         editPlanDialog.show(ft,"1234");
                     }else{
-                        DialogFragment editPlanDialog = new EditClonePlanDialogFragment(fragmentManager,model.getPlan());
+                        editPlanDialog = new EditClonePlanDialogFragment(fragmentManager,model.getPlan());
 
                         FragmentTransaction ft = fragmentManager.beginTransaction();
                         editPlanDialog.show(ft,"1234");
                     }
+                    fragmentManager.executePendingTransactions();
+                    editPlanDialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            System.out.println("다이알로그 꺼지");
+                        }
+                    });
+
+
+
 
                     return false;
                 }

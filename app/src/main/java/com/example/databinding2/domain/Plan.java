@@ -3,15 +3,18 @@ package com.example.databinding2.domain;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Insert;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
 import com.example.databinding2.custom.YMD;
+import com.example.databinding2.domain.planTypes.PlanType;
+import com.example.databinding2.model.PlanTypeConverters;
 
+@TypeConverters({PlanTypeConverters.class})
 @Entity(tableName = "table_plans")
 public class Plan {
-
-    @Ignore
-    private YMD ymd;
 
     @PrimaryKey
     public long uid;
@@ -19,6 +22,8 @@ public class Plan {
 
 
 
+    public YMD ymd;
+    public YMD parentYMD;
     public int year;
     public int month;
     public int day;
@@ -29,6 +34,7 @@ public class Plan {
     public String textPlan;
     public String group;
     public String type;
+    public String planTypeName;
 
 
 
@@ -51,6 +57,7 @@ public class Plan {
         this.totalCycle = totalCycle;
         this.thisCycle = thisCycle;
         this.group =  group;
+        this.isDone=false;
     }
 
     public Plan(){
@@ -58,6 +65,7 @@ public class Plan {
         this.uid = System.nanoTime();
         this.parentUID = this.uid;
         this.group = "분류없음";
+        this.isDone=false;
     }
     public Plan(String textPlan){
         this.textPlan  = textPlan;
@@ -66,8 +74,22 @@ public class Plan {
     public void setNewUID(){
     }
 
-    public void setYMD(YMD ymd){
+    public Plan setYMD(YMD ymd){
         this.ymd = ymd;
+        return this;
+    }
+    public void setPlanType(String planTypeName){
+        this.planTypeName = planTypeName;
+    }
+    public String getPlanType(){
+        return this.planTypeName;
+    }
+
+    public void setParentYMD(YMD ymd){
+        this.parentYMD = ymd;
+    }
+    public YMD getParentYMD(){
+        return this.parentYMD;
     }
     public boolean isParentPlan(){
         return getParentUID()==getUID();
@@ -108,6 +130,10 @@ public class Plan {
         return this.thisCycle;
     }
 
+    public Plan setIsDone(boolean isDone){
+        this.isDone = isDone;
+        return this;
+    }
     public boolean isDone() {
         return isDone;
     }
@@ -168,9 +194,12 @@ public class Plan {
         child.setParentUID(this.getUID());
         if(this.getYMD().equals(date)){
             child.setUID(this.getUID());
+            child.setIsDone(this.isDone());
         }else{
             child.setUID(System.nanoTime());
         }
+        child.setParentYMD(this.getYMD());
+        child.setYMD(date);
         child.setYear(date.getYear());
         child.setMonth(date.getMonth());
         child.setDay(date.getDay());
@@ -178,6 +207,7 @@ public class Plan {
         child.setTitle(this.getTitle());
         child.setTotalCycle(this.totalCycle);
         child.setThisCycle(this.getThisCycle());
+
         return child;
     }
 
@@ -191,6 +221,29 @@ public class Plan {
         return this.getYear()+"년"+this.getMonth()+"월"+this.getDay()+"일"+
                 "  / "+this.getTextPlan()+"\n";
 
+    }
+
+    @Override
+    public Plan clone(){
+
+        Plan clonedPlan = null;
+        try{
+            clonedPlan = (Plan)super.clone();
+        }catch (CloneNotSupportedException e){
+
+        }
+        return clonedPlan;
+    }
+
+    public boolean isSimilar(Plan candidate){
+
+        return (this.getTitle().equals(candidate.getTitle()))
+                && (this.getTextPlan().equals(candidate.getTextPlan()));
+    }
+
+    public boolean isSame(Plan candidate){
+
+        return isSimilar(candidate) && (candidate.isDone() == this.isDone());
     }
 
 }

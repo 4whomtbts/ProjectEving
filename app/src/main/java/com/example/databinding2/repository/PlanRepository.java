@@ -1,21 +1,18 @@
 package com.example.databinding2.repository;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.util.Pair;
 
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.custom.types.LiveDayPlanList;
 import com.example.databinding2.custom.types.MonthPlanList;
-import com.example.databinding2.databinding.DayPlanItemBinding;
-import com.example.databinding2.domain.Plan;
-import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.custom.types.PlanStorage;
+import com.example.databinding2.domain.Plan;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
-import java.util.concurrent.locks.AbstractOwnableSynchronizer;
 
 public class PlanRepository {
 
@@ -43,6 +40,13 @@ public class PlanRepository {
         _planStore = new PlanStorage();
 
         initMonthPlanList();
+
+    }
+
+    public void refreshGlobalState(){
+
+
+
 
     }
 
@@ -120,6 +124,40 @@ public class PlanRepository {
 
         }
 
+    }
+
+    public static class InsertArrayListPlan extends AsyncTask<ArrayList<Plan>,Void, Plan> {
+
+        @Override
+        protected Plan doInBackground(ArrayList<Plan>... arrayLists) {
+
+            ArrayList<Plan> list = arrayLists[0];
+
+            for(int i=0; i < list.size(); i++){
+                RootRepository.getCalendarPlanDAO().insert(list.get(i));
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Plan plans) { // doInBackground 에서 받아온 total 값 사용 장소 }
+            System.out.println("플랜삽입 종료");
+
+        }
+
+    }
+
+
+    public static class GetAllPlanByPlanUID extends  AsyncTask<Long,Void,ArrayList<Plan>>{
+
+        @Override
+        protected ArrayList<Plan> doInBackground(Long... uids) {
+            Long parnetUID = uids[0];
+            ArrayList<Plan> result = new ArrayList<>();
+            result = (ArrayList<Plan>)RootRepository.getCalendarPlanDAO().getPlanByParentUID(
+                    parnetUID);
+            return result;
+        }
     }
 
     public static  class GetPlanByDay extends AsyncTask<YMD,Void,ArrayList<Plan>> {
@@ -236,6 +274,28 @@ public class PlanRepository {
         @Override
         protected Void doInBackground(Void... voids) {
             RootRepository.getCalendarPlanDAO().deleteAll();
+            return null;
+        }
+    }
+
+    public static class DeletePlanByOneParentUID extends AsyncTask<Long,Void,Void> {
+
+        @Override
+        protected Void doInBackground(Long... longs) {
+
+            long UID = longs[0];
+
+            RootRepository.getCalendarPlanDAO().deletePlanByOneParentUID(UID);
+            return null;
+        }
+    }
+
+    public static class UpdateOnePlanCheckState extends  AsyncTask<Pair<Long,Boolean>, Void , Void >{
+
+        @Override
+        protected Void doInBackground(Pair<Long, Boolean>... pairs) {
+            Pair<Long,Boolean> pair = pairs[0];
+            RootRepository.getCalendarPlanDAO().updateOnePlanCheckState(pair.first,pair.second);
             return null;
         }
     }

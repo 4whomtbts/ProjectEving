@@ -1,7 +1,6 @@
 package com.example.databinding2.ui.main;
 
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

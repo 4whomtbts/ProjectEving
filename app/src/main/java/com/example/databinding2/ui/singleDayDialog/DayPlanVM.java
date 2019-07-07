@@ -1,6 +1,4 @@
-package com.example.databinding2.ui.singleDayDialog.dayPlan;
-
-import androidx.lifecycle.LiveData;
+package com.example.databinding2.ui.singleDayDialog;
 
 import com.example.databinding2.domain.Plan;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
@@ -17,6 +15,12 @@ public class DayPlanVM extends CalendarViewModel {
     }
 
     public boolean isParent() { return this.plan.isParentPlan();}
+
+    public boolean isDone(){
+        return this.plan.isDone;
+    }
+
+
     public Plan getPlan(){ return this.plan; }
     public String getGroup(){
         return this.plan.getGroup();

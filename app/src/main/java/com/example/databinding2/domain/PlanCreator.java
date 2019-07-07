@@ -10,8 +10,6 @@ import com.example.databinding2.repository.EnvRepository;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
-import java.util.ArrayList;
-
 public class PlanCreator {
 
     private static int[] TYPICAL_MODE = {2,5,8,15,31,91,121};
