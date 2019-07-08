@@ -2,7 +2,9 @@ package com.example.databinding2.repository;
 
 import android.os.AsyncTask;
 import android.util.Pair;
+import android.view.animation.RotateAnimation;
 
+import com.example.databinding2.R;
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.YMD;
 import com.example.databinding2.custom.types.DayPlanList;
@@ -112,14 +114,12 @@ public class PlanRepository {
 
         @Override
         protected Plan doInBackground(Plan... plans) {
-            System.out.println("InsertPlan 실행");
             Plan plan = plans[0];
             RootRepository.getCalendarPlanDAO().insert(plan);
             return plan;
         }
         @Override
         protected void onPostExecute(Plan plans) { // doInBackground 에서 받아온 total 값 사용 장소 }
-            System.out.println("플랜삽입 종료");
             new PlanRepository.GetPlanByDay().execute(plans.getYMD());
 
         }
@@ -141,12 +141,22 @@ public class PlanRepository {
 
         @Override
         protected void onPostExecute(Plan plans) { // doInBackground 에서 받아온 total 값 사용 장소 }
-            System.out.println("플랜삽입 종료");
 
         }
 
     }
 
+    public static class GetOnePlanByUID extends  AsyncTask<Long,Void,Plan> {
+
+        @Override
+        protected Plan doInBackground(Long... uids) {
+            Long parnetUID = uids[0];
+            Plan result = null;
+            result = RootRepository.getCalendarPlanDAO().getPlanByUID(
+                    parnetUID);
+            return result;
+        }
+    }
 
     public static class GetAllPlanByPlanUID extends  AsyncTask<Long,Void,ArrayList<Plan>>{
 
@@ -168,7 +178,6 @@ public class PlanRepository {
 
             ArrayList<Plan> result=new ArrayList<>();
             for(int i=0; i < dates.length; i++){
-                System.out.println("InsertPlan 실행" + dates[i]);
                 result= (ArrayList<Plan>) RootRepository.getCalendarPlanDAO().getPlanByDay(
                         dates[i].getYear(),dates[i].getMonth(),dates[i].getDay()
                 );
@@ -178,13 +187,6 @@ public class PlanRepository {
         }
         @Override
         protected void onPostExecute(ArrayList<Plan> plans) { // doInBackground 에서 받아온 total 값 사용 장소 }
-            /*
-            System.out.println("GetPlanByDay 종료");
-            System.out.println("사이즈 : "+plans.size());
-            for(Plan plan : plans){
-                System.out.println("GetPlanByDay"+plan.getTextPlan());
-            }
-            */
         }
     }
 
@@ -296,6 +298,18 @@ public class PlanRepository {
         protected Void doInBackground(Pair<Long, Boolean>... pairs) {
             Pair<Long,Boolean> pair = pairs[0];
             RootRepository.getCalendarPlanDAO().updateOnePlanCheckState(pair.first,pair.second);
+            return null;
+        }
+    }
+
+    public static class UpdateOnePlanUserInputDatas extends AsyncTask<Plan,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Plan... plans) {
+            Plan newPlan = plans[0];
+            RootRepository.getCalendarPlanDAO().updateOneUserInputDatas(
+                    newPlan.getUID(),newPlan.getTitle(),newPlan.getTextPlan(),newPlan.isDone()
+            );
             return null;
         }
     }

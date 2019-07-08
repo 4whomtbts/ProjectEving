@@ -1,6 +1,7 @@
 package com.example.databinding2.domain.planTypes;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.BaseObservable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -11,7 +12,7 @@ import com.example.databinding2.domain.PlanCreator;
 import java.util.ArrayList;
 
 @Entity(tableName = "table_planTypes")
-public class PlanType {
+public class PlanType extends BaseObservable {
 
     @NonNull
     @PrimaryKey

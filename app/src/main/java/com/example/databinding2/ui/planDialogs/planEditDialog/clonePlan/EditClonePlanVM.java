@@ -16,6 +16,7 @@ public class EditClonePlanVM extends PlanMakeViewModel {
     private Plan currentPlan;
     private String title;
     private String textPlan;
+    private boolean isDone;
 
     public EditClonePlanVM() {   }
 
@@ -31,23 +32,52 @@ public class EditClonePlanVM extends PlanMakeViewModel {
         this.currentPlan = plan;
     }
 
-    public boolean isDataChanged(String title, String textPlan){
+    private Plan makePlan(String title, String textPlan, boolean isDone){
+        return new Plan().setTitle(title).setTextPlan(textPlan).setIsDone(isDone);
+    }
 
-        Plan newPlan = makePlan(title,textPlan);
-        if(!currentPlan.isSimilar(newPlan)) {
+    public boolean isDataChanged(String title, String textPlan, boolean isDone){
+
+        Plan newPlan = makePlan(title,textPlan,isDone);
+
+        boolean isPlanExactlyEqual = this.currentPlan.isSame(newPlan);
+        boolean isPlanSimilar = this.currentPlan.isSimilar(newPlan);
+
+
+        if(!isPlanSimilar || !(this.currentPlan.isDone()==isDone)) {
+
             this.title = title;
             this.textPlan = textPlan;
+            this.isDone = isDone;
             return true;
+        }else{
+            return false;
         }
-        return false;
+
     }
 
-    //public void makePlan(String title, String textPlan, String group){
-    private Plan makePlan(String title, String textPlan){
-        return new Plan().setTitle(title).setTextPlan(textPlan);
+    public void editPlan(){
+
+        Plan newPlan = currentPlan.makeNewWithDifferentUserInputContent(this.title,this.textPlan,this.isDone);
+
+        try {
+            new PlanRepository.UpdateOnePlanUserInputDatas().execute(newPlan).get();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        ArrayList<Plan> refreshedCurrentDayPlanList=new ArrayList<>();
+        try {
+            refreshedCurrentDayPlanList = new PlanRepository.GetPlanByDay().execute(currentPlan.getYMD()).get();
+        }catch (Exception e1){
+            e1.printStackTrace();
+        }
+
+        DayPlanList newDayPlanList = new DayPlanList(refreshedCurrentDayPlanList);
+        PlanRepository.getCurrentMonthPlanListAt(getListIndexDayAt()).setValue(newDayPlanList);
+        CalendarRepository.refreshCalendar();
+
     }
-
-
 
     private ArrayList<Plan> getRegisteredPlan(Long parentUID){
         ArrayList<Plan> list = new ArrayList<>();
@@ -63,36 +93,6 @@ public class EditClonePlanVM extends PlanMakeViewModel {
         return currentPlan.getParentYMD();
     }
 
-    public void editPlan(){
-
-        new PlanRepository.DeletePlanByOneParentUID().execute(this.currentPlan.getUID());
-
-        YMDList ymdList = getWillBePlannedDateListValue();
-
-        Plan plan = new Plan().setTitle(this.title).setTextPlan(this.textPlan).setYMD(getGlobalSelectedYMD())
-                .setTotalCycle(ymdList.size()).setThisCycle(0);
-
-        ArrayList<Plan> newClonedPlanList = new ArrayList<>();
-        for(int i=0; i < ymdList.size(); i++){
-            Plan clonedPlan = plan.makeChild(ymdList.get(i)).setThisCycle(i+1);
-            newClonedPlanList.add(clonedPlan);
-        }
-
-
-
-        ArrayList<Plan> refreshedCurrentDayPlanList=new ArrayList<>();
-        try {
-            new PlanRepository.InsertArrayListPlan().execute(newClonedPlanList).get();
-            refreshedCurrentDayPlanList = new PlanRepository.GetPlanByDay().execute(currentPlan.getYMD()).get();
-        }catch (Exception e){
-
-        }
-
-        DayPlanList newDayPlanList = new DayPlanList(refreshedCurrentDayPlanList);
-        PlanRepository.getCurrentMonthPlanListAt(getListIndexDayAt()).set(newDayPlanList);
-        CalendarRepository.refreshCalendar();
-    }
-
 
     public String getCycleState(){
         return this.currentPlan.getCycleState();
@@ -105,4 +105,7 @@ public class EditClonePlanVM extends PlanMakeViewModel {
         return this.currentPlan.getTextPlan();
     }
 
+    public boolean isDone(){
+        return this.currentPlan.isDone;
+    }
 }

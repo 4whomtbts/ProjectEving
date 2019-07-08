@@ -175,7 +175,6 @@ public class MakePlanDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                System.out.println(view.getTag()+" 가 눌림");
 
 
             }
@@ -205,7 +204,6 @@ public class MakePlanDialogFragment extends DialogFragment {
             public boolean onTouch(View view, MotionEvent e) {
 
                 if(e.getAction() == MotionEvent.ACTION_DOWN){
-                    System.out.println("모든 체크박스가 체크 됨");
                     vmodel.checkAll();
                     if(adapter != null){
                         adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
@@ -270,7 +268,6 @@ public class MakePlanDialogFragment extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selected = (String)adapterView.getSelectedItem();
-                System.out.println("그룹스피너 선택 : "+selected);
             }
 
             @Override

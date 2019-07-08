@@ -62,7 +62,6 @@ public class YMDList extends ArrayList<YMD> {
 
 
     public void printCheckedList(){
-        System.out.print("체크드리스트");
         for(int i=0 ; i < this.checkedList.size(); i++){
             System.out.print(this.checkedList.get(i)+", ");
         }

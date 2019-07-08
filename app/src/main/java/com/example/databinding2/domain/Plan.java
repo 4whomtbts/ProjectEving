@@ -1,6 +1,7 @@
 package com.example.databinding2.domain;
 
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.Insert;
@@ -17,21 +18,23 @@ import com.example.databinding2.model.PlanTypeConverters;
 public class Plan {
 
     @PrimaryKey
+
     public long uid;
     public long parentUID;
-
-
-
-    public YMD ymd;
-    public YMD parentYMD;
     public int year;
     public int month;
     public int day;
-    public boolean isDone;
-    public int totalCycle;
     public int thisCycle;
+    public int totalCycle;
+    @ColumnInfo(name ="isDone")
+    public boolean isDone;
+    public YMD ymd;
+    public YMD parentYMD;
+    @ColumnInfo(name ="title")
     public String title;
+    @ColumnInfo(name ="textPlan")
     public String textPlan;
+
     public String group;
     public String type;
     public String planTypeName;
@@ -211,6 +214,11 @@ public class Plan {
         return child;
     }
 
+    public Plan makeNewWithDifferentUserInputContent(String title, String textPlan,boolean isDone){
+        Plan newPlan = Plan.deepCopy(this);
+        return newPlan.setTitle(title).setTextPlan(textPlan).setIsDone(isDone);
+    }
+
 
     public String getTextPlan() {
         return textPlan;
@@ -222,18 +230,44 @@ public class Plan {
                 "  / "+this.getTextPlan()+"\n";
 
     }
+/*
+    public long uid;
+    public long parentUID;
+    public int year;
+    public int month;
+    public int day;
+    public int thisCycle;
+    public int totalCycle;
+    public boolean isDone;
+    public YMD ymd;
+    public YMD parentYMD;
+    public String title;
+    public String textPlan;
+    public String group;
+    public String type;
+    public String planTypeName;
 
-    @Override
-    public Plan clone(){
-
-        Plan clonedPlan = null;
-        try{
-            clonedPlan = (Plan)super.clone();
-        }catch (CloneNotSupportedException e){
-
-        }
-        return clonedPlan;
+*/
+    public static Plan deepCopy(Plan target){
+        Plan newPlan  = new Plan();
+        newPlan.setUID(target.getUID());
+        newPlan.setParentUID(target.getParentUID());
+        newPlan.setYear(target.getYear());
+        newPlan.setMonth(target.getMonth());
+        newPlan.setDay(target.getDay());
+        newPlan.setThisCycle(target.getThisCycle());
+        newPlan.setTotalCycle(target.getTotalCycle());
+        newPlan.setIsDone(target.isDone());
+        newPlan.setYMD(YMD.deepCopy(target.getYMD()));
+        newPlan.setParentYMD(YMD.deepCopy(target.getParentYMD()));
+        newPlan.setTitle(target.getTitle());
+        newPlan.setTextPlan(target.getTextPlan());
+        newPlan.setGroup(target.getGroup());
+        newPlan.setPlanType(target.getPlanType());
+        newPlan.setIsDone(target.isDone());
+        return newPlan;
     }
+
 
     public boolean isSimilar(Plan candidate){
 

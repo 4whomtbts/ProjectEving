@@ -107,4 +107,13 @@ public class YMD {
         return (this.getYear()==candidate.getYear())&&(this.getMonth()==candidate.getMonth())
                 &&(this.getDay()==candidate.getDay());
     }
+    /*
+    private int year;
+    private int month;
+    private int day;
+    private boolean isChecked;
+    */
+    public static YMD deepCopy(YMD target){
+        return new YMD(target.getYear(),target.getMonth(),target.getDay());
+    }
 }

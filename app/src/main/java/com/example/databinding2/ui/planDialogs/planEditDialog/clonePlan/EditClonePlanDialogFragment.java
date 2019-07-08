@@ -2,6 +2,7 @@ package com.example.databinding2.ui.planDialogs.planEditDialog.clonePlan;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -14,11 +15,13 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.databinding2.BR;
 import com.example.databinding2.R;
 import com.example.databinding2.databinding.EditPlanCloneBinding;
 import com.example.databinding2.domain.Plan;
@@ -86,31 +89,58 @@ public class EditClonePlanDialogFragment extends DialogFragment {
     }
 
     private void initViewDatas(){
+        this.binding.completePlanCheckBox.setChecked(vmodel.isDone());
         this.binding.originalPlanText.setText(thisPlan.getParentYMD().toString());
         this.binding.planTitleInputText.setText(thisPlan.getTitle());
         this.binding.planContentInputText.setText(thisPlan.getTextPlan());
         this.binding.currentCycleStateText.setText(thisPlan.getCycleState());
         this.binding.planStudySuggestionText.setMovementMethod(new ScrollingMovementMethod());
     }
-    private void attachListeners(){
+    private void attachListeners() {
 
-        this.binding.makePlanConfirmButton.setOnClickListener(new View.OnClickListener(){
+
+        this.binding.makePlanConfirmButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
+                if (vmodel.isDataChanged(
+                        binding.planTitleInputText.getText().toString(),
+                        binding.planContentInputText.getText().toString(),
+                        binding.completePlanCheckBox.isChecked()
+                )) {
+                    System.out.println("내용이 변경됨");
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    //Yes 버튼을 클릭했을때 처리
+                                    vmodel.editPlan();
+                                    dismiss();
+                                    break;
 
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    //No 버튼을 클릭했을때 처리
 
-                dismiss();
+                                    break;
+                            }
+                        }
+                    };
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("데이터가 변경되었습니다. 변경된 데이터로 덮어쓰시겠습니까?").setPositiveButton("네", dialogClickListener)
+                            .setNegativeButton("아니요", dialogClickListener).show();
+
+                } else {
+                    dismiss();
+                }
+
                 View v = getActivity().getCurrentFocus();
-                if(v != null){
-                    InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputManager.hideSoftInputFromWindow(v.getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                if (v != null) {
 
                 }
             }
         });
-
     }
-
 }

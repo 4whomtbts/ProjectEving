@@ -1,6 +1,7 @@
 package com.example.databinding2.ui.singleDayDialog;
 
 import com.example.databinding2.domain.Plan;
+import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 
 public class DayPlanVM extends CalendarViewModel {
@@ -17,10 +18,16 @@ public class DayPlanVM extends CalendarViewModel {
     public boolean isParent() { return this.plan.isParentPlan();}
 
     public boolean isDone(){
-        return this.plan.isDone;
+        return this.plan.isDone();
     }
 
-
+    public void refreshModel() {
+        Plan refreshPlan = null;
+        try {
+             refreshPlan = new PlanRepository.GetOnePlanByUID().execute(this.plan.getUID()).get();
+        }catch (Exception e){}
+        this.plan = refreshPlan;
+    }
     public Plan getPlan(){ return this.plan; }
     public String getGroup(){
         return this.plan.getGroup();

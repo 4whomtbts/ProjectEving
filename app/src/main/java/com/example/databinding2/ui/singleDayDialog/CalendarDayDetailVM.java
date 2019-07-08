@@ -40,8 +40,8 @@ public class CalendarDayDetailVM extends CalendarViewModel {
         return index;
     }
 
-    public LiveDayPlanList getLiveCurrentDayPlanList(){
-        return (LiveDayPlanList)super.getLivePlanListAt(getListIndexDayAt());
+    public TSLiveData<DayPlanList> getLiveCurrentDayPlanList(){
+        return super.getLivePlanListAt(getListIndexDayAt());
     }
 
     public void initLivePlanList(){

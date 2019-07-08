@@ -61,14 +61,6 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
         }
 
     }
-
-    public void isDoneChange(boolean isDone){
-        try {
-            new PlanRepository.UpdateOnePlanCheckState().execute(new Pair<>(thisPlan.getUID(),isDone)).get();
-        }catch (Exception e){
-
-        }
-    }
     //public void makePlan(String title, String textPlan, String group){
     private Plan makePlan(String title, String textPlan, boolean isDone){
         return new Plan().setTitle(title).setTextPlan(textPlan).setIsDone(isDone);

@@ -92,7 +92,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
         }
         private void setViewModel(DayPlanVM model){
             this.model  = model;
-            binding.setModel(model);
+                                    binding.setModel(model);
             binding.executePendingBindings();
             this.binding.isDoneCheckBox.setChecked(model.isDone());
             this.binding.groupTextView.setText(model.getGroup());
@@ -107,7 +107,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             this.binding.planWrapper.setOnTouchListener(new View.OnTouchListener(){
 
                 @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
+                public boolean onTouch(View view, final MotionEvent motionEvent) {
                     DialogFragment editPlanDialog = null;
 
 
@@ -126,11 +126,10 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
                     editPlanDialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialogInterface) {
-                            System.out.println("다이알로그 꺼지");
+                            model.refreshModel();
+                            setViewModel(model);
                         }
                     });
-
-
 
 
                     return false;

@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.databinding2.domain.Plan;
 
@@ -34,6 +35,9 @@ public interface CalendarPlanDAO {
     @Query("SELECT * FROM table_plans WHERE parentUID = :parentUID")
     public List<Plan> getPlanByParentUID(long parentUID);
 
+    @Query("SELECT * FROM table_plans WHERE uid = :uid")
+    public Plan getPlanByUID(long uid);
+
     @Query("SELECT * FROM table_plans WHERE year = :year AND month = :month ORDER BY day ASC")
     public List<Plan> getPlanByMonth(int year, int month);
 
@@ -45,4 +49,7 @@ public interface CalendarPlanDAO {
 
     @Query("UPDATE table_plans SET isDone = :isDone WHERE uid = :uid ")
     public void updateOnePlanCheckState(Long uid , boolean isDone);
+
+    @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan , isDone = :isDone WHERE uid = :uid")
+    public void updateOneUserInputDatas(Long uid,String title, String textPlan, boolean isDone);
 }

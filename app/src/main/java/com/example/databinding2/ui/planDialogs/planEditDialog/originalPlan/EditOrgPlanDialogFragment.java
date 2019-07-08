@@ -191,7 +191,6 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
             public boolean onTouch(View view, MotionEvent e) {
 
                 if(e.getAction() == MotionEvent.ACTION_DOWN){
-                    System.out.println("모든 체크박스가 체크 됨");
                     vmodel.checkAll();
                 }
 
@@ -206,9 +205,6 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
 
                 if(e.getAction() == MotionEvent.ACTION_DOWN){
                     vmodel.unCheckAll();
-                    if(adapter != null){
-                //        adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
-                    }
                 }
 
                 return false;
@@ -221,9 +217,6 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
             public boolean onTouch(View view, MotionEvent e) {
                 if(e.getAction() == MotionEvent.ACTION_DOWN){
                     vmodel.deleteCheckPreViewElement();
-                    if(adapter != null){
-                  //      adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
-                    }
                 }
 
                 return false;
@@ -244,7 +237,6 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                System.out.println(view.getTag()+" 가 눌림");
 
 
             }
@@ -259,7 +251,6 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
                         binding.planContentInputText.getText().toString(),
                         binding.completePlanCheckBox.isChecked()
                 )){
-                    System.out.println("내용이 변경됨");
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
