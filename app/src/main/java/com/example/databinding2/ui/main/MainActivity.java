@@ -26,13 +26,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        RootRepository.get(getApplicationContext());
-        new PlanRepository.DeleteAllPlan().execute();
 
-        RootRepository.initGlobalSetting();
 
         super.onCreate(savedInstanceState);
-        JodaTimeAndroid.init(this);
+       // JodaTimeAndroid.init(this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         model = ViewModelProviders.of(this).get(MainVM.class);
         binding.setModel(model);
@@ -43,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(vPager);
 
-        globalInit();
+        //globalInit();
+        RootRepository.get(getApplicationContext());
+        //new PlanRepository.DeleteAllPlan().execute();
+
+        RootRepository.initGlobalSetting();
 
     }
 
