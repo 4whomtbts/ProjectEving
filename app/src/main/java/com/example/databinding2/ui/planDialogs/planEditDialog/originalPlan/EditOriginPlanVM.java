@@ -31,11 +31,13 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
 
 
 
-
+// TODO 임시방편
     public int getListIndexDayAt(){
+        /*
         int index = CalendarUtil.convertDateToIndex(getGlobalCurrentCalendarYear()
                 ,getGlobalCurrentCalendarMonth(),getGlobalSelectedMonth(),getGlobalSelectedDay());
-        return index;
+                */
+        return -1;
     }
 
     public boolean isDataChanged(String title, String textPlan, boolean isDone){

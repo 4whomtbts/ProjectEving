@@ -199,15 +199,14 @@ public class CalendarRepository {
         int firstWeek = getFirstWeek(year,month);
         int lastDayOfLastMonth = getLastDay(year,month-1);
         int lastDayOfThisMonth = getLastDay(year,month);
-        int totalDaysInCalender =
-                (firstWeek-1)+lastDayOfLastMonth;
+        int totalDaysInCalender = 42;
 
 
 
-        int startDay = lastDayOfLastMonth-firstWeek+1;
+        int startDay = lastDayOfLastMonth-firstWeek;
 
         Log.e("달력생성",
-                "현재 달 : "+year+",  현재 달 : "+month+
+                "@@현재 달 : "+year+",  현재 달 : "+month+
                         ",  lastDayOfLastMonth : "+lastDayOfLastMonth+",  " +
                         "lastDayOfThisMonth : "+lastDayOfThisMonth+",  " +
                         "totalDaysInCalendar : "+totalDaysInCalender+
@@ -282,6 +281,7 @@ public class CalendarRepository {
 
             int absIndex = convertDateToIndex(
                     getGlobalCurrentCalendarYear(),getGlobalCurrentCalendarMonth(),
+                    plan.getYear(),
                     plan.getMonth(),plan.getDay());
             list.get(absIndex).getValue().add(plan);
         }

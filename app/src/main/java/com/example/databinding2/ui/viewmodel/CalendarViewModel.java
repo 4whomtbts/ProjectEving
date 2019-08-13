@@ -10,6 +10,7 @@ import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
+import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,13 @@ public class CalendarViewModel extends ViewModel {
         return CalendarRepository.getGlobalCurrentCalendarDay();
     }
 
+
+    public int getListIndexDayAt(){/*
+        int index = CalendarUtil.convertDateToIndex(getGlobalCurrentCalendarYear()
+                ,getGlobalCurrentCalendarMonth(),getGlobalSelectedMonth(),getGlobalSelectedDay());
+                */
+        return -1;
+    }
 
     public   YMD getGlobalCurrentYMD(){
         return CalendarRepository.getGlobalCurrentYMD();

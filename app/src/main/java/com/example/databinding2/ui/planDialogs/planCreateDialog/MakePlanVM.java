@@ -108,10 +108,14 @@ public class MakePlanVM extends CalendarViewModel {
             Plan copied = newPlan.makeChild(date);
             copied.setThisCycle(index+1);
 
-            if(CalendarUtil.isInRangeOfMonthInCalendar(date.getYear(),
-                    getGlobalCurrentCalendarMonth(),date.getMonth(),date.getDay())) {
+            if(CalendarUtil.isInRangeOfMonthInCalendar(
+                    getGlobalCurrentCalendarYear(),
+                    getGlobalCurrentCalendarMonth(),
+                    date.getYear(),
+                    date.getMonth(),date.getDay())) {
 
                 int indexOnCalendar = CalendarUtil.convertDateToIndex(date.getYear(), getGlobalCurrentCalendarMonth(),
+                        date.getYear(),
                         date.getMonth(), date.getDay());
 
                 DayPlanList currSingleDayPlanList = refreshedPlanList.get(indexOnCalendar).getValue();

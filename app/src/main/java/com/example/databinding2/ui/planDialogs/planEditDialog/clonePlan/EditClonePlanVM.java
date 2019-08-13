@@ -22,12 +22,6 @@ public class EditClonePlanVM extends PlanMakeViewModel {
 
 
 
-    public int getListIndexDayAt(){
-        int index = CalendarUtil.convertDateToIndex(getGlobalCurrentCalendarYear()
-                ,getGlobalCurrentCalendarMonth(),getGlobalSelectedMonth(),getGlobalSelectedDay());
-        return index;
-    }
-
     public void setCurrentPlan(Plan plan){
         this.currentPlan = plan;
     }

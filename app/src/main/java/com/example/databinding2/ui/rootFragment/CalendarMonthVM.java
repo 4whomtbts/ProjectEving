@@ -29,42 +29,43 @@ public class CalendarMonthVM extends CalendarViewModel {
     public TSLiveData<Integer> mMonth;
 
 
+    private TSLiveData<HashMap<Pair<Integer, Integer>, ArrayList<DayClass>>> TempStore;
 
-    private TSLiveData<HashMap<Pair<Integer,Integer>,ArrayList<DayClass>>> TempStore;
-    CalendarMonthVM(){
-        generateDaysListByDate(getGlobalCurrentCalendarYear(),getGlobalCurrentCalendarMonth());
+    CalendarMonthVM() {
+        generateDaysListByDate(getGlobalCurrentCalendarYear(), getGlobalCurrentCalendarMonth());
     }
 
 
-    private void setListOfDays(ArrayList<TSLiveData<DayClass>> list){
-        repo.setCurrDaysArrayOfMonthObj(list) ;
+    private void setListOfDays(ArrayList<TSLiveData<DayClass>> list) {
+        repo.setCurrDaysArrayOfMonthObj(list);
     }
 
-    public void refreshPlanListWhenMonthChanged(int year, int month){
+    public void refreshPlanListWhenMonthChanged(int year, int month) {
 
 
     }
-    void gotoPrevMonth(){
+
+    void gotoPrevMonth() {
         int month = getGlobalCurrentCalendarMonth();
         int year = getGlobalCurrentCalendarYear();
-        if(month==1){
-            setGlobalCurrentYear(year-1);
+        if (month == 1) {
+            setGlobalCurrentYear(year - 1);
             setGlobalCurrentMonth(12);
-        }else{
-            setGlobalCurrentMonth(month-1);
+        } else {
+            setGlobalCurrentMonth(month - 1);
         }
     }
 
-    public void gotoNextMonth(){
+    public void gotoNextMonth() {
         int year = getGlobalCurrentCalendarYear();
         int month = getGlobalCurrentCalendarMonth();
-        if(month==12){
-            setGlobalCurrentYear(year+1);
-        }else{
-            setGlobalCurrentMonth(month+1);
+        if (month == 12) {
+            setGlobalCurrentYear(year + 1);
+        } else {
+            setGlobalCurrentMonth(month + 1);
         }
 
-        Pair<Integer,Integer> yearMonthPair = new Pair(getGlobalCurrentCalendarYear(),
+        Pair<Integer, Integer> yearMonthPair = new Pair(getGlobalCurrentCalendarYear(),
                 getGlobalCurrentCalendarMonth());
         /*TODO
             기조회 데이터 백업할 것인지 안 할 것인지 정하기
@@ -74,105 +75,90 @@ public class CalendarMonthVM extends CalendarViewModel {
     }
 
 
-
-    public MonthClass getMonthObject(){
+    public MonthClass getMonthObject() {
         return this.mMonthClass.getValue();
     }
 
-    private void generateDaysListByDate(int year, int month){
+    private void generateDaysListByDate(int year, int month) {
         ArrayList<TSLiveData<DayClass>> list = new ArrayList<>();
 
-        int firstWeek = getFirstWeek(year,month);
-        int lastDayOfLastMonth = getLastDay(year,month-1);
-        int lastDayOfThisMonth = getLastDay(year,month);
-        int totalDaysInCalender =
-                (firstWeek-1)+lastDayOfLastMonth;
-
-
-
-        int startDay = lastDayOfLastMonth-firstWeek+1;
+        int daysOfweek = getFirstWeek(year, month);
+        int firstWeek = daysOfweek == 1 ? (7) : (daysOfweek);
+        int lastDayOfLastMonth = getLastDay(year, month - 1);
+        int lastDayOfThisMonth = getLastDay(year, month);
+        int totalDaysInCalender = 42;
+        int startDay = firstWeek == 7 ? (lastDayOfLastMonth - 6) : (lastDayOfLastMonth - (firstWeek - 2));
 
         Log.e("달력생성",
-                "현재 달 : "+year+",  현재 달 : "+month+
-                ",  lastDayOfLastMonth : "+lastDayOfLastMonth+",  " +
-                        "lastDayOfThisMonth : "+lastDayOfThisMonth+",  " +
-                        "totalDaysInCalendar : "+totalDaysInCalender+
-                ",  startDay "+startDay);
-
-        if(startDay == lastDayOfLastMonth){
-            for(int i=1; i <= totalDaysInCalender; i++){
+                "!현재 달 : " + year + ",  현재 달 : " + month +
+                        ",  lastDayOfLastMonth : " + lastDayOfLastMonth + ",  " +
+                        "lastDayOfThisMonth : " + lastDayOfThisMonth + ",  " +
+                        "totalDaysInCalendar : " + totalDaysInCalender +
+                        ",  startDay " + startDay);
 
 
-                TSLiveData<DayClass> liveDay = new TSLiveData<>();
-                liveDay.setValue(new DayClass());
-                liveDay.getValue().setDay(i);
-                liveDay.getValue().setMonth(month);
-                list.add(liveDay);
-            }
-        }else {
-            startDay++;
-            TSLiveData<DayClass> day;
-            for (int i = startDay; i <= lastDayOfLastMonth; i++) {
-                day = new TSLiveData<>();
-                day.setValue(new DayClass());
+        TSLiveData<DayClass> day;
+        for (int i = startDay; i <= lastDayOfLastMonth; i++) {
+            day = new TSLiveData<>();
+            day.setValue(new DayClass());
 
-                day.getValue().setDay(i);
+            day.getValue().setDay(i);
 
-                day.getValue().setMonth(month-1); // TODO 연도 바뀜 처리
-                list.add(day);
-            }
-
-            for (int i = 1; i <= lastDayOfThisMonth; i++) {
-                day = new TSLiveData<>();
-                day.setValue(new DayClass());
-                day.getValue().setMonth(month);
-                day.getValue().setDay(i);
-                list.add(day);
-            }
+            day.getValue().setMonth(month - 1); // TODO 연도 바뀜 처리
+            list.add(day);
         }
 
-        for(int i=1; i <= CalendarUtil.getLastVisibleDayOfNextMonth(year,month);i++){
-            TSLiveData<DayClass> day = new TSLiveData<>();
+        for (int i = 1; i <= lastDayOfThisMonth; i++) {
+            day = new TSLiveData<>();
             day.setValue(new DayClass());
-            day.getValue().setMonth(month+1);
+            day.getValue().setMonth(month);
             day.getValue().setDay(i);
             list.add(day);
         }
 
+        for (int i = 1;i <= CalendarUtil.getLastVisibleDayOfNextMonth(year, month); i++) {
+            TSLiveData<DayClass> nextMonthDay = new TSLiveData<>();
+            nextMonthDay.setValue(new DayClass());
+            nextMonthDay.getValue().setMonth(month + 1);
+            nextMonthDay.getValue().setDay(i);
+            list.add(nextMonthDay);
+        }
+
         setListOfDays(list);
+
     }
-    public void initCalendar(){
+
+    public void initCalendar() {
         generateDaysListByDate(getGlobalCurrentCalendarYear(),
                 getGlobalCurrentCalendarMonth());
     }
 
-    public void refreshCalendar(){
+    public void refreshCalendar() {
         generateDaysListByDate(getGlobalCurrentCalendarYear(),
                 getGlobalCurrentCalendarMonth());
-        ArrayList<Plan> result=null;
+        ArrayList<Plan> result = null;
         ArrayList<Plan> fullResult = null;
 
         try {
             result = new PlanRepository.GetVisiblePlanMonthAt().execute(new YMD(getGlobalCurrentCalendarYear(),
                     getGlobalCurrentCalendarMonth())).get();
-            fullResult =  new PlanRepository.SelectAllPlan().execute().get();
-        }catch (Exception e){
+            fullResult = new PlanRepository.SelectAllPlan().execute().get();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         MonthPlanList list = new MonthPlanList();
 
-        for(Plan plan : result){
+        for (Plan plan : result) {
 
             int absIndex = convertDateToIndex(
-                    getGlobalCurrentCalendarYear(),getGlobalCurrentCalendarMonth(),
-                    plan.getMonth(),plan.getDay());
+                    getGlobalCurrentCalendarYear(), getGlobalCurrentCalendarMonth(),
+                    plan.getYear(),
+                    plan.getMonth(), plan.getDay());
             list.get(absIndex).getValue().add(plan);
         }
 
         System.out.println(fullResult);
-
-
 
 
         setCurrentMonthPlanList(list);

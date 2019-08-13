@@ -34,10 +34,12 @@ public class CalendarDayDetailVM extends CalendarViewModel {
 
     }
 
-    public int getListIndexDayAt(){
+    // TODO 테스트도중 임시방편
+    public int getListIndexDayAt(){/*
         int index = CalendarUtil.convertDateToIndex(getGlobalCurrentCalendarYear()
                 ,getGlobalCurrentCalendarMonth(),getGlobalSelectedMonth(),getGlobalSelectedDay());
-        return index;
+                */
+        return 0;
     }
 
     public TSLiveData<DayPlanList> getLiveCurrentDayPlanList(){
