@@ -80,7 +80,7 @@ public class MakePlanVM extends CalendarViewModel {
                 .setMonth(getGlobalCurrentCalendarMonth())
                 .setDay(getGlobalCurrentCalendarDay())
                 .setTotalCycle(confirmedPlannedDay.size())
-                .setThisCycle(0);
+                .setThisCycle(1000);
 
 
 
@@ -90,10 +90,6 @@ public class MakePlanVM extends CalendarViewModel {
 
         PlanRepository.setLiveCurrentDayPlanList(org);
         registerPlanByYMD(getGlobalSelectedYMD(),confirmedPlannedDay,plan);
-    }
-
-    protected DayPlanList getConfirmedPlanList(YMD parentPlannedDay, YMDList shouldPlannedDay, Plan newPlan){
-        return null;
     }
 
 

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         //globalInit();
         RootRepository.get(getApplicationContext());
-        //new PlanRepository.DeleteAllPlan().execute();
+        new PlanRepository.DeleteAllPlan().execute();
 
         RootRepository.initGlobalSetting();
 

@@ -92,13 +92,13 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
         }
         private void setViewModel(DayPlanVM model){
             this.model  = model;
-                                    binding.setModel(model);
+            binding.setModel(model);
             binding.executePendingBindings();
             this.binding.isDoneCheckBox.setChecked(model.isDone());
             this.binding.groupTextView.setText(model.getGroup());
             this.binding.cycleTextView.setText(model.getCycleInfo());
             this.binding.planTitle.setText(model.getTitle());
-            //this.binding.detailButton.setMaxHeight(height);
+
         }
 
         @SuppressLint("ClickableViewAccessibility")

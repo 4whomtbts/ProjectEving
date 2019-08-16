@@ -74,10 +74,7 @@ public class Plan {
         this.textPlan  = textPlan;
     }
 
-    public void setNewUID(){
-    }
-
-    public Plan setYMD(YMD ymd){
+     public Plan setYMD(YMD ymd){
         this.ymd = ymd;
         return this;
     }
