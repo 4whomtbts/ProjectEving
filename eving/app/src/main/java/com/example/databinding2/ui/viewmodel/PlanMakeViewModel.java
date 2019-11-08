@@ -6,6 +6,7 @@ import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.custom.types.MonthPlanList;
 import com.example.databinding2.custom.types.YMDList;
 import com.example.databinding2.domain.Plan;
+import com.example.databinding2.domain.PlanBuilder;
 import com.example.databinding2.domain.planTypes.PlanType;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
@@ -74,6 +75,7 @@ public class PlanMakeViewModel extends CalendarViewModel {
 
     public void makeNewPlan(YMDList confirmedPlannedDay , String title, String content){
 
+        /*
         Plan plan = new Plan();
         plan.setTitle(title)
                 .setTextPlan(content)
@@ -83,7 +85,9 @@ public class PlanMakeViewModel extends CalendarViewModel {
                 .setTotalCycle(0)
                 .setThisCycle(0);
 
+         */
 
+        Plan plan = Plan.builder()
 
         //TODO 유틸 만들기
         DayPlanList org = PlanRepository.getCurrentDayPlanList();

@@ -19,7 +19,7 @@ public class Plan {
 
     private static final int DEFAULT_TOTAL_CYCLE = 10;
     private static final int DEFAULT_CURRENT_CYCLE = 0;
-
+    private static final String DEFAULT_PLAN_GROUP = "분류없음";
     @PrimaryKey
     public long uid;
     public long parentUID;
@@ -53,39 +53,6 @@ public class Plan {
         return new YMD(this.year,this.month,this.day);
     }
 
-    private Plan(int year, int month, int day, long parentUID) {
-
-    }
-
-    public Plan(long parentUID, long uid, YMD ymd) {
-        this(parentUID, uid, ymd, DEFAULT_TOTAL_CYCLE, DEFAULT_CURRENT_CYCLE);
-        this.parentUID = parentUID;
-        this.uid = uid;
-        this.ymd = ymd;
-    }
-
-    public Plan(long parentUID, long uid, YMD ymd, int totalCycle, int currentCycle) {
-        this.parentUID = parentUID;
-        this.uid = uid;
-        this.ymd = ymd;
-        this.totalCycle = totalCycle;
-        this.thisCycle = currentCycle;
-    }
-
-    public Plan(int year,int month, int day, long parentUId ,int totalCycle, int thisCycle, String group,String textPlan) {
-        this();
-        this.parentUID=parentUId;
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.textPlan = textPlan;
-        this.ymd = new YMD(year,month,day);
-        this.totalCycle = totalCycle;
-        this.thisCycle = thisCycle;
-        this.group =  group;
-        this.isDone=false;
-    }
-
     public Plan(){
 
         this.uid = System.nanoTime();
@@ -93,6 +60,34 @@ public class Plan {
         this.group = "분류없음";
         this.isDone=false;
     }
+
+    private Plan(int year, int month, int day, long parentUID) {
+
+    }
+
+    public Plan(long parentUID, long uid, YMD ymd) {
+        this(parentUID, uid, ymd, DEFAULT_TOTAL_CYCLE, DEFAULT_CURRENT_CYCLE);
+    }
+
+    public Plan(long parentUID, long uid, YMD ymd, int totalCycle, int thisCycle) {
+        this(parentUID, uid, ymd, totalCycle, thisCycle, DEFAULT_PLAN_GROUP);
+    }
+
+
+    public Plan(long parentUID, long uid, YMD ymd, int totalCycle, int thisCycle, String planGroup) {
+        this(parentUID, uid, ymd, totalCycle, thisCycle, planGroup, "");
+    }
+
+    public Plan(long parentUID, long uid, YMD ymd, int totalCycle, int thisCycle, String planGroup, String textPlan) {
+        this.parentUID = parentUID;
+        this.uid = uid;
+        this.ymd = ymd;
+        this.totalCycle = totalCycle;
+        this.thisCycle = thisCycle;
+        this.group = planGroup;
+        this.textPlan = textPlan;
+    }
+
 
     public Plan(String textPlan){
         this.textPlan  = textPlan;
