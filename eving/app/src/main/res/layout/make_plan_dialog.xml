@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="MakePlanBinding">
+        <import type="android.view.View"/>
+
+        <variable name="model" type="com.example.databinding2.ui.planDialogs.planCreateDialog.MakePlanVM">
+
+
+        </variable>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_shape"
+        android:padding="10dp"
+        >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_shape"
+        >
+
+        <com.example.databinding2.custom.ReSelectableSpinner
+            android:id="@+id/plan_mode_select_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="40"
+            android:layout_height="0dp"
+            android:spinnerMode="dialog"
+            android:overlapAnchor="false"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.databinding2.custom.ReSelectableSpinner
+            android:id="@+id/group_select_spinner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:spinnerMode="dialog"
+            android:overlapAnchor="false"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintLeft_toLeftOf="@id/guideline2"
+            app:layout_constraintRight_toLeftOf="@id/guideline3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.80" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+
+        <TextView
+            android:id="@+id/make_plan_confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계획수립"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/guideline7"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline10"
+/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <!-- 1구역 합  5% -->
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <!-- 1구역 종료 5% + 1% = 6%-->
+        <!-- 2구역 시작  -->
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/plan_title_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/guideline10"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintHeight_percent="0.06"
+
+            />
+
+        <!-- 2구역 끝 10%   -->
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/clone_preview_control_panel_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <!-- 3구역 시작  -->
+
+
+        <TextView
+            android:id="@+id/select_all_text_button"
+            android:text="전체선택"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ver_seg_third_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25"
+            />
+
+        <TextView
+            android:id="@+id/unselect_all_text_button"
+            android:text="선택해제"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
+            app:layout_constraintRight_toLeftOf="@id/ver_seg_third_second"
+
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ver_seg_third_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50"
+            />
+
+        <TextView
+            android:id="@+id/delete_selected_text_button"
+            android:text="선택삭제"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
+            app:layout_constraintRight_toLeftOf="@id/ver_seg_third_third"
+            />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ver_seg_third_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+
+        <TextView
+            android:id="@+id/add_new_clone_text_button"
+            android:text="추가"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+
+        <!-- 3구역 시작   -->
+
+        <!-- 4구역 시작  14% -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/clone_preview_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintBottom_toTopOf="@id/plan_text_input_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline5"
+            />
+
+
+        <!-- 4구역 끝 59% -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/plan_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            app:layout_constraintHeight_percent="0.41"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clone_preview_recycler_view"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/plan_text_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="5"
+                android:inputType="textMultiLine"
+                android:background="@null"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

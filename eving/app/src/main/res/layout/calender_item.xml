@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class="CalendarViewModelBinding">
+        <import type="android.view.View"/>
+
+        <variable
+            name="model"
+            type="com.example.databinding2.ui.mainCalendarItem.CalendarDayVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:id="@+id/calendar_item_wrapper"
+
+        >
+
+        <TextView
+            android:id="@+id/text_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:text=""
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <!--
+            정렬,폰트사이즈,최대라인 수수
+            CalendarAdapter 에서 함
+
+
+
+
+        -->
+        <LinearLayout
+            android:id="@+id/plan_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/text_day"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
