@@ -44,16 +44,8 @@ public class MakePlanDialogFragment extends DialogFragment {
 
     private MakePlanVM vmodel;
     private MakePlanBinding binding;
-    private FragmentManager fragmentManager;
-    private boolean isSelectAllChecked;
-    private boolean isEdit;
     private ClonePreviewAdapter adapter;
-    public MakePlanDialogFragment(FragmentManager fragmentManager,boolean isEdit){
-            this.fragmentManager = fragmentManager;
-            this.isEdit = isEdit;
-            this.isSelectAllChecked=false;
-
-    }
+    public MakePlanDialogFragment(FragmentManager fragmentManager,boolean isEdit){}
 
 
     @Override

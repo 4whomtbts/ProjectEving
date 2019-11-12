@@ -2,6 +2,7 @@ package com.example.databinding2.domain;
 
 
 public class MonthClass {
+    /*
     int _year;
     int _month;
     MonthClass(int year, int month){
@@ -15,5 +16,5 @@ public class MonthClass {
     public void setMonth(int month){
         this._month  = month;
     }
-
+     */
 }

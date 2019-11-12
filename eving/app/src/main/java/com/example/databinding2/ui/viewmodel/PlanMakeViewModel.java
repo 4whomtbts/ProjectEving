@@ -84,7 +84,6 @@ public class PlanMakeViewModel extends CalendarViewModel {
                 .setThisCycle(0);
 
 
-
         //TODO 유틸 만들기
         DayPlanList org = PlanRepository.getCurrentDayPlanList();
         org.add(plan);

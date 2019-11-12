@@ -146,7 +146,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
             String text = model.getDay();
             binding.textDay.setText(text);
             binding.setModel(model);
-            binding.executePendingBindings();
+      //      binding.executePendingBindings();
             this.observe(position);
 
         }
@@ -177,6 +177,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
                     binding.planPreview.addView(newPlanTextView,currentVisiblePlans);
                 }
             }else if(childCount!=plans.size()) {
+
                 TextView newPlanTextView = makeNewTextView();
                 newPlanTextView.setText(plans.get(plans.size() - 1).getTitle());
                 binding.planPreview.addView(newPlanTextView, currentVisiblePlans);
@@ -190,10 +191,13 @@ public class CalendarAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onChanged(DayPlanList plans) {
 
+
                             if(plans.size()!=0){
                                 registerPlanPreviews(plans);
                                 currentVisiblePlans++;
                             }
+
+
                 }
             });
         }

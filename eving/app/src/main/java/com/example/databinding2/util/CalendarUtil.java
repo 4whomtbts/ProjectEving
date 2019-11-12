@@ -177,6 +177,13 @@ public class CalendarUtil {
         }
     }
 
+    public static int getStartIndexOfNextMonth(int year, int month) {
+
+        int firstWeek = getFirstWeek(year, month);
+        int numberOfLastMonthDays = firstWeek==1?7:firstWeek-1;
+
+        return numberOfLastMonthDays + getTotalDayOfMonth(year, month);
+    }
 
     public static int convertDateToIndex(int year, int currMonth, int askedYear, int askedMonth, int day) {
 
@@ -195,9 +202,8 @@ public class CalendarUtil {
             if(day > getLastVisibleDayOfNextMonth(year,currMonth)){
                 return -1;
             }
-            int indexBeforeNextMonth =
-                    getFirstWeek(year,currMonth) + getTotalDayOfMonth(year,currMonth)-2 ;
-            return indexBeforeNextMonth + day;
+
+            return getStartIndexOfNextMonth(year, currMonth) + (day-1);
         }else{
             return -1;
         }

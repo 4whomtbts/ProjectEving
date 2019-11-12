@@ -82,9 +82,6 @@ public class MakePlanVM extends CalendarViewModel {
                 .setTotalCycle(confirmedPlannedDay.size())
                 .setThisCycle(1000);
 
-
-
-        //TODO 유틸 만들기
         DayPlanList org = PlanRepository.getCurrentDayPlanList();
         org.add(plan);
 
@@ -114,9 +111,12 @@ public class MakePlanVM extends CalendarViewModel {
                         date.getYear(),
                         date.getMonth(), date.getDay());
 
+
                 DayPlanList currSingleDayPlanList = refreshedPlanList.get(indexOnCalendar).getValue();
                 currSingleDayPlanList.add(copied);
                 refreshedPlanList.get(indexOnCalendar).set(currSingleDayPlanList);
+
+
             }
 
             new PlanRepository.InsertPlan().execute(copied);

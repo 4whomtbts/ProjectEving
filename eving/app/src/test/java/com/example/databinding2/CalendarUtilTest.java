@@ -12,6 +12,14 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class CalendarUtilTest {
+
+    @Test
+    public void getStartOfNextMonthTest() {
+        assertEquals(37, CalendarUtil.getStartIndexOfNextMonth(2019,9));
+        assertEquals(33, CalendarUtil.getStartIndexOfNextMonth(2019,10));
+        assertEquals(35, CalendarUtil.getStartIndexOfNextMonth(2019,11));
+
+    }
     @Test
     public void getLastDayOfLastMonthTest() {
 

@@ -291,7 +291,7 @@ public class CalendarRepository {
 
 
 
-        PlanRepository.setCurrentMonthPlanList(list);
+        //PlanRepository.setCurrentMonthPlanList(list);
 
     }
 

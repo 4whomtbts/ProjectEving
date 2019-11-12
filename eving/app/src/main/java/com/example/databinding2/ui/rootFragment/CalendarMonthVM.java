@@ -5,6 +5,8 @@ import android.util.Log;
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.Pair;
 import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
+import com.example.databinding2.custom.types.LiveDayPlanList;
 import com.example.databinding2.custom.types.MonthPlanList;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.MonthClass;
@@ -16,6 +18,7 @@ import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static com.example.databinding2.util.CalendarUtil.convertDateToIndex;
 import static com.example.databinding2.util.CalendarUtil.getFirstWeek;
@@ -46,8 +49,8 @@ public class CalendarMonthVM extends CalendarViewModel {
     }
 
     void gotoPrevMonth() {
-        int month = getGlobalCurrentCalendarMonth();
         int year = getGlobalCurrentCalendarYear();
+        int month = getGlobalCurrentCalendarMonth();
         if (month == 1) {
             setGlobalCurrentYear(year - 1);
             setGlobalCurrentMonth(12);
@@ -64,19 +67,6 @@ public class CalendarMonthVM extends CalendarViewModel {
         } else {
             setGlobalCurrentMonth(month + 1);
         }
-
-        Pair<Integer, Integer> yearMonthPair = new Pair(getGlobalCurrentCalendarYear(),
-                getGlobalCurrentCalendarMonth());
-        /*TODO
-            기조회 데이터 백업할 것인지 안 할 것인지 정하기
-            repo.setDataToBackUp(yearMonthPair,repo.getCurrDaysArrayReference());
-         */
-
-    }
-
-
-    public MonthClass getMonthObject() {
-        return this.mMonthClass.getValue();
     }
 
     private void generateDaysListByDate(int year, int month) {
@@ -125,6 +115,7 @@ public class CalendarMonthVM extends CalendarViewModel {
         }
 
         setListOfDays(list);
+        setCurrentMonthPlanList(new MonthPlanList());
 
     }
 
@@ -149,19 +140,36 @@ public class CalendarMonthVM extends CalendarViewModel {
 
         MonthPlanList list = new MonthPlanList();
 
+
         for (Plan plan : result) {
 
             int absIndex = convertDateToIndex(
                     getGlobalCurrentCalendarYear(), getGlobalCurrentCalendarMonth(),
                     plan.getYear(),
                     plan.getMonth(), plan.getDay());
-            list.get(absIndex).getValue().add(plan);
+            //list.get(absIndex).getValue().add(plan);
+
+            ArrayList<Plan> newList = new ArrayList<Plan>();
+            newList.add(plan);
+            PlanRepository.getCurrentMonthPlanListAt(absIndex).setValue(
+                    new DayPlanList(newList));
+
+
         }
 
-        System.out.println(fullResult);
 
 
-        setCurrentMonthPlanList(list);
+       //setCurrentMonthPlanList(newList);
 
+       MonthPlanList curr =  getCurrentMonthPlanList();
+       for(int i=0; i < curr.size() ; i++) {
+           List<Plan> plist = curr.get(i).getValue();
+           if(plist != null) {
+               System.out.println(i+" 번쨰");
+               for(Plan p : plist) {
+                   System.out.println(p.getTitle());
+               }
+           }
+       }
     }
 }

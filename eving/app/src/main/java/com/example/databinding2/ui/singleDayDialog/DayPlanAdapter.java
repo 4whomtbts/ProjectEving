@@ -63,7 +63,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         DayItemViewHolder vh = (DayItemViewHolder)holder;
         DayPlanVM model = new DayPlanVM(planList.get(position),position);
-      //  vh.binding.textPlanTextView.setText(this.planList.get(position).getTextPlan());
+        //vh.binding.textPlanTextView.setText(this.planList.get(position).getTextPlan());
         vh.setViewModel(model);
     }
 
