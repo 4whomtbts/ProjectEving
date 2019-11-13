@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.Pair;
 import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.custom.types.MonthPlanList;
 import com.example.databinding2.domain.DayClass;
 import com.example.databinding2.domain.MonthClass;
@@ -15,6 +16,7 @@ import com.example.databinding2.util.CalendarUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.databinding2.repository.PlanRepository.setCurrentMonthPlanList;
 import static com.example.databinding2.util.CalendarUtil.convertDateToIndex;
 import static com.example.databinding2.util.CalendarUtil.getFirstWeek;
 import static com.example.databinding2.util.CalendarUtil.getLastDay;
@@ -193,108 +195,91 @@ public class CalendarRepository {
         return _backup.getValue().get(month);
     }
 
-    private static void generateDaysListByDate(int year, int month){
+    private static void setListOfDays(ArrayList<TSLiveData<DayClass>> list) {
+        CalendarRepository.get().setCurrDaysArrayOfMonthObj(list);
+    }
+
+    public static void generateDaysListByDate(int year, int month) {
         ArrayList<TSLiveData<DayClass>> list = new ArrayList<>();
 
-        int firstWeek = getFirstWeek(year,month);
-        int lastDayOfLastMonth = getLastDay(year,month-1);
-        int lastDayOfThisMonth = getLastDay(year,month);
+        int daysOfweek = getFirstWeek(year, month);
+        int firstWeek = daysOfweek == 1 ? (7) : (daysOfweek);
+        int lastDayOfLastMonth = getLastDay(year, month - 1);
+        int lastDayOfThisMonth = getLastDay(year, month);
         int totalDaysInCalender = 42;
-
-
-
-        int startDay = lastDayOfLastMonth-firstWeek;
+        int startDay = firstWeek == 7 ? (lastDayOfLastMonth - 6) : (lastDayOfLastMonth - (firstWeek - 2));
 
         Log.e("달력생성",
-                "@@현재 달 : "+year+",  현재 달 : "+month+
-                        ",  lastDayOfLastMonth : "+lastDayOfLastMonth+",  " +
-                        "lastDayOfThisMonth : "+lastDayOfThisMonth+",  " +
-                        "totalDaysInCalendar : "+totalDaysInCalender+
-                        ",  startDay "+startDay);
-
-        if(startDay == lastDayOfLastMonth){
-            for(int i=1; i <= totalDaysInCalender; i++){
+                "!현재 달 : " + year + ",  현재 달 : " + month +
+                        ",  lastDayOfLastMonth : " + lastDayOfLastMonth + ",  " +
+                        "lastDayOfThisMonth : " + lastDayOfThisMonth + ",  " +
+                        "totalDaysInCalendar : " + totalDaysInCalender +
+                        ",  startDay " + startDay);
 
 
-                TSLiveData<DayClass> liveDay = new TSLiveData<>();
-                liveDay.setValue(new DayClass());
-                liveDay.getValue().setDay(i);
-                liveDay.getValue().setMonth(month);
-                list.add(liveDay);
-            }
-        }else {
-            startDay++;
-            TSLiveData<DayClass> day;
-            for (int i = startDay; i <= lastDayOfLastMonth; i++) {
-                day = new TSLiveData<>();
-                day.setValue(new DayClass());
+        TSLiveData<DayClass> day;
+        for (int i = startDay; i <= lastDayOfLastMonth; i++) {
+            day = new TSLiveData<>();
+            day.setValue(new DayClass());
 
-                day.getValue().setDay(i);
+            day.getValue().setDay(i);
 
-                day.getValue().setMonth(month-1); // TODO 연도 바뀜 처리
-                list.add(day);
-            }
-
-            for (int i = 1; i <= lastDayOfThisMonth; i++) {
-                day = new TSLiveData<>();
-                day.setValue(new DayClass());
-                day.getValue().setMonth(month);
-                day.getValue().setDay(i);
-                list.add(day);
-            }
+            day.getValue().setMonth(month - 1); // TODO 연도 바뀜 처리
+            list.add(day);
         }
 
-        for(int i=1; i <= CalendarUtil.getLastVisibleDayOfNextMonth(year,month);i++){
-            TSLiveData<DayClass> day = new TSLiveData<>();
+        for (int i = 1; i <= lastDayOfThisMonth; i++) {
+            day = new TSLiveData<>();
             day.setValue(new DayClass());
-            day.getValue().setMonth(month+1);
+            day.getValue().setMonth(month);
             day.getValue().setDay(i);
             list.add(day);
         }
 
-        // TODO REFACTORING
-        CalendarRepository.get().setCurrDaysArrayOfMonthObj(list);
+        for (int i = 1;i <= CalendarUtil.getLastVisibleDayOfNextMonth(year, month); i++) {
+            TSLiveData<DayClass> nextMonthDay = new TSLiveData<>();
+            nextMonthDay.setValue(new DayClass());
+            nextMonthDay.getValue().setMonth(month + 1);
+            nextMonthDay.getValue().setDay(i);
+            list.add(nextMonthDay);
+        }
+
+        setListOfDays(list);
+        setCurrentMonthPlanList(new MonthPlanList());
+
     }
 
-    public static void initCalendar(){
+    public static void refreshCalendar() {
         generateDaysListByDate(getGlobalCurrentCalendarYear(),
                 getGlobalCurrentCalendarMonth());
-    }
-
-    public static void refreshCalendar(){
-        generateDaysListByDate(getGlobalCurrentCalendarYear(),
-                getGlobalCurrentCalendarMonth());
-        ArrayList<Plan> result=null;
+        ArrayList<Plan> result = null;
         ArrayList<Plan> fullResult = null;
 
         try {
             result = new PlanRepository.GetVisiblePlanMonthAt().execute(new YMD(getGlobalCurrentCalendarYear(),
                     getGlobalCurrentCalendarMonth())).get();
-            fullResult =  new PlanRepository.SelectAllPlan().execute().get();
-        }catch (Exception e){
+            fullResult = new PlanRepository.SelectAllPlan().execute().get();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         MonthPlanList list = new MonthPlanList();
 
-        for(Plan plan : result){
+
+        for (Plan plan : result) {
 
             int absIndex = convertDateToIndex(
-                    getGlobalCurrentCalendarYear(),getGlobalCurrentCalendarMonth(),
+                    getGlobalCurrentCalendarYear(), getGlobalCurrentCalendarMonth(),
                     plan.getYear(),
-                    plan.getMonth(),plan.getDay());
-            list.get(absIndex).getValue().add(plan);
+                    plan.getMonth(), plan.getDay());
+            //list.get(absIndex).getValue().add(plan);
+
+            ArrayList<Plan> newList = new ArrayList<Plan>();
+            newList.add(plan);
+            PlanRepository.getCurrentMonthPlanListAt(absIndex).setValue(
+                    new DayPlanList(newList));
+
         }
-
-        System.out.println(fullResult);
-
-
-
-
-        //PlanRepository.setCurrentMonthPlanList(list);
-
     }
-
-
 
 }

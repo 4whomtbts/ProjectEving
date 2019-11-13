@@ -16,7 +16,7 @@ public class EditClonePlanVM extends PlanMakeViewModel {
     private Plan currentPlan;
     private String title;
     private String textPlan;
-    private boolean isDone;
+    public boolean isDone;
 
     public EditClonePlanVM() {   }
 
@@ -50,55 +50,34 @@ public class EditClonePlanVM extends PlanMakeViewModel {
 
     }
 
-    public void editPlan(){
+    String getProgress() {
 
-        Plan newPlan = currentPlan.makeNewWithDifferentUserInputContent(this.title,this.textPlan,this.isDone);
+        Plan parent = null;
+        double progress = 0.0;
 
         try {
-            new PlanRepository.UpdateOnePlanUserInputDatas().execute(newPlan).get();
-        }catch (Exception e){
-            e.printStackTrace();
+            parent = new PlanRepository.GetOnePlanByUID().execute(currentPlan.parentUID).get();
+        }catch (Exception e) {
+            System.out.println("Error!");
         }
 
-        ArrayList<Plan> refreshedCurrentDayPlanList=new ArrayList<>();
-        try {
-            refreshedCurrentDayPlanList = new PlanRepository.GetPlanByDay().execute(currentPlan.getYMD()).get();
-        }catch (Exception e1){
-            e1.printStackTrace();
-        }
+        progress = ((double)parent.numberOfDoneChild/(double)parent.totalCycle)*100;
+        return progress+"%";
+    }
 
-        DayPlanList newDayPlanList = new DayPlanList(refreshedCurrentDayPlanList);
-        PlanRepository.getCurrentMonthPlanListAt(getListIndexDayAt()).setValue(newDayPlanList);
+    void editPlan(){
+
+        currentPlan.setTitle(this.title)
+                   .setTextPlan(this.textPlan)
+                   .setIsDone(this.isDone);
+
+        new PlanRepository.UpdateOnePlanByUID().execute(currentPlan);
         CalendarRepository.refreshCalendar();
-
-    }
-
-    private ArrayList<Plan> getRegisteredPlan(Long parentUID){
-        ArrayList<Plan> list = new ArrayList<>();
-        try {
-            list =  new PlanRepository.GetAllPlanByPlanUID().execute(parentUID).get();
-        }catch (Exception e){
-
-        }
-        return list;
-    }
-
-    public YMD getParentPlanYMD() {
-        return currentPlan.getParentYMD();
-    }
-
-
-    public String getCycleState(){
-        return this.currentPlan.getCycleState();
     }
 
     public String getTitle(){
         return this.currentPlan.getTitle();
     }
-    public String getTextPlan(){
-        return this.currentPlan.getTextPlan();
-    }
-
     public boolean isDone(){
         return this.currentPlan.isDone;
     }

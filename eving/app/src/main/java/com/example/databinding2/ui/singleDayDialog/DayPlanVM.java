@@ -1,20 +1,49 @@
 package com.example.databinding2.ui.singleDayDialog;
 
+import android.util.Log;
+
 import com.example.databinding2.domain.Plan;
+import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 
-public class DayPlanVM extends CalendarViewModel {
-    /* TODO
+import java.util.concurrent.ExecutionException;
 
-     */
-    Plan plan;
-    private int position;
-    public DayPlanVM(Plan plan,int position){
+public class DayPlanVM extends CalendarViewModel {
+
+    public Plan plan;
+    DayPlanVM(Plan plan, int position){
         this.plan = plan;
-        this.position = position;
     }
 
+    public void setIsDone(boolean isChecked) {
+        /*
+        try {
+            boolean hasChecked = new PlanRepository.GetOnePlanByUID().execute(plan.uid).get();
+        }catch (Exception e) {
+
+        }
+         */
+        Plan parent = null;
+
+        if(plan.isDone != isChecked) {
+            plan.isDone = isChecked;
+            new PlanRepository.UpdateOnePlanCheckState().execute(plan);
+        }
+
+        try {
+            parent = new PlanRepository.GetOnePlanByUID().execute(plan.parentUID).get();
+        }catch (Exception e) {
+
+        }
+
+        if(parent != null) {
+            System.out.println("프로그레스 : "+ parent.totalCycle);
+            System.out.println("프로그레스 : "+ parent.numberOfDoneChild);
+
+        }
+        CalendarRepository.refreshCalendar();
+    }
     public boolean isParent() { return this.plan.isParentPlan();}
 
     public boolean isDone(){
@@ -25,7 +54,9 @@ public class DayPlanVM extends CalendarViewModel {
         Plan refreshPlan = null;
         try {
              refreshPlan = new PlanRepository.GetOnePlanByUID().execute(this.plan.getUID()).get();
-        }catch (Exception e){}
+        }catch (Exception e){
+            throw new RuntimeException("failed to get data from database");
+        }
         this.plan = refreshPlan;
     }
     public Plan getPlan(){ return this.plan; }
@@ -49,11 +80,5 @@ public class DayPlanVM extends CalendarViewModel {
     private String getThisCycle(){
         return Integer.toString(this.plan.getThisCycle());
     }
-
-
-
-
-
-
 
 }

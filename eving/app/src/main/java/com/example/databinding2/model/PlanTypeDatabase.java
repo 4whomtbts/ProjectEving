@@ -9,6 +9,6 @@ import com.example.databinding2.domain.planTypes.PlanType;
 @Database(entities = {PlanType.class},version = 1)
 @TypeConverters({PlanTypeConverters.class})
 public abstract class PlanTypeDatabase extends RoomDatabase {
-    public abstract CalendarPlanTypeDAO getPlanTypeDAO();
+    public abstract PlanTypeDAO getPlanTypeDAO();
 
 }

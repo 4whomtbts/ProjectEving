@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -28,6 +29,10 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Plan> planList;
     private FragmentManager fragmentManager;
+    private boolean prevChecked = false;
+
+    // 데이터 초기화하는 부분에 데이터베이스의 체크카운트를 올리지 않기 위한 플래
+    private boolean checkInitiated = false;
 
     public DayPlanAdapter(ArrayList<Plan> list, FragmentManager fm) {
 
@@ -98,7 +103,6 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             this.binding.groupTextView.setText(model.getGroup());
             this.binding.cycleTextView.setText(model.getCycleInfo());
             this.binding.planTitle.setText(model.getTitle());
-
         }
 
         @SuppressLint("ClickableViewAccessibility")
@@ -137,6 +141,13 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             });
 
 
+          this.binding.isDoneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+              @Override
+              public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                          model.setIsDone(isChecked);
+
+              }
+          });
         }
 
     }

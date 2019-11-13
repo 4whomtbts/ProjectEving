@@ -178,7 +178,8 @@ public class MakePlanDialogFragment extends DialogFragment {
 
                     String title = binding.planTitleTextInput.getEditableText().toString();
                     String input = binding.planTextInputLayout.getEditText().getText().toString();
-                    vmodel.makeNewPlan(vmodel.getWillBePlannedDatesArrWithCurrentPlan(),title,input);
+                    String group = binding.groupSelectSpinner.getSelectedItem().toString();
+                    vmodel.makeNewPlan(vmodel.getWillBePlannedDatesArrWithCurrentPlan(),title,input,group);
 
 
                     dismiss();
@@ -259,7 +260,8 @@ public class MakePlanDialogFragment extends DialogFragment {
         this.binding.groupSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selected = (String)adapterView.getSelectedItem();
+                 vmodel.currentSelectedGroup = (String)adapterView.getSelectedItem();
+
             }
 
             @Override

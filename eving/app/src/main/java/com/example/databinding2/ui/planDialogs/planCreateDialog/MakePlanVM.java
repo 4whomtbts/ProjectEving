@@ -16,7 +16,8 @@ import com.example.databinding2.util.CalendarUtil;
 
 public class MakePlanVM extends CalendarViewModel {
 
-    private PlanType currentSelectedPlanType;
+    public PlanType currentSelectedPlanType;
+    public String currentSelectedGroup;
     private boolean[] listChecked;
     public TSLiveData<YMDList> willBeClonedDateList;
     private SingleDayDialogRepository repository;
@@ -70,7 +71,7 @@ public class MakePlanVM extends CalendarViewModel {
     }
 
 
-    public void makeNewPlan(YMDList confirmedPlannedDay , String title, String content){
+    public void makeNewPlan(YMDList confirmedPlannedDay , String title, String content, String group){
 
         Plan plan = new Plan();
         plan.setTitle(title)
@@ -80,6 +81,7 @@ public class MakePlanVM extends CalendarViewModel {
                 .setMonth(getGlobalCurrentCalendarMonth())
                 .setDay(getGlobalCurrentCalendarDay())
                 .setTotalCycle(confirmedPlannedDay.size())
+                .setGroup(this.currentSelectedGroup)
                 .setThisCycle(1000);
 
         DayPlanList org = PlanRepository.getCurrentDayPlanList();
@@ -98,6 +100,7 @@ public class MakePlanVM extends CalendarViewModel {
         for(index=0; index < shouldPlannedDay.size();index++){
 
             YMD date = shouldPlannedDay.get(index);
+
             Plan copied = newPlan.makeChild(date);
             copied.setThisCycle(index+1);
 
@@ -131,5 +134,6 @@ public class MakePlanVM extends CalendarViewModel {
 
 
 }
+
 
 

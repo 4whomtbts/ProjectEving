@@ -21,9 +21,24 @@ public interface CalendarPlanDAO {
     @Query("DELETE FROM table_plans")
     public void deleteAll();
 
+    /*
+    @Query("SELECT *, progress = " +
+            "(SELECT uid, progress FROM table_plans AS parent WHERE parent.uid = current_plan.uid) " +
+            "FROM table_plans current_plan")
+    public List<Plan> selectAll();
+    */
+
+    @Query("SELECT progress FROM table_plans WHERE uid = :parentUID")
+    public double getProgressByUID(long parentUID);
 
     @Query("SELECT * FROM table_plans")
     public List<Plan> selectAll();
+
+    @Query("SELECT number_of_done_child FROM table_plans")
+    public double getChildDoneCount();
+
+    @Query("SELECT isDone FROM table_plans WHERE uid = :uid")
+    public boolean isDone(long uid);
 
     @Query("SELECT * FROM table_plans WHERE year = :year AND month = :month AND day = :day")
     //public ArrayList<TSLiveData<Plan>> getPlanByDay(int year, int month, int day);
@@ -50,6 +65,22 @@ public interface CalendarPlanDAO {
     @Query("UPDATE table_plans SET isDone = :isDone WHERE uid = :uid ")
     public void updateOnePlanCheckState(Long uid , boolean isDone);
 
+    /*
+    @Query("UPDATE table_plans SET number_of_done_child = number_of_done_child + :diff, progress = (number_of_done_child/totalCycle)*100 " +
+            "WHERE parentUID = :uid")
+    public void updateParentProgress(Long uid , int diff);
+
+     */
+    @Query("UPDATE table_plans SET number_of_done_child = number_of_done_child + :diff WHERE parentUID = :uid")
+    public void updateParentProgress(Long uid , int diff);
+
     @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan , isDone = :isDone WHERE uid = :uid")
     public void updateOneUserInputDatas(Long uid,String title, String textPlan, boolean isDone);
+
+    @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan , isDone = :isDone WHERE uid = :uid")
+    public void updatePlan(Long uid,String title, String textPlan, boolean isDone);
+
+    @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan WHERE parentUID = :parentUID")
+    public void updatePlanByParentUID(Long parentUID,String title, String textPlan);
+
 }

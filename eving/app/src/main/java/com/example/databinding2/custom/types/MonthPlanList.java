@@ -22,9 +22,4 @@ public class MonthPlanList extends ArrayList<LiveDayPlanList> {
             }
             return _sb.toString();
     }
-
-    public void print(){
-        System.out.println(this);
-    }
-
 }

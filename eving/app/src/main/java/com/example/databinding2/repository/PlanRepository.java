@@ -1,6 +1,7 @@
 package com.example.databinding2.repository;
 
 import android.os.AsyncTask;
+import android.provider.DocumentsContract;
 import android.util.Pair;
 import android.view.animation.RotateAnimation;
 
@@ -87,6 +88,10 @@ public class PlanRepository {
         }
     }
 
+    public static void syncMonthPlanListWithDB() {
+
+    }
+
     public static TSLiveData<DayPlanList> getCurrentMonthPlanListAt(int day){
         return _currentMonthPlanList.getValue().get(day);
     }
@@ -159,6 +164,18 @@ public class PlanRepository {
     }
 
     public static class GetAllPlanByPlanUID extends  AsyncTask<Long,Void,ArrayList<Plan>>{
+
+        @Override
+        protected ArrayList<Plan> doInBackground(Long... uids) {
+            Long parnetUID = uids[0];
+            ArrayList<Plan> result = new ArrayList<>();
+            result = (ArrayList<Plan>)RootRepository.getCalendarPlanDAO().getPlanByParentUID(
+                    parnetUID);
+            return result;
+        }
+    }
+
+    public static class GetAllPlanByPlanParentUID extends  AsyncTask<Long,Void,ArrayList<Plan>>{
 
         @Override
         protected ArrayList<Plan> doInBackground(Long... uids) {
@@ -261,6 +278,20 @@ public class PlanRepository {
 
                 return (ArrayList<Plan>)(RootRepository.getCalendarPlanDAO().getPlanByRangeOfDay(year,month,left,right));
         }
+
+    }
+
+    /**
+     * Plan을 받아서 그것의 원본이 가지고 있는 progress 정보를 받는다
+     */
+    public static class GetProgressByPlan extends AsyncTask<Plan ,Void, Double>{
+
+
+        @Override
+        protected Double doInBackground(Plan... plans) {
+            Plan plan = plans[0];
+            return RootRepository.getCalendarPlanDAO().getProgressByUID(plan.parentUID);
+        }
     }
 
     public static class SelectAllPlan extends AsyncTask<Void,Void,ArrayList<Plan>>{
@@ -292,49 +323,54 @@ public class PlanRepository {
         }
     }
 
-    public static class UpdateOnePlanCheckState extends  AsyncTask<Pair<Long,Boolean>, Void , Void >{
-
-        @Override
-        protected Void doInBackground(Pair<Long, Boolean>... pairs) {
-            Pair<Long,Boolean> pair = pairs[0];
-            RootRepository.getCalendarPlanDAO().updateOnePlanCheckState(pair.first,pair.second);
-            return null;
-        }
-    }
-
-    public static class UpdateOnePlanUserInputDatas extends AsyncTask<Plan,Void,Void>{
+    // 파라미터로 넘어온 Plan을 업데이트하고 모든 children 을 동일하게 업데이트 한다.
+    public static class UpdateParentAndAllChildrenOfPlan extends AsyncTask<Plan, Void, Void> {
 
         @Override
         protected Void doInBackground(Plan... plans) {
-            Plan newPlan = plans[0];
-            RootRepository.getCalendarPlanDAO().updateOneUserInputDatas(
-                    newPlan.getUID(),newPlan.getTitle(),newPlan.getTextPlan(),newPlan.isDone()
-            );
+            Plan parentPlan = plans[0];
+            long uid = parentPlan.uid;
+            RootRepository.getCalendarPlanDAO().updatePlan(
+                    parentPlan.uid,parentPlan.title,parentPlan.textPlan,
+                    parentPlan.isDone);
+
+            RootRepository.getCalendarPlanDAO().updatePlanByParentUID(uid,
+                    parentPlan.getTitle(),parentPlan.textPlan);
+
             return null;
         }
     }
-/*
-    public static  class GetLivePlanByDay extends AsyncTask<YMD,Void,ArrayList<TSLiveData<Plan>>> {
+
+    public static class UpdateOnePlanByUID extends AsyncTask<Plan, Void ,Void> {
 
         @Override
-        protected ArrayList<TSLiveData<Plan>> doInBackground(YMD... dates) {
-            ArrayList<Plan> result= new ArrayList<>();
-            ArrayList<TSLiveData<Plan>> liveResult = new ArrayList<>();
+        protected Void doInBackground(Plan... plans) {
+            Plan plan = plans[0];
 
-                result = (ArrayList<Plan>)RootRepository.getCalendarPlanDAO().getPlanByDay(
-                        dates[0].getYear(),dates[0].getMonth(),dates[0].getDay()
-                );
+            /*
+            int diff=  PlanRepository.diffByDoneValue(plan.isDone);
+            RootRepository.getCalendarPlanDAO().updateParentProgress(plan.parentUID,diff);
+             */
+            RootRepository.getCalendarPlanDAO().updatePlan(plan.uid,plan.title,plan.textPlan,plan.isDone);
 
-                for(int i=0; i < result.size(); i++){
-                    TSLiveData<Plan> currPlan = new TSLiveData<>();
-                    currPlan.setValue(result.get(i););
-                    liveResult.set(0,new TSLiveData<Plan>())
-                }
-
-            return result;
+            return null;
         }
     }
-    */
 
+    public static class UpdateOnePlanCheckState extends  AsyncTask<Plan, Void , Void >{
 
+        @Override
+        protected Void doInBackground(Plan... plans) {
+            Plan plan = plans[0];
+
+            int diff=  PlanRepository.diffByDoneValue(plan.isDone);
+            RootRepository.getCalendarPlanDAO().updateParentProgress(plan.parentUID,diff);
+            RootRepository.getCalendarPlanDAO().updateOnePlanCheckState(plan.uid, plan.isDone);
+            return null;
+        }
+    }
+
+    private static int diffByDoneValue(boolean isDone) {
+        return isDone?1:-1;
+    }
 }

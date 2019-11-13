@@ -8,7 +8,7 @@ import com.example.databinding2.domain.planTypes.PlanType;
 import com.example.databinding2.model.CalendarContentDatabase;
 import com.example.databinding2.model.CalendarDayDAO;
 import com.example.databinding2.model.CalendarPlanDAO;
-import com.example.databinding2.model.CalendarPlanTypeDAO;
+import com.example.databinding2.model.PlanTypeDAO;
 import com.example.databinding2.model.PlanDatabase;
 import com.example.databinding2.model.PlanTypeDatabase;
 
@@ -152,7 +152,7 @@ public class RootRepository {
         return RootRepository.getPlanDatabase().getPlanDAO();
     }
 
-    public static CalendarPlanTypeDAO getCalendarPlanTypeDAO(){
+    public static PlanTypeDAO getCalendarPlanTypeDAO(){
         return RootRepository.getPlanTypeDatabase().getPlanTypeDAO();
     }
 

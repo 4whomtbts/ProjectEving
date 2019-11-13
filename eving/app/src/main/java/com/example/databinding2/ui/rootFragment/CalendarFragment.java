@@ -24,6 +24,7 @@ import com.example.databinding2.TSLiveData;
 import com.example.databinding2.custom.CRecyclerView;
 import com.example.databinding2.databinding.CalendarFragmentBinding;
 import com.example.databinding2.domain.DayClass;
+import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.ui.mainCalendarItem.CalendarAdapter;
 
 import java.util.ArrayList;
@@ -157,7 +158,7 @@ public class CalendarFragment extends Fragment {
                                 vmodel.gotoNextMonth();
                                 view.startAnimation(inFromRight);
                             }
-                            vmodel.refreshCalendar();
+                            CalendarRepository.refreshCalendar();
                             binding.pagerCalendar.setVerticalScrollbarPosition(0);// 달력이 넘어가면 첫 날로 고정된다
 
                             prevTime=currTime;

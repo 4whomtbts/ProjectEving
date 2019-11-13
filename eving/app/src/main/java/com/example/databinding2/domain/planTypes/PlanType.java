@@ -14,6 +14,7 @@ import java.util.ArrayList;
 @Entity(tableName = "table_planTypes")
 public class PlanType extends BaseObservable {
 
+    public long uid;
     @NonNull
     @PrimaryKey
     public String planTypeName;
@@ -23,6 +24,7 @@ public class PlanType extends BaseObservable {
     public String[] suggestions;
 
     public PlanType(String planTypeName, boolean isDefault, int[] cycles, String[] suggestions) {
+        this.uid = System.nanoTime();
         this.planTypeName = planTypeName;
         this.isDefault = isDefault;
         this.cycles = cycles;
@@ -31,43 +33,11 @@ public class PlanType extends BaseObservable {
             this.suggestions = new String[1];
         }
         this.suggestions = suggestions;
-
     }
+
 
     public String getPlanTypeName() {
         return planTypeName;
-    }
-
-    public PlanType setPlanTypeName(String planTypeName) {
-        this.planTypeName = planTypeName;
-        return this;
-    }
-
-    public boolean isDefault() {
-        return isDefault;
-    }
-
-    public PlanType setDefault(boolean aDefault) {
-        isDefault = aDefault;
-        return this;
-    }
-
-    public int[] getCycles() {
-        return cycles;
-    }
-
-    public PlanType setCycles(int[] cycles) {
-        this.cycles = cycles;
-        return this;
-    }
-
-    public String[] getSuggestions() {
-        return suggestions;
-    }
-
-    public PlanType setSuggestions(String[] suggestions) {
-        this.suggestions = suggestions;
-        return this;
     }
 
     public boolean isStudyPlan(){

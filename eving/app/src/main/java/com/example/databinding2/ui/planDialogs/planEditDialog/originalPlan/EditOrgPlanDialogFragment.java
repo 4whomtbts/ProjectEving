@@ -94,6 +94,7 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
         this.binding.planTitleInputText.setText(vmodel.getTitle());
         this.binding.planContentInputText.setText(vmodel.getTextPlan());
         this.binding.currentCycleStateText.setText(vmodel.getCycleState());
+        this.binding.currentTotalProgressText.setText(vmodel.getProgress());
     }
 
     @Override
@@ -147,7 +148,7 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-             //   vmodel.isDoneChange(isChecked);
+             vmodel.isDone = isChecked;
 
             }
         });
@@ -295,17 +296,10 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
                 RecyclerView view = binding.clonePreviewRecyclerView;
                 this.adapter =  (ClonePreviewAdapter)view.getAdapter();
 
-
-                if(adapter != null ){
-                    this.adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDateListValue());
-                }else{
                     LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false);
                     this.adapter = new ClonePreviewAdapter(vmodel.getWillBePlannedDateListValue(),dialogFragment);
                     view.setLayoutManager(manager);
                     view.setAdapter(this.adapter);
-                }
-
-
             }
         });
     }

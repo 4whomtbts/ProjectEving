@@ -1,7 +1,6 @@
 package com.example.databinding2.ui.planDialogs.planEditDialog.clonePlan;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -12,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
@@ -21,21 +23,23 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.databinding2.BR;
 import com.example.databinding2.R;
+import com.example.databinding2.custom.planTypeSpinnerAdapter;
 import com.example.databinding2.databinding.EditPlanCloneBinding;
 import com.example.databinding2.domain.Plan;
+import com.example.databinding2.domain.planTypes.PlanType;
+
+import java.util.ArrayList;
 
 public class EditClonePlanDialogFragment extends DialogFragment {
 
 
     private EditClonePlanVM vmodel;
     private EditPlanCloneBinding binding;
-    private FragmentManager fragmentManager;
     private Plan thisPlan;
-    private boolean isEdit;
+    private boolean isInitiated;
+
     public EditClonePlanDialogFragment(FragmentManager fragmentManager, Plan plan){
-        this.fragmentManager = fragmentManager;
         this.thisPlan = plan;
     }
 
@@ -56,10 +60,11 @@ public class EditClonePlanDialogFragment extends DialogFragment {
         this.setCancelable(true);
         vmodel.setCurrentPlan(thisPlan);
 
-        attachListeners();
         View view = this.binding.getRoot();
 
         initViewDatas();
+        registerAdapters();
+        attachListeners();
         return view;
     }
 
@@ -95,7 +100,27 @@ public class EditClonePlanDialogFragment extends DialogFragment {
         this.binding.planContentInputText.setText(thisPlan.getTextPlan());
         this.binding.currentCycleStateText.setText(thisPlan.getCycleState());
         this.binding.planStudySuggestionText.setMovementMethod(new ScrollingMovementMethod());
+        this.binding.currentTotalProgressText.setText(vmodel.getProgress());
     }
+
+    private void registerAdapters(){
+        ArrayList arrayList = new ArrayList<String>();
+        arrayList.add(this.thisPlan.planTypeName);
+        this.binding.groupSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.group_spinner_item,arrayList);
+        this.binding.groupSelectSpinner.setAdapter(arrayAdapter);
+        this.binding.groupSelectSpinner.setEnabled(false);
+        this.binding.groupSelectSpinner.setSelected(true);
+
+        ArrayList planValue = new ArrayList();
+        planValue.add(this.thisPlan.group);
+        this.binding.planModeSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
+        ArrayAdapter<String> planTypeArrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.group_spinner_item,planValue);
+        this.binding.planModeSelectSpinner.setAdapter(planTypeArrayAdapter);
+        this.binding.planModeSelectSpinner.setEnabled(false);
+        this.binding.planModeSelectSpinner.setSelected(true);
+    }
+
     private void attachListeners() {
 
 
@@ -109,7 +134,7 @@ public class EditClonePlanDialogFragment extends DialogFragment {
                         binding.planContentInputText.getText().toString(),
                         binding.completePlanCheckBox.isChecked()
                 )) {
-                    System.out.println("내용이 변경됨");
+
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -129,7 +154,8 @@ public class EditClonePlanDialogFragment extends DialogFragment {
                     };
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage("데이터가 변경되었습니다. 변경된 데이터로 덮어쓰시겠습니까?").setPositiveButton("네", dialogClickListener)
+                    builder.setMessage("데이터가 변경되었습니다. 변경된 데이터로  덮어쓰시겠습니까?" +
+                            "현재 수정한 계획은 복사본이므로 현재 계획만 수정됩니다.").setPositiveButton("네", dialogClickListener)
                             .setNegativeButton("아니요", dialogClickListener).show();
 
                 } else {
@@ -140,6 +166,48 @@ public class EditClonePlanDialogFragment extends DialogFragment {
                 if (v != null) {
 
                 }
+            }
+        });
+
+        this.binding.completePlanCheckBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                vmodel.isDone = isChecked;
+
+            }
+        });
+
+        this.binding.planModeSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println(adapterView.getSelectedItem());
+                if(isInitiated){
+                    PlanType ptype =  (PlanType)(adapterView.getSelectedItem());
+                    ptype.print();
+                    vmodel.setCurrentSelectedPlanType(ptype);
+                }else{
+
+                    isInitiated = true;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        this.binding.groupSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selected = (String)adapterView.getSelectedItem();
+                System.out.println("그룹스피너 선택 : "+selected);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }

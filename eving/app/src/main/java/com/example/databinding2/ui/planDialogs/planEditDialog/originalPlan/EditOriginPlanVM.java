@@ -18,12 +18,11 @@ import java.util.concurrent.ExecutionException;
 public class EditOriginPlanVM extends PlanMakeViewModel {
 
     private Plan thisPlan;
-    private YMD today;
     private YMDList originClonedPlanList;
 
-    private String title;
-    private String textPlan;
-    private boolean isDone;
+    public String title;
+    public String textPlan;
+    public boolean isDone;
 
 
     public EditOriginPlanVM() {
@@ -33,14 +32,11 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
 
 // TODO 임시방편
     public int getListIndexDayAt(){
-        /*
-        int index = CalendarUtil.convertDateToIndex(getGlobalCurrentCalendarYear()
-                ,getGlobalCurrentCalendarMonth(),getGlobalSelectedMonth(),getGlobalSelectedDay());
-                */
+
         return -1;
     }
 
-    public boolean isDataChanged(String title, String textPlan, boolean isDone){
+    boolean isDataChanged(String title, String textPlan, boolean isDone){
 
         Plan newPlan = makePlan(title,textPlan,isDone);
 
@@ -63,7 +59,7 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
         }
 
     }
-    //public void makePlan(String title, String textPlan, String group){
+
     private Plan makePlan(String title, String textPlan, boolean isDone){
         return new Plan().setTitle(title).setTextPlan(textPlan).setIsDone(isDone);
     }
@@ -80,7 +76,7 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
         return list;
     }
 
-    public void initPreViewListWithDB(){
+    void initPreViewListWithDB(){
 
         ArrayList<Plan> list = getRegisteredPlan(thisPlan.getParentUID());
         YMDList ymdList = new YMDList();
@@ -91,50 +87,43 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
         this.originClonedPlanList = ymdList;
     }
 
-    public void editPlan(){
-
-        new PlanRepository.DeletePlanByOneParentUID().execute(this.thisPlan.getUID());
+    void editPlan(){
 
         YMDList ymdList = getWillBePlannedDateListValue();
-
-        Plan plan = new Plan().setTitle(this.title).setTextPlan(this.textPlan).setYMD(getGlobalSelectedYMD())
-                              .setTotalCycle(ymdList.size()).setThisCycle(0).setIsDone(this.isDone);
-
-        ArrayList<Plan> newClonedPlanList = new ArrayList<>();
-
-        for(int i=0; i < ymdList.size(); i++){
-            Plan clonedPlan = plan.makeChild(ymdList.get(i)).setThisCycle(i+1);
-            newClonedPlanList.add(clonedPlan);
-        }
-
-
-
-        ArrayList<Plan> refreshedCurrentDayPlanList=new ArrayList<>();
-        try {
-            new PlanRepository.InsertArrayListPlan().execute(newClonedPlanList).get();
-            refreshedCurrentDayPlanList = new PlanRepository.GetPlanByDay().execute(thisPlan.getYMD()).get();
-        }catch (Exception e){
-
-        }
-
-        DayPlanList newDayPlanList = new DayPlanList(refreshedCurrentDayPlanList);
-        PlanRepository.getCurrentMonthPlanListAt(getListIndexDayAt()).set(newDayPlanList);
+        Plan editedPlan = thisPlan.setTitle(this.title)
+                                  .setTextPlan(this.textPlan)
+                                  .setIsDone(this.isDone);
+        new PlanRepository.UpdateParentAndAllChildrenOfPlan().execute(editedPlan);
         CalendarRepository.refreshCalendar();
+
     }
 
-    public void setThisPlan(Plan thisPlan){
+    String getProgress() {
+        Plan parent = null;
+
+
+        try {
+            parent = new PlanRepository.GetOnePlanByUID().execute(thisPlan.uid).get();
+        }catch (Exception e) {
+            System.out.println("Error!");
+        }
+        double progress = ((double)parent.numberOfDoneChild/(double)parent.totalCycle)*100;
+        return progress+"%";
+    }
+
+    void setThisPlan(Plan thisPlan){
         this.thisPlan = thisPlan;
     }
 
 
-    public String getCycleState(){
+    String getCycleState(){
         return this.thisPlan.getCycleState();
     }
 
     public String getTitle(){
         return this.thisPlan.getTitle();
     }
-    public String getTextPlan(){
+    String getTextPlan(){
         return this.thisPlan.getTextPlan();
     }
 

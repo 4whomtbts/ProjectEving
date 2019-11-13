@@ -10,7 +10,7 @@ import com.example.databinding2.domain.planTypes.PlanType;
 import java.util.List;
 
 @Dao
-public interface CalendarPlanTypeDAO {
+public interface PlanTypeDAO {
     @Insert
     public void insert(PlanType... planTypes);
 

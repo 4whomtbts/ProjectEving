@@ -36,13 +36,8 @@ public class DayDialogFragment extends DialogFragment {
     private ImageButton DayContentConfirm;
     private FragmentManager fragmentManager;
 
-    private int _year;
-    private int _month;
-    private int _day;
-    private YMD _date;
     public DayDialogFragment(FragmentManager fragmentManager, YMD date){
         this.fragmentManager = fragmentManager;
-        this._date = date;
     }
 
     @Override
@@ -96,15 +91,11 @@ public class DayDialogFragment extends DialogFragment {
 
         }
 
-
         this.DayText = binding.dayText;
 
         String result = "현재 일 : "+vmodel.getGlobalSelectedDay();
         this.DayText.setText(result);
         observe();
-
-
-
 
     }
 
@@ -113,25 +104,11 @@ public class DayDialogFragment extends DialogFragment {
             @Override
             public void onChanged(ArrayList<Plan> plans) {
                     RecyclerView view = binding.planRecyclerView;
-                    DayPlanAdapter adapter = (DayPlanAdapter)view.getAdapter();
-                    ArrayList<Plan> instList = new ArrayList<>();
+                    DayPlanAdapter adapter = new DayPlanAdapter(plans,getFragmentManager());
+                    LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+                    view.setLayoutManager(manager);
+                    view.setAdapter(adapter);
 
-                    for(int i=0; i < plans.size(); i++){
-                        instList.add(plans.get(i));
-                    }
-
-
-                    if(adapter!=null){
-                        adapter.setPlanList(instList);
-                    }else{
-                        LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
-                        adapter = new DayPlanAdapter(instList,getFragmentManager());
-                        adapter.setPlanList(instList);
-
-                        view.setLayoutManager(manager);
-                        view.setAdapter(adapter);
-
-                    }
             }
         });
     }

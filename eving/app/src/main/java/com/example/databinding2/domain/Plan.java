@@ -36,10 +36,17 @@ public class Plan {
     public String title;
     @ColumnInfo(name ="textPlan")
     public String textPlan;
-
+    @ColumnInfo(name="group")
     public String group;
     public String type;
-    public String planTypeName;
+    public String planTypeName = "반복계획";
+    @ColumnInfo(name="progress")
+    public double progress;
+    @ColumnInfo(name="number_of_done_child")
+    public int numberOfDoneChild;
+
+    //@ColumnInfo(name="parentIndependence")
+    //public boolean parentIndepence = false;
 
 
     public static PlanBuilder builder(YMD ymd) {
@@ -51,10 +58,6 @@ public class Plan {
             return this.ymd;
         }
         return new YMD(this.year,this.month,this.day);
-    }
-
-    private Plan(int year, int month, int day, long parentUID) {
-
     }
 
     public Plan(long parentUID, long uid, YMD ymd) {
@@ -87,11 +90,13 @@ public class Plan {
     }
 
     public Plan(){
-
+       // this.parentIndepence = false;
         this.uid = System.nanoTime();
         this.parentUID = this.uid;
         this.group = "분류없음";
         this.isDone=false;
+        this.numberOfDoneChild = 0;
+        this.progress = 0.0;
     }
 
     public Plan(String textPlan){
@@ -170,8 +175,9 @@ public class Plan {
         return uid;
     }
 
-    public void setUID(long uid) {
+    public Plan setUID(long uid) {
         this.uid = uid;
+        return this;
     }
 
     public Plan setYear(int year){
@@ -231,7 +237,7 @@ public class Plan {
         child.setTitle(this.getTitle());
         child.setTotalCycle(this.totalCycle);
         child.setThisCycle(this.getThisCycle());
-
+        child.setGroup(this.getGroup());
         return child;
     }
 
@@ -251,24 +257,7 @@ public class Plan {
                 "  / "+this.getTextPlan()+"\n";
 
     }
-/*
-    public long uid;
-    public long parentUID;
-    public int year;
-    public int month;
-    public int day;
-    public int thisCycle;
-    public int totalCycle;
-    public boolean isDone;
-    public YMD ymd;
-    public YMD parentYMD;
-    public String title;
-    public String textPlan;
-    public String group;
-    public String type;
-    public String planTypeName;
 
-*/
     public static Plan deepCopy(Plan target){
         Plan newPlan  = new Plan();
         newPlan.setUID(target.getUID());
