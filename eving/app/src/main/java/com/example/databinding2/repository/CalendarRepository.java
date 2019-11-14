@@ -272,7 +272,7 @@ public class CalendarRepository {
                     getGlobalCurrentCalendarYear(), getGlobalCurrentCalendarMonth(),
                     plan.getYear(),
                     plan.getMonth(), plan.getDay());
-            //list.get(absIndex).getValue().add(plan);
+            list.get(absIndex).getValue().add(plan);
 
             ArrayList<Plan> newList = new ArrayList<Plan>();
             newList.add(plan);
@@ -280,6 +280,9 @@ public class CalendarRepository {
                     new DayPlanList(newList));
 
         }
+
+        PlanRepository.setCurrentMonthPlanList(list);
+
     }
 
 }

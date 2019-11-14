@@ -114,5 +114,5 @@ public class ClonePreviewAdapter extends RecyclerView.Adapter {
         }
 
 
-     }
+    }
 }

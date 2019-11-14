@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">DataBinding2</string>
     <string name="action_settings">Settings</string>
+    <string name="parent_plan_delete_ask_msg">
+        현재 삭제하려는 계획은 원본 계획입니다. 이 계획으로
+        만들어진 모든 반복계획은 삭제됩니다. 계속 진행하시려면
+        "예"를 눌러주세요.
+    </string>
+    <string name="child_plan_delete_ask_msg">
+        현재 삭제하려는 계획은 반복계획의 복사본 계획입니다.
+        삭제는 현재 반복 계획만 삭제되며, 원본 계획 및 다른
+        반복 계획은 영향을 받지 않습니다. 계속 진행하시려면
+        "예"를 눌러주세요.
+    </string>
+    <string name="push_plan_msg">
+        현재 계획을 아래의 날짜로 미룹니다. 아래에서 일괄적용을 체크하면\n
+        현재 계획 이후에 모든 계획들도 같은 일수만큼 일괄적으로 미뤄집니다.\n
+        일괄적용을 체크하지 않는다면, 현재의 계획만 미뤄집니다.\n 이 경우에
+        미뤄지는 날짜는 다음 반복계획의 날짜와 같은날 혹은 그 후의 날로 미룰 수 없습니다.
+    </string>
+    <string name="confirm_underline">
+        <u>확인</u>
+    </string>
+    <string name="move_limit_msg">
+        일괄적용시 최대/최소 가능한 날짜
+    </string>
 </resources>

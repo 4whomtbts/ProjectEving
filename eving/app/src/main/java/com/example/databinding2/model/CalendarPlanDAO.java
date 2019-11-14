@@ -18,6 +18,9 @@ public interface CalendarPlanDAO {
     @Delete
     public void delete(Plan... plan);
 
+    @Update
+    public void update(Plan... plan);
+
     @Query("DELETE FROM table_plans")
     public void deleteAll();
 
@@ -47,7 +50,7 @@ public interface CalendarPlanDAO {
     @Query("SELECT * FROM table_plans WHERE year = :year AND month = :month")
     public List<Plan> getPlanByMonthDefault(int year, int month);
 
-    @Query("SELECT * FROM table_plans WHERE parentUID = :parentUID")
+    @Query("SELECT * FROM table_plans WHERE parentUID = :parentUID ORDER BY thisCycle ASC")
     public List<Plan> getPlanByParentUID(long parentUID);
 
     @Query("SELECT * FROM table_plans WHERE uid = :uid")
@@ -60,7 +63,7 @@ public interface CalendarPlanDAO {
     public List<Plan> getPlanByRangeOfDay(int year, int month, int left, int right);
 
     @Query("DELETE FROM table_plans WHERE parentUID = :parentUID")
-    public void deletePlanByOneParentUID(Long parentUID);
+    public void deleteChildrenPlanByParentUID(Long parentUID);
 
     @Query("UPDATE table_plans SET isDone = :isDone WHERE uid = :uid ")
     public void updateOnePlanCheckState(Long uid , boolean isDone);
@@ -80,7 +83,11 @@ public interface CalendarPlanDAO {
     @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan , isDone = :isDone WHERE uid = :uid")
     public void updatePlan(Long uid,String title, String textPlan, boolean isDone);
 
+    @Query("UPDATE table_plans SET year = :year, month = :month, day = :day WHERE uid = :uid")
+    public void updatePlanDate(long uid, int year, int month, int day);
+
     @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan WHERE parentUID = :parentUID")
     public void updatePlanByParentUID(Long parentUID,String title, String textPlan);
+
 
 }

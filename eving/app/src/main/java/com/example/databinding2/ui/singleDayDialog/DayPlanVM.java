@@ -2,11 +2,14 @@ package com.example.databinding2.ui.singleDayDialog;
 
 import android.util.Log;
 
+import com.example.databinding2.custom.YMD;
+import com.example.databinding2.custom.types.DayPlanList;
 import com.example.databinding2.domain.Plan;
 import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.ui.viewmodel.CalendarViewModel;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class DayPlanVM extends CalendarViewModel {
@@ -17,13 +20,7 @@ public class DayPlanVM extends CalendarViewModel {
     }
 
     public void setIsDone(boolean isChecked) {
-        /*
-        try {
-            boolean hasChecked = new PlanRepository.GetOnePlanByUID().execute(plan.uid).get();
-        }catch (Exception e) {
 
-        }
-         */
         Plan parent = null;
 
         if(plan.isDone != isChecked) {
@@ -37,12 +34,35 @@ public class DayPlanVM extends CalendarViewModel {
 
         }
 
-        if(parent != null) {
-            System.out.println("프로그레스 : "+ parent.totalCycle);
-            System.out.println("프로그레스 : "+ parent.numberOfDoneChild);
-
-        }
         CalendarRepository.refreshCalendar();
+    }
+
+    public void deleteCurrentPlan() {
+        YMD planYMD = plan.getYMD();
+        ArrayList<Plan> list;
+        try {
+
+            if(plan.isParentPlan()) {
+                new PlanRepository.DeleteAllChildrenPlan().execute(plan).get();
+            }else {
+                new PlanRepository.DeletePlan().execute(plan).get();
+            }
+
+            list = new PlanRepository.GetPlanByDay()
+                    .execute(planYMD)
+                    .get();
+
+            PlanRepository.getLiveCurrentDayPlanList().set(
+                    new DayPlanList(list));
+            new PlanRepository.ReOrderingPlanCycleByParentUID().execute(plan).get();
+
+        }catch (Exception e) {
+
+            System.out.println("Database error while delete plan");
+        }
+
+        CalendarRepository.refreshCalendar();
+
     }
     public boolean isParent() { return this.plan.isParentPlan();}
 

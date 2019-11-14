@@ -16,6 +16,7 @@ import com.example.databinding2.domain.Plan;
 import com.example.databinding2.util.CalendarUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlanRepository {
 
@@ -175,14 +176,14 @@ public class PlanRepository {
         }
     }
 
-    public static class GetAllPlanByPlanParentUID extends  AsyncTask<Long,Void,ArrayList<Plan>>{
+    public static class GetAllPlanByPlanParentUID extends  AsyncTask<Plan,Void,ArrayList<Plan>>{
 
         @Override
-        protected ArrayList<Plan> doInBackground(Long... uids) {
-            Long parnetUID = uids[0];
+        protected ArrayList<Plan> doInBackground(Plan... plans) {
+            Plan plan = plans[0];
             ArrayList<Plan> result = new ArrayList<>();
             result = (ArrayList<Plan>)RootRepository.getCalendarPlanDAO().getPlanByParentUID(
-                    parnetUID);
+                    plan.parentUID);
             return result;
         }
     }
@@ -311,14 +312,25 @@ public class PlanRepository {
         }
     }
 
-    public static class DeletePlanByOneParentUID extends AsyncTask<Long,Void,Void> {
+    public static class DeleteAllChildrenPlan extends AsyncTask<Plan,Void,Void> {
 
         @Override
-        protected Void doInBackground(Long... longs) {
+        protected Void doInBackground(Plan... plans) {
+            Plan plan = plans[0];
+            long uid = plan.parentUID;
 
-            long UID = longs[0];
+            RootRepository.getCalendarPlanDAO().deleteChildrenPlanByParentUID(uid);
+            return null;
+        }
+    }
 
-            RootRepository.getCalendarPlanDAO().deletePlanByOneParentUID(UID);
+    public static class DeletePlan extends AsyncTask<Plan, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Plan... plans) {
+
+
+            RootRepository.getCalendarPlanDAO().delete(plans);
             return null;
         }
     }
@@ -336,6 +348,34 @@ public class PlanRepository {
 
             RootRepository.getCalendarPlanDAO().updatePlanByParentUID(uid,
                     parentPlan.getTitle(),parentPlan.textPlan);
+
+            return null;
+        }
+    }
+
+    public static class UpdatePlansByList extends AsyncTask<ArrayList<Plan>, Void, Void> {
+
+        @Override
+        protected Void doInBackground(ArrayList<Plan>... lists) {
+            ArrayList<Plan> parentPlan = lists[0];
+
+            for(Plan plan : parentPlan) {
+                RootRepository.getCalendarPlanDAO().updatePlanDate(
+                        plan.uid,plan.year, plan.month, plan.day);
+            }
+
+            return null;
+        }
+    }
+
+    public static class UpdatePlansDateByUID extends AsyncTask<Plan, Void ,Void> {
+
+        @Override
+        protected Void doInBackground(Plan... plans) {
+
+            for(Plan plan : plans) {
+                RootRepository.getCalendarPlanDAO().updatePlanDate(plan.uid,plan.year,plan.month,plan.day);
+            }
 
             return null;
         }
@@ -370,7 +410,28 @@ public class PlanRepository {
         }
     }
 
+    public static class ReOrderingPlanCycleByParentUID extends AsyncTask<Plan, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Plan... plans) {
+            Plan plan = plans[0];
+            long uid = plan.parentUID;
+
+            List<Plan> currentList = RootRepository.getCalendarPlanDAO().getPlanByParentUID(uid);
+
+            for(int i =0; i < currentList.size(); i++) {
+                Plan currPlan = currentList.get(i);
+                currPlan.setTotalCycle(currPlan.totalCycle - 1)
+                        .setThisCycle(i+1);
+                RootRepository.getCalendarPlanDAO().update(currPlan);
+            }
+
+            return null;
+        }
+    }
+
     private static int diffByDoneValue(boolean isDone) {
         return isDone?1:-1;
     }
+
 }
