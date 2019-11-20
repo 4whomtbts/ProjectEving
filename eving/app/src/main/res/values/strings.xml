@@ -13,15 +13,29 @@
         "예"를 눌러주세요.
     </string>
     <string name="push_plan_msg">
-        현재 계획을 아래의 날짜로 미룹니다. 아래에서 일괄적용을 체크하면\n
-        현재 계획 이후에 모든 계획들도 같은 일수만큼 일괄적으로 미뤄집니다.\n
-        일괄적용을 체크하지 않는다면, 현재의 계획만 미뤄집니다.\n 이 경우에
-        미뤄지는 날짜는 다음 반복계획의 날짜와 같은날 혹은 그 후의 날로 미룰 수 없습니다.
+        현재 계획을 아래의 날짜로 미룹니다.\n
+        아래에서 일괄적용을 체크하면\n
+        현재 계획 이후에 모든 계획들도 같은 일수만큼\n
+        일괄적으로 미뤄집니다.\n
+        일괄적용을 체크하지 않는다면\n
+        현재의 계획만 미뤄집니다.\n
+        이 경우에 미뤄지는 날짜는 다음 반복계획의 날짜와\n
+        같은날 혹은 그 후의 날로 미룰 수 없습니다.
     </string>
     <string name="confirm_underline">
         <u>확인</u>
     </string>
     <string name="move_limit_msg">
-        일괄적용시 최대/최소 가능한 날짜
+        일괄적용시 최대 혹은 최소 가능한 날짜\n
+    </string>
+    <string name="invalid_move_plan_date">
+        날짜 입력이 유효하지 않습니다. 위의 가이드를 참조해주세요
+    </string>
+    <string name="success_move_plan">
+        계획 이동이 완료되었습니다.
+    </string>
+    <string name="exception_move_plan">
+        시스템 오류로 계힉 이동에 실패했습니다.\n
+        다시 시도해주세요.
     </string>
 </resources>

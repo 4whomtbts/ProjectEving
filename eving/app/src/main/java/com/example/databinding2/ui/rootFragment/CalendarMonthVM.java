@@ -35,6 +35,7 @@ public class CalendarMonthVM extends CalendarViewModel {
         int month = getGlobalCurrentCalendarMonth();
         if (month == 12) {
             setGlobalCurrentYear(year + 1);
+            setGlobalCurrentMonth(1);
         } else {
             setGlobalCurrentMonth(month + 1);
         }

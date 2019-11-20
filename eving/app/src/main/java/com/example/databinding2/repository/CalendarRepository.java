@@ -41,6 +41,7 @@ public class CalendarRepository {
     public static CalendarRepository get(){
         if(Inst == null){
             Inst = new CalendarRepository();
+
         }
         return Inst;
     }
@@ -70,6 +71,7 @@ public class CalendarRepository {
         setGlobalCurrentCalendarMonth(CalendarUtil.getCurrMonth());
         setGlobalCurrentCalendarDay(CalendarUtil.getCurrDay());
         setCurrDaysArrayOfMonthObj(list);
+
     }
 
     private static void initVariables(){

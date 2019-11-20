@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -59,7 +60,8 @@ public class MovePlanDialog extends DialogFragment {
         this.binding.setLifecycleOwner(this);
 
         vmodel.initViewModel(plan);
-        this.binding.movePlanInfoMsg.setText(vmodel.getInfoMessage());
+        this.binding.movePlanInfoMsg.setText(
+                "일괄적용시 최대/최소 가능한 날짜\n"+vmodel.getInfoMessage());
         this.binding.limitText.setText(vmodel.getLimitDate());
         View view = this.binding.getRoot();
         attachListeners();
@@ -70,9 +72,7 @@ public class MovePlanDialog extends DialogFragment {
         this.binding.bundleMove.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked && binding.bundleMove.isChecked()) {
-                    binding.singleMove.setChecked(false);
-                }
+
                 bundleMode = isChecked;
             }
         });
@@ -95,9 +95,21 @@ public class MovePlanDialog extends DialogFragment {
                 int year = picker.getYear();
                 int month = picker.getMonth();
                 int day = picker.getDayOfMonth();
-                if(vmodel.isValid(year, month, day)) {
-                    vmodel.movePlan(bundleMode,year, month, day);
+                if(vmodel.isValid(bundleMode, year, month, day)) {
+
+                    if(vmodel.movePlan(bundleMode,year, month, day)) {
+                        Toast.makeText(getContext(),R.string.success_move_plan,Toast.LENGTH_LONG).show();
+                        dismiss();
+                        return;
+                    }
+                    Toast.makeText(getContext(),R.string.exception_move_plan,Toast.LENGTH_LONG).show();
+
+
+                }else {
+                    Toast.makeText(getContext(),R.string.invalid_move_plan_date,Toast.LENGTH_LONG).show();
+
                 }
+
             }
         });
     }

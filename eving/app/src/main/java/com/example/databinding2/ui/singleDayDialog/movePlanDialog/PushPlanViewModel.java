@@ -1,25 +1,23 @@
 package com.example.databinding2.ui.singleDayDialog.movePlanDialog;
 
-import androidx.databinding.ObservableInt;
-
+import android.app.Application;
 import com.example.databinding2.R;
 import com.example.databinding2.domain.Plan;
 
-import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class PushPlanViewModel extends AbstractMovePlanViewModel{
 
-    public PushPlanViewModel() {
+    public PushPlanViewModel(Application application) {
+        super(application);
 
     }
 
     @Override
     public String getInfoMessage() {
-        return new ObservableInt(R.string.push_plan_msg).toString();
+        return getApplication().getString(R.string.push_plan_msg);
     }
 
     private boolean isLastPlan() {
@@ -63,24 +61,38 @@ public class PushPlanViewModel extends AbstractMovePlanViewModel{
                 date.getYear(), date.getMonthOfYear(), date.getDayOfMonth());
     }
 
+    // 계획 밀기에서 현재 계획보다 뒤로 미는 것을 방지
+    private void isLaterThanPlan(LocalDateTime date) {
+
+    }
+
+    private boolean isDateValidInBundleMode(final LocalDateTime date) {
+        return true;
+    }
+
+    private boolean isDateValidInSingleMode(final LocalDateTime date) {
+
+        if(getNextPlanDate().compareTo(date) <= 0) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
-    protected boolean isDateValid(int year, int month, int day) {
+    protected boolean isDateValid(final boolean bundleMode, int year, int month, int day) {
 
         LocalDateTime date = new LocalDateTime(year, month, day, 0, 0);
+
+        if(date.compareTo(planDate) <= 0) {
+            return false;
+        }
 
         if(isLastPlan()) {
             return true;
         }
 
-        if(getNextPlanDate().compareTo(date) < 0) {
-            return false;
-        }
-
-        if(planDate.compareTo(date) >= 0) {
-            return false;
-        }
-
-        return true;
+        return bundleMode?isDateValidInBundleMode(date)
+                :isDateValidInSingleMode(date);
     }
 
     @Override
@@ -107,8 +119,8 @@ public class PushPlanViewModel extends AbstractMovePlanViewModel{
                 newPlanList.add(newPlan);
 
                 index++;
-
             }
+
         }else {
             int index = getItemPosition();
             LocalDateTime newDate = planDate.plusDays(diff);

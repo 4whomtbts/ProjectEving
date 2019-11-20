@@ -44,7 +44,7 @@ public class PlanRepository {
         _planStore = new PlanStorage();
 
         initMonthPlanList();
-
+        CalendarRepository.refreshCalendar();
     }
 
     public void refreshGlobalState(){

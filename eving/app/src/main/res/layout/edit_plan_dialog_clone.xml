@@ -369,17 +369,6 @@
 
             <!-- 8 구역 시작 0.90- -->
 
-
-            <ImageView
-                android:id="@+id/ad_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:scaleType="fitXY"
-                app:layout_constraintHeight_percent="0.10"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hor_eighth_start_guide"
-                app:srcCompat="@drawable/ic_launcher_background" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

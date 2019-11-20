@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.databinding2.R;
 import com.example.databinding2.custom.LockableViewPager;
 import com.example.databinding2.databinding.CalendarListBinding;
+import com.example.databinding2.repository.CalendarRepository;
 import com.example.databinding2.repository.EnvRepository;
 import com.example.databinding2.repository.PlanRepository;
 import com.example.databinding2.repository.RootRepository;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-       // JodaTimeAndroid.init(this);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         model = ViewModelProviders.of(this).get(MainVM.class);
         binding.setModel(model);
@@ -40,22 +40,17 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(vPager);
 
-        //globalInit();
+
         RootRepository.get(getApplicationContext());
-        new PlanRepository.DeleteAllPlan().execute();
 
         RootRepository.initGlobalSetting();
+
 
     }
 
     public void setupViewPager(ViewPager vp){
         cAdapter.addFragment(new CalendarFragment(),"이전");
         vp.setAdapter(cAdapter);
-    }
-
-    private void globalInit(){
-        EnvRepository.setTimeZone();
-
     }
 
 }

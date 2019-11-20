@@ -57,7 +57,6 @@ public class CalendarFragment extends Fragment {
         this._year = gregorianCalendar.get(java.util.Calendar.YEAR);
         this._month = gregorianCalendar.get(java.util.Calendar.MONTH);
 
-
         x0=y0=0;
     }
 
@@ -70,9 +69,6 @@ public class CalendarFragment extends Fragment {
         binding.setLifecycleOwner(this);
         yearMonth = binding.yearMonthText;
         recyclerView = binding.pagerCalendar;
-
-
-
 
         touchListener(view);
         observe();

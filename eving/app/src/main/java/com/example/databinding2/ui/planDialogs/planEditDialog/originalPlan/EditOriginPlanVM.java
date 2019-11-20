@@ -108,7 +108,8 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
             System.out.println("Error!");
         }
         double progress = ((double)parent.numberOfDoneChild/(double)parent.totalCycle)*100;
-        return progress+"%";
+        double progress2 = Double.parseDouble(String.format("%.2f",progress));
+        return progress2+"%";
     }
 
     void setThisPlan(Plan thisPlan){

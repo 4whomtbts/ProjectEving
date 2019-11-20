@@ -19,6 +19,7 @@
             android:id="@+id/move_plan_info_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.20"
+            app:layout_constraintGuide_percent="0.35"
             />
 
         <TextView
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/date_picker_upper_bound"
+            app:layout_constraintTop_toBottomOf="@id/date_picker_upper_bound"
             android:text="@string/move_limit_msg" />
 
         <DatePicker
@@ -51,7 +52,7 @@
             app:layout_constraintHeight_percent="0.4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/date_picker_upper_bound"
+            app:layout_constraintTop_toBottomOf="@id/limit_text"
             />
 
         <androidx.constraintlayout.widget.Guideline
@@ -68,7 +69,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/check_boxes_upper_bound"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="단일적용" />
+            android:text="일괄적용" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/check_box_partition"
@@ -84,7 +85,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/check_boxes_upper_bound"
             app:layout_constraintLeft_toRightOf="@id/check_box_partition"
-            android:text="일괄적용" />
+            android:text="단일적용" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/move_confirm_white_space"

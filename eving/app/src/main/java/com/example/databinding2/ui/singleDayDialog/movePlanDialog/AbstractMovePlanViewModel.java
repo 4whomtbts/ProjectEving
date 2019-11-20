@@ -1,6 +1,9 @@
 package com.example.databinding2.ui.singleDayDialog.movePlanDialog;
 
+import android.app.Application;
+
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 
 import com.example.databinding2.domain.Plan;
@@ -14,9 +17,11 @@ import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class AbstractMovePlanViewModel extends ViewModel {
+public abstract class AbstractMovePlanViewModel extends AndroidViewModel {
 
-    AbstractMovePlanViewModel() {}
+    AbstractMovePlanViewModel(Application application) {
+        super(application);
+    }
 
     private String date;
     @NonNull
@@ -35,24 +40,11 @@ public abstract class AbstractMovePlanViewModel extends ViewModel {
 
     abstract public String getLimitDate();
 
-    abstract protected boolean isDateValid(int year, int month, int day);
-
-
-
-    protected String getLastestPlanDate() {
-        Plan lastPlan = this.planList.get(this.planList.size()-1);
-        return getDateFormatted(lastPlan.year, lastPlan.month, lastPlan.day);
-
-    }
-
-    protected String getEarliestPlanDate() {
-        Plan firstPlan = this.planList.get(0);
-        return getDateFormatted(firstPlan.year, firstPlan.month, firstPlan.day);
-
-    }
+    abstract protected boolean isDateValid(final boolean bundleMode, int year, int month, int day);
 
     protected String getDateFormatted(int year, int month, int day) {
-        return new StringBuilder(year)
+        return new StringBuilder()
+                .append(year)
                 .append("년 ")
                 .append(month)
                 .append("월 ")
@@ -66,27 +58,28 @@ public abstract class AbstractMovePlanViewModel extends ViewModel {
         return Days.daysBetween(targetPlanDate, requestedDate).getDays();
     }
 
-    public final boolean isValid(int year, int month, int day) {
+     final boolean isValid(final boolean bundleMode, int year, int month, int day) {
         this.year = year;
         this.month = month + 1 ; // 0 월부터 시작하므로
         this.day = day;
-        return isDateValid(this.year, this.month, this.day);
+        return isDateValid(bundleMode, this.year, this.month, this.day);
     }
 
-    public final void movePlan(boolean bundleMode, int year, int month, int day) {
+     final boolean movePlan(boolean bundleMode, int year, int month, int day) {
 
         ArrayList<Plan> result = getUpdatedPlanList(bundleMode, getDiffOfDay());
 
         try {
             new PlanRepository.UpdatePlansByList().execute(result).get();
         }catch (Exception e) {
-
+            return false;
         }
 
         CalendarRepository.refreshCalendar();
+        return true;
     }
 
-    public void initViewModel(@NonNull Plan plan) {
+     void initViewModel(@NonNull Plan plan) {
         this.plan = plan;
         this.planDate = new LocalDateTime(plan.year, plan.month, plan.day, 0, 0);
         try {
