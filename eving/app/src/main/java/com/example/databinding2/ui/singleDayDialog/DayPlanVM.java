@@ -37,7 +37,7 @@ public class DayPlanVM extends CalendarViewModel {
         CalendarRepository.refreshCalendar();
     }
 
-    public void deleteCurrentPlan() {
+    void deleteCurrentPlan() {
         YMD planYMD = plan.getYMD();
         ArrayList<Plan> list;
         try {
@@ -70,7 +70,7 @@ public class DayPlanVM extends CalendarViewModel {
         return this.plan.isDone();
     }
 
-    public void refreshModel() {
+    void refreshModel() {
         Plan refreshPlan = null;
         try {
              refreshPlan = new PlanRepository.GetOnePlanByUID().execute(this.plan.getUID()).get();
@@ -86,10 +86,6 @@ public class DayPlanVM extends CalendarViewModel {
     public String getTitle(){
         return this.plan.getTitle();
     }
-    public String getTextPlan(){
-        return this.plan.getTextPlan();
-    }
-
     public String getCycleInfo(){
         return getThisCycle()+'/'+getTotalCycle();
     }

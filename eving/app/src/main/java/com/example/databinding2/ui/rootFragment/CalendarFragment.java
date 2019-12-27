@@ -38,8 +38,8 @@ public class CalendarFragment extends Fragment {
     private Button dayButton;
     private Fragment self = this;
 
-    public static final float MIN_DIST = 300;
-    public static final float MAXY_DIST = 200;
+    private static final float MIN_DIST = 300;
+    private static final float MAXY_DIST = 200;
     private long prevTime = System.currentTimeMillis();
     private boolean wasDrag=false;
     private int _year;
@@ -58,6 +58,7 @@ public class CalendarFragment extends Fragment {
         this._month = gregorianCalendar.get(java.util.Calendar.MONTH);
 
         x0=y0=0;
+
     }
 
     @Override
@@ -75,6 +76,8 @@ public class CalendarFragment extends Fragment {
         if(vmodel!=null){
             vmodel.initCalendar();
         }
+
+        CalendarRepository.refreshCalendar();
         return view;
     }
 
@@ -106,7 +109,6 @@ public class CalendarFragment extends Fragment {
                 float slope = 100;
                 long currTime = System.currentTimeMillis();
                 long timeDiff = currTime-prevTime;
-                boolean isOnSwip = false;
                 if(x0==0 && y0==0){
                     x0=event.getX();
                     y0=event.getY();
@@ -116,26 +118,19 @@ public class CalendarFragment extends Fragment {
                     slope = diffY / diffX;
                 }
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Log.e("업발생" ,"플래그 상태 " +wasDrag);
                     return false;
                 }
                 if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-//                    Log.e("캔슬발생", "이전좌표 : ("+x0+","+y0+") 갱신좌표 : ("+x1+","+y1+")");
                     return false;
 
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        Log.e("다운좌표갱신", "이전좌표 : ("+x0+","+y0+") 갱신좌표 : ("+x1+","+y1+")");
-
                         return true;
 
                     }
 
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                        Log.e("이동", "이전좌표 : ("+x0+","+y0+") 갱신좌표 : ("+x1+","+y1+")");
-                        Log.e("이동", "MIN_DIST : "+diffX+",  MAXY_DIST : "+diffY );
-
                         if(diffX > MIN_DIST && diffY < MAXY_DIST && slope < 5
                         && timeDiff > 200){
 

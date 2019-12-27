@@ -47,35 +47,6 @@ public class PlanRepository {
         CalendarRepository.refreshCalendar();
     }
 
-    public void refreshGlobalState(){
-
-
-
-
-    }
-
-
-    /////////////////////************ STORAGE 관련 ************* ////////////////////
-
-
-
-    public void addPlanStore(int year, int month, MonthPlanList list){
-        _planStore.put(new Pair<>(year,month),list);
-    }
-    public MonthPlanList getPlanFromStore(int year, int month) {
-        return _planStore.get(new Pair<>(year,month));
-    }
-    public void deleteFromPlanStore(int year, int month){
-        _planStore.remove(new Pair<>(year,month));
-    }
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////
-
-
-
-
     /* currentMonthPlanList 관련 methods */
     public static void initMonthPlanList(){
         MonthPlanList rawList = new MonthPlanList();
@@ -87,10 +58,6 @@ public class PlanRepository {
             LiveDayPlanList planList = new LiveDayPlanList(innerRawList);
             _currentMonthPlanList.getValue().add(planList);
         }
-    }
-
-    public static void syncMonthPlanListWithDB() {
-
     }
 
     public static TSLiveData<DayPlanList> getCurrentMonthPlanListAt(int day){

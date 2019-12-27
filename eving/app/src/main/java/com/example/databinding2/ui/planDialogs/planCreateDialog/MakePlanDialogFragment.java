@@ -103,16 +103,6 @@ public class MakePlanDialogFragment extends DialogFragment {
         this.binding.planTextInputText.setMaxHeight(100);
     }
 
-    private TextView makeNewTextView(){
-        TextView newPlanTextView = new TextView(binding.getRoot().getContext());
-        newPlanTextView.setGravity(Gravity.CENTER);
-        newPlanTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,11);
-        newPlanTextView.setMaxLines(1);
-        newPlanTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        return newPlanTextView;
-    }
     private void registerAdapters(){
         ArrayList arrayList = new ArrayList<String>();
         arrayList.add("전공");
@@ -124,7 +114,6 @@ public class MakePlanDialogFragment extends DialogFragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),R.layout.group_spinner_item,arrayList);
         this.binding.groupSelectSpinner.setAdapter(arrayAdapter);
 
-        ArrayList planSpinnerList = new ArrayList<String>();
         PlanType[] temp = PlanType.getDefaultPlanTypes();
 
         this.binding.planModeSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);

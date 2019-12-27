@@ -162,17 +162,12 @@ public class CalendarRepository {
     public void setCurrDaysArrayOfMonthObj(ArrayList<TSLiveData<DayClass>> list){
         this._daysOfCurrMonth.setValue(list);
     }
-    public static TSLiveData<Integer> getLiveGlobalYear(){
-        return _globalCurrentCalendarYear;
-    }
+
     public static TSLiveData<Integer> getLiveGlobalMonth(){
         return _globalCurrentCalendarMonth;
     }
     public static TSLiveData<ArrayList<TSLiveData<DayClass>>> getLiveGlobalDaysList(){
         return _daysOfCurrMonth;
-    }
-    public TSLiveData<DayClass> liveGetDayAt(int position){
-        return _daysOfCurrMonth.getValue().get(position);
     }
 
     /*TODO
@@ -188,13 +183,6 @@ public class CalendarRepository {
         return new YMD(getGlobalCurrentSelectedYear(),
                 getGlobalCurrentSelectedMonth(),
                 getGlobalCurrentSelectedDay());
-    }
-    public ArrayList<TSLiveData<DayClass>> getCurrDaysArrayReference(){
-        return _daysOfCurrMonth.getValue();
-    }
-
-    public ArrayList<DayClass> getStoredMonthData(int month){
-        return _backup.getValue().get(month);
     }
 
     private static void setListOfDays(ArrayList<TSLiveData<DayClass>> list) {

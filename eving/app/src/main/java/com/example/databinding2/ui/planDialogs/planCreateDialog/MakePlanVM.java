@@ -93,11 +93,12 @@ public class MakePlanVM extends CalendarViewModel {
 
 
     private void registerPlanByYMD(YMD parentPlannedDay, YMDList shouldPlannedDay, Plan newPlan){
-        int index = 0;
+
         newPlan.setYMD(parentPlannedDay);
         MonthPlanList refreshedPlanList = PlanRepository.getCurrentMonthPlanList();
+
         newPlan.setTotalCycle(shouldPlannedDay.size());
-        for(index=0; index < shouldPlannedDay.size();index++){
+        for(int index=0; index < shouldPlannedDay.size();index++){
 
             YMD date = shouldPlannedDay.get(index);
 
