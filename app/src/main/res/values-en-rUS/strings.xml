@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">14714Planner</string>
+    <string name="calendar_tab">Calendar</string>
+    <string name="setting_tab">Settings</string>
+    <string name="app_info_tab">Info</string>
+    <string name="confirm_button">Confirm</string>
+</resources>

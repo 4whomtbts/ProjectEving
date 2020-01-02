@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="EditPlanOrgBinding">
+        <import type="android.view.View" />
+        <variable name="model" type="com.example.evingPlanner.ui.planDialogs.planEditDialog.originalPlan.EditOriginPlanVM">
+
+        </variable>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_plan_org_abstract_wrapper"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10"
+        >
+
+
+        <!-- 1 구역 시작-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/edit_plan_org_real_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <com.example.evingPlanner.custom.ReSelectableSpinner
+                android:id="@+id/plan_mode_select_spinner"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:overlapAnchor="false"
+                android:spinnerMode="dialog"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintWidth_percent="0.40"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_first_seg_first"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.40" />
+
+            <com.example.evingPlanner.custom.ReSelectableSpinner
+                android:id="@+id/group_select_spinner"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:overlapAnchor="false"
+                android:spinnerMode="dialog"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintWidth_percent="0.40"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/ver_first_seg_first"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_seg_first_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.80" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_seg_first_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <TextView
+                android:id="@+id/make_plan_confirm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="저장"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/ver_seg_first_third"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/hor_first_end_guide"
+                />
+
+
+            <!-- 1 구역 끝 0.05 -->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_first_end_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_second_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+
+            <!-- 2 구역 시작 0.05-->
+            <CheckBox
+                android:id="@+id/complete_plan_check_box"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintWidth_percent="0.10"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hor_second_start_guide"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_second_seg_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.08" />
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/plan_title_input_text"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintWidth_percent="0.92"
+                app:layout_constraintLeft_toRightOf="@id/ver_second_seg_first"
+                app:layout_constraintTop_toTopOf="@id/hor_second_start_guide"
+                android:background="@null"
+                android:inputType="text"
+                android:gravity="center"
+                />
+
+
+            <!-- 2 구역 끝-->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_second_end_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.11"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_third_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1"
+                />
+
+
+            <!-- 3 구역 시작-->
+
+            <TextView
+                android:id="@+id/select_all_text_button"
+                android:text="전체선택"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintTop_toTopOf="@id/hor_third_start_guide"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_seg_third_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25"
+                />
+
+            <TextView
+                android:id="@+id/unselect_all_text_button"
+                android:text="선택해제"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintTop_toTopOf="@id/hor_third_start_guide"
+                app:layout_constraintRight_toLeftOf="@id/ver_seg_third_second"
+
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_seg_third_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50"
+                />
+
+
+            <TextView
+                android:id="@+id/delete_selected_text_button"
+                android:text="선택삭제"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintTop_toTopOf="@id/hor_third_start_guide"
+                app:layout_constraintRight_toLeftOf="@id/ver_seg_third_third"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_seg_third_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+
+            <TextView
+                android:id="@+id/add_new_clone_text_button"
+                android:text="추가"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintTop_toTopOf="@id/hor_third_start_guide"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+
+            <!-- 3 구역 끝 누적 WEIGHT : 0.14 -->
+
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_third_end_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.14"
+                />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_fourth_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.14" />
+
+            <!-- 4 구역 시작 -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/clone_preview_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintHeight_percent="0.39"
+                app:layout_constraintBottom_toTopOf="@id/hor_fourth_end_guide"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hor_fourth_start_guide"
+                />
+
+            <!-- 4 구역 끝 누적 WEIGHT : 0.13 + 0.39 = 0.52 -->
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_fourth_end_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.52"
+                />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_fifth_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.52" />
+
+            <!-- 5 구역 시작  누적 WEIGHT : 0.48-->
+
+
+            <TextView
+                android:id="@+id/current_cycle_state_text"
+                android:text="반복현황 3/7"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintWidth_percent="0.50"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintTop_toTopOf="@id/hor_fifth_start_guide"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/ver_seg_fifth_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50"
+                />
+
+            <TextView
+                android:id="@+id/current_total_progress_text"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_constraintWidth_percent="0.50"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintTop_toTopOf="@id/hor_fifth_start_guide"
+                app:layout_constraintLeft_toRightOf="@id/ver_seg_fifth_first"
+                />
+
+            <!-- 5 구역 종료 누적 WEIGHT : 0.52 + 0.04 = 0.56 -->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_fifth_end_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.56"
+                />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_sixth_zero_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.56" />
+
+
+            <!-- 6-0 구역 시작 0.56 -->
+
+            <TextView
+                android:text="메모"
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:textSize="15sp"
+                android:gravity="left"
+                app:layout_constraintTop_toBottomOf="@id/hor_sixth_zero_start_guide"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="0.04"
+                />
+
+            <!-- 6-0 구역 종료 0.60 -->
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_sixth_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.60" />
+
+            <!-- 6 구역 시작   0.60 -->
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/plan_content_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                app:layout_constraintHeight_percent="0.35"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hor_sixth_start_guide"
+                android:textSize="15sp"
+                android:background="@null"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                />
+
+
+            <!-- 6 구역 종료   0.95- -->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_sixth_end_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.95"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_seventh_start_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.95"
+                />
+
+            <!-- 7 구역 시작 0.81- -->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

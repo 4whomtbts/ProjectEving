@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">14714플래너</string>
+    <string name="calendar_tab">캘린더</string>
+    <string name="setting_tab">설정</string>
+    <string name="app_info_tab">어플정보</string>
+    <string name="confirm_button">확인</string>
+</resources>
