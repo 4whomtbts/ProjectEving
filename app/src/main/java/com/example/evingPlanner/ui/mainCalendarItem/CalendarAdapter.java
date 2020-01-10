@@ -1,6 +1,7 @@
 package com.example.evingPlanner.ui.mainCalendarItem;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Point;
 import android.util.TypedValue;
 import android.view.Display;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,13 +37,16 @@ public class CalendarAdapter extends RecyclerView.Adapter{
     private ArrayList<TSLiveData<DayClass>> dayList;
     private FragmentManager fm;
     private ConstraintLayout calendarItemWrapper;
+    private Context context;
     private TextView DayText;
+    private ViewGroup parent;
     private int selectedDay;
     private boolean isOnSwip = false;
 
-    public CalendarAdapter(ArrayList<TSLiveData<DayClass>> list, FragmentManager fm){
+    public CalendarAdapter(Context context, ArrayList<TSLiveData<DayClass>> list, FragmentManager fm){
         this.dayList = list;
         this.fm = fm;
+        this.context = context;
     }
 
     public void setCalendarList(ArrayList<TSLiveData<DayClass>> dayClassList){
@@ -54,12 +60,14 @@ public class CalendarAdapter extends RecyclerView.Adapter{
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
+
+        this.parent = parent;
+
         final CalendarViewModelBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 R.layout.calender_item,parent,false);
 
         this.calendarItemWrapper = binding.calendarItemWrapper;
         this.DayText = binding.textDay;
-
 
         Display display = parent.getDisplay();
         Point size = new Point();
@@ -143,24 +151,19 @@ public class CalendarAdapter extends RecyclerView.Adapter{
             String text = model.getDay();
             binding.textDay.setText(text);
             binding.setModel(model);
-      //      binding.executePendingBindings();
             this.observe(position);
 
         }
 
-        /*TODO
-            ObserveForever 사용 후 해체 루틴 작성
-         */
+        private View makeDayPreview(String title, boolean checked){
+            View view = LayoutInflater.from(context).inflate(R.layout.day_preview_item, parent, false);
+            TextView titleText = view.findViewById(R.id.day_preview_plan_title);
+            titleText.setText(title);
+            ImageView checkBoxImage= view.findViewById(R.id.day_preview_plan_checkBox);
 
-        private TextView makeNewTextView(){
-            TextView newPlanTextView = new TextView(binding.getRoot().getContext());
-            newPlanTextView.setGravity(Gravity.CENTER);
-            newPlanTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,11);
-            newPlanTextView.setMaxLines(1);
-            newPlanTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            return newPlanTextView;
+            if(checked) checkBoxImage.setBackgroundResource(R.drawable.checked);
+            else checkBoxImage.setBackgroundResource(R.drawable.unchecked);
+            return view;
         }
 
         private void registerPlanPreviews(ArrayList<Plan> plans){
@@ -169,15 +172,13 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
             if(childCount==0){
                 for(Plan plan : plans){
-                    TextView newPlanTextView = makeNewTextView();
-                    newPlanTextView.setText(plan.getTitle());
-                    binding.planPreview.addView(newPlanTextView,currentVisiblePlans);
+                    View dayPreview = makeDayPreview(plan.getTitle(), plan.isDone);
+                    binding.planPreview.addView(dayPreview,currentVisiblePlans);
                 }
             }else if(childCount!=plans.size()) {
-
-                TextView newPlanTextView = makeNewTextView();
-                newPlanTextView.setText(plans.get(plans.size() - 1).getTitle());
-                binding.planPreview.addView(newPlanTextView, currentVisiblePlans);
+                Plan plan = plans.get(plans.size() -1);
+                View dayPreview = makeDayPreview(plan.getTitle(), plan.isDone);
+                binding.planPreview.addView(dayPreview, currentVisiblePlans);
             }
         }
 
@@ -187,14 +188,10 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
                 @Override
                 public void onChanged(DayPlanList plans) {
-
-
                             if(plans.size()!=0){
                                 registerPlanPreviews(plans);
                                 currentVisiblePlans++;
                             }
-
-
                 }
             });
         }

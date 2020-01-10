@@ -7,9 +7,10 @@ android {
         applicationId "com.forwhomtbts.evingPlanner"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs "en",  "US", "ko"
     }
 
     dataBinding {
@@ -29,6 +30,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation "io.github.kobakei:ratethisapp:1.2.0"
     implementation 'net.danlew:android.joda:2.10.1.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.0.0'

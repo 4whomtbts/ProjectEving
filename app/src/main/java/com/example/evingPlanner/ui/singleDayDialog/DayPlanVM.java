@@ -25,11 +25,6 @@ public class DayPlanVM extends CalendarViewModel {
             new PlanRepository.UpdateOnePlanCheckState().execute(plan);
         }
 
-        try {
-            parent = new PlanRepository.GetOnePlanByUID().execute(plan.parentUID).get();
-        }catch (Exception e) {
-
-        }
 
         CalendarRepository.refreshCalendar();
     }

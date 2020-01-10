@@ -33,11 +33,6 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
 
         Plan newPlan = makePlan(title,textPlan,isDone);
 
-        boolean isClonedPlanListChanged = !originClonedPlanList.isSimilar(super.getWillBePlannedDateListValue());
-        boolean isPlanExactlyEqual = thisPlan.isSame(newPlan);
-        boolean isPlanSimilar = thisPlan.isSimilar(newPlan);
-
-
         if(!thisPlan.isSimilar(newPlan) ||
                 !originClonedPlanList.isSimilar(super.getWillBePlannedDateListValue())
             || !(thisPlan.isDone()==isDone)
@@ -82,10 +77,12 @@ public class EditOriginPlanVM extends PlanMakeViewModel {
 
     void editPlan(){
 
-        YMDList ymdList = getWillBePlannedDateListValue();
+        boolean originalIsDone = thisPlan.isDone;
         Plan editedPlan = thisPlan.setTitle(this.title)
                                   .setTextPlan(this.textPlan)
                                   .setIsDone(this.isDone);
+        if(this.isDone != originalIsDone) new PlanRepository.UpdateOnePlanCheckState().execute(thisPlan);
+
         new PlanRepository.UpdateParentAndAllChildrenOfPlan().execute(editedPlan);
         CalendarRepository.refreshCalendar();
 

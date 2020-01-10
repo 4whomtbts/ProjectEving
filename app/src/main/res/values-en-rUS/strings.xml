@@ -5,4 +5,7 @@
     <string name="setting_tab">Settings</string>
     <string name="app_info_tab">Info</string>
     <string name="confirm_button">Confirm</string>
+    <string name="no_thanks">No Thanks</string>
+    <string name="rate_now">Rate now</string>
+    <string name="remind_me_later">Remind me later</string>
 </resources>

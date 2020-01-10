@@ -22,10 +22,8 @@
         3. 게획을 미루거나, 앞당길 수 있음\n
         계획을 생성후에, 날짜를 클릭하고 미루거나 당기고싶은\n
         계획을 꾹 터치하세요, 3번 기능에는 여러가지 제약이 있습니다.\n
-        오늘이 12월 30일이라고 하겠습니다. 그리고 1월 3일, 1월 4일, 1월7일\n
-        1월 10일, 1월 17일에 계획이 생성되었다고 생각하겠습니다.
-
-        1월 3일 계획을 12월 30일 이전으로 당길 수 없습니다(즉, 오늘을 기준으로 함)
+        1월 3일, 1월 4일, 1월7일\n
+        1월 10일, 1월 17일에 계획이 생성되었다고 생각하겠습니다.\n
         1월 4일 계획을 1월 3일이나 그 이전날로 당길 수 없습니다\n
         1월 7일을 1월 4일로 당길 수 없는것도 마찬가지이며, 1월 7일의 계획을\n
         1월 5,6,7일로 당기는 것은 적법합니다.\n
@@ -34,7 +32,7 @@
         즉, 자신과 자신 이후의 모든 계획을 1일(1월7일-1월6일=1일) 당깁니다.\n
 
         미루기에 대해 설명하겠습니다.\n
-        1월에 반복게획이 3, 4, 7, 10, 17일에 있다고 하겠습니다.(위와 동일)\n
+        1월에 반복계획이 3, 4, 7, 10, 17일에 있다고 하겠습니다.(위와 동일)\n
         단일모드에서 3일 계획을 4일 이후로 미룰 수 없습니다.\n
         하지만, 일괄모드를 적용해서 3일 계획을 -> 5일로 미뤄보겠습니다.\n
         미룬후에 계획은 아래와 같이 변경됩니다.\n
@@ -124,10 +122,15 @@
         방해가 되는 게임, 쇼핑몰같은 구글 자동광고(Admob)를 제외했습니다.\n
         이 플래너를 사용하시면서 도움이 되었다면\n
         아래의 계좌로 후원해주시면 감사합니다!\n
-        신한은행 110-440-539157 예금주 김현준
+        신한은행 110-440-539157 예금주 ㄱㅎㅈ
 
 
     </string>
     <string name="app_info_tab">Info</string>
     <string name="confirm_button">확인</string>
+    <string name="remind_me_later">Remind me later</string>
+    <string name="rate_now">Rate now</string>
+    <string name="no_thanks">No Thanks</string>
+    <string name="review_request_title">Please rate this app!</string>
+    <string name="review_request_message">Do you like this app?\\n Please rate this app and write review about it!</string>
 </resources>

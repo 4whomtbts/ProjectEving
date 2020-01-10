@@ -1,7 +1,6 @@
 package com.example.evingPlanner.ui.main;
 
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,10 +14,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.evingPlanner.R;
 import com.example.evingPlanner.custom.LockableViewPager;
 import com.example.evingPlanner.databinding.CalendarListBinding;
-import com.example.evingPlanner.repository.PlanRepository;
 import com.example.evingPlanner.repository.RootRepository;
 import com.example.evingPlanner.ui.rootFragment.CalendarFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.kobakei.ratethisapp.RateThisApp;
 
 public class MainActivity extends AppCompatActivity {
     rootViewPagerAdapter cAdapter = new rootViewPagerAdapter(getSupportFragmentManager());
@@ -42,16 +41,65 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(vPager);
 
-        RootRepository.get(getApplicationContext());
 
+        RootRepository.get(getApplicationContext());
+        requestReviewConfig();
+        requestReview();
         RootRepository.initGlobalSetting();
         showInfoMessage();
+        requestReview();
     }
 
     public void setupViewPager(ViewPager vp){
         cAdapter.addFragment(new CalendarFragment(),getString(R.string.calendar_tab));
         cAdapter.addFragment(new SettingFragment(), getString(R.string.app_info_tab));
         vp.setAdapter(cAdapter);
+    }
+
+    private void requestReviewConfig() {
+        RateThisApp.Config config = new RateThisApp.Config(7, 4);
+        config.setTitle(R.string.review_request_title);
+        config.setYesButtonText(R.string.rate_now);
+        config.setNoButtonText(R.string.no_thanks);
+        config.setCancelButtonText(R.string.remind_me_later);
+        config.setMessage(R.string.review_request_message);
+        RateThisApp.init(config);
+
+    }
+    private void requestReview() {
+        RateThisApp.onCreate(this);
+        // If the condition is satisfied, "Rate this app" dialog will be shown
+        RateThisApp.showRateDialogIfNeeded(this);
+
+        /*
+        SharedPreferences reviewRequest = getSharedPreferences("REVIEW_REQUEST", 0);
+        SharedPreferences firstUse = getSharedPreferences("FIRST_USE_DATE", 0);
+        boolean requested = reviewRequest.getBoolean("REVIEW_REQUEST", false);
+        String firstUseDate = firstUse.getString("FIRST_USE_DATE", null);
+
+        if(!requested && (firstUseDate == null)) {
+            SharedPreferences.Editor firstUseEdit = firstUse.edit();
+            String startDate = DateTime.now().toString("yyyy-MM-dd");
+            firstUseEdit.putString("FIRST_USE_DATE",startDate);
+            firstUseEdit.apply();
+        }
+
+        if(!requested) {
+            DateTime now = DateTime.now();
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+            DateTime firstUseDateTime = DateTime.parse(firstUseDate, formatter);
+
+            if(Days.daysBetween(now, firstUseDateTime).getDays() > 1) {
+                SharedPreferences.Editor reviewRequestEditor = reviewRequest.edit();
+                reviewRequestEditor.putBoolean("REVIEW_REQUEST", true);
+                reviewRequestEditor.apply();
+
+
+            }
+        }
+         */
+
+
     }
 
     private void showInfoMessage() {
@@ -73,7 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
             SharedPreferences.Editor edit = pref.edit();
             edit.putInt("counter", 1);
-            edit.commit();
+            edit.apply();
+
         }
     }
 

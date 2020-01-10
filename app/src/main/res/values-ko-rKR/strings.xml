@@ -5,4 +5,9 @@
     <string name="setting_tab">설정</string>
     <string name="app_info_tab">어플정보</string>
     <string name="confirm_button">확인</string>
+    <string name="no_thanks">아니오</string>
+    <string name="rate_now">지금하기</string>
+    <string name="remind_me_later">다시 알리기</string>
+    <string name="review_request_title"> </string>
+    <string name="review_request_message">"14714 플래너를 사용해주셔서 감사합니다!\n  소중한 시간 내주셔서 평가와 리뷰 남겨주시면\n  더 좋은 스터디 플래너로 보답하겠습니다."</string>
 </resources>

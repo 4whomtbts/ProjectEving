@@ -61,11 +61,15 @@ public class EditClonePlanVM extends PlanMakeViewModel {
 
     void editPlan(){
 
-        currentPlan.setTitle(this.title)
+        boolean originalIsDone = currentPlan.isDone;
+        this.currentPlan = currentPlan.setTitle(this.title)
                    .setTextPlan(this.textPlan)
                    .setIsDone(this.isDone);
 
-        new PlanRepository.UpdateOnePlanByUID().execute(currentPlan);
+        if(originalIsDone != this.isDone) {
+            new PlanRepository.UpdateOnePlanCheckState().execute(this.currentPlan);
+        }
+        new PlanRepository.UpdateOnePlanByUID().execute(this.currentPlan);
         CalendarRepository.refreshCalendar();
     }
 

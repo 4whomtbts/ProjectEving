@@ -349,11 +349,8 @@ public class PlanRepository {
         @Override
         protected Void doInBackground(Plan... plans) {
             Plan plan = plans[0];
-
-            /*
-            int diff=  PlanRepository.diffByDoneValue(plan.isDone);
-            RootRepository.getCalendarPlanDAO().updateParentProgress(plan.parentUID,diff);
-             */
+            //int diff=  PlanRepository.diffByDoneValue(plan.isDone);
+            //RootRepository.getCalendarPlanDAO().updateParentProgress(plan.parentUID,diff);
             RootRepository.getCalendarPlanDAO().updatePlan(plan.uid,plan.title,plan.textPlan,plan.isDone);
 
             return null;

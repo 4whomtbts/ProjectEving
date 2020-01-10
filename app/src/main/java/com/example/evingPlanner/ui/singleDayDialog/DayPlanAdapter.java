@@ -269,12 +269,15 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
         private void moveClickListener(int moveType) {
 
+            /*
+            오늘을 기준으로 이전 계획은 밀고 당기기 불가능하게 했었는데
+            막상 써보니깐 가능하게 하는게 더 좋아서 주석처리함.
             if(new DateTime(model.plan.year, model.plan.month, model.plan.day,0,0,0,0)
                 .isBefore(new DateTime().minusDays(1))) {
                 Toast.makeText(context, R.string.invalid_move_attempt, Toast.LENGTH_LONG).show();
                 return;
             }
-
+             */
             MovePlanDialog dialog = new MovePlanDialog(moveType, model.plan);
             FragmentTransaction ft = fragmentManager.beginTransaction();
             dialog.show(ft, Integer.toString(moveType));

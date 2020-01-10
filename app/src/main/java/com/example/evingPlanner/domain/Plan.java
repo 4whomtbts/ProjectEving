@@ -151,6 +151,7 @@ public class Plan {
         this.isDone = isDone;
         return this;
     }
+
     public boolean isDone() {
         return isDone;
     }

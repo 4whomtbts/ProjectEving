@@ -165,7 +165,7 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<TSLiveData<DayClass>> dayClasses) {
                 RecyclerView view= binding.pagerCalendar;
-                CalendarAdapter adapter = new CalendarAdapter(dayClasses, getFragmentManager());
+                CalendarAdapter adapter = new CalendarAdapter(getContext(), dayClasses, getFragmentManager());
                     GridLayoutManager manager=  new GridLayoutManager(getActivity(),7);
                     view.setLayoutManager(manager);
                     view.setAdapter(adapter);

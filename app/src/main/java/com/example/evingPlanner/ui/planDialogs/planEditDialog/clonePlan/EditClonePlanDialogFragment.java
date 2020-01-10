@@ -173,7 +173,6 @@ public class EditClonePlanDialogFragment extends DialogFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 vmodel.isDone = isChecked;
-
             }
         });
 
@@ -201,7 +200,6 @@ public class EditClonePlanDialogFragment extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selected = (String)adapterView.getSelectedItem();
-                System.out.println("그룹스피너 선택 : "+selected);
             }
 
             @Override
