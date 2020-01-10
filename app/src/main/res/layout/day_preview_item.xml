@@ -22,7 +22,7 @@
             android:id="@+id/day_preview_plan_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="11sp"
+            android:textSize="11dp"
             app:layout_constraintLeft_toRightOf="@id/day_preview_plan_checkBox"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
