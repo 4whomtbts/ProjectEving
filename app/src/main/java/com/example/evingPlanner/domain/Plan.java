@@ -34,6 +34,8 @@ public class Plan {
     public String textPlan;
     @ColumnInfo(name="group")
     public String group;
+    @ColumnInfo(name="group_uid")
+    public long groupUID;
     public String type;
     public String planTypeName = "반복계획";
     @ColumnInfo(name="progress")

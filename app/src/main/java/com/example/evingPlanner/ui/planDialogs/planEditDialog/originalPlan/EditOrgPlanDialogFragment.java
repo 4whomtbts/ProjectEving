@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evingPlanner.R;
 import com.example.evingPlanner.custom.YMD;
-import com.example.evingPlanner.custom.planTypeSpinnerAdapter;
+import com.example.evingPlanner.custom.PlanTypeSpinnerAdapter;
 import com.example.evingPlanner.custom.types.YMDList;
 import com.example.evingPlanner.databinding.EditPlanOrgBinding;
 import com.example.evingPlanner.domain.Plan;
@@ -159,7 +159,9 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
         PlanType[] temp = PlanType.getDefaultPlanTypes();
 
         this.binding.planModeSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
-        ArrayAdapter<PlanType> planTypeArrayAdapter = new planTypeSpinnerAdapter(getContext(), R.layout.group_spinner_item, temp);
+
+        ArrayAdapter<PlanType> planTypeArrayAdapter =
+                new PlanTypeSpinnerAdapter(getContext(), fragmentManager, R.layout.group_spinner_item);
         this.binding.planModeSelectSpinner.setAdapter(planTypeArrayAdapter);
 
     }

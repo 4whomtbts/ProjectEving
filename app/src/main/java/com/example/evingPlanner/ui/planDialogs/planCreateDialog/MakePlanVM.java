@@ -1,5 +1,7 @@
 package com.example.evingPlanner.ui.planDialogs.planCreateDialog;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.evingPlanner.TSLiveData;
 import com.example.evingPlanner.custom.YMD;
 import com.example.evingPlanner.custom.types.DayPlanList;
@@ -19,6 +21,7 @@ public class MakePlanVM extends CalendarViewModel {
     public String currentSelectedGroup;
     private boolean[] listChecked;
     public TSLiveData<YMDList> willBeClonedDateList;
+    public MutableLiveData<PlanType> planTypeMutableLiveData = new MutableLiveData<>();
     private SingleDayDialogRepository repository;
 
     public MakePlanVM() {
@@ -37,13 +40,7 @@ public class MakePlanVM extends CalendarViewModel {
 
     public void setCurrentSelectedPlanType(PlanType ptype){
         this.currentSelectedPlanType = ptype;
-
-        if( ptype.isStudyPlan() ) {
-
                  this.repository.setClonePreViewList(ptype.getPlanDatesFromNowArray(getGlobalSelectedYMD()));
-        }else{
-                this.repository.setClonePreViewList(new YMDList());
-            }
     }
 
     public YMDList getWillBePlannedDatesArrWithCurrentPlan(){

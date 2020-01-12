@@ -1,8 +1,11 @@
 package com.example.evingPlanner.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.evingPlanner.domain.planTypes.PlanType;
 
@@ -10,5 +13,7 @@ import com.example.evingPlanner.domain.planTypes.PlanType;
 @TypeConverters({PlanTypeConverters.class})
 public abstract class PlanTypeDatabase extends RoomDatabase {
     public abstract PlanTypeDAO getPlanTypeDAO();
+
+
 
 }

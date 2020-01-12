@@ -11,10 +11,9 @@ import androidx.fragment.app.Fragment;
 import com.example.evingPlanner.R;
 import com.example.evingPlanner.databinding.SettingFragmentBinding;
 
-public class SettingFragment extends Fragment {
+public final class SettingFragment extends Fragment {
 
-    SettingFragmentBinding binding;
-
+    private SettingFragmentBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.setting_fragment, container, false);
@@ -23,6 +22,4 @@ public class SettingFragment extends Fragment {
         return view;
     }
 
-
 }
-

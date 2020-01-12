@@ -8,6 +8,8 @@ import com.example.evingPlanner.domain.planTypes.PlanType;
 import com.example.evingPlanner.model.CalendarContentDatabase;
 import com.example.evingPlanner.model.CalendarDayDAO;
 import com.example.evingPlanner.model.CalendarPlanDAO;
+import com.example.evingPlanner.model.CategoryDAO;
+import com.example.evingPlanner.model.CategoryDatabase;
 import com.example.evingPlanner.model.PlanTypeDAO;
 import com.example.evingPlanner.model.PlanDatabase;
 import com.example.evingPlanner.model.PlanTypeDatabase;
@@ -26,6 +28,7 @@ public class RootRepository {
     private static SingleDayDialogRepository RepoSingle;
     private static PlanDatabase planDB;
     private static PlanTypeDatabase planTypeDB;
+    private static CategoryDatabase categoryDB;
     public static Context context; // TODO  static 접근 위험
     private static String timeZone;
 
@@ -114,7 +117,6 @@ public class RootRepository {
     public static CalendarContentDatabase getCalendarContentDB(){
         if(appDB==null){
             appDB = Room.databaseBuilder(RootRepository.context, CalendarContentDatabase.class,"calendar_content_db")
-                    .fallbackToDestructiveMigration()
                     .build();
         }
         return appDB;
@@ -123,7 +125,7 @@ public class RootRepository {
     public static PlanDatabase getPlanDatabase(){
         if(planDB == null){
             planDB = Room.databaseBuilder(RootRepository.context,PlanDatabase.class,"plan_db")
-                    .fallbackToDestructiveMigration()
+                    .addMigrations(PlanDatabase.MIGRATION_1_2)
                     .build();
         }
         return planDB;
@@ -133,10 +135,18 @@ public class RootRepository {
 
         if(planTypeDB == null){
             planTypeDB = Room.databaseBuilder(RootRepository.context,PlanTypeDatabase.class,"plan_type_db")
-                    .fallbackToDestructiveMigration()
                     .build();
         }
         return planTypeDB;
+    }
+
+    public static CategoryDatabase getCategoryDatabase() {
+
+        if(categoryDB == null) {
+            categoryDB = Room.databaseBuilder(RootRepository.context, CategoryDatabase.class, "category_db")
+                    .build();
+        }
+        return categoryDB;
     }
 
 
@@ -154,5 +164,8 @@ public class RootRepository {
         return RootRepository.getPlanTypeDatabase().getPlanTypeDAO();
     }
 
+    public static CategoryDAO getCategoryDAO() {
+        return RootRepository.getCategoryDatabase().getCategoryDAO();
+    }
 
 }

@@ -73,7 +73,7 @@ public class DayDialogFragment extends DialogFragment {
         this.DayContentConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment makePlanDialog = new MakePlanDialogFragment(fragmentManager,false);
+                DialogFragment makePlanDialog = new MakePlanDialogFragment();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 makePlanDialog.show(ft,"1234");
                 dismiss();

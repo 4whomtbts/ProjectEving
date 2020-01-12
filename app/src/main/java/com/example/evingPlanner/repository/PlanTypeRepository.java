@@ -3,6 +3,7 @@ package com.example.evingPlanner.repository;
 import android.os.AsyncTask;
 
 import com.example.evingPlanner.domain.planTypes.PlanType;
+import com.example.evingPlanner.model.PlanTypeConverters;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class PlanTypeRepository {
         @Override
         protected Void doInBackground(PlanType... planTypes) {
 
+            RootRepository.getCalendarPlanTypeDAO().insert(planTypes);
             return null;
         }
     }
@@ -61,6 +63,16 @@ public class PlanTypeRepository {
 
             RootRepository.getPlanTypeDatabase().getPlanTypeDAO().deletePlanTypeByName(typeName);
 
+            return null;
+        }
+    }
+
+    public static class DeleteOnePlanByUID extends AsyncTask<PlanType, Void, Void> {
+
+        @Override
+        protected Void doInBackground(PlanType... planTypes) {
+            long uid = planTypes[0].uid;
+            RootRepository.getPlanTypeDatabase().getPlanTypeDAO().deletePlanTypeByUID(uid);
             return null;
         }
     }
@@ -97,6 +109,31 @@ public class PlanTypeRepository {
             return result;
         }
     }
+
+    public static class SelectOnePlanTypeByUID extends AsyncTask<PlanType, Void, PlanType> {
+
+        @Override
+        protected PlanType doInBackground(PlanType... planTypes) {
+            long uid = planTypes[0].uid;
+            return RootRepository.getCalendarPlanTypeDAO().selectPlanTypeByUID(uid);
+        }
+    }
+
+    public static class UpdatePlanTypeByName extends AsyncTask<PlanType, Void, Void> {
+
+        @Override
+        protected Void doInBackground(PlanType... planTypes) {
+            PlanType planType = planTypes[0];
+
+            RootRepository.getCalendarPlanTypeDAO()
+                          .updatePlanTypeByUID(planType.uid,
+                                  planType.planTypeName,
+                                  PlanTypeConverters.fromIntArrayToString(planType.cycles));
+            return null;
+        }
+    }
+
+
 
 
 

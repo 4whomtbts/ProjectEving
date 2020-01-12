@@ -5,6 +5,9 @@ import androidx.room.TypeConverter;
 import com.example.evingPlanner.custom.YMD;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PlanTypeConverters {
 
@@ -63,7 +66,7 @@ public class PlanTypeConverters {
     @TypeConverter
     public static String fromStringArray(String[] arr){
         StringBuffer converted = new StringBuffer();
-        for( String elem : arr) {
+        for(String elem : arr) {
             converted.append(elem);
             converted.append("@separator@");
         }
@@ -89,14 +92,19 @@ public class PlanTypeConverters {
 
     @TypeConverter
     public static int[] toIntArray(String storedCycleArray){
-        int len = storedCycleArray.length();
-        int numberOfElement = len-1;
-        String[] tempArr = new String[numberOfElement];
-        int[] resultArr = new int[numberOfElement];
-        tempArr = storedCycleArray.split(",");
-        for(int i=0; i < tempArr.length ; i++){
-            resultArr[i] = Integer.parseInt(tempArr[i]);
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(storedCycleArray);
+        ArrayList<Integer> tempList = new ArrayList<>();
+
+        while(m.find()) {
+            tempList.add(Integer.parseInt(m.group()));
         }
-        return resultArr;
+
+        int[] resultArray = new int[tempList.size()];
+        for(int i=0; i< tempList.size(); i++) {
+            resultArray[i] = tempList.get(i);
+        }
+        return resultArray;
     }
+
 }

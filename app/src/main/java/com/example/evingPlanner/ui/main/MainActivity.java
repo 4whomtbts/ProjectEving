@@ -14,6 +14,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.evingPlanner.R;
 import com.example.evingPlanner.custom.LockableViewPager;
 import com.example.evingPlanner.databinding.CalendarListBinding;
+import com.example.evingPlanner.domain.Category;
+import com.example.evingPlanner.domain.planTypes.PlanType;
+import com.example.evingPlanner.repository.CategoryRepository;
+import com.example.evingPlanner.repository.PlanTypeRepository;
 import com.example.evingPlanner.repository.RootRepository;
 import com.example.evingPlanner.ui.rootFragment.CalendarFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -41,19 +45,45 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(vPager);
 
-
         RootRepository.get(getApplicationContext());
         requestReviewConfig();
+        databaseTask();
         requestReview();
         RootRepository.initGlobalSetting();
         showInfoMessage();
-        requestReview();
+        showMessageByGivenSharedPreference("1.2.0", R.string.v1_2_0_title, R.string.v1_2_0_content);
     }
 
     public void setupViewPager(ViewPager vp){
         cAdapter.addFragment(new CalendarFragment(),getString(R.string.calendar_tab));
-        cAdapter.addFragment(new SettingFragment(), getString(R.string.app_info_tab));
+        cAdapter.addFragment(new InfoFragment(), getString(R.string.app_info_tab));
         vp.setAdapter(cAdapter);
+    }
+
+    public void databaseTask() {
+        //TODO 기본 Plan 등록하는 과정임, 기존의 데이터가 싱크되어있으면 분기처리 해줘야함
+        final String DEFAULT_PLAN_TYPE_REGISTERED = "DEFAULT_PLAN_TYPE_REGISTERED";
+        SharedPreferences pref = getSharedPreferences(DEFAULT_PLAN_TYPE_REGISTERED, 0);
+
+        if(!pref.getBoolean(DEFAULT_PLAN_TYPE_REGISTERED, false)) {
+            PlanType[] planTypeArray = PlanType.getDefaultPlanTypes();
+            new PlanTypeRepository.InsertPlanTypes().execute(planTypeArray[0], planTypeArray[1], planTypeArray[2]);
+            SharedPreferences.Editor edit = pref.edit();
+            edit.putBoolean(DEFAULT_PLAN_TYPE_REGISTERED, true);
+            edit.apply();
+        }
+
+        final String DEFAULT_CATEGORY_REGISTERED = "DEFAULT_CATEGORY_REGISTERED";
+        SharedPreferences categoryPref = getSharedPreferences(DEFAULT_CATEGORY_REGISTERED, 0);
+
+        if( categoryPref.getBoolean(DEFAULT_CATEGORY_REGISTERED, false)) {
+            Category defaultCategory = new Category();
+            defaultCategory.setCategoryName(getString(R.string.no_category));
+            new CategoryRepository.InsertOneCategory().execute(new Category());
+            SharedPreferences.Editor edit = categoryPref.edit();
+            edit.putBoolean(DEFAULT_CATEGORY_REGISTERED, true);
+            edit.apply();
+        }
     }
 
     private void requestReviewConfig() {
@@ -64,42 +94,11 @@ public class MainActivity extends AppCompatActivity {
         config.setCancelButtonText(R.string.remind_me_later);
         config.setMessage(R.string.review_request_message);
         RateThisApp.init(config);
-
     }
+
     private void requestReview() {
         RateThisApp.onCreate(this);
-        // If the condition is satisfied, "Rate this app" dialog will be shown
         RateThisApp.showRateDialogIfNeeded(this);
-
-        /*
-        SharedPreferences reviewRequest = getSharedPreferences("REVIEW_REQUEST", 0);
-        SharedPreferences firstUse = getSharedPreferences("FIRST_USE_DATE", 0);
-        boolean requested = reviewRequest.getBoolean("REVIEW_REQUEST", false);
-        String firstUseDate = firstUse.getString("FIRST_USE_DATE", null);
-
-        if(!requested && (firstUseDate == null)) {
-            SharedPreferences.Editor firstUseEdit = firstUse.edit();
-            String startDate = DateTime.now().toString("yyyy-MM-dd");
-            firstUseEdit.putString("FIRST_USE_DATE",startDate);
-            firstUseEdit.apply();
-        }
-
-        if(!requested) {
-            DateTime now = DateTime.now();
-            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
-            DateTime firstUseDateTime = DateTime.parse(firstUseDate, formatter);
-
-            if(Days.daysBetween(now, firstUseDateTime).getDays() > 1) {
-                SharedPreferences.Editor reviewRequestEditor = reviewRequest.edit();
-                reviewRequestEditor.putBoolean("REVIEW_REQUEST", true);
-                reviewRequestEditor.apply();
-
-
-            }
-        }
-         */
-
-
     }
 
     private void showInfoMessage() {
@@ -126,4 +125,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // 메세지를 단 한 번만 보여준다.
+    private void showMessageByGivenSharedPreference(String key, int titleRes, int messageRes) {
+        String FLAG = "FLAG";
+        String title = getResources().getString(titleRes);
+        String message = getResources().getString(messageRes);
+        String PREF_KEY = key + '_' + FLAG;
+
+        SharedPreferences pref = getSharedPreferences(key, 0);
+
+        if(!pref.getBoolean(PREF_KEY, false)) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle(title)
+                    .setPositiveButton(getResources().getString(R.string.confirm_button), null);
+
+            View child = getLayoutInflater().inflate(R.layout.welcome_dialog, null);
+            TextView welcomeMessage = child.findViewById(R.id.welcome_text);
+            welcomeMessage.setText(message);
+
+            builder.setView(child);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            SharedPreferences.Editor edit = pref.edit();
+            edit.putBoolean(PREF_KEY, true);
+            edit.apply();
+
+        }
+    }
 }

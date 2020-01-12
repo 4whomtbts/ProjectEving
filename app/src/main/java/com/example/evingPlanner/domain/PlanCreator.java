@@ -23,7 +23,6 @@ public class PlanCreator {
 
 
         if (mode == null) {
-
             return null;
         }
 
@@ -33,7 +32,6 @@ public class PlanCreator {
 
         DateTime requestedDate = new DateTime(date.getYear(), date.getMonth(), date.getDay(), 9, 0).withZone(
                 DateTimeZone.forID(EnvRepository.getTimeZone()));
-
 
         DateTime baseDate = requestedDate;
 

@@ -21,14 +21,13 @@ import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evingPlanner.R;
-import com.example.evingPlanner.custom.planTypeSpinnerAdapter;
+import com.example.evingPlanner.custom.PlanTypeSpinnerAdapter;
 import com.example.evingPlanner.custom.types.YMDList;
 import com.example.evingPlanner.databinding.MakePlanBinding;
 import com.example.evingPlanner.domain.planTypes.PlanType;
@@ -41,8 +40,7 @@ public class MakePlanDialogFragment extends DialogFragment {
     private MakePlanVM vmodel;
     private MakePlanBinding binding;
     private ClonePreviewAdapter adapter;
-    public MakePlanDialogFragment(FragmentManager fragmentManager,boolean isEdit){}
-
+    private PlanTypeSpinnerAdapter.PlanClickListener planTypeSpinnerListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -58,7 +56,6 @@ public class MakePlanDialogFragment extends DialogFragment {
         vmodel = ViewModelProviders.of(this).get(MakePlanVM.class);
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         this.binding.setModel(vmodel);
         this.binding.setLifecycleOwner(this);
@@ -93,12 +90,13 @@ public class MakePlanDialogFragment extends DialogFragment {
     }
 
     private void viewInit(){
-        this.binding.planTitleTextInput.setHint("계획 제목");
-        this.binding.planTextInputText.setHint("세부 내용");
+        this.binding.planTitleTextInput.setHint(getContext().getString(R.string.repeat_plan_title));
+        this.binding.planTextInputText.setHint(getContext().getString(R.string.repeat_plan_cycle));
         this.binding.planTextInputText.setMaxLines(5);
         this.binding.planTextInputText.setMaxHeight(100);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void registerAdapters(){
         ArrayList arrayList = new ArrayList<String>();
         arrayList.add("전공");
@@ -110,10 +108,9 @@ public class MakePlanDialogFragment extends DialogFragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),R.layout.group_spinner_item,arrayList);
         this.binding.groupSelectSpinner.setAdapter(arrayAdapter);
 
-        PlanType[] temp = PlanType.getDefaultPlanTypes();
-
         this.binding.planModeSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
-        ArrayAdapter<PlanType> planTypeArrayAdapter = new planTypeSpinnerAdapter(getContext(),R.layout.group_spinner_item,temp);
+        PlanTypeSpinnerAdapter planTypeArrayAdapter =
+                new PlanTypeSpinnerAdapter(getContext(), getFragmentManager(), R.layout.group_spinner_item);
         this.binding.planModeSelectSpinner.setAdapter(planTypeArrayAdapter);
 
     }
@@ -137,10 +134,16 @@ public class MakePlanDialogFragment extends DialogFragment {
                     view.setLayoutManager(manager);
                     view.setAdapter(this.adapter);
                 }
+            }
+        });
 
+        this.vmodel.planTypeMutableLiveData.observe(getViewLifecycleOwner(), new Observer<PlanType>() {
+            @Override
+            public void onChanged(PlanType planType) {
 
             }
         });
+
     }
 
 
@@ -231,16 +234,17 @@ public class MakePlanDialogFragment extends DialogFragment {
             public boolean onTouch(View v, MotionEvent event) {
                 Toast.makeText(getContext(),"개발중인 기능입니다", Toast.LENGTH_LONG).show();
                 return false;
+
             }
         });
+
+
         this.binding.planModeSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println(adapterView.getSelectedItem());
-                PlanType ptype =  (PlanType)(adapterView.getSelectedItem());
-                ptype.print();
+            public void onItemSelected(AdapterView<?> adapter, View view, int position, long id) {
+                System.out.println(adapter.getSelectedItem());
+                PlanType ptype =  (PlanType)(adapter.getSelectedItem());
                 vmodel.setCurrentSelectedPlanType(ptype);
-
             }
 
             @Override

@@ -133,4 +133,46 @@
     <string name="no_thanks">No Thanks</string>
     <string name="review_request_title">Please rate this app!</string>
     <string name="review_request_message">Do you like this app?\\n Please rate this app and write review about it!</string>
+    <string name="app_setting_tab">Settings</string>
+    <string name="repeat_plan_title">Plan title</string>
+    <string name="repeat_plan_cycle">Cycle</string>
+    <string name="make_new_cycle">Add cycle</string>
+    <string name="create_plan_cycle_hint">Example : 1/4/7/14/30/90/120</string>
+    <string name="create_plan_cycle_guide">
+        You just type  term/term/term/../ like \n
+        1/4/7/14. Do not contain any other white space \n
+        or character. otherwise It would be fail.</string>
+    <string name="cycle_plan_title">Cycle plan title</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="plan_cycle_editor_dialog_title_invalid">Title field cannot be empty.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_neg">Cycle should be greater than 0.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_empty">Cycle field cannot be empty.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_dup">Cycles cannot be mutually same.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_ordering">Ordering of Cycle should be ascending order.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_char">Valid character of Cycle field is either number or /</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_big_cycle">Every cycle should be equal or less than 730</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_cycle_should_number">Cycle should be number</string>
+    <string name="system_error_try_again">System error occurred, please try again.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid">Cycle field value is invalid.</string>
+    <string name="delete_reask">Do you want to delete this?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="v1.2.0_title">V1.2.0 is launched.</string>
+    <string name="v1.2.0_content">
+        This is 1.2.0 version.\n
+        1. You can customize your plan cycle!\n
+           please check cycle plan selector\n
+           when you make your review plan.\n
+        2. Like (1), you could customize your category!\n
+
+        I\'m currently making below features.
+
+        1. You can make your 14714 study planner account.\n
+        2. You can backup your plan.\n
+
+        Thank you for using my work. \n
+    </string>
+    <string name="no_category">No category</string>
 </resources>

@@ -27,28 +27,6 @@ public class DayClass {
 
 
     public DayClass() {}
-/*
-    public DayClass(int day) {
-        this.day = day;
-    }
-    public DayClass(YMD ymd){
-        this(ymd.getYear(),ymd.getMonth(),ymd.getDay());
-    }
-    public DayClass(int year, int month, int day){
-        this.year = year;
-        this.month=  month;
-        this.day = day;
-        this.setRootId(System.currentTimeMillis());
-    }
-    public DayClass(int year, int month, int day,Plan plan){
-        this.year = year;
-        this.month=  month;
-        this.day = day;
-        //this.plan = plan;
-        this.setRootId(System.currentTimeMillis());
-    }
-
- */
 
     public DayClass setRootId(long rootId) {
         this.rootId = rootId;

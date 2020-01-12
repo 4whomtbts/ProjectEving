@@ -10,4 +10,8 @@
     <string name="remind_me_later">다시 알리기</string>
     <string name="review_request_title"> </string>
     <string name="review_request_message">"14714 플래너를 사용해주셔서 감사합니다!\n  소중한 시간 내주셔서 평가와 리뷰 남겨주시면\n  더 좋은 스터디 플래너로 보답하겠습니다."</string>
+    <string name="app_setting_tab">개인설정</string>
+    <string name="repeat_plan_title">계획 제목</string>
+    <string name="repeat_plan_cycle">반복주기</string>
+    <string name="make_new_cycle">계획 추가</string>
 </resources>

@@ -10,4 +10,60 @@
     <string name="remind_me_later">다시 알리기</string>
     <string name="review_request_title"> </string>
     <string name="review_request_message">"14714 플래너를 사용해주셔서 감사합니다!\n  소중한 시간 내주셔서 평가와 리뷰 남겨주시면\n  더 좋은 스터디 플래너로 보답하겠습니다."</string>
+    <string name="make_new_cycle">계획 추가</string>
+    <string name="repeat_plan_cycle">반복주기</string>
+    <string name="repeat_plan_title">계획 제목</string>
+    <string name="create_plan_cycle_hint">예시 : 1/4/7/14/30/90/120</string>
+    <string name="create_plan_cycle_guide">
+        간격/간격/간격 형식으로 써주세요.\n
+        예를들어 1/4/7/14/15 처럼 쓰고 마지막에는\n
+        슬래시(/)를 쓰지 않아도 됩니다. 중간에 공백이나\n
+        숫자가 아닌 글자를 넣을시에 정상작동하지 않습니다.\n\n
+        복잡하게 생각하실 필요 없이 위의 예제처럼 쓰시면\n
+        원하시는 반복주기를 만들어내실 수 있습니다!
+        1은 반드시 들어가야 합니다. 1이 의미하는 것은\n
+        계획을 만드는 날짜에 계획을 생성한다는 것 입니다.\n
+        즉, 진도나가는 것과 같은 의미입니다.\n
+        내일 복습하고 싶다면 2를 더해주세요.\n
+        1주일 후 복습하고 싶으시다면, 1+7=8 을 더해주면 됩니다.\n
+    </string>
+    <string name="cycle_plan_title">반복계획 제목</string>
+    <string name="save">저장</string>
+    <string name="edit">수정</string>
+    <string name="delete">삭제</string>
+    <string name="plan_cycle_editor_dialog_title_invalid">제목칸은 비어있을 수 없습니다.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_neg">주기는 0보다 항상 커야합니다</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_empty">주기는 빈 칸일 수 없습니다.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_dup">같은 주기를 쓸 수 없습니다.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_ordering">주기는 반드시 오름차순이어야 합니다.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_char">주기 칸에는 숫자 혹은 / 만 있어야합니다.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_big_cycle">주기는 730일 이하만 가능합니다.</string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid_cycle_should_number">주기는 숫자만 가능합니다.</string>
+    <string name="system_error_try_again">
+        시스템 오류가 발생했습니다.\n
+        잠시 후 다시 시도해주세요.\n
+        이 오류가 계속 발생한다면\n
+        개발자에게 연락해주세요.\n
+    </string>
+    <string name="plan_cycle_editor_dialog_cycle_invalid">
+        주기 값이 올바르지 않습니다.\n
+        위의 가이드를 참조하세요.
+    </string>
+    <string name="yes">네</string>
+    <string name="no">아니오</string>
+    <string name="delete_reask">정말 삭제하시겠습니까?</string>
+    <string name="v1.2.0_title">1.2.0 버전</string>
+    <string name="v1.2.0_content">
+        이번 버전에서 아래의 기능이 추가되었습니다.\n
+        1. 이제 나만의 반복주기를 만들수 있습니다.\n
+           계획을 만드실 때, 좌측상단에 기본으로 1/4/7/14가\n
+           되어있는 곳을 누르시면 1.1.0 버전에서 보지 못했던\n
+           기능들이 추가되어 있습니다.\n\n
+
+        2. 반복주기처럼, 카테고리(그룹)도 만들 수 있습니다.\n
+            영어, 회계, 생물학, 한국사, 교육학과 같이\n
+           사용자님이 공부하시는 것들을 자유롭게 분류해보세요\n
+
+    </string>
+    <string name="no_category">미분류</string>
 </resources>
