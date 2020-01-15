@@ -84,7 +84,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/guideline10"
-                />
+                android:background="?attr/selectableItemBackground" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline8"
@@ -148,7 +148,7 @@
                 app:layout_constraintHeight_percent="0.04"
                 app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
                 app:layout_constraintLeft_toLeftOf="parent"
-                />
+                android:background="?attr/selectableItemBackground" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/ver_seg_third_first"
@@ -170,8 +170,7 @@
                 app:layout_constraintHeight_percent="0.04"
                 app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
                 app:layout_constraintRight_toLeftOf="@id/ver_seg_third_second"
-
-                />
+                android:background="?attr/selectableItemBackground" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/ver_seg_third_second"
@@ -193,8 +192,7 @@
                 app:layout_constraintHeight_percent="0.04"
                 app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
                 app:layout_constraintRight_toLeftOf="@id/ver_seg_third_third"
-                />
-
+                android:background="?attr/selectableItemBackground" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/ver_seg_third_third"
@@ -216,9 +214,7 @@
                 app:layout_constraintHeight_percent="0.04"
                 app:layout_constraintTop_toTopOf="@id/clone_preview_control_panel_guide"
                 app:layout_constraintRight_toRightOf="parent"
-                />
-
-
+                android:background="?attr/selectableItemBackground" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline5"
@@ -226,7 +222,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.18" />
-
 
             <!-- 3구역 시작   -->
 
@@ -242,7 +237,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline5"
                 />
-
 
             <!-- 4구역 끝 59% -->
 
@@ -262,9 +256,7 @@
                     android:layout_height="match_parent"
                     android:maxLines="5"
                     android:inputType="textMultiLine"
-                    android:background="@null"
-
-                    />
+                    android:background="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
 

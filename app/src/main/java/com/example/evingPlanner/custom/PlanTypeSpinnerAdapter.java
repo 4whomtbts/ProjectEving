@@ -37,8 +37,8 @@ import java.util.concurrent.ExecutionException;
 public class PlanTypeSpinnerAdapter extends ArrayAdapter<PlanType> {
 
     private Context context;
-    private ArrayList<PlanType> planTypeArrayList;
     private FragmentManager fragmentManager;
+    public ArrayList<PlanType> planTypeArrayList;
     public PlanTypeSpinnerAdapter.PlanClickListener planTypeSelectedListener;
 
     private boolean isPositionIsButton(int position) {
@@ -157,6 +157,14 @@ public class PlanTypeSpinnerAdapter extends ArrayAdapter<PlanType> {
                         }
 
                         if (item.getItemId() == R.id.plan_cycle_item_option_delete) { // 삭제모드
+
+                            if(planTypeArrayList.size() == 1) {
+                                Toast.makeText(context,
+                                               context.getResources().getString(R.string.plan_type_minimum),
+                                               Toast.LENGTH_LONG).show();
+                                return true;
+                            }
+
                             DialogInterface.OnClickListener deleteDialogClickListener =
                                     new DialogInterface.OnClickListener() {
                                         @Override

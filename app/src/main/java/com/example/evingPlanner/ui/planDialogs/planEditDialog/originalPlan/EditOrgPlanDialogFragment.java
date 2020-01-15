@@ -29,10 +29,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evingPlanner.R;
+import com.example.evingPlanner.custom.CategorySpinnerAdapter;
 import com.example.evingPlanner.custom.YMD;
 import com.example.evingPlanner.custom.PlanTypeSpinnerAdapter;
 import com.example.evingPlanner.custom.types.YMDList;
 import com.example.evingPlanner.databinding.EditPlanOrgBinding;
+import com.example.evingPlanner.domain.Category;
 import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.domain.planTypes.PlanType;
 import com.example.evingPlanner.repository.PlanRepository;
@@ -50,13 +52,14 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
     private Plan thisPlan;
     private ClonePreviewAdapter adapter;
     private boolean isInitiated;
+    private Category currentCategory;
+    private PlanType currentPlanType;
 
     public EditOrgPlanDialogFragment(FragmentManager fragmentManager, Plan thisPlan) {
         this.fragmentManager = fragmentManager;
         this.thisPlan = thisPlan;
         this.isInitiated = false;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -141,28 +144,31 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
             dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
                     .SOFT_INPUT_ADJUST_RESIZE);
         }
-
     }
 
-
     private void registerAdapters() {
-        ArrayList arrayList = new ArrayList<String>();
-        arrayList.add("전공");
-        arrayList.add("교양");
-        arrayList.add("수학");
-        arrayList.add("경제학");
-        arrayList.add("법학");
         this.binding.groupSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.group_spinner_item, arrayList);
-        this.binding.groupSelectSpinner.setAdapter(arrayAdapter);
+        CategorySpinnerAdapter categorySpinnerAdapter =
+                new CategorySpinnerAdapter(getContext(), getFragmentManager(), R.layout.group_spinner_item);
+        this.binding.groupSelectSpinner.setAdapter(categorySpinnerAdapter);
 
-        PlanType[] temp = PlanType.getDefaultPlanTypes();
+
+        final ArrayList<Category> categoryList = categorySpinnerAdapter.categoryArrayList;
+        for(int i=0; i < categoryList.size(); i++) {
+            Category category = categoryList.get(i);
+            if(category.getUid() == this.thisPlan.getGroupUid()) {
+                this.binding.groupSelectSpinner.setSelection(i);
+                currentCategory = category;
+                break;
+            }
+        }
 
         this.binding.planModeSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
-
-        ArrayAdapter<PlanType> planTypeArrayAdapter =
-                new PlanTypeSpinnerAdapter(getContext(), fragmentManager, R.layout.group_spinner_item);
+        PlanTypeSpinnerAdapter planTypeArrayAdapter =
+                new PlanTypeSpinnerAdapter(getContext(), getFragmentManager(), R.layout.group_spinner_item);
         this.binding.planModeSelectSpinner.setAdapter(planTypeArrayAdapter);
+        this.binding.planModeSelectSpinner.setEnabled(false);
+        this.binding.planModeSelectSpinner.setClickable(false);
 
     }
 
@@ -201,8 +207,8 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
         this.binding.groupSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selected = (String) adapterView.getSelectedItem();
-                System.out.println("그룹스피너 선택 : " + selected);
+                currentCategory = (Category) adapterView.getSelectedItem();
+
             }
 
             @Override
@@ -211,60 +217,41 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
             }
         });
 
-        this.binding.selectAllTextButton.setOnTouchListener(new Button.OnTouchListener() {
+        this.binding.selectAllTextButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
-            public boolean onTouch(View view, MotionEvent e) {
-
-                if (e.getAction() == MotionEvent.ACTION_DOWN) {
-                    vmodel.checkAll();
-                }
-
-                return false;
+            public void onClick(View v) {
+                vmodel.checkAll();
             }
         });
 
-        this.binding.unselectAllTextButton.setOnTouchListener(new Button.OnTouchListener() {
+        this.binding.unselectAllTextButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
-            public boolean onTouch(View view, MotionEvent e) {
-
-                if (e.getAction() == MotionEvent.ACTION_DOWN) {
-                    vmodel.unCheckAll();
-                }
-
-                return false;
+            public void onClick(View v) {
+                vmodel.unCheckAll();
             }
         });
 
-        this.binding.deleteSelectedTextButton.setOnTouchListener(new Button.OnTouchListener() {
+        this.binding.deleteSelectedTextButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
-            public boolean onTouch(View view, MotionEvent e) {
-                if (e.getAction() == MotionEvent.ACTION_DOWN) {
-                    vmodel.deleteCheckPreViewElement();
-                }
-
-                return false;
+            public void onClick(View v) {
+                vmodel.deleteCheckPreViewElement();
             }
         });
 
-        this.binding.addNewCloneTextButton.setOnTouchListener(new Button.OnTouchListener() {
+        this.binding.addNewCloneTextButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return false;
-            }
+            public void onClick(View v) {}
         });
 
 
         this.binding.clonePreviewRecyclerView.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view) {
-
-
-            }
+            public void onClick(View view) {}
         });
         this.binding.makePlanConfirmButton.setOnClickListener(new View.OnClickListener() {
 
@@ -274,6 +261,7 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
                 if (vmodel.isDataChanged(
                         binding.planTitleInputText.getText().toString(),
                         binding.planContentInputText.getText().toString(),
+                        currentCategory.getUid(),
                         binding.completePlanCheckBox.isChecked()
                 )) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

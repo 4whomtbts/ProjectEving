@@ -68,7 +68,6 @@ public class DayDialogFragment extends DialogFragment {
         return view;
     }
 
-
     private void attachListeners(){
         this.DayContentConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,5 +111,4 @@ public class DayDialogFragment extends DialogFragment {
             }
         });
     }
-
 }

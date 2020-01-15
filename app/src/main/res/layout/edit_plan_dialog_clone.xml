@@ -16,16 +16,11 @@
         android:weightSum="10"
         >
 
-
-
         <!-- 1 구역 시작-->
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/edit_plan_clone_real_wrapper"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
+            android:layout_height="match_parent" >
 
             <Spinner
                 android:id="@+id/plan_mode_select_spinner"
@@ -34,6 +29,7 @@
                 android:overlapAnchor="false"
                 android:paddingTop="3dp"
                 android:spinnerMode="dialog"
+                android:visibility="gone"
                 app:layout_constraintHeight_percent="0.05"
                 app:layout_constraintWidth_percent="0.40"
                 app:layout_constraintTop_toTopOf="parent"
@@ -68,14 +64,12 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.80" />
 
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/ver_seg_first_third"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.85" />
-
 
             <TextView
                 android:id="@+id/make_plan_confirm_button"
@@ -89,8 +83,7 @@
                 app:layout_constraintWidth_percent="0.15"
                 app:layout_constraintLeft_toRightOf="@id/ver_seg_first_third"
                 app:layout_constraintTop_toTopOf="parent"
-                />
-
+                android:background="?attr/selectableItemBackground" />
 
             <!-- 1 구역 끝-->
 
@@ -117,7 +110,6 @@
 
             <!-- 2 구역 시작-->
 
-
             <CheckBox
                 android:id="@+id/complete_plan_check_box"
                 android:layout_width="0px"
@@ -135,8 +127,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.10" />
 
-
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/plan_title_input_text"
                 android:layout_width="0px"
@@ -149,28 +139,23 @@
                 />
 
             <!-- 2 구역 끝-->
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_second_end_guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.13"
-                />
+                app:layout_constraintGuide_percent="0.13" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_third_start_guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.13"
-                />
-
+                app:layout_constraintGuide_percent="0.13" />
 
             <!-- 3 구역 시작-->
 
             <TextView
-
                 android:id="@+id/select_all_text_button"
                 android:text="원본계획"
                 android:layout_width="0px"
@@ -179,21 +164,15 @@
                 app:layout_constraintWidth_percent="0.25"
                 app:layout_constraintHeight_percent="0.03"
                 app:layout_constraintTop_toTopOf="@id/hor_third_start_guide"
-                app:layout_constraintLeft_toLeftOf="parent"
-                />
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <!-- 3 구역 끝 누적 WEIGHT : 0.13 -->
-
-
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_third_end_guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.13"
-                />
-
+                app:layout_constraintGuide_percent="0.13" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_fourth_start_guide"
@@ -203,7 +182,6 @@
                 app:layout_constraintGuide_percent="0.13" />
 
             <!-- 4 구역 시작 -->
-
             <TextView
                 android:id="@+id/original_plan_text"
                 android:layout_width="match_parent"
@@ -219,7 +197,6 @@
 
             <!-- 4 구역 끝 누적 WEIGHT : 0.13 + 0.20 = 0 .33 에 margin 0.01 추가함-->
 
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_fourth_end_guide"
                 android:layout_width="wrap_content"
@@ -227,7 +204,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.18"
                 />
-
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_fifth_start_guide"
@@ -237,7 +213,6 @@
                 app:layout_constraintGuide_percent="0.18" />
 
             <!-- 5 구역 시작  누적 WEIGHT : 0.18-->
-
 
             <TextView
                 android:id="@+id/current_cycle_state_text"
@@ -249,16 +224,14 @@
                 app:layout_constraintWidth_percent="0.50"
                 app:layout_constraintHeight_percent="0.03"
                 app:layout_constraintTop_toTopOf="@id/hor_fifth_start_guide"
-                app:layout_constraintLeft_toLeftOf="parent"
-                />
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/ver_seg_fifth_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.50"
-                />
+                app:layout_constraintGuide_percent="0.50" />
 
             <TextView
                 android:id="@+id/current_total_progress_text"
@@ -269,11 +242,7 @@
                 app:layout_constraintWidth_percent="0.50"
                 app:layout_constraintHeight_percent="0.03"
                 app:layout_constraintTop_toTopOf="@id/hor_fifth_start_guide"
-                app:layout_constraintRight_toRightOf="parent"
-
-
-
-                />
+                app:layout_constraintRight_toRightOf="parent" />
 
             <!-- 5 구역 종료 누적 WEIGHT : 0.18 + 0.02 = 0.20 에 마진 0.01 추가 해서 0.21- -->
 
@@ -282,8 +251,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.21"
-                />
+                app:layout_constraintGuide_percent="0.21" />
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -291,8 +259,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.21"
-                />
+                app:layout_constraintGuide_percent="0.21" />
 
             <!-- 6 구역 시작   0.21- -->
 
@@ -302,8 +269,7 @@
                 android:layout_height="0px"
                 app:layout_constraintHeight_percent="0.40"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/hor_sixth_start_guide"
-                >
+                app:layout_constraintTop_toTopOf="@id/hor_sixth_start_guide" >
 
                 <com.google.android.material.textfield.TextInputEditText
 
@@ -323,20 +289,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.61"
-                />
+                app:layout_constraintGuide_percent="0.61" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_seventh_start_guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.61"
-                />
-
+                app:layout_constraintGuide_percent="0.61" />
 
             <!-- 7 구역 시작 0.61- -->
-
 
             <TextView
                 android:id="@+id/plan_study_suggestion_text"
@@ -346,19 +308,16 @@
                 android:scrollbars="vertical"
                 app:layout_constraintHeight_percent="0.34"
                 app:layout_constraintTop_toTopOf="@id/hor_seventh_start_guide"
-                app:layout_constraintRight_toLeftOf="parent"
-                />
+                app:layout_constraintRight_toLeftOf="parent" />
 
             <!-- 7 구역 종료 0.95- -->
-
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_seventh_end_guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.95"
-                />
+                app:layout_constraintGuide_percent="0.95" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_eighth_start_guide"
@@ -370,10 +329,6 @@
             <!-- 8 구역 시작 0.90- -->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

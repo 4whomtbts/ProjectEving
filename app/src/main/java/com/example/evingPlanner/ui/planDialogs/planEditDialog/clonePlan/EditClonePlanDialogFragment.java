@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
@@ -24,7 +26,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.evingPlanner.R;
+import com.example.evingPlanner.custom.CategorySpinnerAdapter;
 import com.example.evingPlanner.databinding.EditPlanCloneBinding;
+import com.example.evingPlanner.domain.Category;
 import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.domain.planTypes.PlanType;
 
@@ -37,6 +41,7 @@ public class EditClonePlanDialogFragment extends DialogFragment {
     private EditPlanCloneBinding binding;
     private Plan thisPlan;
     private boolean isInitiated;
+    private Category currentCategory;
 
     public EditClonePlanDialogFragment(FragmentManager fragmentManager, Plan plan){
         this.thisPlan = plan;
@@ -103,13 +108,23 @@ public class EditClonePlanDialogFragment extends DialogFragment {
     }
 
     private void registerAdapters(){
-        ArrayList arrayList = new ArrayList<String>();
-        arrayList.add(this.thisPlan.planTypeName);
         this.binding.groupSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.group_spinner_item,arrayList);
-        this.binding.groupSelectSpinner.setAdapter(arrayAdapter);
+        CategorySpinnerAdapter categorySpinnerAdapter =
+                new CategorySpinnerAdapter(getContext(), getFragmentManager(), R.layout.group_spinner_item);
+        this.binding.groupSelectSpinner.setAdapter(categorySpinnerAdapter);
+
+
+        final ArrayList<Category> categoryList = categorySpinnerAdapter.categoryArrayList;
+        for(int i=0; i < categoryList.size(); i++) {
+            Category category = categoryList.get(i);
+            if(category.getUid() == this.thisPlan.getGroupUid()) {
+                this.binding.groupSelectSpinner.setSelection(i);
+                currentCategory = category;
+                break;
+            }
+        }
+        this.binding.groupSelectSpinner.setClickable(false);
         this.binding.groupSelectSpinner.setEnabled(false);
-        this.binding.groupSelectSpinner.setSelected(true);
 
         ArrayList planValue = new ArrayList();
         planValue.add(this.thisPlan.group);
@@ -118,6 +133,7 @@ public class EditClonePlanDialogFragment extends DialogFragment {
         this.binding.planModeSelectSpinner.setAdapter(planTypeArrayAdapter);
         this.binding.planModeSelectSpinner.setEnabled(false);
         this.binding.planModeSelectSpinner.setSelected(true);
+
     }
 
     private void attachListeners() {
@@ -199,7 +215,7 @@ public class EditClonePlanDialogFragment extends DialogFragment {
         this.binding.groupSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selected = (String)adapterView.getSelectedItem();
+                currentCategory = (Category) adapterView.getSelectedItem();
             }
 
             @Override

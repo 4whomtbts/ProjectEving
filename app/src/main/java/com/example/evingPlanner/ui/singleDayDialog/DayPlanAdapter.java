@@ -23,7 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.evingPlanner.R;
 import com.example.evingPlanner.databinding.DayPlanItemBinding;
 import com.example.evingPlanner.databinding.MovePlanBinding;
+import com.example.evingPlanner.domain.Category;
 import com.example.evingPlanner.domain.Plan;
+import com.example.evingPlanner.repository.CategoryRepository;
 import com.example.evingPlanner.ui.planDialogs.planEditDialog.clonePlan.EditClonePlanDialogFragment;
 import com.example.evingPlanner.ui.planDialogs.planEditDialog.originalPlan.EditOrgPlanDialogFragment;
 import com.example.evingPlanner.ui.singleDayDialog.movePlanDialog.MovePlanDialog;
@@ -100,10 +102,21 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
         private void setViewModel(DayPlanVM model){
             this.model  = model;
+            Category category = new Category();
+            try {
+                category = new CategoryRepository.SelectOneByUid()
+                        .execute(model.getGroupUiD())
+                        .get();
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
             binding.setModel(model);
             binding.executePendingBindings();
             this.binding.isDoneCheckBox.setChecked(model.isDone());
-            this.binding.groupTextView.setText(model.getGroup());
+            this.binding.groupTextView.setText(category.categoryName);
             this.binding.cycleTextView.setText(model.getCycleInfo());
             this.binding.planTitle.setText(model.getTitle());
         }

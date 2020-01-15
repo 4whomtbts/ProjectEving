@@ -76,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
         final String DEFAULT_CATEGORY_REGISTERED = "DEFAULT_CATEGORY_REGISTERED";
         SharedPreferences categoryPref = getSharedPreferences(DEFAULT_CATEGORY_REGISTERED, 0);
 
-        if( categoryPref.getBoolean(DEFAULT_CATEGORY_REGISTERED, false)) {
+        if(!categoryPref.getBoolean(DEFAULT_CATEGORY_REGISTERED, false)) {
             Category defaultCategory = new Category();
-            defaultCategory.setCategoryName(getString(R.string.no_category));
-            new CategoryRepository.InsertOneCategory().execute(new Category());
+            // 기본 계획임을 구별하기 위해서, uid 를 0으로 설정함.
+            defaultCategory.setUid(0);
+            defaultCategory.setCategoryName(getResources().getString(R.string.no_category));
+            new CategoryRepository.InsertOneCategory().execute(defaultCategory);
             SharedPreferences.Editor edit = categoryPref.edit();
             edit.putBoolean(DEFAULT_CATEGORY_REGISTERED, true);
             edit.apply();
@@ -99,6 +101,22 @@ public class MainActivity extends AppCompatActivity {
     private void requestReview() {
         RateThisApp.onCreate(this);
         RateThisApp.showRateDialogIfNeeded(this);
+        RateThisApp.setCallback(new RateThisApp.Callback() {
+            @Override
+            public void onYesClicked() {
+                RateThisApp.stopRateDialog(getApplicationContext());
+            }
+
+            @Override
+            public void onNoClicked() {
+                RateThisApp.stopRateDialog(getApplicationContext());
+            }
+
+            @Override
+            public void onCancelClicked() {
+
+            }
+        });
     }
 
     private void showInfoMessage() {

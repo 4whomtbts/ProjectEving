@@ -24,6 +24,6 @@ public interface CategoryDAO {
     @Query("SELECT * FROM table_category WHERE uid = :uid")
     Category selectByUID(long uid);
 
-    @Query("UPDATE table_category SET categoryName = :categoryName")
-    void updateByUID(long uid, String categoryName);
+    @Query("UPDATE table_category SET categoryName = :categoryName, parentUID = :parentUID WHERE uid = :uid")
+    void updateByUID(long uid, long parentUID, String categoryName);
 }

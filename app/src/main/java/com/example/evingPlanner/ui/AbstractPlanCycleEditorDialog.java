@@ -107,11 +107,6 @@ public abstract class AbstractPlanCycleEditorDialog extends DialogFragment {
         return result;
     }
 
-    private boolean savePlanCycle(final String newTitle, final String newCycles) throws IllegalArgumentException{
-            verifyPlanCycle(newTitle, newCycles);
-            return true;
-    }
-
     protected AbstractPlanCycleEditorDialog() {
         this.planType = new PlanType();
     }

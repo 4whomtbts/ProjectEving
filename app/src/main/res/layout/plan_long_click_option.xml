@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+
          />
 
     <TextView
@@ -25,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/delete_plan_button"
+        android:background="?attr/selectableItemBackground"
         />
 
 
@@ -53,6 +55,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/pull_plan_button"
+        android:background="?attr/selectableItemBackground"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -80,6 +83,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/push_plan_button"
+        android:background="?attr/selectableItemBackground"
         />
 
     <ImageButton
@@ -100,6 +104,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/guideline"
+        android:background="?attr/selectableItemBackground"
         />
 
     <androidx.constraintlayout.widget.Guideline

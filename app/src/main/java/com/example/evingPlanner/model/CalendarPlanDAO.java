@@ -81,14 +81,14 @@ public interface CalendarPlanDAO {
     @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan , isDone = :isDone WHERE uid = :uid")
     public void updateOneUserInputDatas(Long uid,String title, String textPlan, boolean isDone);
 
-    @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan , isDone = :isDone WHERE uid = :uid")
-    public void updatePlan(Long uid,String title, String textPlan, boolean isDone);
+    @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan , isDone = :isDone, group_uid = :groupUid WHERE uid = :uid")
+    public void updatePlan(Long uid,String title, String textPlan, long groupUid, boolean isDone);
 
     @Query("UPDATE table_plans SET year = :year, month = :month, day = :day WHERE uid = :uid")
     public void updatePlanDate(long uid, int year, int month, int day);
 
-    @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan WHERE parentUID = :parentUID")
-    public void updatePlanByParentUID(Long parentUID,String title, String textPlan);
+    @Query("UPDATE table_plans SET title = :title ,textPlan = :textPlan, group_uid = :groupUid WHERE parentUID = :parentUID")
+    public void updatePlanByParentUID(Long parentUID, Long groupUid, String title, String textPlan);
 
 
 }

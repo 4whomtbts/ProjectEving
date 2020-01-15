@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class PlanTypeRepository {
 
     private static PlanTypeRepository Inst;
+    private static final PlanType TEMP_PLAN_TYPE =
+            new PlanType("-", false, new int[1], new String[1]);
 
     public static PlanTypeRepository get(){
         if(Inst == null){
@@ -94,6 +96,10 @@ public class PlanTypeRepository {
             ArrayList<PlanType> newList = new ArrayList<>();
 
             newList = (ArrayList<PlanType>)RootRepository.getCalendarPlanTypeDAO().selectAll();
+
+            if(newList == null)
+                newList.add(TEMP_PLAN_TYPE);
+
             return newList;
         }
     }
@@ -115,7 +121,12 @@ public class PlanTypeRepository {
         @Override
         protected PlanType doInBackground(PlanType... planTypes) {
             long uid = planTypes[0].uid;
-            return RootRepository.getCalendarPlanTypeDAO().selectPlanTypeByUID(uid);
+            PlanType planType = RootRepository.getCalendarPlanTypeDAO().selectPlanTypeByUID(uid);
+
+            if(planType == null)
+                planType = TEMP_PLAN_TYPE;
+
+            return planType;
         }
     }
 

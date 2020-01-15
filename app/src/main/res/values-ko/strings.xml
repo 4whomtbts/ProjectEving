@@ -24,8 +24,10 @@
         1은 반드시 들어가야 합니다. 1이 의미하는 것은\n
         계획을 만드는 날짜에 계획을 생성한다는 것 입니다.\n
         즉, 진도나가는 것과 같은 의미입니다.\n
-        내일 복습하고 싶다면 2를 더해주세요.\n
-        1주일 후 복습하고 싶으시다면, 1+7=8 을 더해주면 됩니다.\n
+        내일 복습하고 싶다면 2를 쓰면 됩니다.\n
+        1주일 후 복습하고 싶으시다면, 1+7=8 을 쓰면 됩니다.\n
+        1/8/15/22 라고 쓰면, 오늘, 1주, 2주, 3주후에\n
+        계획이 생성되게 됩니다.
     </string>
     <string name="cycle_plan_title">반복계획 제목</string>
     <string name="save">저장</string>
@@ -63,7 +65,15 @@
         2. 반복주기처럼, 카테고리(그룹)도 만들 수 있습니다.\n
             영어, 회계, 생물학, 한국사, 교육학과 같이\n
            사용자님이 공부하시는 것들을 자유롭게 분류해보세요\n
+           *단, 카테고리 변경은 반드시 원본 계획에서만 가능합니다.
 
     </string>
-    <string name="no_category">미분류</string>
+    <string name="no_category">일반</string>
+    <string name="category_title">카테고리 이름</string>
+    <string name="category_spinner_editor_hint">카테고리 이름</string>
+    <string name="category_spinner_dialog_category_name_invalid_empty">카테고리 이름</string>
+    <string name="cannot_delete_default_category">기본 카테고리는 지울 수 없습니다.</string>
+    <string name="plan_type_minimum">주기계획은 반드시 한 개 이상있어야합니다.</string>
+    <string name="plan_detail">세부계획</string>
+    <string name="should_change_category_in_org_plan">카테고리는 원본계획에서만 바꿀 수 있습니다.</string>
 </resources>

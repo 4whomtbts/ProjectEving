@@ -26,9 +26,6 @@ public class MovePlanDialog extends DialogFragment {
     private Class<? extends AbstractMovePlanViewModel> concreteViewModelClass;
     protected MovePlanBinding binding;
     protected AbstractMovePlanViewModel vmodel;
-    private boolean bundleChecked = false;
-    private boolean singleChecked = false;
-
 
     public MovePlanDialog(int mode, Plan plan) {
 

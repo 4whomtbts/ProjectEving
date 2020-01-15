@@ -6,44 +6,46 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3cc6f20-6145-4d60-abea-dcb7959466cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/planTypeSpinnerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/DayClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/DayClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Plan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/PlanCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/PlanCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/planTypes/PlanType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/planTypes/PlanType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeConverters.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeConverters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CalendarPlanDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CalendarPlanDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanTypeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/RootRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/RootRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/SettingFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/InfoFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanDialogFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/clonePlan/EditClonePlanDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/clonePlan/EditClonePlanDialogFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOriginPlanVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOriginPlanVM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayDialogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayDialogFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/day_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/day_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/movePlanDialog/MovePlanDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/movePlanDialog/MovePlanDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/day_plan_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/day_plan_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_clone.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_clone.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_org.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_org.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/make_plan_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/make_plan_dialog.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/setting_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/info_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-ko-rKR/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-ko-rKR/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/plan_long_click_option.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/plan_long_click_option.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-ko/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-ko/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
@@ -56,29 +58,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="DockManager">
-    <window id="7">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="154">
-                    <caret line="233" selection-start-line="233" selection-end-line="233" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="LGP530L9328a992" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -89,51 +69,101 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/MainActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/clonePreview/ClonePreViewVM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="84" column="25" lean-forward="true" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+            <state relative-caret-position="212">
+              <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/SingleDayDialogRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanVM.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="43" selection-start-line="43" selection-end-line="44" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3415#3446#0" expanded="true" />
+                <element signature="e#529#530#0" expanded="true" />
+                <element signature="e#561#562#0" expanded="true" />
+                <element signature="e#1757#1758#0" expanded="true" />
+                <element signature="e#1798#1799#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CategoryDAO.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="184">
+              <caret line="160" selection-start-line="160" selection-end-line="160" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Category.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state relative-caret-position="4777">
+              <caret line="319" selection-start-line="319" selection-end-line="319" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/viewmodel/CalendarViewModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="82" column="5" lean-forward="true" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/YMD.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/viewmodel/PlanMakeViewModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/types/YMDList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="35" column="14" lean-forward="true" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#791#792#0" expanded="true" />
+                <element signature="e#839#840#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/clonePreview/ClonePreviewAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="123" column="9" lean-forward="true" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#12250#12344#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="220">
+              <caret line="81" column="45" lean-forward="true" selection-start-line="81" selection-start-column="45" selection-end-line="81" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -144,44 +174,44 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="layoutResourceFile_vertical" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>plan_db</find>
-      <find>UPDATE</find>
-      <find>Ma</find>
-      <find>cycles</find>
-      <find>예시 :</find>
-      <find>Pattern</find>
-      <find>Matcher</find>
-      <find>?attr/</find>
-      <find>.get()</find>
-      <find>get();</find>
-      <find>execute(</find>
-      <find>PlanTypeConverter</find>
-      <find>UPDATE</find>
-      <find>dismiss();</find>
-      <find>dismiss()</find>
-      <find>execute()</find>
-      <find>executePending</find>
-      <find>onDismiss</find>
-      <find>.get();</find>
-      <find>Dialog</find>
-      <find>Alert</find>
-      <find>Create</find>
-      <find>create</find>
       <find>AlertDialog.Builder</find>
       <find>할 일</find>
       <find>'</find>
       <find>fallback</find>
       <find>.build()</find>
-      <find>group</find>
       <find>mani</find>
+      <find>database</find>
+      <find>parent_uid</find>
+      <find>MIGRATION</find>
+      <find>parentUID=</find>
+      <find>parent</find>
+      <find>RootRepository.getPlanTypeDAO</find>
+      <find>show</find>
+      <find>pop</find>
+      <find>number_of</find>
+      <find>dismiss</find>
+      <find>미분류</find>
+      <find>내일 복습</find>
+      <find>반복계획</find>
+      <find>?attr</find>
+      <find>move</find>
+      <find>LongClick</find>
+      <find>?attr/ba</find>
+      <find>selectableItemBackground</find>
+      <find>planTextIn</find>
+      <find>수학</find>
+      <find>group</find>
+      <find>DayPlanVM</find>
+      <find>isDone</find>
+      <find>YMDList</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -196,61 +226,61 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/group_spinner_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/move_plan_dialog.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_clone.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/calendar_fragment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/clone_plan_preview_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/day_preview_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/DayClass.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/setting_fragment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/SettingFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/day_dialog.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/day_plan_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/plan_spinner_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/planTypeSpinnerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_org.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/calender_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_more_vert_24px.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/plan_cycle_item_option.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/make_plan_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/plan_spinner_button_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/PlanCreator.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanVM.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/plan_cycle_edit_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/plan_cycle_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/create_plan_cycle_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/test/java/com/example/evingPlanner/PlanCycleEditorDialogTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeConverters.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDAO.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanTypeRepository.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/PlanCycleEditorDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/EditPlanCycleDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/CreatePlanCycleDialog.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/planTypes/PlanType.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-ko/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Category.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/RootRepository.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDatabase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CategoryDatabase.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Plan.java" />
         <option value="$PROJECT_DIR$/gg" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanDatabase.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CategoryRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/AbstractSpinnerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/CategorySpinnerEditDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/CreateCategoryDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CategoryDAO.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/category_spinner_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/category_spinner_editor_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractCategorySpinnerDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Category.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Plan.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanVM.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOriginPlanVM.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanVM.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CategoryRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanTypeRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CalendarPlanDAO.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/plan_long_click_option.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/movePlanDialog/MovePlanDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_clone.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_org.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/CategorySpinnerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/make_plan_dialog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/day_plan_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/clonePlan/EditClonePlanDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-ko/strings.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -261,7 +291,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -274,12 +303,6 @@
               <item name="fix14714" type="b2602c69:ProjectViewProjectNode" />
               <item name="fix14714" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="fix14714" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fix14714" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="release" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fix14714" type="b2602c69:ProjectViewProjectNode" />
@@ -367,7 +390,7 @@
               <item name="example" type="462c0819:PsiDirectoryNode" />
               <item name="evingPlanner" type="462c0819:PsiDirectoryNode" />
               <item name="custom" type="462c0819:PsiDirectoryNode" />
-              <item name="PlanTypeSpinnerAdapter.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+              <item name="CategorySpinnerAdapter.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="fix14714" type="b2602c69:ProjectViewProjectNode" />
@@ -566,6 +589,20 @@
               <item name="evingPlanner" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
               <item name="singleDayDialog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fix14714" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fix14714" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="evingPlanner" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="singleDayDialog" type="462c0819:PsiDirectoryNode" />
+              <item name="movePlanDialog" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fix14714" type="b2602c69:ProjectViewProjectNode" />
@@ -789,17 +826,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-12T08:06:18.994Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-13T16:59:51.266Z" />
     <property name="ExportApk.ApkPath" value="C:\Users\4whom\Desktop\workspace\fix14714\app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Build Variants" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -956,25 +994,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49919224" visible="true" weight="0.16044776" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49919224" weight="0.45514223" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" sideWeight="0.50080776" side_tool="true" weight="0.37772927" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Designer" order="5" />
-      <window_info id="Resources Explorer" order="6" weight="0.32969433" />
+      <window_info id="Resources Explorer" order="6" weight="0.32932165" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="0" sideWeight="0.4989083" weight="0.31344903" />
+      <window_info anchor="bottom" id="Build" order="0" sideWeight="0.4989083" weight="0.2593819" />
       <window_info anchor="bottom" id="Run" order="1" sideWeight="0.4989083" weight="0.23318872" />
       <window_info anchor="bottom" id="Logcat" order="2" sideWeight="0.4989083" weight="0.3286334" />
       <window_info anchor="bottom" id="TODO" order="3" weight="0.3286334" />
       <window_info anchor="bottom" id="Android Profiler" order="4" weight="0.329718" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.329718" />
-      <window_info anchor="bottom" id="Debug" order="6" weight="0.39587852" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.38663745" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.329718" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5010917" side_tool="true" weight="0.3286334" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3264642" />
@@ -989,160 +1026,86 @@
       <window_info anchor="right" id="Flutter Performance" order="8" />
       <window_info anchor="right" id="Preview" order="9" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49919224" weight="0.17217484" />
-      <window_info id="Structure" order="2" side_tool="true" />
-      <window_info id="Build Variants" order="3" sideWeight="0.50080776" side_tool="true" weight="0.37772927" />
-      <window_info id="Image Layers" order="4" />
-      <window_info id="Designer" order="5" />
-      <window_info id="Resources Explorer" order="6" weight="0.32969433" />
-      <window_info id="Capture Tool" order="7" />
-      <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="0" sideWeight="0.4989083" visible="true" weight="0.31344903" />
-      <window_info anchor="bottom" id="Run" order="1" weight="0.2354874" />
-      <window_info anchor="bottom" id="Logcat" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="TODO" order="3" />
-      <window_info anchor="bottom" id="Android Profiler" order="4" weight="0.329718" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="6" weight="0.3274918" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.3286334" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010917" side_tool="true" weight="0.31344903" />
-      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="right" id="Flutter Inspector" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Flutter Outline" order="5" />
-      <window_info anchor="right" id="Gradle" order="6" />
-      <window_info anchor="right" id="StringPreview" order="7" />
-      <window_info anchor="right" id="Flutter Performance" order="8" />
-      <window_info anchor="right" id="Preview" order="9" />
-    </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java</url>
-          <line>178</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Category.java</url>
+          <line>44</line>
           <properties />
-          <option name="timeStamp" value="116" />
+          <option name="timeStamp" value="159" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java</url>
-          <line>191</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/CategorySpinnerAdapter.java</url>
+          <line>100</line>
           <properties />
-          <option name="timeStamp" value="117" />
+          <option name="timeStamp" value="161" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java</url>
-          <line>185</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java</url>
+          <line>159</line>
           <properties />
-          <option name="timeStamp" value="118" />
+          <option name="timeStamp" value="162" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CalendarRepository.java</url>
-          <line>269</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java</url>
+          <line>160</line>
           <properties />
-          <option name="timeStamp" value="119" />
+          <option name="timeStamp" value="163" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CalendarRepository.java</url>
-          <line>271</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java</url>
+          <line>70</line>
           <properties />
-          <option name="timeStamp" value="120" />
+          <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CalendarRepository.java</url>
-          <line>266</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanVM.java</url>
+          <line>61</line>
           <properties />
-          <option name="timeStamp" value="121" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>42</line>
-          <properties />
-          <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CalendarRepository.java</url>
-          <line>260</line>
-          <properties />
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>200</line>
-          <properties />
-          <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>206</line>
-          <properties />
-          <option name="timeStamp" value="125" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>227</line>
-          <properties />
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>224</line>
-          <properties />
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>215</line>
-          <properties />
-          <option name="timeStamp" value="128" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CalendarRepository.java</url>
-          <line>263</line>
-          <properties />
-          <option name="timeStamp" value="129" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>208</line>
-          <properties />
-          <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>211</line>
-          <properties />
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java</url>
-          <line>213</line>
-          <properties />
-          <option name="timeStamp" value="135" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanDatabase.java</url>
-          <line>18</line>
-          <properties />
-          <option name="timeStamp" value="136" />
-        </line-breakpoint>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDAO.java</url>
-          <line>39</line>
-          <properties class="com.example.evingPlanner.model.PlanTypeDAO" method="updatePlanTypeByUID" />
-          <option name="timeStamp" value="83" />
+          <option name="timeStamp" value="165" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>uid == 0 &amp;&amp; parentUID == 0</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>CategoryArrayList.size()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>CategoryArrayList.get(position)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>CategoryArrayList</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(ArrayList&lt;Category&gt;)new CategoryRepository.SelectAllCategory().execute().get()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>new CategoryRepository.SelectAllCategory().execute().get()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.CategoryArrayList</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>RootRepository.getCalendarPlanDAO().getPlanByMonth(
                     date.getYear(),date.getMonth())</expression-string>
@@ -1155,237 +1118,83 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>getPlanByMonth(
-                    date.getYear(),date.getMonth())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>date.getMonth()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>date.getYear()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>newList</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>RootRepository.getCalendarPlanTypeDAO().selectPlanTypeByUID(uid)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>refreshedPlanType</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>planTypes[0]</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/make_plan_dialog.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/ReSelectableSpinner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/group_spinner_item.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/plan_spinner_button_layout.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/SingleDayDialogRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-          <folding>
-            <element signature="e#830#831#0" expanded="true" />
-            <element signature="e#877#878#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="434" column="13" selection-start-line="434" selection-start-column="13" selection-end-line="434" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/plan_cycle_item.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/PlanCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/plan_cycle_edit_layout.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/plan_cycle_item_option_menu.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanVM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/movePlanDialog/AbstractMovePlanViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="111" column="40" lean-forward="true" selection-start-line="111" selection-start-column="40" selection-end-line="135" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/test/java/com/example/evingPlanner/PlanCycleEditorDialogTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="46" selection-start-line="17" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.0.0/bcd167792ec03e930d5c8345c99ae07b2627de84/fragment-1.0.0-sources.jar!/androidx/fragment/app/DialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="189" column="16" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
-          <folding>
-            <element signature="e#7461#7462#0" expanded="true" />
-            <element signature="e#7499#7500#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="510">
+          <caret line="80" column="38" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
+        <state relative-caret-position="310">
           <caret line="653" column="53" selection-start-line="653" selection-start-column="53" selection-end-line="653" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanTypeRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="233" selection-start-line="233" selection-end-line="233" />
+        <state relative-caret-position="387">
+          <caret line="54" column="55" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/PlanBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractCategorySpinnerDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/ap_generated_sources/debug/out/com/example/evingPlanner/model/PlanTypeDAO_Impl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeConverters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-529">
-          <caret line="115" column="31" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1395#1468#0" expanded="true" />
-            <element signature="e#1940#2019#0" expanded="true" />
-            <element signature="e#2129#2202#0" expanded="true" />
-            <element signature="e#2318#2396#0" expanded="true" />
-            <element signature="e#4460#4461#0" expanded="true" />
-            <element signature="e#4506#4507#0" expanded="true" />
-            <element signature="e#4078#4079#0" expanded="true" />
-            <element signature="e#4128#4129#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
+            <element signature="e#984#985#0" expanded="true" />
+            <element signature="e#1441#1540#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/CreatePlanCycleDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="153">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#321#322#0" expanded="true" />
+            <element signature="e#344#345#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/welcome_dialog.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/create_plan_cycle_dialog.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CategoryRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        <state relative-caret-position="438">
+          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/EditPlanCycleDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        <state relative-caret-position="119">
+          <caret line="7" column="55" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#335#336#0" expanded="true" />
@@ -1394,156 +1203,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CalendarMonthDAO.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/AbstractPlanCycleEditorDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/widget/ArrayAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="205" column="63" lean-forward="true" selection-start-line="193" selection-start-column="11" selection-end-line="205" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="95" column="50" selection-start-line="95" selection-start-column="50" selection-end-line="95" selection-end-column="50" />
+        <state relative-caret-position="-136">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
           <folding>
-            <element signature="e#3681#3689#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.room/room-runtime/2.0.0/facd00ec4680f68f277a5de6c6a816471fe28aba/room-runtime-2.0.0-sources.jar!/androidx/room/RoomDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="629" column="17" selection-start-line="629" selection-start-column="17" selection-end-line="629" selection-end-column="17" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/group_spinner_item.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/planTypes/PlanType.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOriginPlanVM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="163" column="38" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CalendarContentDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        <state relative-caret-position="1394">
+          <caret line="89" column="52" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CalendarPlanDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
+        <state relative-caret-position="1377">
+          <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gg">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="627" selection-start-line="4" selection-start-column="627" selection-end-line="4" selection-end-column="627" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="227" selection-start-line="227" selection-end-line="227" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CalendarRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="272" column="30" lean-forward="true" selection-start-line="272" selection-start-column="30" selection-end-line="272" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/PlanTypeDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CalendarDayDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/RootRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="167" column="58" selection-start-line="167" selection-start-column="58" selection-end-line="167" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/CategoryRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CategoryDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/model/CategoryDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        <state relative-caret-position="3451">
+          <caret line="207" column="36" selection-start-line="207" selection-start-column="36" selection-end-line="207" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1552,64 +1243,307 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Category.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="221">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#858#859#0" expanded="true" />
+            <element signature="e#900#901#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanTypeRepository.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/plan_spinner_button_layout.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="19" />
+        <state relative-caret-position="357">
+          <caret line="21" column="39" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Plan.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/movePlanDialog/MovePlanDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3154">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        <state relative-caret-position="119">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-ko/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_clone.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+        <state relative-caret-position="330">
+          <caret line="73" column="12" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/697f71c0c12135256cbfe98df498a7e4/appcompat-1.0.2/res/values/values.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="529" column="39" selection-start-line="529" selection-start-column="39" selection-end-line="529" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/plan_long_click_option.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/com/example/evingPlanner/PlanCycleEditorDialogTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/make_plan_dialog.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="256" column="40" selection-start-line="256" selection-start-column="40" selection-end-line="256" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/components/generalSpinner/groupSpinnerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planCreateDialog/MakePlanDialogFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+          <folding>
+            <element signature="e#3096#3146#0" expanded="true" />
+            <element signature="e#3196#3240#0" expanded="true" />
+            <element signature="e#6358#6665#0" expanded="true" />
+            <element signature="e#6664#6665#0" expanded="true" />
+            <element signature="e#6731#7036#0" expanded="true" />
+            <element signature="e#7035#7036#0" expanded="true" />
+            <element signature="e#7105#7429#0" expanded="true" />
+            <element signature="e#7428#7429#0" expanded="true" />
+            <element signature="e#7495#7696#0" expanded="true" />
+            <element signature="e#7695#7696#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/day_dialog.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/day_plan_item.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="android-dummy://C:/Users/4whom/Desktop/workspace/fix14714/app/Translations Editor">
       <provider selected="true" editor-type-id="string-resource-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/clonePlan/EditClonePlanDialogFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="204" column="39" selection-start-line="204" selection-start-column="39" selection-end-line="204" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/edit_plan_dialog_org.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="151" selection-start-line="151" selection-end-line="151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-ko/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="53" column="33" lean-forward="true" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="163" column="27" selection-start-line="163" selection-start-column="27" selection-end-line="163" selection-end-column="27" />
+        <state relative-caret-position="675">
+          <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/CategorySpinnerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="85" column="41" selection-start-line="85" selection-start-column="41" selection-end-line="85" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/domain/Plan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="156" selection-end-column="19" />
+          <folding>
+            <element signature="e#3852#3853#0" expanded="true" />
+            <element signature="e#3881#3882#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/main/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="84" column="25" lean-forward="true" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+        <state relative-caret-position="219">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3415#3446#0" expanded="true" />
+            <element signature="e#4476#4477#0" expanded="true" />
+            <element signature="e#4559#4560#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/PlanTypeSpinnerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayDialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="123" column="9" lean-forward="true" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
+        <state relative-caret-position="679">
+          <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12250#12344#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="749">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5000#6323#0" expanded="true" />
+            <element signature="e#6322#6323#0" expanded="true" />
+            <element signature="e#6699#8178#0" expanded="true" />
+            <element signature="e#8177#8178#0" expanded="true" />
+            <element signature="e#10472#10507#0" expanded="true" />
+            <element signature="e#10566#10600#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/planEditDialog/originalPlan/EditOrgPlanDialogFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/singleDayDialog/DayPlanVM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="43" selection-start-line="43" selection-end-line="44" />
+          <folding>
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+            <element signature="e#1798#1799#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/PlanRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4777">
+          <caret line="319" selection-start-line="319" selection-end-line="319" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/viewmodel/CalendarViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="82" column="5" lean-forward="true" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/YMD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/viewmodel/PlanMakeViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="434" column="13" selection-start-line="434" selection-start-column="13" selection-end-line="434" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/custom/types/YMDList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="35" column="14" lean-forward="true" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+          <folding>
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#839#840#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/repository/SingleDayDialogRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/clonePreview/ClonePreViewVM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/evingPlanner/ui/planDialogs/clonePreview/ClonePreviewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="81" column="45" lean-forward="true" selection-start-line="81" selection-start-column="45" selection-end-line="81" selection-end-column="45" />
         </state>
       </provider>
     </entry>

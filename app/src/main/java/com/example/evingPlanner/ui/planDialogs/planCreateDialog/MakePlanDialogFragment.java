@@ -27,9 +27,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evingPlanner.R;
+import com.example.evingPlanner.custom.CategorySpinnerAdapter;
 import com.example.evingPlanner.custom.PlanTypeSpinnerAdapter;
 import com.example.evingPlanner.custom.types.YMDList;
 import com.example.evingPlanner.databinding.MakePlanBinding;
+import com.example.evingPlanner.domain.Category;
 import com.example.evingPlanner.domain.planTypes.PlanType;
 import com.example.evingPlanner.ui.planDialogs.clonePreview.ClonePreviewAdapter;
 
@@ -91,22 +93,18 @@ public class MakePlanDialogFragment extends DialogFragment {
 
     private void viewInit(){
         this.binding.planTitleTextInput.setHint(getContext().getString(R.string.repeat_plan_title));
-        this.binding.planTextInputText.setHint(getContext().getString(R.string.repeat_plan_cycle));
+        this.binding.planTextInputText.setHint(getContext().getString(R.string.plan_detail));
         this.binding.planTextInputText.setMaxLines(5);
         this.binding.planTextInputText.setMaxHeight(100);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private void registerAdapters(){
-        ArrayList arrayList = new ArrayList<String>();
-        arrayList.add("전공");
-        arrayList.add("교양");
-        arrayList.add("수학");
-        arrayList.add("경제학");
-        arrayList.add("법학");
+
         this.binding.groupSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),R.layout.group_spinner_item,arrayList);
-        this.binding.groupSelectSpinner.setAdapter(arrayAdapter);
+        CategorySpinnerAdapter categorySpinnerAdapter =
+                new CategorySpinnerAdapter(getContext(), getFragmentManager(), R.layout.group_spinner_item);
+        this.binding.groupSelectSpinner.setAdapter(categorySpinnerAdapter);
 
         this.binding.planModeSelectSpinner.setLayoutMode(Spinner.MODE_DROPDOWN);
         PlanTypeSpinnerAdapter planTypeArrayAdapter =
@@ -179,62 +177,44 @@ public class MakePlanDialogFragment extends DialogFragment {
             }
         });
 
-        this.binding.selectAllTextButton.setOnTouchListener(new View.OnTouchListener(){
+        this.binding.selectAllTextButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
-            public boolean onTouch(View view, MotionEvent e) {
-
-                if(e.getAction() == MotionEvent.ACTION_DOWN){
-                    vmodel.checkAll();
-                    if(adapter != null){
-                        adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
-                    }
-
+            public void onClick(View v) {
+                vmodel.checkAll();
+                if(adapter != null){
+                    adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
                 }
-
-                return false;
             }
         });
 
-        this.binding.unselectAllTextButton.setOnTouchListener(new View.OnTouchListener(){
+        this.binding.unselectAllTextButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
-            public boolean onTouch(View view, MotionEvent e) {
-
-                if(e.getAction() == MotionEvent.ACTION_DOWN){
-                    vmodel.unCheckAll();
-                    if(adapter != null){
-                        adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
-                    }
+            public void onClick(View v) {
+                vmodel.unCheckAll();
+                if(adapter != null){
+                    adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
                 }
-
-                return false;
             }
     });
 
-        this.binding.deleteSelectedTextButton.setOnTouchListener(new View.OnTouchListener(){
+        this.binding.deleteSelectedTextButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
-            public boolean onTouch(View view, MotionEvent e) {
-
-                if(e.getAction() == MotionEvent.ACTION_DOWN){
-                    vmodel.deleteCheckPreViewElement();
-                    if(adapter != null){
-                        adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
-                    }
+            public void onClick(View v) {
+                vmodel.deleteCheckPreViewElement();
+                if(adapter != null){
+                    adapter.refreshPreViewAdapter(vmodel.getWillBePlannedDatesArrWithCurrentPlan());
                 }
-
-                return false;
             }
         });
 
-        this.binding.addNewCloneTextButton.setOnTouchListener(new View.OnTouchListener(){
+        this.binding.addNewCloneTextButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onClick(View v) {
                 Toast.makeText(getContext(),"개발중인 기능입니다", Toast.LENGTH_LONG).show();
-                return false;
-
             }
         });
 
@@ -258,7 +238,8 @@ public class MakePlanDialogFragment extends DialogFragment {
         this.binding.groupSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                 vmodel.currentSelectedGroup = (String)adapterView.getSelectedItem();
+                Category category = (Category) adapterView.getSelectedItem();
+                vmodel.currentSelectedCategory = category;
 
             }
 

@@ -75,6 +75,7 @@ public class DayPlanVM extends CalendarViewModel {
     public String getGroup(){
         return this.plan.getGroup();
     }
+    public long getGroupUiD() { return this.plan.getGroupUid(); }
     public String getTitle(){
         return this.plan.getTitle();
     }

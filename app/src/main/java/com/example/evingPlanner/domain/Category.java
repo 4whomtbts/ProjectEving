@@ -41,6 +41,10 @@ public class Category {
         this.categoryName = categoryName;
     }
 
+    public boolean isDefaultCategory() {
+        return uid == 0 && parentUID == 0;
+    }
+
 
 
 }

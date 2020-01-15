@@ -7,6 +7,7 @@ import com.example.evingPlanner.custom.YMD;
 import com.example.evingPlanner.custom.types.DayPlanList;
 import com.example.evingPlanner.custom.types.MonthPlanList;
 import com.example.evingPlanner.custom.types.YMDList;
+import com.example.evingPlanner.domain.Category;
 import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.domain.planTypes.PlanType;
 import com.example.evingPlanner.repository.PlanRepository;
@@ -18,7 +19,7 @@ import com.example.evingPlanner.util.CalendarUtil;
 public class MakePlanVM extends CalendarViewModel {
 
     public PlanType currentSelectedPlanType;
-    public String currentSelectedGroup;
+    public Category currentSelectedCategory;
     private boolean[] listChecked;
     public TSLiveData<YMDList> willBeClonedDateList;
     public MutableLiveData<PlanType> planTypeMutableLiveData = new MutableLiveData<>();
@@ -77,7 +78,8 @@ public class MakePlanVM extends CalendarViewModel {
                 .setMonth(getGlobalSelectedMonth())
                 .setDay(getGlobalSelectedDay())
                 .setTotalCycle(confirmedPlannedDay.size())
-                .setGroup(this.currentSelectedGroup)
+                .setGroup(currentSelectedCategory.categoryName)
+                .setGroupUid(currentSelectedCategory.getUid())
                 .setThisCycle(1000);
 
         DayPlanList org = PlanRepository.getCurrentDayPlanList();

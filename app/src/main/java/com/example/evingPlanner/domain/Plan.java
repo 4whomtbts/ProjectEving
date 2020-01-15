@@ -201,6 +201,16 @@ public class Plan {
         this.group  = group;
         return this;
     }
+
+    public Plan setGroupUid(long uid) {
+        this.groupUID = uid;
+        return this;
+    }
+
+    public long getGroupUid() {
+        return this.groupUID;
+    }
+
     public Plan setTitle(String title){
         this.title = title;
         return this;
@@ -229,6 +239,7 @@ public class Plan {
         child.setTotalCycle(this.totalCycle);
         child.setThisCycle(this.getThisCycle());
         child.setGroup(this.getGroup());
+        child.setGroupUid(this.groupUID);
         return child;
     }
 
@@ -264,6 +275,7 @@ public class Plan {
         newPlan.setTitle(target.getTitle());
         newPlan.setTextPlan(target.getTextPlan());
         newPlan.setGroup(target.getGroup());
+        newPlan.setGroupUid(target.getGroupUid());
         newPlan.setPlanType(target.getPlanType());
         newPlan.setIsDone(target.isDone());
         return newPlan;

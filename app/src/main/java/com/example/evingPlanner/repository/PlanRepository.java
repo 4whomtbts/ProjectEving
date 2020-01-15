@@ -307,9 +307,11 @@ public class PlanRepository {
             long uid = parentPlan.uid;
             RootRepository.getCalendarPlanDAO().updatePlan(
                     parentPlan.uid,parentPlan.title,parentPlan.textPlan,
+                    parentPlan.groupUID,
                     parentPlan.isDone);
 
             RootRepository.getCalendarPlanDAO().updatePlanByParentUID(uid,
+                    parentPlan.groupUID,
                     parentPlan.getTitle(),parentPlan.textPlan);
 
             return null;
@@ -349,9 +351,7 @@ public class PlanRepository {
         @Override
         protected Void doInBackground(Plan... plans) {
             Plan plan = plans[0];
-            //int diff=  PlanRepository.diffByDoneValue(plan.isDone);
-            //RootRepository.getCalendarPlanDAO().updateParentProgress(plan.parentUID,diff);
-            RootRepository.getCalendarPlanDAO().updatePlan(plan.uid,plan.title,plan.textPlan,plan.isDone);
+            RootRepository.getCalendarPlanDAO().updatePlan(plan.uid,plan.title,plan.textPlan,plan.groupUID ,plan.isDone);
 
             return null;
         }

@@ -175,4 +175,11 @@
         Thank you for using my work. \n
     </string>
     <string name="no_category">No category</string>
+    <string name="category_spinner_dialog_category_name_invalid_empty">Category name cannot be empty.</string>
+    <string name="category_spinner_editor_hint">New category name</string>
+    <string name="category_title">Category title</string>
+    <string name="cannot_delete_default_category" translatable="false">Cannot delete default category</string>
+    <string name="plan_type_minimum">You should have more than one or more plan type.</string>
+    <string name="plan_detail">Plan detail</string>
+    <string name="should_change_category_in_org_plan">You could change category of plan in a original plan of it.</string>
 </resources>
