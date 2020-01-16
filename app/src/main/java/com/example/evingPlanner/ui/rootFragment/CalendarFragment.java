@@ -175,7 +175,6 @@ public class CalendarFragment extends Fragment {
         vmodel.getLiveGlobalMonth().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-
                 String currentDate =  vmodel.getGlobalCurrentCalendarYear()
                 +"년 "+vmodel.getGlobalCurrentCalendarMonth()+"월 ";
                 binding.yearMonthText.setText(currentDate);

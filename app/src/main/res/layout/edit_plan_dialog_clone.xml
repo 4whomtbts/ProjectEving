@@ -75,10 +75,11 @@
                 android:id="@+id/make_plan_confirm_button"
                 android:layout_width="0px"
                 android:layout_height="0px"
-                android:text="계획수립"
-                android:textSize="12dp"
+                android:text="@string/save"
+                android:textSize="16dp"
                 android:gravity="center"
-                android:textStyle="bold"
+                android:fontFamily="@font/nanum_gorthic"
+                android:textColor="@color/interaction_text_color"
                 app:layout_constraintHeight_percent="0.05"
                 app:layout_constraintWidth_percent="0.15"
                 app:layout_constraintLeft_toRightOf="@id/ver_seg_first_third"
@@ -99,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.05" />
+                app:layout_constraintGuide_begin="35dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/check_box_constraint"
@@ -114,10 +115,11 @@
                 android:id="@+id/complete_plan_check_box"
                 android:layout_width="0px"
                 android:layout_height="0px"
+                android:buttonTint="@color/black"
                 app:layout_constraintHeight_percent="0.05"
                 app:layout_constraintWidth_percent="0.10"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/check_box_constraint"
+                app:layout_constraintTop_toBottomOf="@id/hor_second_start_guide"
                 />
 
             <androidx.constraintlayout.widget.Guideline
@@ -131,7 +133,11 @@
                 android:id="@+id/plan_title_input_text"
                 android:layout_width="0px"
                 android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.08"
+                android:textSize="16dp"
+                android:fontFamily="@font/nanum_gorthic"
+                android:background="@drawable/bottom_border"
+                android:textCursorDrawable="@color/edit_text_cursor_color"
+                app:layout_constraintHeight_percent="0.05"
                 app:layout_constraintWidth_percent="0.80"
                 app:layout_constraintLeft_toRightOf="@id/ver_second_seg_first"
                 app:layout_constraintTop_toBottomOf="@id/hor_second_start_guide"
@@ -155,18 +161,8 @@
 
             <!-- 3 구역 시작-->
 
-            <TextView
-                android:id="@+id/select_all_text_button"
-                android:text="원본계획"
-                android:layout_width="0px"
-                android:layout_height="0px"
-                android:textSize="15dp"
-                app:layout_constraintWidth_percent="0.25"
-                app:layout_constraintHeight_percent="0.03"
-                app:layout_constraintTop_toTopOf="@id/hor_third_start_guide"
-                app:layout_constraintLeft_toLeftOf="parent" />
-
             <!-- 3 구역 끝 누적 WEIGHT : 0.13 -->
+
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_third_end_guide"
                 android:layout_width="wrap_content"
@@ -182,20 +178,24 @@
                 app:layout_constraintGuide_percent="0.13" />
 
             <!-- 4 구역 시작 -->
-            <TextView
-                android:id="@+id/original_plan_text"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hor_fourth_start_guide"
-                app:layout_constraintHeight_percent="0.05"
-                />
 
             <!-- 4 구역 끝 누적 WEIGHT : 0.13 + 0.20 = 0 .33 에 margin 0.01 추가함-->
+
+            <TextView
+                android:id="@+id/original_plan_text"
+                android:layout_width="wrap_content"
+                android:layout_height="0px"
+                android:gravity="center"
+                android:text="2019"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/nanum_gorthic"
+                android:textColor="@color/gray_text_color"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hor_fourth_start_guide" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/hor_fourth_end_guide"
@@ -221,6 +221,8 @@
                 android:layout_height="0px"
                 android:textSize="15dp"
                 android:gravity="center"
+                android:fontFamily="@font/nanum_gorthic"
+                android:textColor="@color/gray_text_color"
                 app:layout_constraintWidth_percent="0.50"
                 app:layout_constraintHeight_percent="0.03"
                 app:layout_constraintTop_toTopOf="@id/hor_fifth_start_guide"
@@ -239,6 +241,8 @@
                 android:layout_height="0px"
                 android:textSize="15dp"
                 android:gravity="center"
+                android:fontFamily="@font/nanum_gorthic"
+                android:textColor="@color/black"
                 app:layout_constraintWidth_percent="0.50"
                 app:layout_constraintHeight_percent="0.03"
                 app:layout_constraintTop_toTopOf="@id/hor_fifth_start_guide"
@@ -267,16 +271,20 @@
                 android:id="@+id/plan_content_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
+                android:background="@null"
                 app:layout_constraintHeight_percent="0.40"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/hor_sixth_start_guide" >
 
                 <com.google.android.material.textfield.TextInputEditText
-
                     android:id="@+id/plan_content_input_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/iropke_batang"
+                    android:text="테스트용 텍스트 / text for test"
+                    android:textCursorDrawable="@color/edit_text_cursor_color"
                     android:textSize="15dp"
+                    android:background="@null"
                     android:inputType="textMultiLine"
                     android:maxLines="15" />
             </com.google.android.material.textfield.TextInputLayout>

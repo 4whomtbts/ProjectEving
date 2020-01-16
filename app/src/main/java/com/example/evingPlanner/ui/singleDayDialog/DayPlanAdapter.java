@@ -255,12 +255,13 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
         };
 
 
-        private AlertDialog.Builder alertBuilder;
+        private AlertDialog.Builder alertBuilder = null;
 
         private void attachAlert(int messageId) {
-            alertBuilder.setMessage(messageId).setPositiveButton("예", dialogClickListener)
-                    .setNegativeButton("아니요", dialogClickListener).show();
-
+            AlertDialog dialog = alertBuilder.setMessage(messageId)
+                        .setPositiveButton(context.getResources().getString(R.string.yes), dialogClickListener)
+                        .setNegativeButton(context.getResources().getString(R.string.no), dialogClickListener)
+                        .show();
         }
 
         private View.OnClickListener removePlanOnClickListener = new View.OnClickListener() {
@@ -269,7 +270,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
 
                 if(alertBuilder == null) {
-                    alertBuilder = new AlertDialog.Builder(v.getContext());
+                    alertBuilder = new AlertDialog.Builder(v.getContext(),R.style.plan_remove_reask_dialog);
                 }
 
                 if(model.plan.isParentPlan()) {

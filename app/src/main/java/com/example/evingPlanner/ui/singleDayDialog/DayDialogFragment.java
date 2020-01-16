@@ -32,8 +32,7 @@ public class DayDialogFragment extends DialogFragment {
     private CalendarDayDetailVM vmodel;
     private DayDialogBinding binding;
     private TextView DayText;
-    private TextInputEditText DayContentInput;
-    private ImageButton DayContentConfirm;
+    private TextView newPlanText;
     private FragmentManager fragmentManager;
 
     public DayDialogFragment(FragmentManager fragmentManager, YMD date){
@@ -58,7 +57,7 @@ public class DayDialogFragment extends DialogFragment {
         this.binding.setLifecycleOwner(this);
 
         this.DayText = this.binding.dayText;
-        this.DayContentConfirm = this.binding.dayContentConfirm;
+        this.newPlanText = this.binding.newPlanText;
         DayText.setText(
                 String.valueOf(vmodel.getGlobalCurrentCalendarDay()));
         View view = this.binding.getRoot();
@@ -69,7 +68,7 @@ public class DayDialogFragment extends DialogFragment {
     }
 
     private void attachListeners(){
-        this.DayContentConfirm.setOnClickListener(new View.OnClickListener() {
+        this.newPlanText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment makePlanDialog = new MakePlanDialogFragment();

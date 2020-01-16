@@ -1,12 +1,15 @@
 package com.example.evingPlanner.ui.main;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
      private CalendarListBinding binding;
      private MainVM model;
      private LockableViewPager vPager;
+     private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +46,32 @@ public class MainActivity extends AppCompatActivity {
         vPager.setSwipeable(false);
 
         setupViewPager(vPager);
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(vPager);
+        tabLayout = findViewById(R.id.tabs);
 
+        tabLayout.setupWithViewPager(vPager);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_calendar_icon);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_info_icon);
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK,PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.gray_icon), PorterDuff.Mode.SRC_IN);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                        tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+                }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                        tab.getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.gray_icon), PorterDuff.Mode.SRC_IN);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                         onTabSelected(tab);
+            }
+        });
+        showImage();
         RootRepository.get(getApplicationContext());
         requestReviewConfig();
         databaseTask();
@@ -55,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupViewPager(ViewPager vp){
-        cAdapter.addFragment(new CalendarFragment(),getString(R.string.calendar_tab));
-        cAdapter.addFragment(new InfoFragment(), getString(R.string.app_info_tab));
+        cAdapter.addFragment(new CalendarFragment(),null);
+        cAdapter.addFragment(new InfoFragment(), null);
+
         vp.setAdapter(cAdapter);
     }
 
@@ -124,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(pref.getInt("counter", 0) == 0) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.plan_remove_reask_dialog)
                     .setTitle("사용 전 안내사항")
                     .setPositiveButton(getResources().getString(R.string.confirm_button), null);
 
@@ -143,6 +171,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showImage() {
+        String FLAG = "FLAG";
+        String title = "1.2.1 버전 업데이트";
+        SharedPreferences pref = getSharedPreferences("1.3.1", 0);
+
+        if(!pref.getBoolean("1.2.1_key", false)) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.plan_remove_reask_dialog)
+                    .setTitle(title)
+                    .setPositiveButton(getResources().getString(R.string.confirm_button), null);
+
+            View child = getLayoutInflater().inflate(R.layout.joke, null);
+            builder.setView(child);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            SharedPreferences.Editor edit = pref.edit();
+            edit.putBoolean("1.2.1_key", true);
+            edit.apply();
+
+        }
+    }
+
     // 메세지를 단 한 번만 보여준다.
     private void showMessageByGivenSharedPreference(String key, int titleRes, int messageRes) {
         String FLAG = "FLAG";
@@ -154,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!pref.getBoolean(PREF_KEY, false)) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.plan_remove_reask_dialog)
                     .setTitle(title)
                     .setPositiveButton(getResources().getString(R.string.confirm_button), null);
 

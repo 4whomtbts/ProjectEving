@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_more_vert_24px" />
-                            <entry key="sourceFile" value="C:\Users\4whom\Desktop\workspace\fix14714\app\src\main\res\drawable\more_vert-24px.svg" />
+                            <entry key="outputName" value="ic_info_icon" />
+                            <entry key="sourceFile" value="C:\Users\4whom\Desktop\workspace\fix14714\app\src\main\res\drawable\info_icon.svg" />
                           </map>
                         </option>
                       </PersistentState>

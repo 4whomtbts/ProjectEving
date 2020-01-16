@@ -4,11 +4,10 @@
     android:id="@+id/textView2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fontFamily="@font/nanum_gorthic"
     android:textSize="14dp"
     android:textStyle="bold"
-    android:textAlignment="center"
-
-      >
+    android:textAlignment="center" >
 
     </TextView>
 

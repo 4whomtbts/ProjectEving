@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
@@ -242,11 +243,12 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
         });
 
         this.binding.addNewCloneTextButton.setOnClickListener(new Button.OnClickListener() {
-
             @Override
-            public void onClick(View v) {}
-        });
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"개발중인 기능입니다", Toast.LENGTH_LONG).show();
 
+            }
+        });
 
         this.binding.clonePreviewRecyclerView.setOnClickListener(new View.OnClickListener() {
 
@@ -282,7 +284,7 @@ public class EditOrgPlanDialogFragment extends DialogFragment {
                         }
                     };
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.plan_remove_reask_dialog);
                     builder.setMessage(getContext().getResources().getString(R.string.overwrite_content_org)).setPositiveButton("네", dialogClickListener)
                             .setNegativeButton("아니요", dialogClickListener).show();
 

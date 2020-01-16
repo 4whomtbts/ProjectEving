@@ -54,9 +54,9 @@ public class EditClonePlanVM extends PlanMakeViewModel {
         }catch (Exception e) {
             System.out.println("Error!");
         }
-
         progress = ((double)parent.numberOfDoneChild/(double)parent.totalCycle)*100;
-        return progress+"%";
+        double progress2 = Double.parseDouble(String.format("%.2f",progress));
+        return progress2+"%";
     }
 
     void editPlan(){

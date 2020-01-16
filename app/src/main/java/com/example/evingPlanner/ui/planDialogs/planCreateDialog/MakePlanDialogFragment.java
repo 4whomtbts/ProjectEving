@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,8 +18,11 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
@@ -223,6 +227,11 @@ public class MakePlanDialogFragment extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> adapter, View view, int position, long id) {
                 System.out.println(adapter.getSelectedItem());
+                ((TextView)binding.planModeSelectSpinner.getSelectedView())
+                        .setTypeface(ResourcesCompat.getFont(getContext(),
+                                R.font.nanum_gorthic));
+                ((TextView)binding.planModeSelectSpinner.getSelectedView())
+                                                     .setTextColor(ContextCompat.getColor(getContext(),R.color.black));
                 PlanType ptype =  (PlanType)(adapter.getSelectedItem());
                 vmodel.setCurrentSelectedPlanType(ptype);
             }
@@ -240,6 +249,10 @@ public class MakePlanDialogFragment extends DialogFragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Category category = (Category) adapterView.getSelectedItem();
                 vmodel.currentSelectedCategory = category;
+                ((TextView)binding.groupSelectSpinner.getSelectedView())
+                        .setTypeface(ResourcesCompat.getFont(getContext(),R.font.nanum_gorthic));
+                ((TextView)binding.groupSelectSpinner.getSelectedView())
+                        .setTextColor(ContextCompat.getColor(getContext(),R.color.black));
 
             }
 

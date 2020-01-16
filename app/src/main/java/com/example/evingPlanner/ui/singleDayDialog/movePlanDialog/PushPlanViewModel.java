@@ -17,7 +17,8 @@ public class PushPlanViewModel extends AbstractMovePlanViewModel{
     }
 
     private boolean isLastPlan() {
-        return planList.get(planList.size()-1) == plan;
+        final Plan lastPlan = planList.get(planList.size()-1);
+        return lastPlan.uid == plan.uid;
     }
 
     private LocalDateTime getNextPlanDate() {

@@ -20,20 +20,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
+            android:layout_height="wrap_content" >
 
             <CheckBox
-
                 android:id="@+id/check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/width_05"
-                />
-
+                app:layout_constraintRight_toLeftOf="@id/width_05" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/width_05"
@@ -42,7 +38,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" />
 
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/width_10"
                 app:layout_constraintGuide_percent="0.10"
@@ -50,13 +45,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
 
-
             <TextView
                 android:id="@+id/cycle_info_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="12dp"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanum_gorthic"
+                android:textColor="@color/gray_icon"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/width_10"
@@ -70,14 +66,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
 
-
             <TextView
                 android:id="@+id/clone_date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textSize="12dp"
+                android:textSize="13dp"
+                android:fontFamily="@font/nanum_gorthic"
+                android:textColor="@color/black"
                 app:layout_constraintLeft_toRightOf="@id/width_50"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

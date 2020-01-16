@@ -104,13 +104,8 @@ public class ClonePreviewAdapter extends RecyclerView.Adapter {
                         binding.checkBox.setChecked(true);
                         model.noticeCheckBoxIsChecked();
                     }
-
-
                 }
             });
-
         }
-
-
     }
 }

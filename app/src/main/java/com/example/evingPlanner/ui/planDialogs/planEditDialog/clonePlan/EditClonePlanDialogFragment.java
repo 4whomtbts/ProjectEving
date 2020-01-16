@@ -17,9 +17,12 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -99,7 +102,8 @@ public class EditClonePlanDialogFragment extends DialogFragment {
 
     private void initViewDatas(){
         this.binding.completePlanCheckBox.setChecked(vmodel.isDone());
-        this.binding.originalPlanText.setText(thisPlan.getParentYMD().toString());
+        this.binding.originalPlanText.setText(
+                thisPlan.getParentYMD().toString() + getResources().getString(R.string.made_from_original_plan));
         this.binding.planTitleInputText.setText(thisPlan.getTitle());
         this.binding.planContentInputText.setText(thisPlan.getTextPlan());
         this.binding.currentCycleStateText.setText(thisPlan.getCycleState());
@@ -168,7 +172,7 @@ public class EditClonePlanDialogFragment extends DialogFragment {
                         }
                     };
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.plan_remove_reask_dialog);
                     builder.setMessage("데이터가 변경되었습니다. 변경된 데이터로  덮어쓰시겠습니까?" +
                             "현재 수정한 계획은 복사본이므로 현재 계획만 수정됩니다.").setPositiveButton("네", dialogClickListener)
                             .setNegativeButton("아니요", dialogClickListener).show();
@@ -216,6 +220,10 @@ public class EditClonePlanDialogFragment extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 currentCategory = (Category) adapterView.getSelectedItem();
+                ((TextView)binding.groupSelectSpinner.getSelectedView())
+                        .setTypeface(ResourcesCompat.getFont(getContext(),R.font.nanum_gorthic));
+                ((TextView)binding.groupSelectSpinner.getSelectedView())
+                        .setTextColor(ContextCompat.getColor(getContext(),R.color.black));
             }
 
             @Override

@@ -4,4 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="black">#000000</color>
+    <color name="gray_background">#EEEEEE</color>
+    <color name="gray_icon">#AAAAAA</color>
+    <color name="gray_main_divider">#DDDDDD</color>
+    <color name="gray_text_color">#909090</color>
+    <color name="signature_color">#DEFCFC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="interaction_text_color">#3E90D2</color>
+    <color name="edit_text_cursor_color">#217CF3</color>
+    <color name="black_tone_down">#888888</color>
 </resources>

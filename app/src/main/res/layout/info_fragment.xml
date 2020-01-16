@@ -30,6 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/donation_message"
+                    android:fontFamily="@font/iropke_batang"
                     android:layout_marginBottom="20dp"
                     android:textSize="13dp" />
 
@@ -37,6 +38,7 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/iropke_batang"
                     android:text="@string/app_introduction"
                     android:textSize="12dp" />
 

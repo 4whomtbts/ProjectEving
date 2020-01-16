@@ -30,7 +30,7 @@
         계획이 생성되게 됩니다.
     </string>
     <string name="cycle_plan_title">반복계획 제목</string>
-    <string name="save">저장</string>
+    <string name="save"><u>저장</u></string>
     <string name="edit">수정</string>
     <string name="delete">삭제</string>
     <string name="plan_cycle_editor_dialog_title_invalid">제목칸은 비어있을 수 없습니다.</string>
@@ -76,4 +76,14 @@
     <string name="plan_type_minimum">주기계획은 반드시 한 개 이상있어야합니다.</string>
     <string name="plan_detail">세부계획</string>
     <string name="should_change_category_in_org_plan">카테고리는 원본계획에서만 바꿀 수 있습니다.</string>
+    <string name="confirm_make_plan"><u>저장</u></string>
+    <string name="add"><u>추가</u></string>
+    <string name="select_all"><u>전체선택</u></string>
+    <string name="select_remove"><u>선택삭제</u></string>
+    <string name="unselect_all"><u>선택해제</u></string>
+    <string name="made_from_original_plan">로 부터 복사되었습니다.</string>
+    <string name="u_remove"><u>삭제</u></string>
+    <string name="u_pull"><u>당기기</u></string>
+    <string name="u_cancel"><u>취소</u></string>
+    <string name="u_push"><u>밀기</u></string>
 </resources>

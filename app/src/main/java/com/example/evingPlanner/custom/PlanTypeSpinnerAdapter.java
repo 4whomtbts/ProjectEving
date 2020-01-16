@@ -197,7 +197,7 @@ public class PlanTypeSpinnerAdapter extends ArrayAdapter<PlanType> {
                                         }
                                     };
 
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.plan_remove_reask_dialog);
                             builder.setMessage(getContext().getResources().getString(R.string.delete_reask))
                                     .setPositiveButton(getContext().getResources().getString(R.string.yes),
                                             deleteDialogClickListener)
