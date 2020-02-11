@@ -2,7 +2,6 @@ package com.example.evingPlanner.ui.singleDayDialog;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -22,17 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evingPlanner.R;
 import com.example.evingPlanner.databinding.DayPlanItemBinding;
-import com.example.evingPlanner.databinding.MovePlanBinding;
 import com.example.evingPlanner.domain.Category;
 import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.repository.CategoryRepository;
 import com.example.evingPlanner.ui.planDialogs.planEditDialog.clonePlan.EditClonePlanDialogFragment;
 import com.example.evingPlanner.ui.planDialogs.planEditDialog.originalPlan.EditOrgPlanDialogFragment;
 import com.example.evingPlanner.ui.singleDayDialog.movePlanDialog.MovePlanDialog;
-
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
@@ -43,7 +36,6 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
     private RecyclerView.Adapter parentAdapter = this;
 
     public DayPlanAdapter(ArrayList<Plan> list, FragmentManager fm) {
-
         this.planList = list;
         this.fragmentManager = fm;
     }
@@ -53,16 +45,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final DayPlanItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 R.layout.day_plan_item,parent,false);
-
-        Display display = parent.getDisplay();
-        Point size = new Point();
-        display.getSize(size);
-
-        ViewGroup.LayoutParams params = binding.getRoot().getLayoutParams();
-        params.width=size.x;
-        params.height =size.y/10;
-        binding.getRoot().setLayoutParams(params);
-        return new DayItemViewHolder(parent.getContext(), binding,  params.height);
+        return new DayItemViewHolder(parent.getContext(), binding);
     }
 
     @Override
@@ -94,10 +77,6 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             this.context = context;
             setListeners();
 
-        }
-        public DayItemViewHolder(Context context, @NonNull DayPlanItemBinding binding, int height) {
-            this(context, binding);
-            this.height=height;
         }
 
         private void setViewModel(DayPlanVM model){

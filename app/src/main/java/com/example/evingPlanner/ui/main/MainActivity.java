@@ -1,16 +1,24 @@
 package com.example.evingPlanner.ui.main;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
@@ -28,16 +36,16 @@ import com.kobakei.ratethisapp.RateThisApp;
 
 public class MainActivity extends AppCompatActivity {
     rootViewPagerAdapter cAdapter = new rootViewPagerAdapter(getSupportFragmentManager());
-     private CalendarListBinding binding;
-     private MainVM model;
-     private LockableViewPager vPager;
-     private TabLayout tabLayout;
+    private CalendarListBinding binding;
+    private MainVM model;
+    private LockableViewPager vPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         model = ViewModelProviders.of(this).get(MainVM.class);
         binding.setModel(model);
         binding.setLifecycleOwner(this);
@@ -52,37 +60,36 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_calendar_icon);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_info_icon);
-        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK,PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(1).getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.gray_icon), PorterDuff.Mode.SRC_IN);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                        tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-                }
+                tab.getIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+            }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                        tab.getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.gray_icon), PorterDuff.Mode.SRC_IN);
+                tab.getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.gray_icon), PorterDuff.Mode.SRC_IN);
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                         onTabSelected(tab);
+                onTabSelected(tab);
             }
         });
-        showImage();
         RootRepository.get(getApplicationContext());
         requestReviewConfig();
         databaseTask();
         requestReview();
         RootRepository.initGlobalSetting();
-        showInfoMessage();
-        showMessageByGivenSharedPreference("1.2.0", R.string.v1_2_0_title, R.string.v1_2_0_content);
+        //showInfoMessage();
+        showMessageByGivenSharedPreference("1.2.2", R.string.v1_2_2_title, R.string.v1_2_2_content);
     }
 
-    public void setupViewPager(ViewPager vp){
-        cAdapter.addFragment(new CalendarFragment(),null);
+    public void setupViewPager(ViewPager vp) {
+        cAdapter.addFragment(new CalendarFragment(), null);
         cAdapter.addFragment(new InfoFragment(), null);
 
         vp.setAdapter(cAdapter);
@@ -93,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         final String DEFAULT_PLAN_TYPE_REGISTERED = "DEFAULT_PLAN_TYPE_REGISTERED";
         SharedPreferences pref = getSharedPreferences(DEFAULT_PLAN_TYPE_REGISTERED, 0);
 
-        if(!pref.getBoolean(DEFAULT_PLAN_TYPE_REGISTERED, false)) {
+        if (!pref.getBoolean(DEFAULT_PLAN_TYPE_REGISTERED, false)) {
             PlanType[] planTypeArray = PlanType.getDefaultPlanTypes();
             new PlanTypeRepository.InsertPlanTypes().execute(planTypeArray[0], planTypeArray[1], planTypeArray[2]);
             SharedPreferences.Editor edit = pref.edit();
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         final String DEFAULT_CATEGORY_REGISTERED = "DEFAULT_CATEGORY_REGISTERED";
         SharedPreferences categoryPref = getSharedPreferences(DEFAULT_CATEGORY_REGISTERED, 0);
 
-        if(!categoryPref.getBoolean(DEFAULT_CATEGORY_REGISTERED, false)) {
+        if (!categoryPref.getBoolean(DEFAULT_CATEGORY_REGISTERED, false)) {
             Category defaultCategory = new Category();
             // 기본 계획임을 구별하기 위해서, uid 를 0으로 설정함.
             defaultCategory.setUid(0);
@@ -148,15 +155,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInfoMessage() {
+        /*
         SharedPreferences pref = getSharedPreferences("WELCOME_INFO", 0);
 
-        if(pref.getInt("counter", 0) == 0) {
+        if (pref.getInt("counter", 0) == 0) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.plan_remove_reask_dialog)
                     .setTitle("사용 전 안내사항")
                     .setPositiveButton(getResources().getString(R.string.confirm_button), null);
 
-            View child = getLayoutInflater().inflate(R.layout.welcome_dialog, null);
+            View child = getLayoutInflater().inflate(R.layout.version_release_dialog, null);
             TextView welcomeMessage = child.findViewById(R.id.welcome_text);
             welcomeMessage.setText(getResources().getString(R.string.welcome_message));
 
@@ -167,11 +175,12 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor edit = pref.edit();
             edit.putInt("counter", 1);
             edit.apply();
-
         }
+        */
     }
 
     private void showImage() {
+        /*
         String FLAG = "FLAG";
         String title = "1.2.1 버전 업데이트";
         SharedPreferences pref = getSharedPreferences("1.3.1", 0);
@@ -190,8 +199,8 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor edit = pref.edit();
             edit.putBoolean("1.2.1_key", true);
             edit.apply();
-
         }
+         */
     }
 
     // 메세지를 단 한 번만 보여준다.
@@ -203,24 +212,15 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences pref = getSharedPreferences(key, 0);
 
-        if(!pref.getBoolean(PREF_KEY, false)) {
+        if (!pref.getBoolean(PREF_KEY, false)) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.plan_remove_reask_dialog)
-                    .setTitle(title)
-                    .setPositiveButton(getResources().getString(R.string.confirm_button), null);
-
-            View child = getLayoutInflater().inflate(R.layout.welcome_dialog, null);
-            TextView welcomeMessage = child.findViewById(R.id.welcome_text);
-            welcomeMessage.setText(message);
-
-            builder.setView(child);
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            VersionReleaseDialog dialog = new VersionReleaseDialog(title, message);
+            dialog.show(getSupportFragmentManager(), "VERSION_RELEASE_DIALOG");
 
             SharedPreferences.Editor edit = pref.edit();
             edit.putBoolean(PREF_KEY, true);
             edit.apply();
-
         }
     }
 }
+

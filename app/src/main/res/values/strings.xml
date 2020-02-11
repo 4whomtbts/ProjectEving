@@ -192,4 +192,6 @@
     <string name="u_pull">Pull</string>
     <string name="u_push">Push</string>
     <string name="u_cancel">Cancel</string>
+    <string name="v1_2_2_title">1.2.2 released</string>
+    <string name="v1_2_2_content">1.2.2 is released!</string>
 </resources>

@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.core.view.ViewCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,17 +37,15 @@ public class DayDialogFragment extends DialogFragment {
     private TextView newPlanText;
     private FragmentManager fragmentManager;
 
-    public DayDialogFragment(FragmentManager fragmentManager, YMD date){
+    public DayDialogFragment(FragmentManager fragmentManager){
         this.fragmentManager = fragmentManager;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         if (getArguments() != null) {
-         }
-
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -58,8 +58,7 @@ public class DayDialogFragment extends DialogFragment {
 
         this.DayText = this.binding.dayText;
         this.newPlanText = this.binding.newPlanText;
-        DayText.setText(
-                String.valueOf(vmodel.getGlobalCurrentCalendarDay()));
+        DayText.setText(String.valueOf(vmodel.getGlobalCurrentCalendarDay()));
         View view = this.binding.getRoot();
 
         attachListeners();
@@ -78,6 +77,7 @@ public class DayDialogFragment extends DialogFragment {
             }
         });
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -102,9 +102,10 @@ public class DayDialogFragment extends DialogFragment {
             @Override
             public void onChanged(ArrayList<Plan> plans) {
                     RecyclerView view = binding.planRecyclerView;
-                    DayPlanAdapter adapter = new DayPlanAdapter(plans,getFragmentManager());
-                    LinearLayoutManager manager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
-                    view.setLayoutManager(manager);
+                    RecyclerView.LayoutManager layoutManager =
+                            new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                    view.setLayoutManager(layoutManager);
+                    DayPlanAdapter adapter = new DayPlanAdapter(plans, getFragmentManager());
                     view.setAdapter(adapter);
 
             }

@@ -32,6 +32,9 @@ import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.ui.singleDayDialog.DayDialogFragment;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CalendarAdapter extends RecyclerView.Adapter{
     private ArrayList<TSLiveData<DayClass>> dayList;
@@ -126,7 +129,7 @@ public class CalendarAdapter extends RecyclerView.Adapter{
                     if (action == MotionEvent.ACTION_UP) {
                         if (!isOnSwip) {
 
-                            DayDialogFragment dialog = new DayDialogFragment(fm,model.getGlobalCurrentYMD());
+                            DayDialogFragment dialog = new DayDialogFragment(fm);
                             FragmentTransaction ft = fm.beginTransaction();
                             // TODO 축약
                             model.setGlobalSelectedYear(model.getYear());
@@ -167,11 +170,12 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         }
 
         private void registerPlanPreviews(ArrayList<Plan> plans){
-
+            Collections.sort(plans);
             int childCount = binding.planPreview.getChildCount();
 
             if(childCount==0){
-                for(Plan plan : plans){
+                for(int i=plans.size()-1; i >= 0; i--) {
+                    Plan plan = plans.get(i);
                     View dayPreview = makeDayPreview(plan.getTitle(), plan.isDone);
                     binding.planPreview.addView(dayPreview,currentVisiblePlans);
                 }

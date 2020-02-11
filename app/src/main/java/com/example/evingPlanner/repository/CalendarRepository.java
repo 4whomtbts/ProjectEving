@@ -22,6 +22,7 @@ import static com.example.evingPlanner.repository.PlanRepository.setCurrentMonth
 import static com.example.evingPlanner.util.CalendarUtil.convertDateToIndex;
 import static com.example.evingPlanner.util.CalendarUtil.getFirstWeek;
 import static com.example.evingPlanner.util.CalendarUtil.getLastDay;
+import static com.example.evingPlanner.util.CalendarUtil.getStartDayOfMonth;
 
 public class CalendarRepository {
 
@@ -199,12 +200,10 @@ public class CalendarRepository {
     public static void generateDaysListByDate(int year, int month) {
         ArrayList<TSLiveData<DayClass>> list = new ArrayList<>();
 
-        int daysOfweek = getFirstWeek(year, month);
-        int firstWeek = daysOfweek == 1 ? (7) : (daysOfweek);
         int lastDayOfLastMonth = getLastDay(year, month - 1);
         int lastDayOfThisMonth = getLastDay(year, month);
         int totalDaysInCalender = 42;
-        int startDay = firstWeek == 7 ? (lastDayOfLastMonth - 6) : (lastDayOfLastMonth - (firstWeek - 2));
+        int startDay = getStartDayOfMonth(year, month);
 
         Log.e("달력생성",
                 "!현재 달 : " + year + ",  현재 달 : " + month +
@@ -212,7 +211,6 @@ public class CalendarRepository {
                         "lastDayOfThisMonth : " + lastDayOfThisMonth + ",  " +
                         "totalDaysInCalendar : " + totalDaysInCalender +
                         ",  startDay " + startDay);
-
 
         TSLiveData<DayClass> day;
         for (int i = startDay; i <= lastDayOfLastMonth; i++) {

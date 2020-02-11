@@ -11,7 +11,7 @@ import com.example.evingPlanner.model.PlanTypeConverters;
 
 @TypeConverters({PlanTypeConverters.class})
 @Entity(tableName = "table_plans")
-public class Plan {
+public class Plan implements Comparable<Plan> {
 
     private static final int DEFAULT_TOTAL_CYCLE = 10;
     private static final int DEFAULT_CURRENT_CYCLE = 0;
@@ -293,4 +293,13 @@ public class Plan {
         return isSimilar(candidate) && (candidate.isDone() == this.isDone());
     }
 
+    @Override
+    public int compareTo(Plan o) {
+        if(this.uid > o.getUID()) {
+            return 1;
+        }else if(this.getUID() < o.getUID()) {
+            return -1;
+        }
+        return 0;
+    }
 }

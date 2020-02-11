@@ -72,11 +72,42 @@ public class CalendarFragment extends Fragment {
         return view;
     }
 
+    private void changeToPrevMonth(View view) {
+        Animation outThroughRight = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_out_right),
+                inFromLeft = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_in_left);
+        view.startAnimation(outThroughRight);
+        vmodel.gotoPrevMonth();
+        view.startAnimation(inFromLeft);
+        CalendarRepository.refreshCalendar();
+    }
+
+    private void changeToNextMonth(View view) {
+        Animation outThroughLeft = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_out_left),
+                inFromRight = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_in_right);
+            view.startAnimation(outThroughLeft);
+            vmodel.gotoNextMonth();
+            view.startAnimation(inFromRight);
+            CalendarRepository.refreshCalendar();
+    }
+
 
     @SuppressLint("ClickableViewAccessibility")
     private void touchListener(View view) {
 
 
+        binding.prevMonthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToPrevMonth(v);
+            }
+        });
+
+        binding.nextMonthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToNextMonth(v);
+            }
+        });
 
         yearMonth.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -125,20 +156,10 @@ public class CalendarFragment extends Fragment {
                         if(diffX > MIN_DIST && diffY < MAXY_DIST && slope < 5
                         && timeDiff > 200){
 
-                            Log.e("이동완료", "MIN_DIST : "+diffX+",  MAXY_DIST : "+diffY );
-                            Animation outThroughleft = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_out_left),
-                                      inFromRight = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_in_right),
-                                      outThroughRight = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_out_right),
-                                      inFromLeft = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_slide_in_left);
-
                             if(dir == -1){
-                                view.startAnimation(outThroughRight);
-                                vmodel.gotoPrevMonth();
-                                view.startAnimation(inFromLeft);
+                                changeToPrevMonth(view);
                             }else{
-                                view.startAnimation(outThroughleft);
-                                vmodel.gotoNextMonth();
-                                view.startAnimation(inFromRight);
+                                changeToNextMonth(view);
                             }
                             CalendarRepository.refreshCalendar();
                             binding.pagerCalendar.setVerticalScrollbarPosition(0);// 달력이 넘어가면 첫 날로 고정된다
@@ -166,10 +187,9 @@ public class CalendarFragment extends Fragment {
             public void onChanged(ArrayList<TSLiveData<DayClass>> dayClasses) {
                 RecyclerView view= binding.pagerCalendar;
                 CalendarAdapter adapter = new CalendarAdapter(getContext(), dayClasses, getFragmentManager());
-                    GridLayoutManager manager=  new GridLayoutManager(getActivity(),7);
-                    view.setLayoutManager(manager);
-                    view.setAdapter(adapter);
-
+                GridLayoutManager manager=  new GridLayoutManager(getActivity(),7);
+                view.setLayoutManager(manager);
+                view.setAdapter(adapter);
             }
         });
         vmodel.getLiveGlobalMonth().observe(this, new Observer<Integer>() {

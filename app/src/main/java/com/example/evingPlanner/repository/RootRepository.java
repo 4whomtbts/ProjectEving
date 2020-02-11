@@ -151,12 +151,10 @@ public class RootRepository {
 
 
     public static CalendarDayDAO getCalendarDayDAO(){
-
         return RootRepository.getCalendarContentDB().getDayDAO();
     }
 
     public static CalendarPlanDAO getCalendarPlanDAO(){
-
         return RootRepository.getPlanDatabase().getPlanDAO();
     }
 

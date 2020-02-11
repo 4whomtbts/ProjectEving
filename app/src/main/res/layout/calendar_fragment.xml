@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:paddingTop="3dp" >
+        android:paddingTop="3dp">
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -25,21 +25,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04142857142857145"
+            app:layout_constraintGuide_percent="0.04142857142857145" />
+
+        <ImageButton
+            android:id="@+id/prev_month_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_keyboard_arrow_left_24px"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <TextView
             android:id="@+id/year_month_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="16dp"
-            android:textColor="@color/black"
             android:fontFamily="@font/nanum_gorthic"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageButton
+            android:id="@+id/next_month_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_keyboard_arrow_right_24px"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/hor_first_end_guide"
@@ -61,11 +77,11 @@
             android:id="@+id/sunday_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fontFamily="@font/nanum_gorthic"
             android:gravity="center"
             android:text="일"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
             android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -84,11 +100,11 @@
             android:id="@+id/monday_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fontFamily="@font/nanum_gorthic"
             android:gravity="center"
             android:text="월"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
             android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintRight_toLeftOf="@id/tuesday_text"
@@ -107,11 +123,11 @@
             android:id="@+id/tuesday_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fontFamily="@font/nanum_gorthic"
             android:gravity="center"
             android:text="화"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
             android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintRight_toLeftOf="@id/wednesday_text"
@@ -129,11 +145,11 @@
             android:id="@+id/wednesday_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fontFamily="@font/nanum_gorthic"
             android:gravity="center"
             android:text="수"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
             android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintRight_toLeftOf="@id/thursday_text"
@@ -151,11 +167,11 @@
             android:id="@+id/thursday_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fontFamily="@font/nanum_gorthic"
             android:gravity="center"
             android:text="목"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
             android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintRight_toLeftOf="@id/friday_text"
@@ -173,11 +189,11 @@
             android:id="@+id/friday_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fontFamily="@font/nanum_gorthic"
             android:gravity="center"
             android:text="금"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
             android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintRight_toLeftOf="@id/saturday_text"
@@ -195,11 +211,11 @@
             android:id="@+id/saturday_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fontFamily="@font/nanum_gorthic"
             android:gravity="center"
             android:text="토"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
             android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@id/hor_second_end_guide"
             app:layout_constraintHeight_percent="0.03"
             app:layout_constraintRight_toRightOf="parent"
@@ -219,7 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.08"  />
+            app:layout_constraintGuide_percent="0.08" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/hor_calendar_start_guide"
@@ -232,18 +248,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hor_second_end_guide" >
+            app:layout_constraintTop_toBottomOf="@id/hor_second_end_guide">
 
             <com.example.evingPlanner.custom.CRecyclerView
-                android:paddingTop="6dp"
                 android:id="@+id/pager_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false">
-            </com.example.evingPlanner.custom.CRecyclerView>
+                android:clickable="false"
+                android:paddingTop="6dp"></com.example.evingPlanner.custom.CRecyclerView>
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </layout>

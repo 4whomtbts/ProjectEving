@@ -2,6 +2,8 @@ package com.example.evingPlanner.util;
 
 import com.example.evingPlanner.custom.YMD;
 
+import org.joda.time.LocalDateTime;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -23,13 +25,9 @@ public class CalendarUtil {
     }
 
     public static int getFirstWeek(int year, int month) {
-        Calendar cal = Calendar.getInstance();
-        if (month != 1) {
-            cal.set(year, month - 1, 1);
-        } else {
-            cal.set(year - 1, 12, 1);
-        }
-        return cal.get(Calendar.DAY_OF_WEEK);
+        LocalDateTime date;
+        date = new LocalDateTime(year, month, 1, 0, 0);
+        return date.getDayOfWeek();
     }
 
     public static int getFirstWeek(YMD ymd) {
@@ -38,10 +36,13 @@ public class CalendarUtil {
 
 
     public static int getLastDay(int year, int month) {
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(year, month, 0);
-        return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        LocalDateTime date;
+        if(month == 0) {
+            date = new LocalDateTime(year-1, 12, 1, 0, 0);
+        }else {
+            date = new LocalDateTime(year, month, 1, 0, 0);
+        }
+        return date.dayOfMonth().getMaximumValue();
     }
 
     public static int getLastDay(YMD ymd) {
@@ -60,12 +61,13 @@ public class CalendarUtil {
     }
 
     public static int getLastVisibleDayOfNextMonth(int year, int month) {
-
-        if (getFirstWeek(year, month) == 1) {
-            return DAY_IN_MONTH - (7 + getLastDay(year, month));
+        int firstWeek = getFirstWeek(year, month);
+        int lastDay = getLastDay(year, month);
+        if (firstWeek == 7) {
+            return DAY_IN_MONTH - (lastDay + 7);
         }
 
-        return DAY_IN_MONTH - (getFirstWeek(year, month) - 1 + getLastDayOfMonth(year, month));
+        return DAY_IN_MONTH - (firstWeek + lastDay);
     }
 
     public static int getLastVisibleDayOfNextMonth(YMD ymd) {
@@ -83,10 +85,10 @@ public class CalendarUtil {
     }
 
     public static int getFirstDayOfLastMonth(int year, int month) {
-        if (getFirstWeek(year, month) == 1) {
-            return getLastDayOfLastMonth(year, month) - 7 + 1;
+        if (getFirstWeek(year, month) == 7) {
+            return getLastDayOfLastMonth(year, month) - 6;
         } else {
-            return getLastDayOfLastMonth(year, month) - getFirstWeek(year, month) + 2;
+            return getLastDayOfLastMonth(year, month) - getFirstWeek(year, month) + 1;
         }
     }
 
@@ -177,6 +179,15 @@ public class CalendarUtil {
         }
     }
 
+    public static int getStartDayOfMonth(int year, int month) {
+        int firstWeek = getFirstWeek(year, month);
+        int lastDayOfLastMonth = getLastDayOfLastMonth(year, month);
+        if(firstWeek == 7) {
+            return lastDayOfLastMonth - 6;
+        }
+        return lastDayOfLastMonth - firstWeek + 1;
+    }
+
     public static int getStartIndexOfNextMonth(int year, int month) {
 
         int firstWeek = getFirstWeek(year, month);
@@ -187,14 +198,12 @@ public class CalendarUtil {
 
     public static int convertDateToIndex(int year, int currMonth, int askedYear, int askedMonth, int day) {
 
-        if ( (year == askedYear && askedMonth + 1 == currMonth) ||
+        if ((year == askedYear && askedMonth + 1 == currMonth) ||
                 (year == askedYear+1 && askedMonth == 12)){
-            return day - getFirstDayOfLastMonth(year,currMonth);
+            return day - getFirstDayOfLastMonth(year,currMonth) ;
         }else if(year == askedYear && askedMonth == currMonth ){
-
-            int firstWeek = getFirstWeek(year,currMonth);
-            int startIndexOfCurrentMonthDay = firstWeek==1?(7):(firstWeek-1);
-            return startIndexOfCurrentMonthDay + (day-1);
+            int startIndex = getFirstWeek(year, currMonth);
+            return startIndex + (day-1);
 
         }else if((year == askedYear && askedMonth - 1 == currMonth) ||
                 (year == askedYear -1 && askedMonth == 1)) {
@@ -203,7 +212,7 @@ public class CalendarUtil {
                 return -1;
             }
 
-            return getStartIndexOfNextMonth(year, currMonth) + (day-1);
+            return getStartIndexOfNextMonth(year, currMonth) + day;
         }else{
             return -1;
         }

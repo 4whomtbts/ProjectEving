@@ -209,17 +209,15 @@ public class PlanRepository {
             visibleDaysListOfCurrentMonth = (ArrayList<Plan>)RootRepository.getCalendarPlanDAO().getPlanByMonth(
                     date.getYear(),date.getMonth());
 
-            System.out.println("현재 달 \n "+visibleDaysListOfCurrentMonth);
             YMD prevMonthDate = date.prevMonth();
             visibleDaysListOfLastMonth = (ArrayList<Plan>)RootRepository.getCalendarPlanDAO().getPlanByRangeOfDay(
                                                 prevMonthDate.getYear(),prevMonthDate.getMonth()
             ,visibleFirstDayOfLastMonth,visibleLastDayOfLastMonth);
-            System.out.println("이전 달 \n "+visibleDaysListOfLastMonth);
+
             YMD nextMonthDate = date.nextMonth();
             visibleDaysListOfNextMonth = (ArrayList<Plan>)RootRepository.getCalendarPlanDAO().getPlanByRangeOfDay(
                     nextMonthDate.getYear(),nextMonthDate.getMonth()
                     ,1,visibleLastDayOfNextMonth);
-            System.out.println("다음 달 \n "+visibleDaysListOfNextMonth);
             mergedResult.addAll(visibleDaysListOfLastMonth);
             mergedResult.addAll(visibleDaysListOfNextMonth);
             mergedResult.addAll(visibleDaysListOfCurrentMonth);

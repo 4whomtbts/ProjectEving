@@ -20,6 +20,16 @@ public class CalendarUtilTest {
         assertEquals(35, CalendarUtil.getStartIndexOfNextMonth(2019,11));
 
     }
+
+    @Test
+    public void getStartDayOfMonth() {
+        assertEquals(25, CalendarUtil.getStartDayOfMonth(2019, 9));
+        assertEquals(29, CalendarUtil.getStartDayOfMonth(2020, 1));
+        assertEquals(26, CalendarUtil.getStartDayOfMonth(2020, 2));
+        assertEquals(23, CalendarUtil.getStartDayOfMonth(2020, 3));
+
+    }
+
     @Test
     public void getLastDayOfLastMonthTest() {
 
@@ -40,16 +50,27 @@ public class CalendarUtilTest {
     }
 
     @Test
-    public void getFirstWeek(){
-        assertEquals(7,CalendarUtil.getFirstWeek(2018,12));
-        assertEquals(3,CalendarUtil.getFirstWeek(2019,1));
-        assertEquals(5,CalendarUtil.getFirstWeek(2019,8));
-        assertEquals(1,CalendarUtil.getFirstWeek(2019,9));
-        assertEquals(3,CalendarUtil.getFirstWeek(2019,10));
-        assertEquals(6,CalendarUtil.getFirstWeek(2019,11));
-        assertEquals(5,CalendarUtil.getFirstWeek(2019,12));
-        assertEquals(1,CalendarUtil.getFirstWeek(2019,12));
-        assertEquals(4,CalendarUtil.getFirstWeek(2020,12));
+    public void getFirstWeekTest(){
+        assertEquals(4,CalendarUtil.getFirstWeek(2018,11));
+        assertEquals(6,CalendarUtil.getFirstWeek(2018,12));
+        assertEquals(2,CalendarUtil.getFirstWeek(2019,1));
+        assertEquals(5,CalendarUtil.getFirstWeek(2019,2));
+        assertEquals(1,CalendarUtil.getFirstWeek(2019,7));
+        assertEquals(4,CalendarUtil.getFirstWeek(2019,8));
+        assertEquals(7,CalendarUtil.getFirstWeek(2019,9));
+        assertEquals(2,CalendarUtil.getFirstWeek(2019,10));
+        assertEquals(5,CalendarUtil.getFirstWeek(2019,11));
+        assertEquals(7,CalendarUtil.getFirstWeek(2019,12));
+        assertEquals(3,CalendarUtil.getFirstWeek(2020,1));
+        assertEquals(6,CalendarUtil.getFirstWeek(2020,2));
+    }
+
+    @Test
+    public void getLastDayTest() {
+        assertEquals(31, CalendarUtil.getLastDay(2020, 1));
+        assertEquals(29, CalendarUtil.getLastDay(2020, 2));
+        assertEquals(31, CalendarUtil.getLastDay(2020, 3));
+
     }
 
     @Test
@@ -60,6 +81,8 @@ public class CalendarUtilTest {
         assertEquals(27,CalendarUtil.getFirstDayOfLastMonth(2019,11));
         assertEquals(24,CalendarUtil.getFirstDayOfLastMonth(2019,12));
         assertEquals(29,CalendarUtil.getFirstDayOfLastMonth(2020,1));
+        assertEquals(26,CalendarUtil.getFirstDayOfLastMonth(2020,2));
+        assertEquals(23,CalendarUtil.getFirstDayOfLastMonth(2020,3));
         assertEquals(30,CalendarUtil.getFirstDayOfLastMonth(2038,6));
     }
 
@@ -70,7 +93,6 @@ public class CalendarUtilTest {
         assertEquals(9,CalendarUtil.getLastVisibleDayOfNextMonth(2019,10));
         assertEquals(7,CalendarUtil.getLastVisibleDayOfNextMonth(2019,11));
         assertEquals(4,CalendarUtil.getLastVisibleDayOfNextMonth(2019,12));
-
         assertEquals(8,CalendarUtil.getLastVisibleDayOfNextMonth(2023,6));
         assertEquals(5,CalendarUtil.getLastVisibleDayOfNextMonth(2023,7));
         assertEquals(9,CalendarUtil.getLastVisibleDayOfNextMonth(2023,8));
