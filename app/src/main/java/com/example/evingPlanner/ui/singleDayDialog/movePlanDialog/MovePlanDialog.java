@@ -1,9 +1,14 @@
 package com.example.evingPlanner.ui.singleDayDialog.movePlanDialog;
 
+import android.app.Dialog;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -37,6 +42,28 @@ public class MovePlanDialog extends DialogFragment {
         }
 
         this.plan = plan;
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Dialog dialog = getDialog();
+
+        Window window = getDialog().getWindow();
+        Point size =new Point();
+
+        Display display = window.getWindowManager().getDefaultDisplay();
+        display.getSize(size);
+
+
+
+        if(dialog != null){
+            int width = (int)(size.x * 0.80);
+            int height = (int)(size.y * 0.50);
+            dialog.getWindow().setLayout(width,height);
+            dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
+                    .SOFT_INPUT_ADJUST_RESIZE);
+        }
     }
 
     @Override

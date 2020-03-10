@@ -44,8 +44,8 @@ public abstract class AbstractCategorySpinnerDialog extends DialogFragment {
 
     private void verifyInput(String categoryName) {
 
-        if(categoryName == null) {
-            throw new IllegalArgumentException(getContext().getResources().getString(R.string.category_spinner_dialog_category_name_invalid_empty));
+        if(categoryName.equals("")) {
+            throw new IllegalArgumentException(getContext().getString(R.string.category_spinner_dialog_category_name_invalid_empty));
         }
     }
 

@@ -2,7 +2,9 @@ package com.example.evingPlanner.ui.mainCalendarItem;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
@@ -153,6 +155,16 @@ public class CalendarAdapter extends RecyclerView.Adapter{
             this.model = model;
             String text = model.getDay();
             binding.textDay.setText(text);
+            boolean isRedDay = model.isRedDay();
+            if(isRedDay) binding.textDay.setTextColor(Color.RED);
+
+            if(model.isBoldDay()) {
+                binding.textDay.setTypeface(null, Typeface.BOLD);
+                binding.textDay.setTextColor(Color.WHITE);
+                if(isRedDay) binding.textDayWrapper.setBackgroundColor(Color.RED);
+                else binding.textDayWrapper.setBackgroundColor(Color.BLACK);
+            }
+
             binding.setModel(model);
             this.observe(position);
 

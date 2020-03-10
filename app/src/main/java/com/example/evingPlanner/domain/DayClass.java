@@ -114,8 +114,8 @@ public class DayClass {
         this.day = day;
         return this;
     }
+
     public String getDay(){
         return Integer.toString(this.day);
     }
-
 }

@@ -1,7 +1,9 @@
 package com.example.evingPlanner.ui;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -133,6 +135,7 @@ public abstract class AbstractPlanCycleEditorDialog extends DialogFragment {
         planCycle = view.findViewById(R.id.create_plan_cycle_dialog_content_input);
         saveText = view.findViewById(R.id.create_plan_cycle_dialog_save_text);
         saveText.setOnClickListener(new SaveTextOnClickListener());
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         if(isEdit()) {
             planCycleTitle.setText(this.title);

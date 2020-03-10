@@ -2,6 +2,10 @@ package com.example.evingPlanner;
 
 import com.example.evingPlanner.util.CalendarUtil;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -176,9 +180,36 @@ public class CalendarUtilTest {
         assertEquals(36,CalendarUtil.convertDateToIndex(2020,2,2020,3,2));
         assertEquals(41,CalendarUtil.convertDateToIndex(2020,2,2020,3,7));
         assertEquals(-1,CalendarUtil.convertDateToIndex(2020,2,2020,3,8));
+    }
 
+    @Test
+    public void isRedDay() {
+        int year = 2020;
+        int month = 3;
+        int day = 1;
+        assertEquals(CalendarUtil.isRedDay(year, month, day), true);
+        year = 2020; month = 3; day = 2;
+        assertEquals(CalendarUtil.isRedDay(year, month, day), false);
+        year = 2020; month = 2; day = 29;
+        assertEquals(CalendarUtil.isRedDay(year, month, day), true);
+        year = 2020; month = 9; day = 5;
+        assertEquals(CalendarUtil.isRedDay(year, month, day), true);
+        year = 2020; month = 9; day = 7;
+        assertEquals(CalendarUtil.isRedDay(year, month, day), false);
+    }
 
-
+    @Test
+    public void TestisBoldDay() {
+        int year = 2020, month = 3, day = 2;
+        LocalDateTime systemDate = LocalDateTime.now();
+        DateTime now = DateTime.now();
+        LocalDate localNow = LocalDate.now();
+        LocalDateTime viewModelDate = new LocalDateTime(year, month, day, 0, 0, 0);
+        boolean isBold =
+                (systemDate.year().get() == viewModelDate.year().get()) &&
+                (systemDate.monthOfYear().get() == viewModelDate.monthOfYear().get()) &&
+                (systemDate.dayOfMonth().get() == viewModelDate.dayOfMonth().get());
+        assertEquals(2, localNow.getDayOfMonth());
     }
 
 

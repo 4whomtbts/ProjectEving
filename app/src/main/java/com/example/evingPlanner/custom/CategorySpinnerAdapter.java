@@ -111,7 +111,7 @@ public class CategorySpinnerAdapter extends ArrayAdapter<Category> {
         @NonNull
         View item;
         if (position == categoryArrayList.size()) {
-            item = LayoutInflater.from(context).inflate(R.layout.plan_spinner_button_layout, parent, false);
+            item = LayoutInflater.from(context).inflate(R.layout.category_spinner_button_layout, parent, false);
             LinearLayout wrapper = item.findViewById(R.id.plan_spinner_button_layout_wrapper);
             ImageView plusButton = item.findViewById(R.id.plan_spinner_plus_image);
 

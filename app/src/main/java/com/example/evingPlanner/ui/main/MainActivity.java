@@ -34,6 +34,12 @@ import com.example.evingPlanner.ui.rootFragment.CalendarFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.kobakei.ratethisapp.RateThisApp;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
+import org.joda.time.DateTimeZone;
+
+import java.util.TimeZone;
+
 public class MainActivity extends AppCompatActivity {
     rootViewPagerAdapter cAdapter = new rootViewPagerAdapter(getSupportFragmentManager());
     private CalendarListBinding binding;
@@ -43,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        JodaTimeAndroid.init(this);
+        DateTimeZone.setDefault(DateTimeZone.forTimeZone(TimeZone.getDefault()));
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         model = ViewModelProviders.of(this).get(MainVM.class);
         binding.setModel(model);
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         requestReview();
         RootRepository.initGlobalSetting();
         //showInfoMessage();
-        showMessageByGivenSharedPreference("1.2.2", R.string.v1_2_2_title, R.string.v1_2_2_content);
+        showMessageByGivenSharedPreference("1.2.3", R.string.v1_2_3_title, R.string.v1_2_3_content);
     }
 
     public void setupViewPager(ViewPager vp) {

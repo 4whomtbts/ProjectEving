@@ -2,6 +2,7 @@ package com.example.evingPlanner.util;
 
 import com.example.evingPlanner.custom.YMD;
 
+import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDateTime;
 
 import java.util.Calendar;
@@ -116,20 +117,11 @@ public class CalendarUtil {
                                                      int askedMonth,
                                                      int day) {
 
-        if (Math.abs(year - askedYear) > 1) {
-            return false;
-        }
+        if (Math.abs(year - askedYear) > 1) return false;
+        if (year != askedYear && (Math.abs(calendarMonth - askedMonth) != 11)) return false;
 
-
-        if (year != askedYear && (Math.abs(calendarMonth - askedMonth) != 11)) {
-            return false;
-        }
-
-
-        if (    year == askedYear &&
-                calendarMonth == askedMonth && day <= getLastDay(askedYear,askedMonth)) {
+        if (year == askedYear && calendarMonth == askedMonth && day <= getLastDay(askedYear,askedMonth)) {
             return true;
-
         } else {
 
 
@@ -172,8 +164,6 @@ public class CalendarUtil {
         } else if (currMonth + 1 == askedMonth || currMonth == 12 && askedMonth == 1) {
             return getTotalVisibleDayOfLastMonth(year, currMonth) +
                     getLastDay(year, currMonth) + day - 1;
-
-
         } else {
             return -1;
         }
@@ -221,6 +211,15 @@ public class CalendarUtil {
 
     public static int getTotalDayOfMonth(int year, int month){
         return new GregorianCalendar(year,month-1,1).getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
+    // 빨간색으로 표시되어야 하는 날인지 알려준다
+    public static boolean isRedDay(int year, int month, int day) {
+        LocalDateTime date;
+        date = new LocalDateTime(year, month, day, 0, 0);
+        final int week = date.getDayOfWeek();
+        return week == DateTimeConstants.SATURDAY || week == DateTimeConstants.SUNDAY;
+
     }
 
     public static int getCurrYear() {

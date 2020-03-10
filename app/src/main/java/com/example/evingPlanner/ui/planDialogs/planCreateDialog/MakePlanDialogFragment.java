@@ -170,8 +170,6 @@ public class MakePlanDialogFragment extends DialogFragment {
                     String input = binding.planTextInputLayout.getEditText().getText().toString();
                     String group = binding.groupSelectSpinner.getSelectedItem().toString();
                     vmodel.makeNewPlan(vmodel.getWillBePlannedDatesArrWithCurrentPlan(),title,input,group);
-
-
                     dismiss();
                     View v = getActivity().getCurrentFocus();
                     if(v != null){

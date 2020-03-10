@@ -13,26 +13,27 @@
         android:layout_width="fill_parent"
         android:layout_height="0px"
         android:id="@+id/calendar_item_wrapper"
-        android:background="@drawable/calendar_item_bottom_line"
-        android:paddingTop="2dp" >
+        android:background="@drawable/calendar_item_bottom_line">
 
-        <TextView
-            android:id="@+id/text_day"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/text_day_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:textSize="12dp"
-            android:fontFamily="@font/nanum_gorthic"
-            android:textColor="@color/black"
-            android:text="hello world"
-            android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:paddingTop="1.5dp" >
 
-        <!--
-            정렬,폰트사이즈,최대라인 수수
-            CalendarAdapter 에서 함
-        -->
+            <TextView
+                android:id="@+id/text_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:fontFamily="@font/nanum_gorthic"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline12"
@@ -55,4 +56,6 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

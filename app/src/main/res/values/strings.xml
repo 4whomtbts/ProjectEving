@@ -184,7 +184,7 @@
     <string name="should_change_category_in_org_plan">You could change category of plan in a original plan of it.</string>
     <string name="confirm_make_plan"><u>Save</u></string>
     <string name="select_all"><u>Select All</u></string>
-    <string name="unselect_all"><u>Unselect All</u></string>
+    <string name="unselect_all" translatable="false"><u>Unselect All</u></string>
     <string name="select_remove"><u>Remove</u></string>
     <string name="add">Add</string>
     <string name="made_from_original_plan">is original plan of it</string>
@@ -194,4 +194,7 @@
     <string name="u_cancel">Cancel</string>
     <string name="v1_2_2_title">1.2.2 released</string>
     <string name="v1_2_2_content">1.2.2 is released!</string>
+    <string name="make_new_category">Add Category</string>
+    <string name="v1_2_3_title" translatable="false">v1.2.3 release</string>
+    <string name="v1_2_3_content">v1.2.3 release</string>
 </resources>

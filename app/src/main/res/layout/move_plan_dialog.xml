@@ -39,19 +39,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date_picker_upper_bound"
             android:text="@string/move_limit_msg" />
 
         <com.example.evingPlanner.custom.IntegerDatePicker
             android:id="@+id/date_picker"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:datePickerMode="spinner"
             android:calendarViewShown="false"
             app:layout_constraintHeight_percent="0.4"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/limit_text"
             />
 
