@@ -111,5 +111,7 @@
         2. 현재 날짜를 캘린더에서 눈에 띄게 표시\n\n\
     </string>
     <string name="make_new_category">카테고리 추가</string>
+    <string name="pull">당기기</string>
+    <string name="push">밀기</string>
 
 </resources>

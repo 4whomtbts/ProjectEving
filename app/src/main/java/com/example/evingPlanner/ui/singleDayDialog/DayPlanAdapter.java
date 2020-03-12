@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -69,12 +72,13 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
         Context context;
         DayPlanVM model;
         DayPlanItemBinding binding;
-        int height;
 
         public DayItemViewHolder(Context context,  @NonNull DayPlanItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
             this.context = context;
+            binding.dayPlanItemOptionButton.setFocusable(false);
+            binding.dayPlanItemOptionButton.setFocusableInTouchMode(false);
             setListeners();
 
         }
@@ -116,6 +120,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
         @SuppressLint("ClickableViewAccessibility")
         private void setListeners(){
+
 
             this.binding.planWrapper.setOnClickListener(new View.OnClickListener(){
 
@@ -160,43 +165,48 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
               }
           });
 
-          this.binding.planWrapper.setOnLongClickListener(new View.OnLongClickListener() {
+          this.binding.dayPlanItemOptionButton.setOnClickListener(new View.OnClickListener() {
+
               @Override
-              public boolean onLongClick(View v) {
+              public void onClick(View v) {
+                  PopupMenu popup = new PopupMenu(context, v);
+                  popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                      @Override
+                      public boolean onMenuItemClick(MenuItem item) {
+                          switch(item.getItemId()) {
+                              case R.id.day_plan_item_delete:
+                                  if(alertBuilder == null) {
+                                      alertBuilder = new AlertDialog.Builder(context, R.style.plan_remove_reask_dialog);
+                                  }
 
-                  Display display = v.getDisplay();
-                  Point size = new Point();
-                  display.getSize(size);
-                  View inflatedView = LayoutInflater.from(v.getContext()).inflate(R.layout.plan_long_click_option,binding.planWrapper,false);
-                  optionView = inflatedView;
-                  binding.planWrapper.addView(inflatedView);
+                                  if(model.plan.isParentPlan()) {
+                                      attachAlert(R.string.parent_plan_delete_ask_msg);
+                                  }else {
+                                      attachAlert(R.string.child_plan_delete_ask_msg);
+                                  }
+                                  break;
 
-                  inflatedView.findViewById(R.id.cancel_option).setOnClickListener(cancelOptionOnClickListener);
-                  inflatedView.findViewById(R.id.cancel_option_button).setOnClickListener(cancelOptionOnClickListener);
-                  inflatedView.findViewById(R.id.delete_plan).setOnClickListener(removePlanOnClickListener);
-                  inflatedView.findViewById(R.id.delete_plan_button).setOnClickListener(removePlanOnClickListener);
-                  inflatedView.findViewById(R.id.push_plan).setOnClickListener(pushPlanOnClickListener);
-                  inflatedView.findViewById(R.id.push_plan_button).setOnClickListener(pushPlanOnClickListener);
-                  inflatedView.findViewById(R.id.pull_plan).setOnClickListener(pullPlanOnClickListener);
-                  inflatedView.findViewById(R.id.pull_plan_button).setOnClickListener(pullPlanOnClickListener);
-                  hideAllView();
+                              case R.id.day_plan_item_pull:
+                                  moveClickListener(MovePlanDialog.PULL_PLAN);
+                                  break;
 
-                  return true;
+                              case R.id.day_plan_item_push:
+                                  moveClickListener(MovePlanDialog.PUSH_PLAN);
+                                  break;
+
+                          }
+                          return true;
+                      }
+                  });
+                  MenuInflater inflater = popup.getMenuInflater();
+                  inflater.inflate(R.menu.day_plan_item_option_menu, popup.getMenu());
+                  popup.show();
               }
           });
+
         }
 
         private View optionView;
-
-        private View.OnClickListener cancelOptionOnClickListener = new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                binding.planWrapper.removeView(optionView);
-                showAllView();
-
-            }
-        };
 
         private DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -243,22 +253,6 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
                         .show();
         }
 
-        private View.OnClickListener removePlanOnClickListener = new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if(alertBuilder == null) {
-                    alertBuilder = new AlertDialog.Builder(v.getContext(),R.style.plan_remove_reask_dialog);
-                }
-
-                if(model.plan.isParentPlan()) {
-                    attachAlert(R.string.parent_plan_delete_ask_msg);
-                }else {
-                    attachAlert(R.string.child_plan_delete_ask_msg);
-                }
-            }
-        };
 
         private void moveClickListener(int moveType) {
 

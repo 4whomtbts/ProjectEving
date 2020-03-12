@@ -7,8 +7,8 @@ android {
         applicationId "com.forwhomtbts.evingPlanner"
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 8
-        versionName "1.2.3"
+        versionCode 10
+        versionName "1.2.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en",  "US", "ko"
     }
@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.gms:play-services-ads:18.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation "io.github.kobakei:ratethisapp:1.2.0"
     implementation 'net.danlew:android.joda:2.10.1.2'
@@ -45,7 +46,6 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
     implementation "android.arch.persistence.room:runtime:1.1.1"
-    implementation 'com.google.android.material:material:1.0.0'
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     testImplementation "android.arch.persistence.room:testing:1.1.1"
     testImplementation 'junit:junit:4.12'

@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainActivity">
+    <item
+        android:id="@+id/day_plan_item_delete"
+        android:orderInCategory="100"
+        android:title="@string/delete"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/day_plan_item_pull"
+        android:orderInCategory="100"
+        android:title="@string/pull"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/day_plan_item_push"
+        android:orderInCategory="100"
+        android:title="@string/push"
+        app:showAsAction="never" />
+</menu>

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data class="DayDialogBinding">
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="model"
             type="com.example.evingPlanner.ui.singleDayDialog.CalendarDayDetailVM" />
@@ -14,19 +16,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/day_dialog_abstract_wrapper"
-        android:paddingTop="15dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/dialog_shape">
+        android:background="@drawable/dialog_shape"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="35dp" />
+            app:layout_constraintGuide_percent="0.069767445" />
 
 
         <!-- 1 구역 시작 -->
@@ -35,25 +37,25 @@
             android:id="@+id/day_text"
             android:layout_width="wrap_content"
             android:layout_height="0px"
-            android:textSize="18dp"
-            android:text="날짜"
             android:fontFamily="@font/nanum_gorthic"
+            android:text="날짜"
             android:textColor="@color/black"
+            android:textSize="18dp"
+            app:layout_constraintHeight_percent="0.05"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHeight_percent="0.05" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/new_plan_text"
             android:layout_width="wrap_content"
             android:layout_height="0px"
-            android:textSize="18dp"
-            android:text="@string/add"
             android:fontFamily="@font/nanum_gorthic"
+            android:text="@string/add"
             android:textColor="@color/interaction_text_color"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="18dp"
+            app:layout_constraintHeight_percent="0.05"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHeight_percent="0.05" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 1 구역 끝 -->
 
@@ -62,8 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintHeight_percent="0.10"
-            />
+            app:layout_constraintHeight_percent="0.10" />
 
         <!-- 2 구역 시작 -->
 
@@ -75,8 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.12"
-            />
+            app:layout_constraintGuide_percent="0.12" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -84,8 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.15"
-            />
+            app:layout_constraintGuide_percent="0.15" />
 
 
         <View
@@ -101,18 +100,39 @@
 
         <!-- 3 구역 시작 -->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/plan_recycler_View"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/hor_third_start_guide"
-                android:paddingBottom="120dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/plan_recycler_View"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintTop_toBottomOf="@id/hor_third_start_guide" />
 
         <!-- 3 구역 끝 -->
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ad_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/admob_banner_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ad_guideline" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </layout>

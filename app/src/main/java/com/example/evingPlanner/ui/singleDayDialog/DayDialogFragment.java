@@ -24,6 +24,9 @@ import com.example.evingPlanner.custom.YMD;
 import com.example.evingPlanner.databinding.DayDialogBinding;
 import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.ui.planDialogs.planCreateDialog.MakePlanDialogFragment;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ public class DayDialogFragment extends DialogFragment {
     private TextView DayText;
     private TextView newPlanText;
     private FragmentManager fragmentManager;
+    private AdView mAdView;
 
     public DayDialogFragment(FragmentManager fragmentManager){
         this.fragmentManager = fragmentManager;
@@ -61,8 +65,12 @@ public class DayDialogFragment extends DialogFragment {
         DayText.setText(String.valueOf(vmodel.getGlobalCurrentCalendarDay()));
         View view = this.binding.getRoot();
 
-        attachListeners();
+        MobileAds.initialize(getContext(), getString(R.string.admob_app_id));
+        mAdView = this.binding.adView;
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
+        attachListeners();
         return view;
     }
 
@@ -107,7 +115,6 @@ public class DayDialogFragment extends DialogFragment {
                     view.setLayoutManager(layoutManager);
                     DayPlanAdapter adapter = new DayPlanAdapter(plans, getFragmentManager());
                     view.setAdapter(adapter);
-
             }
         });
     }

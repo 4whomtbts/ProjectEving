@@ -2,6 +2,7 @@ package com.example.evingPlanner.ui.planDialogs.planCreateDialog;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -15,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -38,11 +40,15 @@ import com.example.evingPlanner.databinding.MakePlanBinding;
 import com.example.evingPlanner.domain.Category;
 import com.example.evingPlanner.domain.planTypes.PlanType;
 import com.example.evingPlanner.ui.planDialogs.clonePreview.ClonePreviewAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 
 public class MakePlanDialogFragment extends DialogFragment {
 
+    private View mainView;
     private MakePlanVM vmodel;
     private MakePlanBinding binding;
     private ClonePreviewAdapter adapter;
@@ -51,7 +57,6 @@ public class MakePlanDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -170,11 +175,9 @@ public class MakePlanDialogFragment extends DialogFragment {
                     String input = binding.planTextInputLayout.getEditText().getText().toString();
                     String group = binding.groupSelectSpinner.getSelectedItem().toString();
                     vmodel.makeNewPlan(vmodel.getWillBePlannedDatesArrWithCurrentPlan(),title,input,group);
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if(imm != null) imm.hideSoftInputFromWindow(binding.getRoot().getWindowToken(), 0);
                     dismiss();
-                    View v = getActivity().getCurrentFocus();
-                    if(v != null){
-
-                }
 
             }
         });
@@ -278,7 +281,11 @@ public class MakePlanDialogFragment extends DialogFragment {
         });
 
 
+
+
     }
+
+
 
 
 

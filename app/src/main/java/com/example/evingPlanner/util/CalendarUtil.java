@@ -181,7 +181,7 @@ public class CalendarUtil {
     public static int getStartIndexOfNextMonth(int year, int month) {
 
         int firstWeek = getFirstWeek(year, month);
-        int numberOfLastMonthDays = firstWeek==1?7:firstWeek-1;
+        int numberOfLastMonthDays = firstWeek==7?7:firstWeek-1;
 
         return numberOfLastMonthDays + getTotalDayOfMonth(year, month);
     }
@@ -190,7 +190,7 @@ public class CalendarUtil {
 
         if ((year == askedYear && askedMonth + 1 == currMonth) ||
                 (year == askedYear+1 && askedMonth == 12)){
-            return day - getFirstDayOfLastMonth(year,currMonth) ;
+            return day - getFirstDayOfLastMonth(year,currMonth);
         }else if(year == askedYear && askedMonth == currMonth ){
             int startIndex = getFirstWeek(year, currMonth);
             return startIndex + (day-1);

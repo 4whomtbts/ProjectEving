@@ -252,12 +252,10 @@ public class CalendarRepository {
         generateDaysListByDate(getGlobalCurrentCalendarYear(),
                 getGlobalCurrentCalendarMonth());
         ArrayList<Plan> result = null;
-        ArrayList<Plan> fullResult = null;
 
         try {
             result = new PlanRepository.GetVisiblePlanMonthAt().execute(new YMD(getGlobalCurrentCalendarYear(),
                     getGlobalCurrentCalendarMonth())).get();
-            fullResult = new PlanRepository.SelectAllPlan().execute().get();
         } catch (Exception e) {
             e.printStackTrace();
         }

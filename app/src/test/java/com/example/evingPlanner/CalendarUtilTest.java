@@ -10,11 +10,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 public class CalendarUtilTest {
 
     @Test
@@ -67,6 +62,9 @@ public class CalendarUtilTest {
         assertEquals(7,CalendarUtil.getFirstWeek(2019,12));
         assertEquals(3,CalendarUtil.getFirstWeek(2020,1));
         assertEquals(6,CalendarUtil.getFirstWeek(2020,2));
+        assertEquals(7,CalendarUtil.getFirstWeek(2020,3));
+        assertEquals(1,CalendarUtil.getFirstWeek(2020,6));
+
     }
 
     @Test
@@ -97,6 +95,8 @@ public class CalendarUtilTest {
         assertEquals(9,CalendarUtil.getLastVisibleDayOfNextMonth(2019,10));
         assertEquals(7,CalendarUtil.getLastVisibleDayOfNextMonth(2019,11));
         assertEquals(4,CalendarUtil.getLastVisibleDayOfNextMonth(2019,12));
+        assertEquals(11,CalendarUtil.getLastVisibleDayOfNextMonth(2020,6));
+        assertEquals(8,CalendarUtil.getLastVisibleDayOfNextMonth(2020,7));
         assertEquals(8,CalendarUtil.getLastVisibleDayOfNextMonth(2023,6));
         assertEquals(5,CalendarUtil.getLastVisibleDayOfNextMonth(2023,7));
         assertEquals(9,CalendarUtil.getLastVisibleDayOfNextMonth(2023,8));
@@ -141,6 +141,7 @@ public class CalendarUtilTest {
 
     @Test
     public void convertDateToIndexTest(){
+        assertEquals(41,CalendarUtil.convertDateToIndex(2020,6,2020,7,4));
 
         assertEquals(0,CalendarUtil.convertDateToIndex(2019,8,2019,7,28));
         assertEquals(3,CalendarUtil.convertDateToIndex(2019,8,2019,7,31));
@@ -168,6 +169,7 @@ public class CalendarUtilTest {
         assertEquals(34,CalendarUtil.convertDateToIndex(2020,4,2020,5,2));
         assertEquals(41,CalendarUtil.convertDateToIndex(2020,4,2020,5,9));
         assertEquals(-1,CalendarUtil.convertDateToIndex(2020,4,2020,5,10));
+
 
         assertEquals(-1,CalendarUtil.convertDateToIndex(2020,2,2020,1,25));
         assertEquals(0,CalendarUtil.convertDateToIndex(2020,2,2020,1,26));

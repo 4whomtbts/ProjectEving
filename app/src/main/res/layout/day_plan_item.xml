@@ -98,8 +98,29 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" />
 
+            <LinearLayout
+                android:id="@+id/option_button_wrapper"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/day_plan_item_option_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:clickable="false"
+                    android:background="@drawable/ic_more_vert_24px" />
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </layout>

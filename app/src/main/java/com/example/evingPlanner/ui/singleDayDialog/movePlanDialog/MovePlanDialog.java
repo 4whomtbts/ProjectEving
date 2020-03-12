@@ -50,16 +50,14 @@ public class MovePlanDialog extends DialogFragment {
         Dialog dialog = getDialog();
 
         Window window = getDialog().getWindow();
-        Point size =new Point();
+        Point size = new Point();
 
         Display display = window.getWindowManager().getDefaultDisplay();
         display.getSize(size);
 
-
-
         if(dialog != null){
             int width = (int)(size.x * 0.80);
-            int height = (int)(size.y * 0.50);
+            int height = (int)(size.y * 0.80);
             dialog.getWindow().setLayout(width,height);
             dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
                     .SOFT_INPUT_ADJUST_RESIZE);
