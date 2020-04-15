@@ -1,24 +1,13 @@
 package com.example.evingPlanner.ui.main;
 
-import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
@@ -92,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
         requestReview();
         RootRepository.initGlobalSetting();
         //showInfoMessage();
-        showMessageByGivenSharedPreference("1.2.3", R.string.v1_2_3_title, R.string.v1_2_3_content);
+        showMessageByGivenSharedPreference("1.2.6", R.string.v1_2_6_title, R.string.v1_2_6_content);
     }
 
     public void setupViewPager(ViewPager vp) {
         cAdapter.addFragment(new CalendarFragment(), null);
-        cAdapter.addFragment(new InfoFragment(), null);
+        cAdapter.addFragment(new SettingFragment(), null);
 
         vp.setAdapter(cAdapter);
     }

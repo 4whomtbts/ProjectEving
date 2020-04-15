@@ -66,9 +66,9 @@ public class DayDialogFragment extends DialogFragment {
         View view = this.binding.getRoot();
 
         MobileAds.initialize(getContext(), getString(R.string.admob_app_id));
-        mAdView = this.binding.adView;
+        //mAdView = this.binding.adView;
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+      //  mAdView.loadAd(adRequest);
 
         attachListeners();
         return view;

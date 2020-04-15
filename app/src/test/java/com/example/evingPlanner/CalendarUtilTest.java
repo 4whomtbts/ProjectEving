@@ -14,10 +14,7 @@ public class CalendarUtilTest {
 
     @Test
     public void getStartOfNextMonthTest() {
-        assertEquals(37, CalendarUtil.getStartIndexOfNextMonth(2019,9));
-        assertEquals(33, CalendarUtil.getStartIndexOfNextMonth(2019,10));
-        assertEquals(35, CalendarUtil.getStartIndexOfNextMonth(2019,11));
-
+        assertEquals(33, CalendarUtil.getStartIndexOfNextMonth(2020,4));
     }
 
     @Test
@@ -64,7 +61,6 @@ public class CalendarUtilTest {
         assertEquals(6,CalendarUtil.getFirstWeek(2020,2));
         assertEquals(7,CalendarUtil.getFirstWeek(2020,3));
         assertEquals(1,CalendarUtil.getFirstWeek(2020,6));
-
     }
 
     @Test
@@ -140,8 +136,16 @@ public class CalendarUtilTest {
     }
 
     @Test
+    public void getIndexOfLastMonthsDayTest() {
+        assertEquals(0, CalendarUtil.getIndexOfLastMonthsDay(2020, 4, 29));
+        assertEquals(2, CalendarUtil.getIndexOfLastMonthsDay(2020, 4, 31));
+        assertEquals(0, CalendarUtil.getIndexOfLastMonthsDay(2020, 8, 26));
+
+
+    }
+    @Test
     public void convertDateToIndexTest(){
-        assertEquals(41,CalendarUtil.convertDateToIndex(2020,6,2020,7,4));
+        assertEquals(34,CalendarUtil.convertDateToIndex(2020,6,2020,7,4));
 
         assertEquals(0,CalendarUtil.convertDateToIndex(2019,8,2019,7,28));
         assertEquals(3,CalendarUtil.convertDateToIndex(2019,8,2019,7,31));

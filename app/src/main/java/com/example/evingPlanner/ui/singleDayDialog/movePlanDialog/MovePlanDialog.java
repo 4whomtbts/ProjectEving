@@ -1,6 +1,7 @@
 package com.example.evingPlanner.ui.singleDayDialog.movePlanDialog;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -26,8 +27,10 @@ public class MovePlanDialog extends DialogFragment {
 
     public static final int PUSH_PLAN = 0;
     public static final int PULL_PLAN = 1;
+    public boolean wasMoveSucceeded = false;
     private final Plan plan;
     private boolean bundleMode = false;
+    private MovePlanDialogDismissListener dismissListener;
     private Class<? extends AbstractMovePlanViewModel> concreteViewModelClass;
     protected MovePlanBinding binding;
     protected AbstractMovePlanViewModel vmodel;
@@ -67,7 +70,6 @@ public class MovePlanDialog extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -85,6 +87,18 @@ public class MovePlanDialog extends DialogFragment {
         View view = this.binding.getRoot();
         attachListeners();
         return view;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface) {
+        super.onDismiss(dialogInterface);
+        if(dismissListener != null) {
+            dismissListener.handleDialogDismiss(this);
+        }
+    }
+
+    public void dismissListener(MovePlanDialogDismissListener dismissListener) {
+        this.dismissListener = dismissListener;
     }
 
     private void attachListeners() {
@@ -119,9 +133,11 @@ public class MovePlanDialog extends DialogFragment {
 
                     if(vmodel.movePlan(bundleMode,year, month, day)) {
                         Toast.makeText(getContext(),R.string.success_move_plan,Toast.LENGTH_LONG).show();
+                        wasMoveSucceeded = true;
                         dismiss();
                         return;
                     }
+
                     Toast.makeText(getContext(),R.string.exception_move_plan,Toast.LENGTH_LONG).show();
 
 
@@ -133,6 +149,4 @@ public class MovePlanDialog extends DialogFragment {
             }
         });
     }
-
-
 }

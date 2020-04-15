@@ -251,7 +251,7 @@ public class CalendarRepository {
     public static void refreshCalendar() {
         generateDaysListByDate(getGlobalCurrentCalendarYear(),
                 getGlobalCurrentCalendarMonth());
-        ArrayList<Plan> result = null;
+        ArrayList<Plan> result = new ArrayList<>();
 
         try {
             result = new PlanRepository.GetVisiblePlanMonthAt().execute(new YMD(getGlobalCurrentCalendarYear(),
@@ -262,13 +262,14 @@ public class CalendarRepository {
 
         MonthPlanList list = new MonthPlanList();
 
-
         for (Plan plan : result) {
 
             int absIndex = convertDateToIndex(
                     getGlobalCurrentCalendarYear(), getGlobalCurrentCalendarMonth(),
                     plan.getYear(),
                     plan.getMonth(), plan.getDay());
+
+
             list.get(absIndex).getValue().add(plan);
 
             ArrayList<Plan> newList = new ArrayList<Plan>();

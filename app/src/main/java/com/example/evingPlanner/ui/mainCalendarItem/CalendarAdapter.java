@@ -5,14 +5,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
-import android.util.TypedValue;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,9 +31,9 @@ import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.ui.singleDayDialog.DayDialogFragment;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class CalendarAdapter extends RecyclerView.Adapter{
     private ArrayList<TSLiveData<DayClass>> dayList;
@@ -52,13 +49,6 @@ public class CalendarAdapter extends RecyclerView.Adapter{
         this.dayList = list;
         this.fm = fm;
         this.context = context;
-    }
-
-    public void setCalendarList(ArrayList<TSLiveData<DayClass>> dayClassList){
-
-        dayList = dayClassList;
-        notifyDataSetChanged();
-
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -181,20 +171,18 @@ public class CalendarAdapter extends RecyclerView.Adapter{
             return view;
         }
 
-        private void registerPlanPreviews(ArrayList<Plan> plans){
-            Collections.sort(plans);
-            int childCount = binding.planPreview.getChildCount();
+        private void registerPlanPreviews(@NonNull ArrayList<Plan> plans){
+            checkNotNull(plans, "plan couldn't be null");
+            binding.planPreview.removeAllViews();
 
-            if(childCount==0){
-                for(int i=plans.size()-1; i >= 0; i--) {
-                    Plan plan = plans.get(i);
-                    View dayPreview = makeDayPreview(plan.getTitle(), plan.isDone);
-                    binding.planPreview.addView(dayPreview,currentVisiblePlans);
-                }
-            }else if(childCount!=plans.size()) {
-                Plan plan = plans.get(plans.size() -1);
-                View dayPreview = makeDayPreview(plan.getTitle(), plan.isDone);
-                binding.planPreview.addView(dayPreview, currentVisiblePlans);
+            Collections.sort(plans);
+
+            final int length = plans.size();
+
+            for (int i = 0; i < length; i++) {
+                Plan plan = plans.get(i);
+                View preview = makeDayPreview(plan.getTitle(), plan.isDone);
+                binding.planPreview.addView(preview, i);
             }
         }
 
@@ -204,10 +192,8 @@ public class CalendarAdapter extends RecyclerView.Adapter{
 
                 @Override
                 public void onChanged(DayPlanList plans) {
-                            if(plans.size()!=0){
                                 registerPlanPreviews(plans);
                                 currentVisiblePlans++;
-                            }
                 }
             });
         }

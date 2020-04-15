@@ -3,6 +3,7 @@ package com.example.evingPlanner.util;
 import com.example.evingPlanner.custom.YMD;
 
 import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import java.util.Calendar;
@@ -181,19 +182,28 @@ public class CalendarUtil {
     public static int getStartIndexOfNextMonth(int year, int month) {
 
         int firstWeek = getFirstWeek(year, month);
-        int numberOfLastMonthDays = firstWeek==7?7:firstWeek-1;
+        int numberOfLastMonthDays = firstWeek==7 ? 7 : firstWeek - 1;
 
         return numberOfLastMonthDays + getTotalDayOfMonth(year, month);
     }
 
-    public static int convertDateToIndex(int year, int currMonth, int askedYear, int askedMonth, int day) {
+    public static int getIndexOfLastMonthsDay(final int year, final int currMonth, final int day) {
+        return day - getFirstDayOfLastMonth(year, currMonth);
+    }
 
+    public static int getIndexOfCurrentMonthsDay(final int year, int currMonth, int day) {
+        int startIndex = getFirstWeek(year, currMonth);
+        return startIndex + (day-1);
+    }
+
+
+    public static int convertDateToIndex(int year, int currMonth, int askedYear, int askedMonth, int day) {
         if ((year == askedYear && askedMonth + 1 == currMonth) ||
                 (year == askedYear+1 && askedMonth == 12)){
-            return day - getFirstDayOfLastMonth(year,currMonth);
+            return getIndexOfLastMonthsDay(year, currMonth, day);
+
         }else if(year == askedYear && askedMonth == currMonth ){
-            int startIndex = getFirstWeek(year, currMonth);
-            return startIndex + (day-1);
+            return getIndexOfCurrentMonthsDay(year, currMonth, day);
 
         }else if((year == askedYear && askedMonth - 1 == currMonth) ||
                 (year == askedYear -1 && askedMonth == 1)) {

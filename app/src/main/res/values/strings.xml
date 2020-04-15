@@ -202,4 +202,6 @@
     <string name="v1_2_3_content">v1.2.3 release</string>
     <string name="pull">pull</string>
     <string name="push">push</string>
+    <string name="v1_2_6_title">v.1.2.6 release</string>
+    <string name="v1_2_6_content">1.2.6 is released!</string>
 </resources>

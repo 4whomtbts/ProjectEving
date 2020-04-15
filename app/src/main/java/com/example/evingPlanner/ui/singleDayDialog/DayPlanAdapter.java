@@ -29,6 +29,7 @@ import com.example.evingPlanner.repository.CategoryRepository;
 import com.example.evingPlanner.ui.planDialogs.planEditDialog.clonePlan.EditClonePlanDialogFragment;
 import com.example.evingPlanner.ui.planDialogs.planEditDialog.originalPlan.EditOrgPlanDialogFragment;
 import com.example.evingPlanner.ui.singleDayDialog.movePlanDialog.MovePlanDialog;
+import com.example.evingPlanner.ui.singleDayDialog.movePlanDialog.MovePlanDialogDismissListener;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         DayItemViewHolder vh = (DayItemViewHolder)holder;
-        DayPlanVM model = new DayPlanVM(planList.get(position),position);
+        DayPlanVM model = new DayPlanVM(planList.get(position), position);
         vh.setViewModel(model);
     }
 
@@ -68,7 +69,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
 
 
-    public class DayItemViewHolder extends RecyclerView.ViewHolder{
+    public class DayItemViewHolder extends RecyclerView.ViewHolder {
         Context context;
         DayPlanVM model;
         DayPlanItemBinding binding;
@@ -246,7 +247,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
 
         private AlertDialog.Builder alertBuilder = null;
 
-        private void attachAlert(int messageId) {
+        private void attachAlert(final int messageId) {
             AlertDialog dialog = alertBuilder.setMessage(messageId)
                         .setPositiveButton(context.getResources().getString(R.string.yes), dialogClickListener)
                         .setNegativeButton(context.getResources().getString(R.string.no), dialogClickListener)
@@ -254,7 +255,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
         }
 
 
-        private void moveClickListener(int moveType) {
+        private void moveClickListener(final int moveType) {
 
             /*
             오늘을 기준으로 이전 계획은 밀고 당기기 불가능하게 했었는데
@@ -265,7 +266,27 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
                 return;
             }
              */
-            MovePlanDialog dialog = new MovePlanDialog(moveType, model.plan);
+            final MovePlanDialog dialog = new MovePlanDialog(moveType, model.plan);
+
+            MovePlanDialogDismissListener dismissListener = new MovePlanDialogDismissListener() {
+                @Override
+                public void handleDialogDismiss(MovePlanDialog movePlanDialog) {
+                    if (movePlanDialog.wasMoveSucceeded) {
+                        int index = -1;
+                        for (int i=0; i < planList.size(); i++) {
+                            Plan plan = planList.get(i);
+                            if (plan.uid == model.plan.uid) {
+                                index = i;
+                                break;
+                            }
+                        }
+
+                        planList.remove(index);
+                        notifyItemRemoved(index);
+                    }
+                }
+            };
+            dialog.dismissListener(dismissListener);
             FragmentTransaction ft = fragmentManager.beginTransaction();
             dialog.show(ft, Integer.toString(moveType));
         }
@@ -287,3 +308,5 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
         };
     }
 }
+
+
