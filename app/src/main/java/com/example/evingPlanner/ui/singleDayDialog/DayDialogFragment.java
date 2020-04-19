@@ -5,31 +5,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.core.view.ViewCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evingPlanner.R;
-import com.example.evingPlanner.custom.YMD;
 import com.example.evingPlanner.databinding.DayDialogBinding;
 import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.ui.planDialogs.planCreateDialog.MakePlanDialogFragment;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+
+import lombok.AllArgsConstructor;
 
 
 public class DayDialogFragment extends DialogFragment {
@@ -40,6 +38,8 @@ public class DayDialogFragment extends DialogFragment {
     private TextView newPlanText;
     private FragmentManager fragmentManager;
     private AdView mAdView;
+    private ListMode listMode = ListMode.PLAN;
+
 
     public DayDialogFragment(FragmentManager fragmentManager){
         this.fragmentManager = fragmentManager;
@@ -66,9 +66,9 @@ public class DayDialogFragment extends DialogFragment {
         View view = this.binding.getRoot();
 
         MobileAds.initialize(getContext(), getString(R.string.admob_app_id));
-        //mAdView = this.binding.adView;
+        mAdView = this.binding.adView;
         AdRequest adRequest = new AdRequest.Builder().build();
-      //  mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);
 
         attachListeners();
         return view;
@@ -84,6 +84,8 @@ public class DayDialogFragment extends DialogFragment {
                 dismiss();
             }
         });
+
+        this.binding.listModeToggle.setOnClickListener(new ListModeToggleOnClickListener(this));
     }
 
     @Override
@@ -118,4 +120,24 @@ public class DayDialogFragment extends DialogFragment {
             }
         });
     }
+
+    @AllArgsConstructor
+    private class ListModeToggleOnClickListener implements View.OnClickListener {
+
+        private final Fragment fragment;
+
+        @Override
+        public void onClick(View v) {
+            RecyclerView view = binding.planRecyclerView;
+
+            VocaAdapter vocaAdapter =
+                    new VocaAdapter(fragment, getFragmentManager(), vmodel.getGlobalSelectedYear(),
+                            vmodel.getGlobalSelectedMonth(), vmodel.getGlobalSelectedDay());
+            view.setAdapter(vocaAdapter);
+        }
+    }
+}
+
+enum ListMode {
+    VOCA, PLAN
 }

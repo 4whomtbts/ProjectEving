@@ -145,6 +145,8 @@ public class CalendarUtilTest {
     }
     @Test
     public void convertDateToIndexTest(){
+        assertEquals(0,CalendarUtil.convertDateToIndex(2020,6,2020,5,31));
+
         assertEquals(34,CalendarUtil.convertDateToIndex(2020,6,2020,7,4));
 
         assertEquals(0,CalendarUtil.convertDateToIndex(2019,8,2019,7,28));

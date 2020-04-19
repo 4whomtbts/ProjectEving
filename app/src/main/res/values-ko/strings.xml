@@ -121,5 +121,13 @@
         https://open.kakao.com/o/g60gb86b
         오픈카톡방 링크는 하단에 2번째 탭을 누르셔서 확인할 수 도 있습니다.
     </string>
+    <string name="voca_desc_input">설명</string>
+    <string name="voca_input">단어</string>
+    <string name="voca_trans_input">의미</string>
+    <string name="add_new_voca"><u>단어추가</u></string>
+    <string name="today_voca">오늘 만들어진 단어</string>
+    <string name="review_voca">복습할 단어</string>
+    <string name="collapse"><u>접기</u></string>
+    <string name="voca_couldnt_be_empty">단어는 공백이 될 수 없습니다.</string>
 
 </resources>

@@ -1,0 +1,128 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "7943992bda2100ea4e73f95b8429e445",
+    "entities": [
+      {
+        "tableName": "table_vocabulary",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`table_vocabulary_id` INTEGER NOT NULL, `parentId` INTEGER NOT NULL, `voca` TEXT, `translation` TEXT, `description` TEXT, `thisCycle` INTEGER NOT NULL, `totalCycle` INTEGER NOT NULL, PRIMARY KEY(`table_vocabulary_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "table_vocabulary_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentId",
+            "columnName": "parentId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voca",
+            "columnName": "voca",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "translation",
+            "columnName": "translation",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "thisCycle",
+            "columnName": "thisCycle",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalCycle",
+            "columnName": "totalCycle",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "table_vocabulary_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "table_day",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`table_day_id` INTEGER NOT NULL, PRIMARY KEY(`table_day_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "table_day_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "table_day_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "day_voca_join",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `day_id` INTEGER NOT NULL, `voca_id` INTEGER NOT NULL, `order` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dayId",
+            "columnName": "day_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vocaId",
+            "columnName": "voca_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "order",
+            "columnName": "order",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7943992bda2100ea4e73f95b8429e445')"
+    ]
+  }
+}

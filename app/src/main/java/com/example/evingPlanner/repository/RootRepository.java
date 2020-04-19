@@ -4,15 +4,23 @@ import android.content.Context;
 
 import androidx.room.Room;
 
+import com.example.evingPlanner.domain.Day;
+import com.example.evingPlanner.domain.DayVocaJoin;
 import com.example.evingPlanner.domain.planTypes.PlanType;
 import com.example.evingPlanner.model.CalendarContentDatabase;
 import com.example.evingPlanner.model.CalendarDayDAO;
 import com.example.evingPlanner.model.CalendarPlanDAO;
 import com.example.evingPlanner.model.CategoryDAO;
 import com.example.evingPlanner.model.CategoryDatabase;
+import com.example.evingPlanner.model.DayDAO;
+import com.example.evingPlanner.model.DayDatabase;
+import com.example.evingPlanner.model.DayVocaJoinDAO;
+import com.example.evingPlanner.model.DayVocaJoinDatabase;
 import com.example.evingPlanner.model.PlanTypeDAO;
 import com.example.evingPlanner.model.PlanDatabase;
 import com.example.evingPlanner.model.PlanTypeDatabase;
+import com.example.evingPlanner.model.VocabularyDAO;
+import com.example.evingPlanner.model.VocabularyDatabase;
 
 import java.util.ArrayList;
 
@@ -26,9 +34,14 @@ public class RootRepository {
     private static CalendarContentDatabase appDB;
     private static PlanTypeRepository RepoPlanType;
     private static SingleDayDialogRepository RepoSingle;
+    private static VocabularyRepository RepoVoca;
     private static PlanDatabase planDB;
     private static PlanTypeDatabase planTypeDB;
     private static CategoryDatabase categoryDB;
+    private static VocabularyDatabase vocaDB;
+    private static DayDatabase dayDB;
+    private static DayVocaJoinDatabase dayVocaJoinDB;
+
     public static Context context; // TODO  static 접근 위험
     private static String timeZone;
 
@@ -83,6 +96,13 @@ public class RootRepository {
         }
 
 
+    }
+
+    public static VocabularyRepository getVocabularyRepository() {
+        if (RepoVoca == null) {
+            RepoVoca = VocabularyRepository.get();
+        }
+        return RepoVoca;
     }
 
     public static CalendarRepository getCalendarRepository(){
@@ -140,6 +160,15 @@ public class RootRepository {
         return planTypeDB;
     }
 
+    public static VocabularyDatabase getVocaTypeDatabase(){
+
+        if(vocaDB == null){
+            vocaDB = Room.databaseBuilder(RootRepository.context,VocabularyDatabase.class,"voca_db")
+                    .build();
+        }
+        return vocaDB;
+    }
+
     public static CategoryDatabase getCategoryDatabase() {
 
         if(categoryDB == null) {
@@ -149,6 +178,35 @@ public class RootRepository {
         return categoryDB;
     }
 
+    public static DayDatabase getDayDatabase() {
+
+        if (dayDB == null) {
+            dayDB = Room.databaseBuilder(RootRepository.context, DayDatabase.class, "day_db")
+                    .build();
+        }
+        return dayDB;
+    }
+
+    public static DayVocaJoinDatabase getDayvocaJoinDatabase() {
+
+        if (dayVocaJoinDB == null) {
+            dayVocaJoinDB = Room.databaseBuilder(RootRepository.context, DayVocaJoinDatabase.class, "day_voca_join_db")
+                    .build();
+        }
+        return dayVocaJoinDB;
+    }
+
+    public static VocabularyDAO  getVocabularyDAO() {
+        return RootRepository.getVocaTypeDatabase().getVocaDAO();
+    }
+
+    public static DayDAO getDayDAO() {
+        return RootRepository.getDayDatabase().getDayDAO();
+    }
+
+    public static DayVocaJoinDAO getDayVocaJoinDAO() {
+        return RootRepository.getDayvocaJoinDatabase().getDayVocaJoinDAO();
+    }
 
     public static CalendarDayDAO getCalendarDayDAO(){
         return RootRepository.getCalendarContentDB().getDayDAO();

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.example.evingPlanner.repository.PlanRepository.setCurrentMonthPlanList;
+import static com.example.evingPlanner.util.CalendarUtil.DAY_IN_MONTH;
 import static com.example.evingPlanner.util.CalendarUtil.convertDateToIndex;
 import static com.example.evingPlanner.util.CalendarUtil.getFirstWeek;
 import static com.example.evingPlanner.util.CalendarUtil.getLastDay;
@@ -269,13 +270,14 @@ public class CalendarRepository {
                     plan.getYear(),
                     plan.getMonth(), plan.getDay());
 
+            if (absIndex >= 0 && absIndex <= DAY_IN_MONTH) {
+                list.get(absIndex).getValue().add(plan);
+                ArrayList<Plan> newList = new ArrayList<Plan>();
+                newList.add(plan);
+                PlanRepository.getCurrentMonthPlanListAt(absIndex).setValue(
+                        new DayPlanList(newList));
+            }
 
-            list.get(absIndex).getValue().add(plan);
-
-            ArrayList<Plan> newList = new ArrayList<Plan>();
-            newList.add(plan);
-            PlanRepository.getCurrentMonthPlanListAt(absIndex).setValue(
-                    new DayPlanList(newList));
 
         }
 

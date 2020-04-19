@@ -17,6 +17,8 @@ import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public abstract class AbstractMovePlanViewModel extends AndroidViewModel {
 
     AbstractMovePlanViewModel(Application application) {
@@ -143,12 +145,14 @@ public abstract class AbstractMovePlanViewModel extends AndroidViewModel {
     }
 
      void initViewModel(@NonNull Plan plan) {
+        checkNotNull(plan, "plan couldn't be null");
+
         this.plan = plan;
         this.planDate = new LocalDateTime(plan.year, plan.month, plan.day, 0, 0);
         try {
             this.planList = new PlanRepository.GetAllPlanByPlanParentUID().execute(this.plan).get();
         }catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 

@@ -65,7 +65,7 @@ public class PullPlanViewModel extends AbstractMovePlanViewModel{
     @Override
     protected boolean isDateValidInSingleMode(LocalDateTime date) {
 
-        if(getPreviousPlanDate().compareTo(date) >= 0) {
+        if (getPreviousPlanDate().compareTo(date) >= 0) {
             return false;
         }
 

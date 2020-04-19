@@ -1,0 +1,149 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "6794d03918ce1c63d80f055a9c488952",
+    "entities": [
+      {
+        "tableName": "table_vocabulary",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `parentId` INTEGER NOT NULL, `voca` TEXT, `translation` TEXT, `description` TEXT, `thisCycle` INTEGER NOT NULL, `totalCycle` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentId",
+            "columnName": "parentId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voca",
+            "columnName": "voca",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "translation",
+            "columnName": "translation",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "thisCycle",
+            "columnName": "thisCycle",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalCycle",
+            "columnName": "totalCycle",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "table_day",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "DayVocaJoin",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDatabase` TEXT, `mCallbacks` TEXT, `mQueryExecutor` TEXT, `mOpenHelper` TEXT, `mInvalidationTracker` TEXT, `mAllowMainThreadQueries` INTEGER NOT NULL, `mWriteAheadLoggingEnabled` INTEGER NOT NULL, `mCloseLock` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mDatabase",
+            "columnName": "mDatabase",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCallbacks",
+            "columnName": "mCallbacks",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mQueryExecutor",
+            "columnName": "mQueryExecutor",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mOpenHelper",
+            "columnName": "mOpenHelper",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mInvalidationTracker",
+            "columnName": "mInvalidationTracker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mAllowMainThreadQueries",
+            "columnName": "mAllowMainThreadQueries",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mWriteAheadLoggingEnabled",
+            "columnName": "mWriteAheadLoggingEnabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCloseLock",
+            "columnName": "mCloseLock",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"6794d03918ce1c63d80f055a9c488952\")"
+    ]
+  }
+}

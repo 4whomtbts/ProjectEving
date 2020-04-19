@@ -83,14 +83,16 @@ public class PlanTypeSpinnerAdapter extends ArrayAdapter<PlanType> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (planTypeArrayList.get(position) != null) {
+        if (position < planTypeArrayList.size() && planTypeArrayList.get(position) != null) {
             TextView label;
             label = (TextView) super.getView(position, convertView, parent);
             label.setText(planTypeArrayList.get(position).getPlanTypeName());
             return label;
+        } else {
+            TextView label = new TextView(context);
+            label.setText("hello");
+            return label;
         }
-
-        return null;
     }
 
     /**

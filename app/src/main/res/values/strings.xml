@@ -204,4 +204,13 @@
     <string name="push">push</string>
     <string name="v1_2_6_title">v.1.2.6 release</string>
     <string name="v1_2_6_content">1.2.6 is released!</string>
+    <string name="voca_input">Vocabulary</string>
+    <string name="voca_trans_input">Translation</string>
+    <string name="voca_desc_input">Description</string>
+    <string name="add_new_voca"><u>Add voca</u></string>
+    <string name="today_voca">Today\'s vocas</string>
+    <string name="review_voca">Review voca list</string>
+    <string name="collapse">Collapse</string>
+    <string name="voca_couldnt_be_empty">Vocabulary couldn\'t be empty string</string>
+
 </resources>
