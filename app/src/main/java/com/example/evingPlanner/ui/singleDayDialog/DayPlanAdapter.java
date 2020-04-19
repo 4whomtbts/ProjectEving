@@ -268,7 +268,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
              */
             final MovePlanDialog dialog = new MovePlanDialog(moveType, model.plan);
 
-            MovePlanDialogDismissListener dismissListener = new MovePlanDialogDismissListener() {
+             MovePlanDialogDismissListener dismissListener = new MovePlanDialogDismissListener() {
                 @Override
                 public void handleDialogDismiss(MovePlanDialog movePlanDialog) {
                     if (movePlanDialog.wasMoveSucceeded) {

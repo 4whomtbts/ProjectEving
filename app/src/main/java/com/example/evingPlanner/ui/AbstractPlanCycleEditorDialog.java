@@ -130,7 +130,7 @@ public abstract class AbstractPlanCycleEditorDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view =inflater.inflate(R.layout.create_plan_cycle_dialog, container);
+        View view = inflater.inflate(R.layout.create_plan_cycle_dialog, container);
         planCycleTitle = view.findViewById(R.id.create_plan_cycle_dialog_title_input);
         planCycle = view.findViewById(R.id.create_plan_cycle_dialog_content_input);
         saveText = view.findViewById(R.id.create_plan_cycle_dialog_save_text);

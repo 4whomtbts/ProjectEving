@@ -13,11 +13,12 @@ public class VocaDayJoinWithVoca {
     @Embedded
     private Vocabulary vocabulary;
 
-    private int order;
+    @Embedded
+    private DayVocaJoin dayVocaJoin;
 
-    public VocaDayJoinWithVoca(Vocabulary vocabulary, int order) {
+    public VocaDayJoinWithVoca(Vocabulary vocabulary, DayVocaJoin dayVocaJoin) {
         this.vocabulary = vocabulary;
-        this.order = order;
+        this.dayVocaJoin = dayVocaJoin;
     }
 
 }

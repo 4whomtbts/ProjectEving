@@ -129,5 +129,6 @@
     <string name="review_voca">복습할 단어</string>
     <string name="collapse"><u>접기</u></string>
     <string name="voca_couldnt_be_empty">단어는 공백이 될 수 없습니다.</string>
+    <string name="modify">수정</string>
 
 </resources>

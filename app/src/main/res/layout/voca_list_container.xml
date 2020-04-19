@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data class="VocaListContainerBinding">
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="vmodel"
-            type="com.example.evingPlanner.ui.singleDayDialog.VocaAdapterViewModel"/>
+            type="com.example.evingPlanner.ui.singleDayDialog.VocaAdapterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/voca_list_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/voca_create_wrapper"
             android:layout_width="match_parent"
             android:layout_height="28dp"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
             <!--app:layout_constraintHeight_percent="0.1-->
 
         </LinearLayout>
@@ -37,7 +38,7 @@
             android:background="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/voca_create_wrapper"/>
+            app:layout_constraintTop_toBottomOf="@+id/voca_create_wrapper" />
 
         <TextView
             android:id="@+id/today_voca_text"
@@ -45,8 +46,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
             android:text="@string/today_voca"
-            android:textSize="18dp"
             android:textColor="@color/black"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/voca_create_wrapper" />
@@ -54,60 +55,57 @@
         <View
             android:id="@+id/today_voca_divider"
             android:layout_width="match_parent"
-            android:paddingTop="6dp"
             android:layout_height="1dp"
             android:background="@color/gray_main_divider"
+            android:paddingTop="6dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/today_voca_text"/>
+            app:layout_constraintTop_toBottomOf="@+id/today_voca_text" />
 
-        <LinearLayout
+
+        <ListView
             android:id="@+id/today_voca_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="12dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/today_voca_text" >
-
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/today_voca_text" />
 
         <TextView
             android:id="@+id/review_voca_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/today_voca_list"
             android:paddingTop="30dp"
+            android:text="@string/review_voca"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:text="@string/review_voca"
-            />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/today_voca_list" />
 
         <View
             android:id="@+id/review_voca_divider"
             android:layout_width="match_parent"
-            android:paddingTop="6dp"
             android:layout_height="1dp"
             android:background="@color/gray_main_divider"
+            android:paddingTop="6dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/review_voca_text"/>
+            app:layout_constraintTop_toBottomOf="@+id/review_voca_text" />
 
-        <LinearLayout
+
+        <ListView
             android:id="@+id/review_voca_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="12dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/review_voca_text" >
+            app:layout_constraintTop_toBottomOf="@id/review_voca_text" />
 
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </layout>

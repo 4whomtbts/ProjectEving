@@ -58,6 +58,29 @@ public class DayVocaJoinRepsotiory {
         }
     }
 
+    public static class DeleteDayVocaByVoca extends AsyncTask<Vocabulary, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Vocabulary ...Vocabulary) {
+            checkNotNull(Vocabulary, "vocabulary couldn't be null");
+
+            RootRepository.getDayvocaJoinDatabase().getDayVocaJoinDAO().deleteByVocabulary(Vocabulary[0].getId());
+            return true;
+        }
+    }
+
+    public static class Delete extends AsyncTask<DayVocaJoin, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(DayVocaJoin ...DayVocaJoin) {
+            checkNotNull(DayVocaJoin, "dayVocaJoin couldn't be null");
+
+            RootRepository.getDayvocaJoinDatabase().getDayVocaJoinDAO().delete(DayVocaJoin[0]);
+            return true;
+        }
+    }
+
+
     public static class SelectAllDayVocaJoin extends AsyncTask<DayVocaJoin, Void, List<DayVocaJoin>> {
 
         @Override

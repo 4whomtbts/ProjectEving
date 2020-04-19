@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.evingPlanner.domain.VocaDayJoinWithVoca;
 import com.example.evingPlanner.domain.Vocabulary;
@@ -20,11 +21,17 @@ public interface VocabularyDAO {
     @Delete
     public void delete(Vocabulary... vocabularies);
 
+    @Update
+    public void update(Vocabulary... vocabularies);
+
     @Query("SELECT * FROM table_vocabulary")
     public List<Vocabulary> selectAll();
 
     @Query("SELECT * FROM table_vocabulary WHERE table_vocabulary_id = :vocaid")
     public Vocabulary selectVocaById(long vocaid);
+
+    @Query("SELECT * FROM table_vocabulary WHERE parentId = :parentId ORDER BY thisCycle ASC")
+    public List<Vocabulary> selectVocaByParent(long parentId);
 
     @Query("SELECT * FROM day_voca_join d INNER JOIN table_vocabulary t ON d.voca_id = t.table_vocabulary_id")
     List<VocaDayJoinWithVoca> getVocaForDay();

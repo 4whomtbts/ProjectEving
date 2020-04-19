@@ -24,7 +24,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class VocaAdapterViewModel extends AndroidViewModel {
 
-    final MutableLiveData<List<Vocabulary>> vocabularies = new MutableLiveData<>();
     final MutableLiveData<List<VocaDayJoinWithVoca>> todayVocabulary = new MutableLiveData<>();
     final MutableLiveData<List<VocaDayJoinWithVoca>> reviewVocabulary = new MutableLiveData<>();
 
@@ -35,6 +34,9 @@ public class VocaAdapterViewModel extends AndroidViewModel {
     }
 
     public void fetchVocas(final int year, final int month, final int day) throws ExecutionException, InterruptedException {
+        checkArgument(year > 0, "year should be greater than 0");
+        checkArgument(month > 0 && month <= 12, "month is invalid");
+        checkArgument(day > 0 && day < 31, "day is invalid");
 
         final List<DayVocaJoin> vocaDayJoinWithVocas =
                 new DayVocaJoinRepsotiory.SelectDayVocaJoinForDay().execute(new Day(year, month, day)).get();
@@ -46,7 +48,7 @@ public class VocaAdapterViewModel extends AndroidViewModel {
 
         for(int i=0; i < vocaDayJoinWithVocas.size(); i++) {
                 Vocabulary voca = todayVocas.get(i);
-                VocaDayJoinWithVoca vocaDayJoinWithVoca = new VocaDayJoinWithVoca(voca, 0);
+                VocaDayJoinWithVoca vocaDayJoinWithVoca = new VocaDayJoinWithVoca(voca, vocaDayJoinWithVocas.get(i));
                 if (voca.isParent()) {
                     todayVocaList.add(vocaDayJoinWithVoca);
                 } else {
@@ -65,11 +67,10 @@ public class VocaAdapterViewModel extends AndroidViewModel {
         checkNotNull(translation, "translation couldn't be null");
         checkNotNull(description, "description couldn't be null");
         checkNotNull(planType, "plan type couldn't be null");
-        //checkArgument(voca.equals("g"), getApplication().getResources().getString(R.string.voca_couldnt_be_empty));
 
         checkArgument(year > 0, "year should be positive number");
-        checkArgument(month > 0 && month < 13, "month is invalid");
-        checkArgument(day > 0 && day < 32, "day is invalid");
+        checkArgument(month > 0 && month <= 12, "month is invalid");
+        checkArgument(day > 0 && day <= 31, "day is invalid");
 
         final int[] cycles = planType.cycles;
 
@@ -85,7 +86,6 @@ public class VocaAdapterViewModel extends AndroidViewModel {
 
 
         Day dayEntity = new Day(year, month, day);
-        Day existDay = new DayRepository.SelectDay().execute(dayEntity).get();
         List<Day> allShouldBeMadeDay = dayEntity.getDayShouldBeMade(dayEntity, cycles);
 
         new DayRepository.UpsertDays().execute(allShouldBeMadeDay).get();
@@ -101,29 +101,19 @@ public class VocaAdapterViewModel extends AndroidViewModel {
 
         new DayVocaJoinRepsotiory.InsertDayVocas().execute(dayVocaJoinArray);
 
-        List<DayVocaJoin> result =  new DayVocaJoinRepsotiory.SelectDayVocaJoinForDay().execute(dayEntity).get();
-
-        /*
-        List<Vocabulary> vocabularyList = new VocabularyRepository.SelectAllVocabularyByJoin().execute(result).get();
-
-        List<VocaDayJoinWithVoca> todayVocas = new ArrayList<>();
-        for (int i=0; i < result.size(); i++) {
-            todayVocas.add(new VocaDayJoinWithVoca(vocabularyList.get(i), result.get(i).order));
-        }
-         */
-
-
-        List<VocaDayJoinWithVoca> refreshTodayVocas;
-        refreshTodayVocas = todayVocabulary.getValue();
-
-        if (refreshTodayVocas == null) {
-            refreshTodayVocas = new ArrayList<>();
-        }
+        List<VocaDayJoinWithVoca> refreshTodayVocas = new ArrayList<>();
 
         DayVocaJoin todayVocaJoin = dayVocaJoinArray[0];
         Vocabulary todayVoca = vocaArray[0];
 
-        refreshTodayVocas.add(new VocaDayJoinWithVoca(todayVoca, todayVocaJoin.order));
+        refreshTodayVocas.add(new VocaDayJoinWithVoca(todayVoca, todayVocaJoin));
+
+        List<VocaDayJoinWithVoca> existVocas = todayVocabulary.getValue();
+
+        if (existVocas != null) {
+            refreshTodayVocas.addAll(existVocas);
+        }
+
         todayVocabulary.setValue(refreshTodayVocas);
     }
 

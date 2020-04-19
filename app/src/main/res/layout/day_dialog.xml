@@ -109,13 +109,20 @@
 
         <!-- 3 구역 시작 -->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/plan_recycler_View"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingBottom="20dp"
             app:layout_constraintHeight_percent="0.70"
-            app:layout_constraintTop_toBottomOf="@id/hor_third_start_guide" />
+            app:layout_constraintTop_toBottomOf="@id/hor_third_start_guide" >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/plan_recycler_View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
+
 
         <!-- 3 구역 끝 -->
 

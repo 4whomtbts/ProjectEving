@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evingPlanner.R;
+import com.example.evingPlanner.UIUtils;
 import com.example.evingPlanner.custom.PlanTypeSpinnerAdapter;
 import com.example.evingPlanner.databinding.VocaListContainerBinding;
 import com.example.evingPlanner.domain.VocaDayJoinWithVoca;
@@ -56,7 +57,8 @@ public class VocaAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {}
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    }
 
     @Override
     public int getItemCount() {
@@ -85,10 +87,9 @@ public class VocaAdapter extends RecyclerView.Adapter {
                 vocaCreatorExpandText.setOnClickListener(new ExpandTextOnClickListener(context, fragment, binding, inflater));
             }
 
-            setObservers();
-
             try {
                 vmodel.fetchVocas(year, month, day);
+                applyVocaLists();
             } catch (Exception e) {
                 Toast.makeText(context, context.getResources().getString(R.string.system_error_try_again), Toast.LENGTH_LONG).show();
             }
@@ -99,33 +100,30 @@ public class VocaAdapter extends RecyclerView.Adapter {
             return param;
         }
 
+        private void applyVocaLists() {
+            List<VocaDayJoinWithVoca> todayVocaList = vmodel.todayVocabulary.getValue();
+            List<VocaDayJoinWithVoca> reviewVocaList = vmodel.reviewVocabulary.getValue();
+            binding.todayVocaList.setAdapter(
+                    new VocaListViewAdapter(context, fragment, binding.todayVocaList, todayVocaList));
+            UIUtils.setListViewHeightBasedOnItems(binding.todayVocaList);
+            binding.reviewVocaList.setAdapter(
+                    new VocaListViewAdapter(context, fragment, binding.reviewVocaList, reviewVocaList));
+            UIUtils.setListViewHeightBasedOnItems(binding.reviewVocaList);
+        }
+
+        /*
         private void buildVocaList(final ViewGroup layout, final List<VocaDayJoinWithVoca> list) {
-            checkNotNull(layout, "layout is null");
-            checkNotNull(list, "layout is null");
+            checkNotNull(layout, "layout couldn't null");
+            checkNotNull(list, "list couldn't null");
 
             layout.removeAllViewsInLayout();
-            for (VocaDayJoinWithVoca vocabulary : list) {
-                TextView newTextView = new TextView(context);
-                newTextView.setText(vocabulary.getVocabulary().getVoca());
-                layout.addView(newTextView);
+            for (VocaDayJoinWithVoca vocaDayJoin : list) {
+                VocabularyItem item = new VocabularyItem(context, fragment, layout, vocaDayJoin);
+                item.initView();
+                layout.addView(item);
             }
         }
-
-        private void setObservers() {
-            vmodel.todayVocabulary.observe(fragment, new Observer<List<VocaDayJoinWithVoca>>() {
-                @Override
-                public void onChanged(List<VocaDayJoinWithVoca> vocabularies) {
-                   buildVocaList(binding.todayVocaList, vocabularies);
-                }
-            });
-
-            vmodel.reviewVocabulary.observe(fragment, new Observer<List<VocaDayJoinWithVoca>>() {
-                @Override
-                public void onChanged(List<VocaDayJoinWithVoca> vocabularies) {
-                    buildVocaList(binding.reviewVocaList, vocabularies);
-                }
-            });
-        }
+        */
 
         private class ExpandTextOnClickListener implements View.OnClickListener {
 
@@ -144,7 +142,7 @@ public class VocaAdapter extends RecyclerView.Adapter {
                 this.inflater = inflater;
                 this.context = context;
                 this.fragment = fragment;
-            //    setObservers();
+                //setObservers();
             }
 
             @Override
@@ -154,7 +152,7 @@ public class VocaAdapter extends RecyclerView.Adapter {
 
                 binding.vocaCreateWrapper.setLayoutParams
                         (getResizedConstraintLayoutParam(
-                                (ConstraintLayout.LayoutParams)binding.vocaCreateWrapper.getLayoutParams(), 500));
+                                (ConstraintLayout.LayoutParams) binding.vocaCreateWrapper.getLayoutParams(), 500));
 
                 LinearLayout expandedView =
                         (LinearLayout) inflater.inflate(R.layout.voca_create_expanded,
@@ -181,7 +179,7 @@ public class VocaAdapter extends RecyclerView.Adapter {
                         binding.vocaCreateWrapper.removeAllViewsInLayout();
                         binding.vocaCreateWrapper.setLayoutParams
                                 (getResizedConstraintLayoutParam(
-                                        (ConstraintLayout.LayoutParams)binding.vocaCreateWrapper.getLayoutParams(),38));
+                                        (ConstraintLayout.LayoutParams) binding.vocaCreateWrapper.getLayoutParams(), 38));
 
                         LinearLayout expandedView =
                                 (LinearLayout) inflater.inflate(R.layout.voca_create_shrink,
@@ -197,12 +195,12 @@ public class VocaAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemSelected(AdapterView<?> adapter, View view, int position, long id) {
                     System.out.println(adapter.getSelectedItem());
-                    ((TextView)cycleSelector.getSelectedView())
-                        .setTypeface(ResourcesCompat.getFont(context,
-                            R.font.nanum_gorthic));
-                    ((TextView)cycleSelector.getSelectedView())
-                        .setTextColor(ContextCompat.getColor(context,R.color.black));
-                    selectedPlanType  = (PlanType)(adapter.getSelectedItem());
+                    ((TextView) cycleSelector.getSelectedView())
+                            .setTypeface(ResourcesCompat.getFont(context,
+                                    R.font.nanum_gorthic));
+                    ((TextView) cycleSelector.getSelectedView())
+                            .setTextColor(ContextCompat.getColor(context, R.color.black));
+                    selectedPlanType = (PlanType) (adapter.getSelectedItem());
                 }
 
                 @Override
@@ -220,7 +218,8 @@ public class VocaAdapter extends RecyclerView.Adapter {
                         vmodel.addVoca(
                                 vocaInput.getText().toString(), vocaTransInput.getText().toString(),
                                 vocaDescInput.getText().toString(), selectedPlanType, year, month, day);
-                    }catch (Exception e) {
+                        applyVocaLists();
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -228,7 +227,6 @@ public class VocaAdapter extends RecyclerView.Adapter {
             }
 
         }
-
 
     }
 }
