@@ -13,14 +13,18 @@ import com.example.evingPlanner.domain.VocaDayJoinWithVoca;
 
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class VocaListViewAdapter extends BaseAdapter {
 
-    private Context context;
-    private Fragment fragment;
-    private ListView listView;
-    public List<VocaDayJoinWithVoca> vocaList;
+    private final Context context;
+    private final Fragment fragment;
+    private final ListView listView;
+    private final List<VocaDayJoinWithVoca> vocaList;
 
-    public VocaListViewAdapter(Context context, Fragment fragment, ListView listView, List<VocaDayJoinWithVoca> vocaList) {
+    VocaListViewAdapter(Context context, Fragment fragment, ListView listView, List<VocaDayJoinWithVoca> vocaList) {
+        checkNotNull(vocaList, "vocaList cannot be null");
+
         this.vocaList = vocaList;
         this.context = context;
         this.fragment = fragment;
@@ -44,7 +48,7 @@ public class VocaListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        VocabularyItem vocabularyItem = new VocabularyItem(context, fragment, (VocaDayJoinWithVoca) getItem(position), this, position);
+        VocabularyItem vocabularyItem = new VocabularyItem(context, fragment, (VocaDayJoinWithVoca) getItem(position), this);
         vocabularyItem.initView();
         return vocabularyItem;
     }
@@ -53,5 +57,14 @@ public class VocaListViewAdapter extends BaseAdapter {
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
         UIUtils.setListViewHeightBasedOnItems(listView);
+    }
+
+    public void removeItem(VocaDayJoinWithVoca vocaDayJoinWithVoca) {
+        this.vocaList.remove(vocaDayJoinWithVoca);
+        this.notifyDataSetChanged();
+    }
+
+    public void adjustPositin(VocaDayJoinWithVoca vocaDayJoinWithVoca) {
+
     }
 }

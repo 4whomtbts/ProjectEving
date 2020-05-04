@@ -59,7 +59,10 @@ public class DayPlanVM extends CalendarViewModel {
     public boolean isParent() { return this.plan.isParentPlan();}
 
     public boolean isDone(){
-        return this.plan.isDone();
+        if (this.plan != null) {
+            return this.plan.isDone();
+        }
+        return false;
     }
 
     void refreshModel() {

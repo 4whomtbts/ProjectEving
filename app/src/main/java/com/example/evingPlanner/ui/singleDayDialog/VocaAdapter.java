@@ -1,9 +1,11 @@
 package com.example.evingPlanner.ui.singleDayDialog;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -17,40 +19,43 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.evingPlanner.AnalyticsApplication;
 import com.example.evingPlanner.R;
 import com.example.evingPlanner.UIUtils;
 import com.example.evingPlanner.custom.PlanTypeSpinnerAdapter;
 import com.example.evingPlanner.databinding.VocaListContainerBinding;
 import com.example.evingPlanner.domain.VocaDayJoinWithVoca;
 import com.example.evingPlanner.domain.planTypes.PlanType;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 @RequiredArgsConstructor
 public class VocaAdapter extends RecyclerView.Adapter {
 
+    private final AnalyticsApplication analytics = new AnalyticsApplication();
     private final Fragment fragment;
     private final FragmentManager fragmentManager;
     private final int year;
     private final int month;
     private final int day;
     private VocaAdapterViewModel vmodel;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final VocaListContainerBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 R.layout.voca_list_container, parent, false);
+
         vmodel = ViewModelProviders.of(fragment).get(VocaAdapterViewModel.class);
         binding.setLifecycleOwner(fragment);
         return new VocaAdapterViewHolder(parent.getContext(), binding);
@@ -78,6 +83,7 @@ public class VocaAdapter extends RecyclerView.Adapter {
             this.context = context;
             this.binding = binding;
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
 
             if (inflater != null) {
                 LinearLayout vocaCreatorExpandText =
@@ -111,20 +117,6 @@ public class VocaAdapter extends RecyclerView.Adapter {
             UIUtils.setListViewHeightBasedOnItems(binding.reviewVocaList);
         }
 
-        /*
-        private void buildVocaList(final ViewGroup layout, final List<VocaDayJoinWithVoca> list) {
-            checkNotNull(layout, "layout couldn't null");
-            checkNotNull(list, "list couldn't null");
-
-            layout.removeAllViewsInLayout();
-            for (VocaDayJoinWithVoca vocaDayJoin : list) {
-                VocabularyItem item = new VocabularyItem(context, fragment, layout, vocaDayJoin);
-                item.initView();
-                layout.addView(item);
-            }
-        }
-        */
-
         private class ExpandTextOnClickListener implements View.OnClickListener {
 
             private final Context context;
@@ -142,7 +134,6 @@ public class VocaAdapter extends RecyclerView.Adapter {
                 this.inflater = inflater;
                 this.context = context;
                 this.fragment = fragment;
-                //setObservers();
             }
 
             @Override
@@ -179,7 +170,7 @@ public class VocaAdapter extends RecyclerView.Adapter {
                         binding.vocaCreateWrapper.removeAllViewsInLayout();
                         binding.vocaCreateWrapper.setLayoutParams
                                 (getResizedConstraintLayoutParam(
-                                        (ConstraintLayout.LayoutParams) binding.vocaCreateWrapper.getLayoutParams(), 38));
+                                        (ConstraintLayout.LayoutParams) binding.vocaCreateWrapper.getLayoutParams(), 50));
 
                         LinearLayout expandedView =
                                 (LinearLayout) inflater.inflate(R.layout.voca_create_shrink,
@@ -219,14 +210,29 @@ public class VocaAdapter extends RecyclerView.Adapter {
                                 vocaInput.getText().toString(), vocaTransInput.getText().toString(),
                                 vocaDescInput.getText().toString(), selectedPlanType, year, month, day);
                         applyVocaLists();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("new_voca", "단어 [ "+vocaInput.getText().toString()+" ], 번역 [ "+vocaTransInput.getText().toString()+" ], 설명 [ "+vocaDescInput.getText().toString()+" ]");
+                        mFirebaseAnalytics.logEvent("new_voca", bundle);
+
                     } catch (Exception e) {
+                        Toast.makeText(context, R.string.system_error_try_again, Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
 
+                    Toast.makeText(context, R.string.voca_save_success, Toast.LENGTH_LONG).show();
+                    View view = fragment.getActivity().getCurrentFocus();
+
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                        vocaInput.setText("");
+                        vocaTransInput.setText("");
+                        vocaDescInput.setText("");
+                    }
                 }
+
             }
 
         }
-
     }
 }

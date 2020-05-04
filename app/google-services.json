@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "143758279306",
+    "firebase_url": "https://project-8254291708073717463.firebaseio.com",
+    "project_id": "project-8254291708073717463",
+    "storage_bucket": "project-8254291708073717463.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143758279306:android:856c29ee4671941cfd6373",
+        "android_client_info": {
+          "package_name": "com.forwhomtbts.evingPlanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143758279306-d83th1h3232kcvsbbcnmhi8g0pnlaugf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwMeM56qSkhtCDePlx4HrPHWY9Zsk-b0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143758279306-d83th1h3232kcvsbbcnmhi8g0pnlaugf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

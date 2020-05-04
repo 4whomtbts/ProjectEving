@@ -1,6 +1,7 @@
 package com.example.evingPlanner.repository;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.evingPlanner.TSLiveData;
@@ -9,7 +10,6 @@ import com.example.evingPlanner.custom.YMD;
 import com.example.evingPlanner.custom.types.DayPlanList;
 import com.example.evingPlanner.custom.types.MonthPlanList;
 import com.example.evingPlanner.domain.DayClass;
-import com.example.evingPlanner.domain.MonthClass;
 import com.example.evingPlanner.domain.Plan;
 import com.example.evingPlanner.util.CalendarUtil;
 
@@ -29,9 +29,6 @@ public class CalendarRepository {
 
     private static CalendarRepository Inst;
 
-    private static TSLiveData<MonthClass> _currMonthObj;
-//    private static TSLiveData<ArrayList<TSLiveData<MonthClass>>
-
     // global 에서 현재의 month 에 대한 각각의 일의 livedata
 
     private static TSLiveData<ArrayList<TSLiveData<DayClass>>> _daysOfCurrMonth;
@@ -41,9 +38,10 @@ public class CalendarRepository {
     private static TSLiveData<Integer> _globalCurrentSelectedYear;
     private static TSLiveData<Integer> _globalCurrentSelectedMonth;
     private static TSLiveData<Integer> _globalCurrentSelectedDay;
-    private static TSLiveData<HashMap<Pair<Integer,Integer>,ArrayList<DayClass>>> _backup;
-    public static CalendarRepository get(){
-        if(Inst == null){
+    private static TSLiveData<HashMap<Pair<Integer, Integer>, ArrayList<DayClass>>> _backup;
+
+    public static CalendarRepository get() {
+        if (Inst == null) {
             Inst = new CalendarRepository();
 
         }
@@ -51,15 +49,14 @@ public class CalendarRepository {
     }
 
 
-    private CalendarRepository(){
+    private CalendarRepository() {
         LocalDate now = LocalDate.now();
         int currentYear = now.getYear();
         int currentMonth = now.getMonthOfYear();
         int currentDay = now.getDayOfMonth();
-        HashMap<Pair<Integer,Integer>,ArrayList<DayClass>> backup = new  HashMap<>();
+        HashMap<Pair<Integer, Integer>, ArrayList<DayClass>> backup = new HashMap<>();
         ArrayList<TSLiveData<DayClass>> list = new ArrayList<TSLiveData<DayClass>>();
 
-        _currMonthObj  = new TSLiveData<>();
         _daysOfCurrMonth = new TSLiveData<>();
 
         _globalCurrentCalendarYear = new TSLiveData<>();
@@ -83,16 +80,12 @@ public class CalendarRepository {
 
     }
 
-    private static void initVariables(){
-    }
-
-
-    public static class InsertDay extends AsyncTask<DayClass,Void,Void> {
+    public static class InsertDay extends AsyncTask<DayClass, Void, Void> {
 
         @Override
         protected Void doInBackground(DayClass... dayClasses) {
             int len = dayClasses.length;
-            for(int i=0; i < len ;i++){
+            for (int i = 0; i < len; i++) {
                 RootRepository.getCalendarDayDAO().insertDay(dayClasses[i]);
             }
 
@@ -100,12 +93,12 @@ public class CalendarRepository {
         }
     }
 
-    public static  class DeleteDays extends AsyncTask<DayClass,Void,Void> {
+    public static class DeleteDays extends AsyncTask<DayClass, Void, Void> {
 
         @Override
         protected Void doInBackground(DayClass... dayClasses) {
             int len = dayClasses.length;
-            for(int i=0; i < len ;i++){
+            for (int i = 0; i < len; i++) {
                 RootRepository.getCalendarDayDAO().deleteDay(dayClasses[i]);
             }
             return null;
@@ -113,69 +106,77 @@ public class CalendarRepository {
     }
 
 
-    public static  class GetDayByDay extends AsyncTask<DayClass,Void,DayClass> {
+    public static class GetDayByDay extends AsyncTask<DayClass, Void, DayClass> {
 
         @Override
         protected DayClass doInBackground(DayClass... dayClasses) {
             DayClass day = dayClasses[0];
-                RootRepository.getCalendarDayDAO().getDaysByDay(
-                    day.year,day.month,day.day
-                );
+            RootRepository.getCalendarDayDAO().getDaysByDay(
+                    day.year, day.month, day.day
+            );
             return day;
         }
     }
 
 
-
-    public static int getGlobalCurrentCalendarYear(){
+    public static int getGlobalCurrentCalendarYear() {
         return _globalCurrentCalendarYear.getValue();
     }
-    public static int getGlobalCurrentCalendarMonth(){
+
+    public static int getGlobalCurrentCalendarMonth() {
         return _globalCurrentCalendarMonth.getValue();
     }
-    public static int getGlobalCurrentCalendarDay(){
+
+    public static int getGlobalCurrentCalendarDay() {
         return _globalCurrentCalendarDay.getValue();
     }
 
 
-
-    public static void setGlobalCurrentCalendarYear(int year){
+    public static void setGlobalCurrentCalendarYear(int year) {
         _globalCurrentCalendarYear.setValue(year);
     }
-    public static void setGlobalCurrentCalendarMonth(int month){
+
+    public static void setGlobalCurrentCalendarMonth(int month) {
         _globalCurrentCalendarMonth.setValue(month);
     }
-    public static void setGlobalCurrentCalendarDay(int day){
+
+    public static void setGlobalCurrentCalendarDay(int day) {
         _globalCurrentCalendarDay.setValue(day);
     }
 
-    public static void setGlobalCurrentSelectedYear(int year){
+    public static void setGlobalCurrentSelectedYear(int year) {
         _globalCurrentSelectedYear.setValue(year);
     }
-    public static void setGlobalCurrentSelectedMonth(int month){
+
+    public static void setGlobalCurrentSelectedMonth(int month) {
         _globalCurrentSelectedMonth.setValue(month);
     }
-    public static void setGlobalCurrentSelectedDay(int day){
+
+    public static void setGlobalCurrentSelectedDay(int day) {
         _globalCurrentSelectedDay.setValue(day);
     }
-    public static int getGlobalCurrentSelectedYear(){
+
+    public static int getGlobalCurrentSelectedYear() {
         return _globalCurrentSelectedYear.getValue();
     }
-    public static int getGlobalCurrentSelectedMonth(){
+
+    public static int getGlobalCurrentSelectedMonth() {
         return _globalCurrentSelectedMonth.getValue();
     }
-    public static int getGlobalCurrentSelectedDay(){
+
+    public static int getGlobalCurrentSelectedDay() {
         return _globalCurrentSelectedDay.getValue();
     }
 
-    public void setCurrDaysArrayOfMonthObj(ArrayList<TSLiveData<DayClass>> list){
+    public void setCurrDaysArrayOfMonthObj(ArrayList<TSLiveData<DayClass>> list) {
         this._daysOfCurrMonth.setValue(list);
     }
 
-    public static TSLiveData<Integer> getLiveGlobalMonth(){
+    public static TSLiveData<Integer> getLiveGlobalMonth() {
         return _globalCurrentCalendarMonth;
     }
-    public static TSLiveData<ArrayList<TSLiveData<DayClass>>> getLiveGlobalDaysList(){
+
+    public static TSLiveData<ArrayList<TSLiveData<DayClass>>> getLiveGlobalDaysList() {
         return _daysOfCurrMonth;
     }
 
@@ -183,12 +184,13 @@ public class CalendarRepository {
        나중에, YMD 를 변경하여 이용시 LiveData 와 연동이 안 되기 때문에
        오류 시 체크 / 조만간 LiveData 와 연동작업 해야함
     */
-    public static YMD getGlobalCurrentYMD(){
+    public static YMD getGlobalCurrentYMD() {
         return new YMD(getGlobalCurrentCalendarYear(),
                 getGlobalCurrentCalendarMonth(),
                 getGlobalCurrentCalendarDay());
     }
-    public static YMD getGlobalSelectedYMD(){
+
+    public static YMD getGlobalSelectedYMD() {
         return new YMD(getGlobalCurrentSelectedYear(),
                 getGlobalCurrentSelectedMonth(),
                 getGlobalCurrentSelectedDay());
@@ -235,7 +237,7 @@ public class CalendarRepository {
             list.add(day);
         }
 
-        for (int i = 1;i <= CalendarUtil.getLastVisibleDayOfNextMonth(year, month); i++) {
+        for (int i = 1; i <= CalendarUtil.getLastVisibleDayOfNextMonth(year, month); i++) {
             day = new TSLiveData<>();
             YMD nextMonthYMD = new YMD(year, month, i).nextMonth();
             day.setValue(new DayClass());
@@ -270,13 +272,21 @@ public class CalendarRepository {
                     plan.getYear(),
                     plan.getMonth(), plan.getDay());
 
-            if (absIndex >= 0 && absIndex <= DAY_IN_MONTH) {
+            try {
                 list.get(absIndex).getValue().add(plan);
-                ArrayList<Plan> newList = new ArrayList<Plan>();
-                newList.add(plan);
-                PlanRepository.getCurrentMonthPlanListAt(absIndex).setValue(
-                        new DayPlanList(newList));
+            } catch (IndexOutOfBoundsException exception) {
+                String msg = "RefreshCalendarIndexException => " +
+                        "globalCurrentCalendarYear { " + getGlobalCurrentCalendarYear() +" } , " +
+                        "globalCurrentCalendarMonth { " + getGlobalCurrentCalendarMonth() +" } , " +
+                        "plan.getYear { " + plan.getYear() + " } , " +
+                        "plan.getMonth { " + plan.getMonth() + " } , " +
+                        "plan.getDay { " + plan.getDay() + " } , ";
+                throw new IndexOutOfBoundsException(msg);
             }
+            ArrayList<Plan> newList = new ArrayList<Plan>();
+            newList.add(plan);
+            PlanRepository.getCurrentMonthPlanListAt(absIndex).setValue(
+                    new DayPlanList(newList));
 
 
         }

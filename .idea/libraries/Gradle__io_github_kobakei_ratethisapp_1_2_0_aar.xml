@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: io.github.kobakei:ratethisapp:1.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a3a31032ed358fe34c6061d26c5710e/jetified-ratethisapp-1.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a3a31032ed358fe34c6061d26c5710e/jetified-ratethisapp-1.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/55ab84097d4257e3a5e955194a0406f9/jetified-ratethisapp-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/55ab84097d4257e3a5e955194a0406f9/jetified-ratethisapp-1.2.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.kobakei/ratethisapp/1.2.0/9435df577e458fda32a82ae6cc6d302ad2dd89bd/ratethisapp-1.2.0-javadoc.jar!/" />

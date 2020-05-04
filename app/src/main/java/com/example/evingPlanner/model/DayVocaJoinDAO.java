@@ -27,10 +27,10 @@ public interface DayVocaJoinDAO {
     @Query("DELETE FROM day_voca_join WHERE voca_id = :vocabularyId")
     void deleteByVocabulary(long vocabularyId);
 
-    @Query("SELECT * FROM day_voca_join")
+    @Query("SELECT * FROM day_voca_join ORDER BY created_at DESC")
     List<DayVocaJoin> selectAll();
 
-    @Query("SELECT * FROM day_voca_join d WHERE day_id = :dayId")
+    @Query("SELECT * FROM day_voca_join d WHERE day_id = :dayId ORDER BY created_at DESC" )
     List<DayVocaJoin> getDayVocaJoinForDay(long dayId);
 
     @Query("SELECT * FROM table_vocabulary")

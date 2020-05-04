@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0px"
             android:fontFamily="@font/nanum_gorthic"
-            android:text="@string/add"
+            android:text="@string/vocabularies"
             android:textColor="@color/interaction_text_color"
             android:textSize="18dp"
             app:layout_constraintHeight_percent="0.05"
@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingBottom="20dp"
-            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintHeight_percent="0.7"
             app:layout_constraintTop_toBottomOf="@id/hor_third_start_guide" >
 
             <androidx.recyclerview.widget.RecyclerView

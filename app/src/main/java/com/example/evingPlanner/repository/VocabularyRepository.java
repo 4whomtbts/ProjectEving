@@ -90,7 +90,7 @@ public class VocabularyRepository {
             List<Vocabulary> result = new ArrayList<>();
 
             for (DayVocaJoin dayVocaJoin : target) {
-                result.add(RootRepository.getVocaTypeDatabase().getVocaDAO().selectVocaById(dayVocaJoin.vocaId));
+                result.add(RootRepository.getVocaTypeDatabase().getVocaDAO().selectVocaById(dayVocaJoin.getVocaId()));
             }
             return result;
         }

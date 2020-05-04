@@ -20,7 +20,6 @@ public abstract class DayDatabase extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), DayDatabase.class,
                     "day_db")
-                    .fallbackToDestructiveMigration()
                     .build();
         }
         return instance;

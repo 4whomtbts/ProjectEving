@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         requestReview();
         RootRepository.initGlobalSetting();
         //showInfoMessage();
-        showMessageByGivenSharedPreference("1.2.6", R.string.v1_2_6_title, R.string.v1_2_6_content);
+        showMessageByGivenSharedPreference("1.3.0", R.string.v1_3_0_title, R.string.v1_3_0_content);
     }
 
     public void setupViewPager(ViewPager vp) {

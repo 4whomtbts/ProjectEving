@@ -213,5 +213,9 @@
     <string name="collapse">Collapse</string>
     <string name="voca_couldnt_be_empty">Vocabulary couldn\'t be empty string</string>
     <string name="modify">modify</string>
+    <string name="voca_save_success">The Vocabulary saved.</string>
+    <string name="vocabularies">Voca</string>
+    <string name="v1_3_0_title">1.3.0</string>
+    <string name="v1_3_0_content">1_3_0 released</string>
 
 </resources>

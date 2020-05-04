@@ -95,7 +95,7 @@ public class EditClonePlanDialogFragment extends DialogFragment {
             int height = (int)(size.y * 0.95);
             dialog.getWindow().setLayout(width,height);
             dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
-            .SOFT_INPUT_ADJUST_RESIZE);
+            .SOFT_INPUT_ADJUST_PAN);
         }
 
     }
@@ -107,7 +107,6 @@ public class EditClonePlanDialogFragment extends DialogFragment {
         this.binding.planTitleInputText.setText(thisPlan.getTitle());
         this.binding.planContentInputText.setText(thisPlan.getTextPlan());
         this.binding.currentCycleStateText.setText(thisPlan.getCycleState());
-        this.binding.planStudySuggestionText.setMovementMethod(new ScrollingMovementMethod());
         this.binding.currentTotalProgressText.setText(vmodel.getProgress());
     }
 

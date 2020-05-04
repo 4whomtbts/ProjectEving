@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -7,8 +8,8 @@ android {
         applicationId "com.forwhomtbts.evingPlanner"
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 12
-        versionName "1.2.6"
+        versionCode 14
+        versionName "1.3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en",  "US", "ko"
     }
@@ -40,17 +41,18 @@ dependencies {
     def room_version = "2.2.3"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.gms:play-services-ads:18.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.gms:play-services-analytics:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.4.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation("com.google.guava:guava:29.0-android")
     implementation "io.github.kobakei:ratethisapp:1.2.0"
     implementation 'net.danlew:android.joda:2.10.1.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
-    //implementation "android.arch.persistence.room:runtime:2.2.3"
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     testCompileOnly 'org.projectlombok:lombok:1.18.12'

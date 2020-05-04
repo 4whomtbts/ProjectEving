@@ -29,7 +29,6 @@ public abstract class VocabularyDatabase extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), VocabularyDatabase.class,
                     "vocabulary_db")
-                    .fallbackToDestructiveMigration()
                     .build();
         }
         return instance;

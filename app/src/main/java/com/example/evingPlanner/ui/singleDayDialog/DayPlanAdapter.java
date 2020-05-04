@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
+import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -30,6 +31,7 @@ import com.example.evingPlanner.ui.planDialogs.planEditDialog.clonePlan.EditClon
 import com.example.evingPlanner.ui.planDialogs.planEditDialog.originalPlan.EditOrgPlanDialogFragment;
 import com.example.evingPlanner.ui.singleDayDialog.movePlanDialog.MovePlanDialog;
 import com.example.evingPlanner.ui.singleDayDialog.movePlanDialog.MovePlanDialogDismissListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 
@@ -38,6 +40,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
     private ArrayList<Plan> planList;
     private FragmentManager fragmentManager;
     private RecyclerView.Adapter parentAdapter = this;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public DayPlanAdapter(ArrayList<Plan> list, FragmentManager fm) {
         this.planList = list;
@@ -78,6 +81,7 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
             super(binding.getRoot());
             this.binding = binding;
             this.context = context;
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
             binding.dayPlanItemOptionButton.setFocusable(false);
             binding.dayPlanItemOptionButton.setFocusableInTouchMode(false);
             setListeners();
@@ -161,7 +165,10 @@ public class DayPlanAdapter extends RecyclerView.Adapter {
           this.binding.isDoneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
               @Override
               public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                          model.setIsDone(isChecked);
+                  Bundle bundle = new Bundle();
+                  bundle.putString("plan_complete", "제목 [ "+model.plan.getTitle()+" ], 내용 [ "+model.plan.getTextPlan()+" ], 그룹 [ "+model.plan.group+" ]");
+                  mFirebaseAnalytics.logEvent("plan_complete", bundle);
+                  model.setIsDone(isChecked);
 
               }
           });

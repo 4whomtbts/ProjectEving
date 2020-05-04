@@ -24,22 +24,25 @@ public class VocabularyItemViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void init(VocaDayJoinWithVoca vocaDayJoin) {
+    void init(VocaDayJoinWithVoca vocaDayJoin) {
         Vocabulary vocabulary = vocaDayJoin.getVocabulary();
         voca = vocabulary.getVoca();
         translation = vocabulary.getTranslation();
         description = vocabulary.getDescription();
     }
 
-    public void modify(Vocabulary vocabulary) {
+    void modify(Vocabulary vocabulary) {
         checkNotNull(vocabulary, "vocabulary couldn't be null");
+
         new VocabularyRepository.UpdateVocabulary().execute(vocabulary);
         voca = vocabulary.getVoca();
         translation = vocabulary.getTranslation();
         description = vocabulary.getDescription();
     }
 
-    public void delete(VocaDayJoinWithVoca vocaDayJoinWith) throws ExecutionException, InterruptedException {
+    void delete(VocaDayJoinWithVoca vocaDayJoinWith) throws ExecutionException, InterruptedException {
+        checkNotNull(vocaDayJoinWith, "vocaDayJoinWith cannot be null");
+
         Vocabulary voca = vocaDayJoinWith.getVocabulary();
         new VocabularyRepository.DeleteVocabulary().execute(voca).get();
         new DayVocaJoinRepsotiory.Delete().execute(vocaDayJoinWith.getDayVocaJoin()).get();

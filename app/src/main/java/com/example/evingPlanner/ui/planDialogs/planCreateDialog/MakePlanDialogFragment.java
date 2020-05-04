@@ -43,6 +43,7 @@ import com.example.evingPlanner.ui.planDialogs.clonePreview.ClonePreviewAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 
@@ -53,6 +54,7 @@ public class MakePlanDialogFragment extends DialogFragment {
     private MakePlanBinding binding;
     private ClonePreviewAdapter adapter;
     private PlanTypeSpinnerAdapter.PlanClickListener planTypeSpinnerListener;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -70,6 +72,7 @@ public class MakePlanDialogFragment extends DialogFragment {
 
         this.binding.setModel(vmodel);
         this.binding.setLifecycleOwner(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
         this.setCancelable(true);
 
         View view = this.binding.getRoot();
@@ -177,6 +180,9 @@ public class MakePlanDialogFragment extends DialogFragment {
                     vmodel.makeNewPlan(vmodel.getWillBePlannedDatesArrWithCurrentPlan(),title,input,group);
                     InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if(imm != null) imm.hideSoftInputFromWindow(binding.getRoot().getWindowToken(), 0);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("new_plan", "제목 [ "+title+" ], 내용 [ "+input+" ], 그룹 [ "+group+" ]");
+                    mFirebaseAnalytics.logEvent("new_plan", bundle);
                     dismiss();
 
             }
